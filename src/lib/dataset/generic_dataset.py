@@ -31,6 +31,10 @@ from utils.image import get_affine_transform, affine_transform
 from utils.image import gaussian_radius, draw_umich_gaussian
 import copy
 
+import warnings
+
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
 
 class GenericDataset(data.Dataset):
     is_fusion_dataset = False
@@ -355,6 +359,7 @@ class GenericDataset(data.Dataset):
         img_info = coco.loadImgs(ids=[img_id])[0]
         file_name = img_info["file_name"]
         img_path = os.path.join(img_dir, file_name)
+        # img_path = img_path.replace('/src/lib/../..', '') # TODO
         ann_ids = coco.getAnnIds(imgIds=[img_id])
         anns = copy.deepcopy(coco.loadAnns(ids=ann_ids))
         img = cv2.imread(img_path)

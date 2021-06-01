@@ -11,13 +11,13 @@ import copy
 import matplotlib.pyplot as plt
 from nuscenes.nuscenes import NuScenes
 from nuscenes.utils.geometry_utils import BoxVisibility, transform_matrix
-from nuScenes_lib.utils_kitti import KittiDB
+from nuscenes.utils.kitti import KittiDB
 from nuscenes.eval.detection.utils import category_to_detection_name
 from pyquaternion import Quaternion
 import os
 import _init_paths
-from utils.ddd_utils import compute_box_3d, project_to_image, alpha2rot_y
-from utils.ddd_utils import draw_box_3d, unproject_2d_to_3d
+from lib.utils.ddd_utils import compute_box_3d, project_to_image, alpha2rot_y
+from lib.utils.ddd_utils import draw_box_3d, unproject_2d_to_3d
 
 DATA_PATH = "../../data/nuscenes/"
 OUT_PATH = DATA_PATH + "annotations/"

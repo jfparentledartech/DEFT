@@ -9,11 +9,9 @@ import torch
 import torch.utils.data
 from opts import opts
 from model.model import create_model, load_model, save_model
-from model.data_parallel import DataParallel
 from logger import Logger
 from dataset.dataset_factory import get_dataset
-from trainer import Trainer
-from dataset.trajectory_dataset import TrajectoryDataset
+from progress.bar import Bar
 
 
 def get_optimizer(opt, model):
@@ -75,14 +73,31 @@ def main(opt):
     for i, param in enumerate(model.parameters()):
         param.requires_grad = True
 
+
+    trainset = Dataset(opt, "train")
+
+    train_mask = list(range(0, int(len(trainset)/10), 1))
+    train_subset = torch.utils.data.Subset(Dataset(opt, "train"), train_mask)
+
+    print(len(train_subset))
+
     train_loader = torch.utils.data.DataLoader(
-        Dataset(opt, "train"),
+        train_subset,
         batch_size=1,
         shuffle=True,
         num_workers=16,
         pin_memory=True,
         drop_last=True,
     )
+
+    # train_loader = torch.utils.data.DataLoader(
+    #     Dataset(opt, "train"),
+    #     batch_size=1,
+    #     shuffle=True,
+    #     num_workers=16,
+    #     pin_memory=True,
+    #     drop_last=True,
+    # )
 
     for state in optimizer.state.values():
         for k, v in state.items():
@@ -94,6 +109,10 @@ def main(opt):
     print("Starting training...")
     for epoch in range(start_epoch + 1, opt.num_epochs + 1):
         mark = epoch if opt.save_all else "last"
+
+        num_iters = len(train_loader) if opt.num_iters < 0 else opt.num_iters
+        bar = Bar("{}/{}".format(opt.task, opt.exp_id), max=num_iters)
+
         for iter_id, (inputs, targets) in enumerate(train_loader):
             inputs = inputs.to(device=device).float()
             targets = targets.to(device=device).view(1, -1).float()
@@ -106,6 +125,20 @@ def main(opt):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+
+            Bar.suffix = "{phase}: [{0}/{1}][{2}/{3}]|Tot: {total:} |ETA: {eta:} ".format(
+                epoch,
+                opt.num_epochs,
+                iter_id,
+                num_iters,
+                phase="train",
+                total=bar.elapsed_td,
+                eta=bar.eta_td,
+            )
+
+            if opt.print_iter > 0:  # If not using progress bar
+                if iter_id % opt.print_iter == 0:
+                    print("{}/{}| {}".format(opt.task, opt.exp_id, Bar.suffix))
 
             del outputs, loss
 

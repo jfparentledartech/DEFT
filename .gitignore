@@ -1,2 +1,7 @@
 .idea/
 *.pyc
+/data
+src/lib/model/networks/DCNv2/
+**/__pycache__/
+examples
+exp

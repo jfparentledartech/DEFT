@@ -10,15 +10,18 @@ import os
 
 import torch
 import torch.utils.data
-from opts import opts
-from model.model import create_model, load_model, save_model
-from model.data_parallel import DataParallel
-from logger import Logger
-from dataset.dataset_factory import get_dataset
-from trainer import Trainer
+from lib.opts import opts
+from lib.model.model import create_model, load_model, save_model
+from lib.model.data_parallel import DataParallel
+from lib.logger import Logger
+from lib.dataset.dataset_factory import get_dataset
+from lib.trainer import Trainer
 import warnings
 
+import pickle
+
 warnings.filterwarnings("ignore", category=DeprecationWarning)
+warnings.filterwarnings("ignore", category=UserWarning)
 
 
 def get_optimizer(opt, model):
@@ -75,14 +78,32 @@ def main(opt):
             return
 
     print("Setting up train data...")
+
+    trainset = Dataset(opt, "train")
+
+    train_mask = list(range(0, int(len(trainset)/10), 1))
+    train_subset = torch.utils.data.Subset(Dataset(opt, "train"), train_mask)
+
+    print(len(train_subset))
+
     train_loader = torch.utils.data.DataLoader(
-        Dataset(opt, "train"),
+        train_subset,
         batch_size=opt.batch_size,
         shuffle=True,
         num_workers=opt.num_workers,
         pin_memory=True,
         drop_last=True,
     )
+
+    # train_loader = torch.utils.data.DataLoader(
+    #     Dataset(opt, "train"),
+    #     batch_size=opt.batch_size,
+    #     shuffle=True,
+    #     num_workers=opt.num_workers,
+    #     pin_memory=True,
+    #     drop_last=True,
+    # )
+
 
     print("Starting training...")
     for epoch in range(start_epoch + 1, opt.num_epochs + 1):
@@ -134,4 +155,10 @@ def main(opt):
 
 if __name__ == "__main__":
     opt = opts().parse()
+
+    # filename = 'train_opt.txt'
+    # with open(filename, 'wb') as f:
+    #     pickle.dump(opt, f)
+    # with open(filename, 'rb') as f:
+    #     opt = pickle.load(f)
     main(opt)

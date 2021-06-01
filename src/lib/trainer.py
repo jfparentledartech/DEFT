@@ -25,6 +25,11 @@ from utils.debugger import Debugger
 from utils.post_process import generic_post_process
 import cv2
 
+import warnings
+
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+warnings.filterwarnings("ignore", category=UserWarning)
+
 
 class GenericLoss(torch.nn.Module):
     def __init__(self, opt):
@@ -188,7 +193,6 @@ class Trainer(object):
                     state[k] = v.to(device=device, non_blocking=True)
 
     def run_epoch(self, phase, epoch, data_loader):
-        print("yesyes ")
         model_with_loss = self.model_with_loss
         if phase == "train":
             model_with_loss.train()
@@ -225,8 +229,9 @@ class Trainer(object):
             batch_time.update(time.time() - end)
             end = time.time()
 
-            Bar.suffix = "{phase}: [{0}][{1}/{2}]|Tot: {total:} |ETA: {eta:} ".format(
+            Bar.suffix = "{phase}: [{0}/{1}][{2}/{3}]|Tot: {total:} |ETA: {eta:} ".format(
                 epoch,
+                opt.num_epochs,
                 iter_id,
                 num_iters,
                 phase=phase,

@@ -12,10 +12,10 @@ from progress.bar import Bar
 import torch
 import copy
 import pycocotools.coco as coco
-from opts import opts
-from logger import Logger
-from utils.utils import AverageMeter
-from dataset.dataset_factory import dataset_factory
+from lib.opts import opts
+from lib.logger import Logger
+from lib.utils.utils import AverageMeter
+from lib.dataset.dataset_factory import dataset_factory
 import json
 from statistics import mean
 import matplotlib.pyplot as plt
