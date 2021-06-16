@@ -1,10 +1,6 @@
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
-import os.path as osp
-import sys
-
-import _init_paths
 
 import os
 
@@ -79,30 +75,31 @@ def main(opt):
 
     print("Setting up train data...")
 
-    trainset = Dataset(opt, "train")
-
-    train_mask = list(range(0, int(len(trainset)/10), 1))
-    train_subset = torch.utils.data.Subset(Dataset(opt, "train"), train_mask)
-
-    print(len(train_subset))
-
-    train_loader = torch.utils.data.DataLoader(
-        train_subset,
-        batch_size=opt.batch_size,
-        shuffle=True,
-        num_workers=opt.num_workers,
-        pin_memory=True,
-        drop_last=True,
-    )
-
+    # TODO uncomment to use subset
+    # trainset = Dataset(opt, "train")
+    #
+    # train_mask = list(range(0, int(len(trainset)/100), 1))
+    # train_subset = torch.utils.data.Subset(Dataset(opt, "train"), train_mask)
+    #
+    # print(len(train_subset))
+    #
     # train_loader = torch.utils.data.DataLoader(
-    #     Dataset(opt, "train"),
+    #     train_subset,
     #     batch_size=opt.batch_size,
     #     shuffle=True,
     #     num_workers=opt.num_workers,
     #     pin_memory=True,
     #     drop_last=True,
     # )
+
+    train_loader = torch.utils.data.DataLoader(
+        Dataset(opt, "train"),
+        batch_size=opt.batch_size,
+        shuffle=True,
+        num_workers=opt.num_workers,
+        pin_memory=True,
+        drop_last=True,
+    )
 
 
     print("Starting training...")
@@ -154,11 +151,12 @@ def main(opt):
 
 
 if __name__ == "__main__":
-    opt = opts().parse()
+    # opt = opts().parse()
 
-    # filename = 'train_opt.txt'
+    filename = 'train_opt_pixset.txt'
     # with open(filename, 'wb') as f:
     #     pickle.dump(opt, f)
-    # with open(filename, 'rb') as f:
-    #     opt = pickle.load(f)
+    #     print(f'saved {filename}')
+    with open('../' + filename, 'rb') as f:
+        opt = pickle.load(f)
     main(opt)

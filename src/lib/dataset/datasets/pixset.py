@@ -15,21 +15,52 @@ import os
 from ..generic_dataset import GenericDataset
 from ..trajectory_dataset import TrajectoryDataset
 
-
-class nuScenes(GenericDataset):
-    default_resolution = [448, 800]
-    num_categories = 10
-    class_name = [
-        "car",
-        "truck",
-        "bus",
-        "trailer",
-        "construction_vehicle",
-        "pedestrian",
-        "motorcycle",
-        "bicycle",
-        "traffic_cone",
-        "barrier",
+# TODO
+class PixSet(GenericDataset):
+    # default_resolution = [500, 2000] # TODO cropped resolution instead? verify x,y order (y,x)
+    default_resolution = [448, 800] # TODO cropped resolution instead? verify x,y order (y,x)
+    num_categories = 2
+    categories = [
+        'pedestrian',
+        'vehicle'
+    ]
+    original_categories = [
+        'pedestrian',
+        'deformed pedestrian',
+        'bicycle',
+        'car',
+        'van',
+        'bus',
+        'truck',
+        'motorcycle',
+        'stop sign',
+        'traffic light',
+        'traffic sign',
+        'traffic cone',
+        'fire hydrant',
+        'guard rail',
+        'pole',
+        'pole group',
+        'road',
+        'sidewalk',
+        'wall',
+        'building',
+        'vegetation',
+        'terrain',
+        'ground',
+        'crosstalk',
+        'noise',
+        'others',
+        'animal',
+        'unpainted',
+        'cyclist',
+        'motorcyclist',
+        'unclassified vehicle',
+        'obstacle',
+        'trailer',
+        'barrier',
+        'bicycle rack',
+        'construction vehicle'
     ]
     cat_ids = {i + 1: i + 1 for i in range(num_categories)}
     focal_length = 1200
@@ -52,8 +83,9 @@ class nuScenes(GenericDataset):
     id_to_attribute = {v: k for k, v in attribute_to_id.items()}
 
     def __init__(self, opt, split):
+        self.class_name = ["pedestrian", "vehicle"]
         split_names = {"train": "train", "val": "val"}
-        data_dir = os.path.join(opt.data_dir, "nuscenes")
+        data_dir = os.path.join(opt.data_dir, "pixset")
         if not split == "test":
             split_name = split_names[split]
 
@@ -70,7 +102,7 @@ class nuScenes(GenericDataset):
             )
 
         self.images = None
-        super(nuScenes, self).__init__(opt, split, ann_path, img_dir)
+        super(PixSet, self).__init__(opt, split, ann_path, img_dir)
 
         self.alpha_in_degree = False
         self.num_samples = len(self.images)
@@ -83,13 +115,14 @@ class nuScenes(GenericDataset):
     def _to_float(self, x):
         return float("{:.2f}".format(x))
 
+     # TODO?
     def convert_coco_format(self, all_bboxes):
         detections = []
         for image_id in all_bboxes:
             if type(all_bboxes[image_id]) != type({}):
                 for j in range(len(all_bboxes[image_id])):
                     item = all_bboxes[image_id][j]
-                    category_id = citem["class"]
+                    category_id = item["class"]
                     bbox = item["bbox"]
                     bbox[2] -= bbox[0]
                     bbox[3] -= bbox[1]
@@ -103,7 +136,11 @@ class nuScenes(GenericDataset):
                     detections.append(detection)
         return detections
 
+    # TODO
     def convert_eval_format(self, results):
+        print('AAAAAAAAAAAAAAAAAAAAA')
+        print('AAAAAAAAAAAAAAAAAAAAA')
+        print('AAAAAAAAAAAAAAAAAAAAA')
         from nuscenes.utils.data_classes import Box
 
         ret = {
@@ -116,7 +153,7 @@ class nuScenes(GenericDataset):
             },
             "results": {},
         }
-        print("Converting nuscenes format...")
+        print("Converting pixset format...")
         for image_id in self.images:
             if not (image_id in results):
                 continue
@@ -126,6 +163,12 @@ class nuScenes(GenericDataset):
             sensor_id = image_info["sensor_id"]
             sample_results = []
             for item in results[image_id]:
+                print('CLASS NAME')
+                print('CLASS NAME')
+                print('CLASS NAME')
+                print('CLASS NAME')
+                print('CLASS NAME')
+                print('CLASS NAME')
                 class_name = (
                     self.class_name[int(item["class"] - 1)]
                     if not ("detection_name" in item)
@@ -253,12 +296,14 @@ class nuScenes(GenericDataset):
 
         return ret
 
+     # TODO
     def save_results(self, results, save_dir, task):
         json.dump(
             self.convert_eval_format(results),
             open("{}/results_nuscenes_{}.json".format(save_dir, task), "w"),
         )
 
+    # TODO
     def run_eval(self, results, save_dir):
         task = "tracking" if self.opt.tracking else "det"
         self.save_results(results, save_dir, task)
@@ -287,27 +332,22 @@ class nuScenes(GenericDataset):
             )
 
 
-class nuScenes_prediction(TrajectoryDataset):
+# TODO
+class PixSet_prediction(TrajectoryDataset):
+    # default_resolution = [500, 2000]
     default_resolution = [448, 800]
-    num_categories = 10
+    num_categories = 2
     class_name = [
-        "car",
-        "truck",
-        "bus",
-        "trailer",
-        "construction_vehicle",
-        "pedestrian",
-        "motorcycle",
-        "bicycle",
-        "traffic_cone",
-        "barrier",
+        'pedestrian',
+        'vehicle'
     ]
+
     cat_ids = {i + 1: i + 1 for i in range(num_categories)}
     focal_length = 1200
     max_objs = 128
     _tracking_ignored_class = ["construction_vehicle", "traffic_cone", "barrier"]
-    _vehicles = ["car", "truck", "bus", "trailer", "construction_vehicle"]
-    _cycles = ["motorcycle", "bicycle"]
+    _vehicles = ["vehicle"]
+    _cycles = []
     _pedestrians = ["pedestrian"]
     attribute_to_id = {
         "": 0,
@@ -324,7 +364,7 @@ class nuScenes_prediction(TrajectoryDataset):
 
     def __init__(self, opt, split):
         split_names = {"train": "train", "val": "val"}
-        data_dir = os.path.join(opt.data_dir, "nuscenes")
+        data_dir = os.path.join(opt.data_dir, "pixset")
         if not split == "test":
             split_name = split_names[split]
 
@@ -341,7 +381,7 @@ class nuScenes_prediction(TrajectoryDataset):
             )
 
         self.images = None
-        super(nuScenes_prediction, self).__init__(opt, split, ann_path, img_dir)
+        super(PixSet_prediction, self).__init__(opt, split, ann_path, img_dir)
 
         self.alpha_in_degree = False
         self.num_samples = len(self.images)

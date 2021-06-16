@@ -7,11 +7,13 @@ import os
 
 import torch
 import torch.utils.data
-from opts import opts
-from model.model import create_model, load_model, save_model
-from logger import Logger
-from dataset.dataset_factory import get_dataset
+from lib.opts import opts
+from lib.model.model import create_model, load_model, save_model
+from lib.logger import Logger
+from lib.dataset.dataset_factory import get_dataset
 from progress.bar import Bar
+
+import pickle
 
 
 def get_optimizer(opt, model):
@@ -31,14 +33,15 @@ class DecoderRNN(torch.nn.Module):
     def __init__(self, num_hidden, opt):
         super(DecoderRNN, self).__init__()
         self.num_hidden = num_hidden
-        if opt.dataset == "nuscenes":
+        if opt.dataset in ["nuscenes"]:
             self.lstm = torch.nn.LSTM(18, self.num_hidden)
             self.out1 = torch.nn.Linear(self.num_hidden, 64)
             self.out2 = torch.nn.Linear(64, 4 * 4)
         else:
             self.lstm = torch.nn.LSTM(11, self.num_hidden)
             self.out1 = torch.nn.Linear(self.num_hidden, 64)
-            self.out2 = torch.nn.Linear(64, 4 * 5)
+            # self.out2 = torch.nn.Linear(64, 4 * 5)
+            self.out2 = torch.nn.Linear(64, 4 * 4)
 
     def forward(self, input_traj):
         # Fully connected
@@ -74,30 +77,31 @@ def main(opt):
         param.requires_grad = True
 
 
-    trainset = Dataset(opt, "train")
-
-    train_mask = list(range(0, int(len(trainset)/10), 1))
-    train_subset = torch.utils.data.Subset(Dataset(opt, "train"), train_mask)
-
-    print(len(train_subset))
-
-    train_loader = torch.utils.data.DataLoader(
-        train_subset,
-        batch_size=1,
-        shuffle=True,
-        num_workers=16,
-        pin_memory=True,
-        drop_last=True,
-    )
-
+    # Uncomment for subset
+    # trainset = Dataset(opt, "train")
+    #
+    # train_mask = list(range(0, int(len(trainset)/10), 1))
+    # train_subset = torch.utils.data.Subset(Dataset(opt, "train"), train_mask)
+    #
+    # print(len(train_subset))
+    #
     # train_loader = torch.utils.data.DataLoader(
-    #     Dataset(opt, "train"),
+    #     train_subset,
     #     batch_size=1,
     #     shuffle=True,
     #     num_workers=16,
     #     pin_memory=True,
     #     drop_last=True,
     # )
+
+    train_loader = torch.utils.data.DataLoader(
+        Dataset(opt, "train"),
+        batch_size=1,
+        shuffle=True,
+        num_workers=0,
+        pin_memory=True,
+        drop_last=True,
+    )
 
     for state in optimizer.state.values():
         for k, v in state.items():
@@ -126,7 +130,7 @@ def main(opt):
             loss.backward()
             optimizer.step()
 
-            Bar.suffix = "{phase}: [{0}/{1}][{2}/{3}]|Tot: {total:} |ETA: {eta:} ".format(
+            Bar.suffix = "{phase}: [{0}/{1}][{2}/{3}]|Tot: {total:} |ETA: {eta:} |Loss: {loss:} ".format(
                 epoch,
                 opt.num_epochs,
                 iter_id,
@@ -134,6 +138,7 @@ def main(opt):
                 phase="train",
                 total=bar.elapsed_td,
                 eta=bar.eta_td,
+                loss=loss
             )
 
             if opt.print_iter > 0:  # If not using progress bar
@@ -160,5 +165,12 @@ def main(opt):
 
 
 if __name__ == "__main__":
-    opt = opts().parse()
+    # opt = opts().parse()
+    #
+    filename = 'train_prediction_opt_pixset.txt'
+    # with open(filename, 'wb') as f:
+    #     pickle.dump(opt, f)
+    #     print(f'saved {filename}')
+    with open(filename, 'rb') as f:
+        opt = pickle.load(f)
     main(opt)

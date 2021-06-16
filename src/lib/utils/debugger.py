@@ -10,9 +10,6 @@ from __future__ import division
 from __future__ import print_function
 
 import matplotlib.pyplot as plt
-import mpl_toolkits.mplot3d
-from mpl_toolkits.mplot3d import Axes3D
-import time
 import numpy as np
 import cv2
 from .ddd_utils import compute_box_3d, project_to_image, draw_box_3d
@@ -25,7 +22,8 @@ class Debugger(object):
         self.theme = opt.debugger_theme
         self.plt = plt
         self.with_3d = False
-        self.names = dataset.class_name
+        # self.names = dataset.class_name
+        self.names = ['pedestrian', 'vehicle']
         self.out_size = 384 if opt.dataset == "kitti" else 512
         self.cnt = 0
         colors = [(color_list[i]).astype(np.uint8) for i in range(len(color_list))]

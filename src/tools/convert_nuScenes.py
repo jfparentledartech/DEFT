@@ -248,6 +248,16 @@ def main():
                         bbox = KittiDB.project_kitti_box_to_image(
                             copy.deepcopy(box), camera_intrinsic, imsize=(1600, 900)
                         )
+                        xmin, ymin, xmax, ymax = bbox
+                        x_list = [xmin, xmin, xmax, xmax]
+                        y_list = [ymin, ymax, ymin, ymax]
+
+                        imgroot = '/home/jfparent/Documents/Stage/DEFT/data/nuscenes/v1.0-trainval/'
+                        plt.imshow(plt.imread(imgroot + image_info['file_name']))
+                        plt.scatter(amodel_center[0], amodel_center[1])
+                        plt.scatter(x_list, y_list)
+                        plt.show()
+
                         alpha = _rot_y2alpha(
                             yaw,
                             (bbox[0] + bbox[2]) / 2,

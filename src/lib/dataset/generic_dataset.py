@@ -18,17 +18,17 @@ import pycocotools.coco as coco
 import torch
 import torch.utils.data as data
 
-from utils.image import (
-    flip,
-    color_aug,
-    show_matching_hanlded_rectangle,
-    ResizeShuffleBoxes,
-    FormatBoxes,
-    ToTensor,
-    ToPercentCoordinates,
+from lib.utils.image import (
+        flip,
+        color_aug,
+        show_matching_hanlded_rectangle,
+        ResizeShuffleBoxes,
+        FormatBoxes,
+        ToTensor,
+        ToPercentCoordinates,
 )
-from utils.image import get_affine_transform, affine_transform
-from utils.image import gaussian_radius, draw_umich_gaussian
+from lib.utils.image import get_affine_transform, affine_transform
+from lib.utils.image import gaussian_radius, draw_umich_gaussian
 import copy
 
 import warnings
@@ -487,7 +487,10 @@ class GenericDataset(data.Dataset):
         pre_hm = np.zeros((1, hm_h, hm_w), dtype=np.float32) if reutrn_hm else None
         pre_cts, track_ids = [], []
         for ann in anns:
-            cls_id = int(self.cat_ids[ann["category_id"]])
+            try:
+                cls_id = int(self.cat_ids[ann["category_id"]])
+            except:
+                print()
             if (
                 cls_id > self.opt.num_classes
                 or cls_id <= -99

@@ -215,5 +215,4 @@ def generic_decode(output, K=100, opt=None):
         pre_xs = (pre_inds % width).int().float()
 
         ret["pre_cts"] = torch.cat([pre_xs.unsqueeze(2), pre_ys.unsqueeze(2)], dim=2)
-
     return ret

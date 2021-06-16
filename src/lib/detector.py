@@ -12,7 +12,6 @@ from __future__ import print_function
 import cv2
 import copy
 import numpy as np
-from progress.bar import Bar
 import time
 import torch
 import math
@@ -27,13 +26,7 @@ from utils.debugger import Debugger
 from utils.tracker import Tracker
 from dataset.dataset_factory import get_dataset
 from pyquaternion import Quaternion
-from tqdm import tqdm
 from nuscenes.utils.data_classes import Box
-import json
-from nuscenes import NuScenes
-from nuscenes.eval.common.data_classes import EvalBoxes
-from nuscenes.eval.tracking.data_classes import TrackingBox
-from nuscenes.eval.detection.data_classes import DetectionBox
 from utils.ddd_utils import nms
 
 NUSCENES_TRACKING_NAMES = [
@@ -58,23 +51,22 @@ nuscenes_class_name = [
     "barrier",
 ]
 
+PIXSET_TRACKING_NAMES = [
+    "pedestrian",
+    "vehicle"
+]
+pixset_class_name = [
+    "pedestrian",
+    "vehicle"
+]
+
 
 NMS = True
 
 
-def project_3d_bbox(location, dim, rotation_y, calib):
-    box_3d = compute_box_3d(dim, location, rotation_y)
-    box_2d = project_to_image(box_3d, calib)
-    return box_2d
-
-
 class Detector(object):
     def __init__(self, opt):
-        if opt.gpus[0] >= 0:
-            opt.device = torch.device("cuda")
-        else:
-            opt.device = torch.device("cpu")
-
+        opt.device = torch.device("cuda") if opt.gpus[0] >= 0 else torch.device("cpu")
         print("Creating model...")
         self.model = create_model(opt.arch, opt.heads, opt.head_conv, opt=opt)
         self.model = load_model(self.model, opt.load_model, opt)
@@ -102,8 +94,14 @@ class Detector(object):
             self.tracker = {}
             for class_name in NUSCENES_TRACKING_NAMES:
                 self.tracker[class_name] = Tracker(opt, self.model)
-        else:
+        if self.dataset == "pixset":
+            self.tracker = {}
+            for class_name in PIXSET_TRACKING_NAMES:
+                self.tracker[class_name] = Tracker(opt, self.model)
+                print(self.tracker[class_name])
+        if self.dataset not in ["nuscenes", "pixset"]:
             self.tracker = Tracker(opt, self.model)
+
         self.debugger = Debugger(opt=opt, dataset=self.trained_dataset)
         self.img_height = 100
         self.img_width = 100
@@ -141,10 +139,10 @@ class Detector(object):
                 images = pre_processed_images["images"][scale][0]
                 meta = pre_processed_images["meta"][scale]
                 meta = {k: v.numpy()[0] for k, v in meta.items()}
-                if "pre_dets" in pre_processed_images["meta"]:
-                    meta["pre_dets"] = pre_processed_images["meta"]["pre_dets"]
-                if "cur_dets" in pre_processed_images["meta"]:
-                    meta["cur_dets"] = pre_processed_images["meta"]["cur_dets"]
+                if "pre_detections" in pre_processed_images["meta"]:
+                    meta["pre_detections"] = pre_processed_images["meta"]["pre_detections"]
+                if "cur_detections" in pre_processed_images["meta"]:
+                    meta["cur_detections"] = pre_processed_images["meta"]["cur_detections"]
 
             images = images.to(self.opt.device, non_blocking=self.opt.non_block_test)
 
@@ -156,8 +154,8 @@ class Detector(object):
 
             # run the network
             # output: the output feature maps, only used for visualizing
-            # dets: output tensors after extracting peaks
-            output, dets, forward_time, FeatureMaps = self.process(
+            # detections: output tensors after extracting peaks
+            output, detections_peaks, forward_time, FeatureMaps = self.process(
                 images, self.pre_images, pre_hms, pre_inds, return_time=True
             )
             net_time += forward_time - pre_process_time
@@ -166,9 +164,11 @@ class Detector(object):
 
             # convert the cropped and 4x downsampled output coordinate system
             # back to the input image coordinate system
-            result = self.post_process(dets, meta, scale)
+            result = self.post_process(detections_peaks, meta, scale)
             post_process_time = time.time()
             post_time += post_process_time - decode_time
+
+            # print("DETECT0", detections)
 
             detections.append(result)
             if self.opt.debug >= 2:
@@ -191,7 +191,7 @@ class Detector(object):
         # public detection mode in MOT challenge
         if self.opt.public_det:
             results = (
-                pre_processed_images["meta"]["cur_dets"]
+                pre_processed_images["meta"]["cur_detections"]
                 if self.opt.public_det
                 else None
             )
@@ -336,6 +336,148 @@ class Detector(object):
                     classe=class_name,
                 )
 
+        if self.dataset == "pixset":
+            # trans_matrix = np.array(image_info["trans_matrix"], np.float32) TODO trans_matrix convert pixset
+            trans_matrix = np.array(np.eye(4), np.float32)
+
+            results_by_class = {}
+            ddd_boxes_by_class = {}
+            depths_by_class = {}
+            ddd_boxes_by_class2 = {}
+            ddd_org_boxes_by_class = {}
+            ddd_box_submission1 = {}
+            ddd_box_submission2 = {}
+            for class_name in PIXSET_TRACKING_NAMES:
+                results_by_class[class_name] = []
+                ddd_boxes_by_class2[class_name] = []
+                ddd_boxes_by_class[class_name] = []
+                depths_by_class[class_name] = []
+                ddd_org_boxes_by_class[class_name] = []
+                ddd_box_submission1[class_name] = []
+                ddd_box_submission2[class_name] = []
+            for det in results:
+                cls_id = int(det["class"])
+                class_name = pixset_class_name[cls_id - 1]
+                if class_name not in PIXSET_TRACKING_NAMES:
+                    continue
+
+                if det["score"] < 0.3:
+                    continue
+                if class_name == "pedestrian" and det["score"] < 0.35:
+                    continue
+                results_by_class[class_name].append(
+                    det["bbox"].tolist() + [det["score"]]
+                )
+                size = [
+                    float(det["dim"][1]),
+                    float(det["dim"][2]),
+                    float(det["dim"][0]),
+                ]
+                rot_cam = Quaternion(axis=[0, 1, 0], angle=det["rot_y"])
+                translation_submission1 = np.dot(
+                    trans_matrix,
+                    np.array(
+                        [det["loc"][0], det["loc"][1] - size[2], det["loc"][2], 1],
+                        np.float32,
+                    ),
+                ).copy()
+
+                loc = np.array(
+                    [det["loc"][0], det["loc"][1], det["loc"][2]], np.float32
+                )
+                depths_by_class[class_name].append([float(det["loc"][2])].copy())
+                trans = [det["loc"][0], det["loc"][1], det["loc"][2]]
+
+                ddd_org_boxes_by_class[class_name].append(
+                    [float(det["dim"][0]), float(det["dim"][1]), float(det["dim"][2])]
+                    + trans
+                    + [det["rot_y"]]
+                )
+
+                box = Box(loc, size, rot_cam, name="2", token="1")
+                box.translate(np.array([0, -box.wlh[2] / 2, 0]))
+                # box.rotate(Quaternion(image_info["cs_record_rot"]))
+                # box.translate(np.array(image_info["cs_record_trans"]))
+                # box.rotate(Quaternion(image_info["pose_record_rot"]))
+                # box.translate(np.array(image_info["pose_record_trans"]))
+                rotation = box.orientation
+                rotation = [
+                    float(rotation.w),
+                    float(rotation.x),
+                    float(rotation.y),
+                    float(rotation.z),
+                ]
+
+                ddd_box_submission1[class_name].append(
+                    [
+                        float(translation_submission1[0]),
+                        float(translation_submission1[1]),
+                        float(translation_submission1[2]),
+                    ].copy()
+                    + size.copy()
+                    + rotation.copy()
+                )
+
+                q = Quaternion(rotation)
+                angle = q.angle if q.axis[2] > 0 else -q.angle
+
+                ddd_boxes_by_class[class_name].append(
+                    [
+                        size[2],
+                        size[0],
+                        size[1],
+                        box.center[0],
+                        box.center[1],
+                        box.center[2],
+                        angle,
+                    ].copy()
+                )
+
+            online_targets = []
+            for class_name in PIXSET_TRACKING_NAMES:
+                if len(results_by_class[class_name]) > 0 and NMS:
+                    boxess = torch.from_numpy(
+                        np.array(results_by_class[class_name])[:, :4]
+                    )
+                    scoress = torch.from_numpy(
+                        np.array(results_by_class[class_name])[:, -1]
+                    )
+                    if class_name == "bus" or class_name == "truck":
+                        ovrlp = 0.7
+                    else:
+                        ovrlp = 0.8
+                    keep, count = nms(boxess, scoress, overlap=ovrlp)
+
+                    keep = keep.data.numpy().tolist()
+                    keep = sorted(set(keep))
+                    results_by_class[class_name] = np.array(
+                        results_by_class[class_name]
+                    )[keep]
+
+                    ddd_boxes_by_class[class_name] = np.array(
+                        ddd_boxes_by_class[class_name]
+                    )[keep]
+                    depths_by_class[class_name] = np.array(depths_by_class[class_name])[
+                        keep
+                    ]
+                    ddd_org_boxes_by_class[class_name] = np.array(
+                        ddd_org_boxes_by_class[class_name]
+                    )[keep]
+                    ddd_box_submission1[class_name] = np.array(
+                        ddd_box_submission1[class_name]
+                    )[keep]
+
+                # online_targets += self.tracker[class_name].update(
+                online_targets += self.tracker.update(
+                    results_by_class[class_name],
+                    FeatureMaps,
+                    ddd_boxes=ddd_boxes_by_class[class_name],
+                    depths_by_class=depths_by_class[class_name],
+                    ddd_org_boxes=ddd_org_boxes_by_class[class_name],
+                    submission=ddd_box_submission1[class_name],
+                    classe=class_name
+                )
+
         else:
 
             online_targets = self.tracker.update(results, FeatureMaps)
@@ -414,10 +556,10 @@ class Detector(object):
                 "trans_output": trans_output,
             }
         )
-        if "pre_dets" in input_meta:
-            meta["pre_dets"] = input_meta["pre_dets"]
-        if "cur_dets" in input_meta:
-            meta["cur_dets"] = input_meta["cur_dets"]
+        if "pre_detections" in input_meta:
+            meta["pre_detections"] = input_meta["pre_detections"]
+        if "cur_detections" in input_meta:
+            meta["cur_detections"] = input_meta["cur_detections"]
         return images, meta
 
     def _trans_bbox(self, bbox, trans, width, height):
@@ -431,7 +573,7 @@ class Detector(object):
         bbox[[1, 3]] = np.clip(bbox[[1, 3]], 0, height - 1)
         return bbox
 
-    def _get_additional_inputs(self, dets, meta, with_hm=True):
+    def _get_additional_inputs(self, detections, meta, with_hm=True):
         """
     Render input heatmap from previous trackings.
     """
@@ -441,7 +583,7 @@ class Detector(object):
         input_hm = np.zeros((1, inp_height, inp_width), dtype=np.float32)
 
         output_inds = []
-        for det in dets:
+        for det in detections:
             if det["score"] < self.opt.pre_thresh or det["active"] == 0:
                 continue
             bbox = self._trans_bbox(det["bbox"], trans_input, inp_width, inp_height)
@@ -540,19 +682,19 @@ class Detector(object):
             torch.cuda.synchronize()
             forward_time = time.time()
 
-            dets = generic_decode(output, K=self.opt.K, opt=self.opt)
+            detections = generic_decode(output, K=self.opt.K, opt=self.opt)
             torch.cuda.synchronize()
-            for k in dets:
-                dets[k] = dets[k].detach().cpu().numpy()
+            for k in detections:
+                detections[k] = detections[k].detach().cpu().numpy()
         if return_time:
-            return output, dets, forward_time, FeatureMaps
+            return output, detections, forward_time, FeatureMaps
         else:
-            return output, dets, FeatureMaps
+            return output, detections, FeatureMaps
 
-    def post_process(self, dets, meta, scale=1):
-        dets = generic_post_process(
+    def post_process(self, detections, meta, scale=1):
+        detections = generic_post_process(
             self.opt,
-            dets,
+            detections,
             [meta["c"]],
             [meta["s"]],
             meta["out_height"],
@@ -565,13 +707,13 @@ class Detector(object):
         self.this_calib = meta["calib"]
 
         if scale != 1:
-            for i in range(len(dets[0])):
+            for i in range(len(detections[0])):
                 for k in ["bbox", "hps"]:
-                    if k in dets[0][i]:
-                        dets[0][i][k] = (
-                            np.array(dets[0][i][k], np.float32) / scale
+                    if k in detections[0][i]:
+                        detections[0][i][k] = (
+                            np.array(detections[0][i][k], np.float32) / scale
                         ).tolist()
-        return dets[0]
+        return detections[0]
 
     def merge_outputs(self, detections):
         assert len(self.opt.test_scales) == 1, "multi_scale not supported!"
@@ -582,7 +724,7 @@ class Detector(object):
         return results
 
     def debug(
-        self, debugger, images, dets, output, scale=1, pre_images=None, pre_hms=None
+        self, debugger, images, detections, output, scale=1, pre_images=None, pre_hms=None
     ):
         img = images[0].detach().cpu().numpy().transpose(1, 2, 0)
         img = np.clip(((img * self.std + self.mean) * 255.0), 0, 255).astype(np.uint8)

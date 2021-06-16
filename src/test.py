@@ -11,13 +11,24 @@ import time
 from progress.bar import Bar
 import torch
 import copy
+import pickle
 
-from opts import opts
-from logger import Logger
-from utils.utils import AverageMeter
-from dataset.dataset_factory import dataset_factory
-from detector import Detector
-from utils.image import plot_tracking, plot_tracking_ddd
+from lib.opts import opts
+from lib.logger import Logger
+from lib.utils.utils import AverageMeter
+from lib.dataset.dataset_factory import dataset_factory
+
+# opt = opts().parse()
+
+filename = 'test_opt_pixset.txt'
+# with open(filename, 'wb') as f:
+#     pickle.dump(opt, f)
+#     print(f'saved {filename}')
+with open(filename, 'rb') as f:
+    opt = pickle.load(f)
+
+from lib.detector import Detector
+from lib.utils.image import plot_tracking, plot_tracking_ddd
 import json
 
 
@@ -107,7 +118,7 @@ def prefetch_test(opt):
         PrefetchDataset(opt, dataset, detector.pre_process),
         batch_size=1,
         shuffle=False,
-        num_workers=1,
+        num_workers=0,
         pin_memory=True,
     )
 
@@ -123,7 +134,7 @@ def prefetch_test(opt):
     final_results = []
     out_path = ""
 
-    if opt.dataset == "nuscenes":
+    if opt.dataset in ["nuscenes", "pixset"]:
         ret = {
             "meta": {
                 "use_camera": True,
@@ -143,7 +154,11 @@ def prefetch_test(opt):
             sample_token = img_info["sample_token"][0]
             sensor_id = img_info["sensor_id"].numpy().tolist()[0]
 
-        if opt.tracking and ("is_first_frame" in pre_processed_images):
+        if opt.dataset == "pixset":
+            sample_token = None
+            sensor_id = None
+
+        if opt.tracking and ind == 0:#("is_first_frame" in pre_processed_images):
             if "{}".format(int(img_id.numpy().astype(np.int32)[0])) in load_results:
                 pre_processed_images["meta"]["pre_dets"] = load_results[
                     "{}".format(int(img_id.numpy().astype(np.int32)[0]))
@@ -155,20 +170,20 @@ def prefetch_test(opt):
                     ". Use empty initialization.",
                 )
                 pre_processed_images["meta"]["pre_dets"] = []
-            if len(final_results) > 0 and not opt.dataset == "nuscenes":
+            if len(final_results) > 0 and not opt.dataset in ["nuscenes","pixset"]:
                 write_results(out_path, final_results, opt.dataset)
                 final_results = []
             img0 = pre_processed_images["image"][0].numpy()
             h, w, _ = img0.shape
             detector.img_height = h
             detector.img_width = w
-            if opt.dataset == "nuscenes":
+            if opt.dataset in ["nuscenes", "pixset"]:
                 save_video_name = os.path.join(
                     opt.dataset + "_videos/",
                     "MOT"
-                    + str(int(pre_processed_images["video_id"]))
+                    # + str(int(pre_processed_images["video_id"]))
                     + "_"
-                    + str(int(img_info["sensor_id"]))
+                    # + str(int(img_info["sensor_id"]))
                     + ".avi",
                 )
             elif opt.dataset == "kitti_tracking":
@@ -189,18 +204,18 @@ def prefetch_test(opt):
             for video in dataset.coco.dataset["videos"]:
                 video_id = video["id"]
                 file_name = video["file_name"]
-                if (
-                    pre_processed_images["video_id"] == video_id
-                    and not opt.dataset == "nuscenes"
-                ):
-                    out_path = os.path.join(results_dir, "{}.txt".format(file_name))
-                    break
+                # if (
+                #     pre_processed_images["video_id"] == video_id
+                #     and not opt.dataset in ["nuscenes", "pixset"]
+                # ):
+                #     out_path = os.path.join(results_dir, "{}.txt".format(file_name))
+                #     break
 
             detector.reset_tracking(opt)
             vw = cv2.VideoWriter(
                 save_video_name, cv2.VideoWriter_fourcc("M", "J", "P", "G"), 10, (w, h)
             )
-            print("Start tracking video", int(pre_processed_images["video_id"]))
+            # print("Start tracking video", int(pre_processed_images["video_id"]))
         if opt.public_det:
             if "{}".format(int(img_id.numpy().astype(np.int32)[0])) in load_results:
                 pre_processed_images["meta"]["cur_dets"] = load_results[
@@ -223,7 +238,7 @@ def prefetch_test(opt):
                 online_tlwhs.append(tlwh)
                 online_ids.append(tid)
 
-                if opt.dataset == "nuscenes":
+                if opt.dataset in ["nuscenes", "pixset"]:
                     online_ddd_boxes.append(t.org_ddd_box)
                     class_name = t.classe
                     if class_name in _cycles:
@@ -248,7 +263,8 @@ def prefetch_test(opt):
                         "rotation": rotation,
                         "velocity": [0, 0],
                         "detection_name": t.classe,
-                        "attribute_name": att,
+                        # "attribute_name": att,
+                        "attribute_name": None,
                         "detection_score": t.score,
                         "tracking_name": t.classe,
                         "tracking_score": t.score,
@@ -258,7 +274,7 @@ def prefetch_test(opt):
                     }
                     sample_results.append(result.copy())
 
-        if opt.dataset == "nuscenes":
+        if opt.dataset in ["nuscenes", "pixset"]:
             if sample_token in ret["results"]:
 
                 ret["results"][sample_token] = (
@@ -273,14 +289,19 @@ def prefetch_test(opt):
         if show_image:
             img0 = pre_processed_images["image"][0].numpy()
 
-            if opt.dataset == "nuscenes":
+            if opt.dataset in ["nuscenes", "pixset"]:
+                calib = np.asarray([[ 0.00634431, -0.99994188,  0.00871694, -0.01497761],
+                        [-0.01553142, -0.0088146,  -0.99984053,  0.15408424],
+                        [ 0.99985925,  0.00620791, -0.01558644, -0.06202475],
+                        [ 0.,          0.,          0.,          1.        ]])
                 online_im = plot_tracking_ddd(
                     img0,
                     online_tlwhs,
                     online_ddd_boxes,
                     online_ids,
                     frame_id=pre_processed_images["frame_id"],
-                    calib=img_info["calib"],
+                    calib=calib,
+                    # calib=img_info["calib"],
                 )
             else:
                 online_im = plot_tracking(
@@ -291,10 +312,10 @@ def prefetch_test(opt):
                 )
             vw.write(online_im)
 
-    if not opt.dataset == "nuscenes" and len(final_results) > 0:
+    if not opt.dataset in ["nuscenes", "pixset"] and len(final_results) > 0:
         write_results(out_path, final_results, opt.dataset)
         final_results = []
-    if opt.dataset == "nuscenes":
+    if opt.dataset in ["nuscenes", "pixset"]:
         for sample_token in ret["results"].keys():
             confs = sorted(
                 [
@@ -343,6 +364,6 @@ def write_results(filename, results, data_type):
 
 
 if __name__ == "__main__":
-    opt = opts().parse()
+    # opt = opts().parse()
 
     prefetch_test(opt)

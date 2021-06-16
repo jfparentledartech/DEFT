@@ -17,7 +17,7 @@ import os
 import math
 
 from ..generic_dataset import GenericDataset
-from utils.ddd_utils import compute_box_3d, project_to_image
+from lib.utils.ddd_utils import compute_box_3d, project_to_image
 from ..trajectory_dataset import TrajectoryDataset
 
 

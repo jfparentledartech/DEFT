@@ -10,7 +10,7 @@ class DecoderRNN(torch.nn.Module):
     def __init__(self, num_hidden, dataset):
         super(DecoderRNN, self).__init__()
         self.num_hidden = num_hidden
-        if dataset == "nuscenes":
+        if dataset in ["nuscenes"]:
             self.lstm = torch.nn.LSTM(18, self.num_hidden)
             self.out1 = torch.nn.Linear(self.num_hidden, 64)
             self.out2 = torch.nn.Linear(64, 4 * 4)

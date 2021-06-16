@@ -18,7 +18,7 @@ import pycocotools.coco as coco
 import torch
 import torch.utils.data as data
 
-from utils.image import (
+from lib.utils.image import (
     flip,
     color_aug,
     show_matching_hanlded_rectangle,
@@ -27,8 +27,8 @@ from utils.image import (
     ToTensor,
     ToPercentCoordinates,
 )
-from utils.image import get_affine_transform, affine_transform
-from utils.image import gaussian_radius, draw_umich_gaussian
+from lib.utils.image import get_affine_transform, affine_transform
+from lib.utils.image import gaussian_radius, draw_umich_gaussian
 import copy
 from numpy.random import randint
 from functools import reduce
@@ -45,6 +45,11 @@ NUSCENES_TRACKING_NAMES = [
     "pedestrian",
     "trailer",
     "truck",
+]
+
+PIXSET_TRACKING_NAMES = [
+    "pedestrian",
+    "vehicle"
 ]
 
 
@@ -136,7 +141,7 @@ class TrajectoryDataset(data.Dataset):
         self.gt_track_ids = {}
         self.possible_tracks = {}
         self.dataset = opt.dataset
-        if self.dataset == "nuscenes":
+        if self.dataset in ["nuscenes", "pixset"]:
             self.MAX_dis = 10
             self.MAX_dis_fut = 4
         else:
@@ -148,7 +153,7 @@ class TrajectoryDataset(data.Dataset):
         return self.num_samples - self.MAX_dis_fut - 1
 
     def __getitem__(self, index):
-        opt = self.opt
+        # opt = self.opt
         if index < self.MAX_dis + 2 or index > self.__len__() - 2:
             return self.__getitem__(randint(12, self.__len__() - 2))
         if index not in self.possible_tracks:
@@ -217,7 +222,7 @@ class TrajectoryDataset(data.Dataset):
             rand_id = np.random.choice(len(possible_track_ids))
             track_id = possible_track_ids[rand_id]
 
-        if self.dataset == "nuscenes":
+        if self.dataset in "nuscenes":
 
             t = -1
             last_t = -1
@@ -411,12 +416,13 @@ class TrajectoryDataset(data.Dataset):
 
     def _get_bboxes(self, anns, image_info=None):
         bboxes, track_ids, classes = [], [], []
-        if self.dataset == "nuscenes":
+        if self.dataset in ["nuscenes", "pixset"]:
             for ann in anns:
-                trans_matrix = np.array(image_info["trans_matrix"], np.float32)
+                # trans_matrix = np.array(image_info["trans_matrix"], np.float32)
                 cls_id = int(self.cat_ids[ann["category_id"]])
                 class_name = self.class_name[cls_id - 1]
-                if class_name not in NUSCENES_TRACKING_NAMES:
+                if (self.dataset == "nuscenes" and class_name not in NUSCENES_TRACKING_NAMES) or \
+                   (self.dataset == "pixset" and class_name not in PIXSET_TRACKING_NAMES):
                     continue
                 center_location = ann["location"]
                 wlh = ann["dim"]
@@ -429,24 +435,24 @@ class TrajectoryDataset(data.Dataset):
                     np.float32,
                 ).copy()
 
-                translation = np.dot(
-                    trans_matrix,
-                    np.array(
-                        [
-                            center_location[0],
-                            center_location[1] - size[2] / 2,
-                            center_location[2],
-                            1,
-                        ],
-                        np.float32,
-                    ),
-                ).copy()
+                # translation = np.dot(
+                #     trans_matrix,
+                #     np.array(
+                #         [
+                #             center_location[0],
+                #             center_location[1] - size[2] / 2,
+                #             center_location[2],
+                #             1,
+                #         ],
+                #         np.float32,
+                #     ),
+                # ).copy()
                 box = Box(loc, size, rot_cam, name="2", token="1")
                 box.translate(np.array([0, -box.wlh[2] / 2, 0]))
-                box.rotate(Quaternion(image_info["cs_record_rot"]))
-                box.translate(np.array(image_info["cs_record_trans"]))
-                box.rotate(Quaternion(image_info["pose_record_rot"]))
-                box.translate(np.array(image_info["pose_record_trans"]))
+                # box.rotate(Quaternion(image_info["cs_record_rot"]))
+                # box.translate(np.array(image_info["cs_record_trans"]))
+                # box.rotate(Quaternion(image_info["pose_record_rot"]))
+                # box.translate(np.array(image_info["pose_record_trans"]))
                 rotation = box.orientation
                 rotation = [
                     float(rotation.w),

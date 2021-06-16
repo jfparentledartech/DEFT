@@ -1,0 +1,13 @@
+DATASET:
+  TRAIN_SET: [
+      '/home/jfparent/Documents/PixSet/20200721_180421_part41_1800_2500'
+  ]
+  TEST_SET: [
+      '/home/jfparent/Documents/PixSet/20200706_171559_part27_1170_1370'
+  ]
+  LIDAR: &image 'flir_bbfc_flimg'
+  LABEL: &label 'pixell_bfc_box3d-deepen'
+  SYNCHRONIZATION:
+    sync_labels: [*image, *label]
+    interp_labels: []
+    tolerance_us: 2000

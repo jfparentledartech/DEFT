@@ -4,3 +4,7 @@
 src/lib/model/networks/DCNv2/
 **/__pycache__/
 exp
+models/
+nuscenes_results/
+nuscenes_videos/
+old_nuscenes_videos/

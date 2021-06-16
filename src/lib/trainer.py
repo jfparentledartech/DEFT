@@ -14,15 +14,15 @@ import torch
 import numpy as np
 from progress.bar import Bar
 
-from model.data_parallel import DataParallel
-from utils.utils import AverageMeter
-from model.networks.AFE import show_batch_circle_image
-from model.losses import FastFocalLoss, RegWeightedL1Loss
-from model.losses import BinRotLoss, WeightedBCELoss
-from model.decode import generic_decode
-from model.utils import _sigmoid, flip_tensor, flip_lr_off, flip_lr
-from utils.debugger import Debugger
-from utils.post_process import generic_post_process
+from lib.model.data_parallel import DataParallel
+from lib.utils.utils import AverageMeter
+from lib.model.networks.AFE import show_batch_circle_image
+from lib.model.losses import FastFocalLoss, RegWeightedL1Loss
+from lib.model.losses import BinRotLoss, WeightedBCELoss
+from lib.model.decode import generic_decode
+from lib.model.utils import _sigmoid, flip_tensor, flip_lr_off, flip_lr
+from lib.utils.debugger import Debugger
+from lib.utils.post_process import generic_post_process
 import cv2
 
 import warnings

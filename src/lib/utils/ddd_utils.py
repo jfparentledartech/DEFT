@@ -12,7 +12,7 @@ from __future__ import print_function
 
 import numpy as np
 import cv2
-from utils.matching import convert_3dbox_to_8corner
+from lib.utils.matching import convert_3dbox_to_8corner
 
 
 def comput_corners_3d(dim, rotation_y):

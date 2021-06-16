@@ -1,26 +1,16 @@
 import numpy as np
-from sklearn.utils.linear_assignment_ import linear_assignment
-from numba import jit
-import copy
-
-
-from collections import deque
-
-import numpy as np
 import torch
-import torch.nn.functional as F
-from utils import matching
-from utils.tracking_utils.kalman_filter import KalmanFilter
-from utils.tracking_utils.kalman_filter_lstm import KalmanFilterLSTM
+from lib.utils import matching
+from lib.utils.tracking_utils.kalman_filter import KalmanFilter
+from lib.utils.tracking_utils.kalman_filter_lstm import KalmanFilterLSTM
 
-# from utils.tracking_utils.utils import *
-from utils.post_process import ctdet_post_process
+from lib.utils.post_process import ctdet_post_process
 
 from .basetrack import BaseTrack, TrackState
-from utils.image import convert_detection
-from opts import opts
+from lib.utils.image import convert_detection
+from lib.opts import opts
 
-Max_record_frame = 50
+max_record_frame = 50
 decay = 1.0
 decay2 = 0.01
 max_track_node = 50
@@ -49,7 +39,7 @@ class FeatureRecorder:
     """
 
     def __init__(self, dataset):
-        self.max_record_frame = Max_record_frame
+        self.max_record_frame = max_record_frame
         self.all_frame_index = np.array([], dtype=int)
         self.all_features = {}
         self.all_boxes = {}
@@ -136,7 +126,13 @@ class FeatureRecorder:
         return boxes
 
 
-opt = opts().parse()
+# try:
+#     opt = opts().parse()
+# except:
+import pickle
+filename = 'test_opt_pixset.txt'
+with open(filename, 'rb') as f:
+    opt = pickle.load(f)
 
 
 class STrack(BaseTrack):
@@ -737,7 +733,7 @@ class Tracker(object):
         removed_stracks = []
         output_stracks = []
 
-        if self.dataset == "nuscenes":
+        if self.dataset in ["nuscenes", "pixset"]:
             dets = np.array(results)
             ddd_boxes = np.array(ddd_boxes)
             depths = np.array(depths_by_class)
