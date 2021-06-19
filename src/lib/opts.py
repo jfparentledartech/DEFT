@@ -187,7 +187,7 @@ class opts(object):
             help="when to save the model to disk.",
         )
         self.parser.add_argument(
-            "--num_epochs", type=int, default=80, help="total training epochs."
+            "--num_epochs", type=int, default=500, help="total training epochs."
         )
         self.parser.add_argument("--batch_size", type=int, default=4, help="batch size")
         self.parser.add_argument(

@@ -290,18 +290,15 @@ def prefetch_test(opt):
             img0 = pre_processed_images["image"][0].numpy()
 
             if opt.dataset in ["nuscenes", "pixset"]:
-                calib = np.asarray([[ 0.00634431, -0.99994188,  0.00871694, -0.01497761],
-                        [-0.01553142, -0.0088146,  -0.99984053,  0.15408424],
-                        [ 0.99985925,  0.00620791, -0.01558644, -0.06202475],
-                        [ 0.,          0.,          0.,          1.        ]])
+
                 online_im = plot_tracking_ddd(
                     img0,
                     online_tlwhs,
                     online_ddd_boxes,
                     online_ids,
                     frame_id=pre_processed_images["frame_id"],
-                    calib=calib,
-                    # calib=img_info["calib"],
+                    # calib=calib,
+                    calib=img_info["calib"],
                 )
             else:
                 online_im = plot_tracking(

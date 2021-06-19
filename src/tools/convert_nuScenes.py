@@ -140,6 +140,7 @@ def main():
                     image_data = nusc.get("sample_data", image_token)
                     num_images += 1
 
+                    # TODO understand this part...
                     # Complex coordinate transform. This will take time to understand.
                     sd_record = nusc.get("sample_data", image_token)
                     cs_record = nusc.get(
@@ -156,10 +157,14 @@ def main():
                         Quaternion(cs_record["rotation"]),
                         inverse=False,
                     )
+
+                    # TODO inspect trans matrix
                     trans_matrix = np.dot(global_from_car, car_from_sensor)
                     _, boxes, camera_intrinsic = nusc.get_sample_data(
                         image_token, box_vis_level=BoxVisibility.ANY
                     )
+
+                    # TODO inspect calib
                     calib = np.eye(4, dtype=np.float32)
                     calib[:3, :3] = camera_intrinsic
                     calib = calib[:3]
@@ -252,11 +257,12 @@ def main():
                         x_list = [xmin, xmin, xmax, xmax]
                         y_list = [ymin, ymax, ymin, ymax]
 
-                        imgroot = '/home/jfparent/Documents/Stage/DEFT/data/nuscenes/v1.0-trainval/'
-                        plt.imshow(plt.imread(imgroot + image_info['file_name']))
-                        plt.scatter(amodel_center[0], amodel_center[1])
-                        plt.scatter(x_list, y_list)
-                        plt.show()
+                        # TODO use for debug
+                        # imgroot = '/home/jfparent/Documents/Stage/DEFT/data/nuscenes/v1.0-trainval/'
+                        # plt.imshow(plt.imread(imgroot + image_info['file_name']))
+                        # plt.scatter(amodel_center[0], amodel_center[1])
+                        # plt.scatter(x_list, y_list)
+                        # plt.show()
 
                         alpha = _rot_y2alpha(
                             yaw,
@@ -350,7 +356,7 @@ def main():
             )
         )
         print("out_path", out_path)
-        json.dump(ret, open(out_path, "w"))
+        # json.dump(ret, open(out_path, "w")) # TODO uncomment
 
 
 # Official train/ val split from

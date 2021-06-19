@@ -418,7 +418,7 @@ class TrajectoryDataset(data.Dataset):
         bboxes, track_ids, classes = [], [], []
         if self.dataset in ["nuscenes", "pixset"]:
             for ann in anns:
-                # trans_matrix = np.array(image_info["trans_matrix"], np.float32)
+                trans_matrix = np.array(image_info["trans_matrix"], np.float32)
                 cls_id = int(self.cat_ids[ann["category_id"]])
                 class_name = self.class_name[cls_id - 1]
                 if (self.dataset == "nuscenes" and class_name not in NUSCENES_TRACKING_NAMES) or \
@@ -435,18 +435,18 @@ class TrajectoryDataset(data.Dataset):
                     np.float32,
                 ).copy()
 
-                # translation = np.dot(
-                #     trans_matrix,
-                #     np.array(
-                #         [
-                #             center_location[0],
-                #             center_location[1] - size[2] / 2,
-                #             center_location[2],
-                #             1,
-                #         ],
-                #         np.float32,
-                #     ),
-                # ).copy()
+                translation = np.dot(
+                    trans_matrix,
+                    np.array(
+                        [
+                            center_location[0],
+                            center_location[1] - size[2] / 2,
+                            center_location[2],
+                            1,
+                        ],
+                        np.float32,
+                    ),
+                ).copy()
                 box = Box(loc, size, rot_cam, name="2", token="1")
                 box.translate(np.array([0, -box.wlh[2] / 2, 0]))
                 # box.rotate(Quaternion(image_info["cs_record_rot"]))

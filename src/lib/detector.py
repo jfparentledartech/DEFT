@@ -337,8 +337,7 @@ class Detector(object):
                 )
 
         if self.dataset == "pixset":
-            # trans_matrix = np.array(image_info["trans_matrix"], np.float32) TODO trans_matrix convert pixset
-            trans_matrix = np.array(np.eye(4), np.float32)
+            trans_matrix = np.array(image_info["trans_matrix"], np.float32) #TODO trans_matrix convert pixset
 
             results_by_class = {}
             ddd_boxes_by_class = {}
@@ -396,7 +395,7 @@ class Detector(object):
 
                 box = Box(loc, size, rot_cam, name="2", token="1")
                 box.translate(np.array([0, -box.wlh[2] / 2, 0]))
-                # box.rotate(Quaternion(image_info["cs_record_rot"]))
+                # box.rotate(Quaternion(image_info["cs_record_rot"])) # TODO add?
                 # box.translate(np.array(image_info["cs_record_trans"]))
                 # box.rotate(Quaternion(image_info["pose_record_rot"]))
                 # box.translate(np.array(image_info["pose_record_trans"]))

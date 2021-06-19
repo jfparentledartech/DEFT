@@ -138,9 +138,6 @@ class PixSet(GenericDataset):
 
     # TODO
     def convert_eval_format(self, results):
-        print('AAAAAAAAAAAAAAAAAAAAA')
-        print('AAAAAAAAAAAAAAAAAAAAA')
-        print('AAAAAAAAAAAAAAAAAAAAA')
         from nuscenes.utils.data_classes import Box
 
         ret = {
@@ -163,12 +160,6 @@ class PixSet(GenericDataset):
             sensor_id = image_info["sensor_id"]
             sample_results = []
             for item in results[image_id]:
-                print('CLASS NAME')
-                print('CLASS NAME')
-                print('CLASS NAME')
-                print('CLASS NAME')
-                print('CLASS NAME')
-                print('CLASS NAME')
                 class_name = (
                     self.class_name[int(item["class"] - 1)]
                     if not ("detection_name" in item)

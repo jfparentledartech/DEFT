@@ -86,10 +86,7 @@ class AFE_module(nn.Module):
         return x
 
     def forward_feature_extracter(self, s, l):
-
-        x = self.forward_selector_stacker1(s, l, self.selector)
-
-        return x
+        return self.forward_selector_stacker1(s, l, self.selector)
 
     def get_similarity(self, image1, detection1, image2, detection2):
         feature1 = self.forward_feature_extracter(image1, detection1)

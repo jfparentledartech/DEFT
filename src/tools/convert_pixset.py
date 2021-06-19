@@ -9,6 +9,7 @@ from PIL import Image
 from progress.bar import Bar
 from nuscenes.utils.kitti import KittiDB
 
+from nuscenes.utils.geometry_utils import BoxVisibility, transform_matrix
 from matplotlib.patches import Polygon
 from pioneer.common import linalg
 
@@ -187,6 +188,15 @@ if __name__ == '__main__':
         projected_centers = image_sample.project_pts(annotation_centers_transformed, mask_fov=False)
 
         num_image += 1
+
+        # TODO trans_matrix ->
+        trans_matrix = [[-1.04343849e-01, -1.16873616e-02,  9.94472607e-01,  2.51601431e+02],
+                        [-9.94372194e-01, -1.72119027e-02, -1.04535593e-01,  9.17405742e+02],
+                        [ 1.83385110e-02, -9.99783555e-01, -9.82563118e-03,  1.50348339e+00],
+                        [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]]
+
+        camera_intrinsic = np.column_stack((image_sample.camera_matrix, np.zeros(3))).tolist()
+
         coco_format['images'].append({
             "id": num_image,
             "file_name": image_path,
@@ -194,7 +204,12 @@ if __name__ == '__main__':
             "frame_id": i_frame,
             "width": image_sample.raw.shape[1],
             "height": image_sample.raw.shape[0],
-            "calib": T.tolist(),
+            "trans_matrix": trans_matrix,
+            "calib": camera_intrinsic,
+            # "pose_record_trans": pose_record["translation"],
+            # "pose_record_rot": pose_record["rotation"],
+            # "cs_record_trans": cs_record["translation"],
+            # "cs_record_rot": cs_record["rotation"],
         })
 
         # plt.imshow(image)
@@ -236,7 +251,7 @@ if __name__ == '__main__':
                 "image_id": num_image,
                 "category_id": category_id,
                 "dim": [box_dimensions[0].item(), box_dimensions[1].item(), box_dimensions[2].item()],
-                "location": center_coordinates.tolist(),
+                "location": center_coordinates.tolist(), # TODO verify (model output negative values for x?)
                 "depth": center_coordinates[0].item(),
                 "occluded": int(attributes['occlusions']),
                 "truncated": int(attributes['truncations']),
@@ -273,7 +288,7 @@ if __name__ == '__main__':
 
     out_path = pixset_annotations_path + "train.json"
     print("out_path", out_path)
-    json.dump(coco_format, open(out_path, "w"))
+    json.dump(coco_format, open(out_path, "w")) # TODO uncomment
 
     bar.finish()
 
