@@ -337,8 +337,8 @@ class Detector(object):
                 )
 
         if self.dataset == "pixset":
-            trans_matrix = np.array(image_info["trans_matrix"], np.float32) #TODO trans_matrix convert pixset
-
+            # trans_matrix = np.array(image_info["trans_matrix"], np.float32) #TODO trans_matrix convert pixset
+            trans_matrix = np.zeros((4,4))
             results_by_class = {}
             ddd_boxes_by_class = {}
             depths_by_class = {}

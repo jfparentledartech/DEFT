@@ -116,6 +116,30 @@ def draw_box_3d(image, corners, c=(255, 0, 255), same_color=False):
         # top_idx = [0, 1, 2, 3]
     return image
 
+def unproject(points, Z, intrinsic, distortion):
+  f_x = intrinsic[0, 0]
+  f_y = intrinsic[1, 1]
+  c_x = intrinsic[0, 2]
+  c_y = intrinsic[1, 2]
+  # This was an error before
+  # c_x = intrinsic[0, 3]
+  # c_y = intrinsic[1, 3]
+
+  # Step 1. Undistort.
+  points_undistorted = np.array([])
+  if len(points) > 0:
+    points_undistorted = cv2.undistortPoints(np.expand_dims(points, axis=1), intrinsic, distortion, P=intrinsic)
+  points_undistorted = np.squeeze(points_undistorted, axis=1)
+
+  # Step 2. Reproject.
+  result = []
+  for idx in range(points_undistorted.shape[0]):
+    z = Z[0] if len(Z) == 1 else Z[idx]
+    x = (points_undistorted[idx, 0] - c_x) / f_x * z
+    y = (points_undistorted[idx, 1] - c_y) / f_y * z
+    result.append([x, y, z])
+  return result
+
 
 def unproject_2d_to_3d(pt_2d, depth, P):
     # pts_2d: 2
@@ -123,10 +147,16 @@ def unproject_2d_to_3d(pt_2d, depth, P):
     # P: 3 x 4
     # return: 3
     z = depth - P[2, 3]
+
     x = (pt_2d[0] * depth - P[0, 3] - P[0, 2] * z) / P[0, 0]
     y = (pt_2d[1] * depth - P[1, 3] - P[1, 2] * z) / P[1, 1]
     pt_3d = np.array([x, y, z], dtype=np.float32).reshape(3)
     return pt_3d
+
+# ex calib nuscene
+# "calib": [[1266.417236328125, 0.0, 816.2670288085938, 0.0],
+#           [0.0, 1266.417236328125, 491.507080078125, 0.0],
+#           [0.0, 0.0, 1.0, 0.0]]
 
 
 def alpha2rot_y(alpha, x, cx, fx):
@@ -162,6 +192,7 @@ def rot_y2alpha(rot_y, x, cx, fx):
 def ddd2locrot(center, alpha, dim, depth, calib):
     # single image
     locations = unproject_2d_to_3d(center, depth, calib)
+    # locations2 = unproject(center, depth, calib[:,:3], np.zeros(4))[0]
     locations[1] += dim[0] / 2
     rotation_y = alpha2rot_y(alpha, center[0], calib[0, 2], calib[0, 0])
     return locations, rotation_y

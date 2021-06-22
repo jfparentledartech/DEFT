@@ -70,6 +70,9 @@ def generic_post_process(
             if "dim" in dets and len(dets["dim"][i]) > j:
                 item["dim"] = dets["dim"][i][j]
 
+            # if "loc3d" in dets and len(dets["loc3d"][i]) > j: # TODO maybe
+            #     item["loc3d"] = dets["loc3d"][i][j]
+
             if "rot" in dets and len(dets["rot"][i]) > j:
                 item["alpha"] = get_alpha(dets["rot"][i][j : j + 1])[0]
 
@@ -93,6 +96,7 @@ def generic_post_process(
                     bbox = item["bbox"]
                     ct = [(bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2]
                 item["ct"] = ct
+
                 item["loc"], item["rot_y"] = ddd2locrot(
                     ct, item["alpha"], item["dim"], item["dep"], calibs[i]
                 )

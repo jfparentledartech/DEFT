@@ -501,7 +501,7 @@ def plot_tracking_ddd(
         thickness=2,
     )
 
-    image_sample, annotation_sample = get_samples()
+    # image_sample, annotation_sample = get_samples()
 
     for i, box3d in enumerate(ddd_boxes):
         tlwh = tlwhs[i]
@@ -516,31 +516,33 @@ def plot_tracking_ddd(
         color = get_color(abs(obj_id))
         dim = box3d[:3]
         loc = box3d[3:-1]
-        loc = [loc[2], loc[1], loc[0].item()] # TODO remove
         rot = box3d[-1]
 
-        T = np.asarray([[0.00634431, -0.99994188, 0.00871694, -0.01497761],
-                            [-0.01553142, -0.0088146, -0.99984053, 0.15408424],
-                            [0.99985925, 0.00620791, -0.01558644, -0.06202475],
-                            [0., 0., 0., 1.]])
+        # T = np.asarray([[0.00634431, -0.99994188, 0.00871694, -0.01497761],
+        #                     [-0.01553142, -0.0088146, -0.99984053, 0.15408424],
+        #                     [0.99985925, 0.00620791, -0.01558644, -0.06202475],
+        #                     [0., 0., 0., 1.]])
 
         box_3d = compute_box_3d(dim, loc, rot)
         box_2d = project_to_image(box_3d, calib)
         im = draw_box_3d(im, box_2d, c=color, same_color=True)
 
-        vertices = linalg.bbox_to_8coordinates(loc, dim, [0, 0, rot])
-        vertices_transformed = image_sample.transform_pts(T , vertices)
+        # location = [5.37244987487793, 3.853471517562866, 0.11839054524898529]
 
-        p, mask_fov = image_sample.project_pts(vertices_transformed, mask_fov=False, output_mask=True,
-                                               undistorted=False,
-                                               margin=300)
-
-        T = annotation_sample.compute_transform(referential_or_ds=image_sample.label, ignore_orientation=True)
-        annotation_centers = np.asarray([loc, loc, loc, loc, loc])
-        annotation_centers_transformed = annotation_sample.transform_pts(T , annotation_centers)
-        projected_center = image_sample.project_pts(annotation_centers_transformed, mask_fov=False)[0]
-
-        test_ddd(image, p, projected_center, tlwh)
+        # vertices = linalg.bbox_to_8coordinates(location, dim, [0, 0, rot])
+        # vertices = linalg.bbox_to_8coordinates(loc, dim, [0, 0, rot])
+        # vertices_transformed = image_sample.transform_pts(T , vertices)
+        #
+        # p, mask_fov = image_sample.project_pts(vertices_transformed, mask_fov=False, output_mask=True,
+        #                                        undistorted=False,
+        #                                        margin=300)
+        #
+        # T = annotation_sample.compute_transform(referential_or_ds=image_sample.label, ignore_orientation=True)
+        # annotation_centers = np.asarray([loc, loc, loc, loc, loc])
+        # annotation_centers_transformed = annotation_sample.transform_pts(T , annotation_centers)
+        # projected_center = image_sample.project_pts(annotation_centers_transformed, mask_fov=False)[0]
+        #
+        # test_ddd(image, p, projected_center, tlwh)
 
         cv2.putText(
             im,

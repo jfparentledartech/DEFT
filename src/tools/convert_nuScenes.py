@@ -299,7 +299,10 @@ def main():
 
                     for ann in visable_anns:
                         ret["annotations"].append(ann)
-                    if DEBUG:
+                    # if DEBUG:
+                    if True:
+                        # img_path = data_path + image_info["file_name"]
+                        data_path = '/home/jfparent/Documents/Stage/DEFT/data/nuscenes/v1.0-trainval/'
                         img_path = data_path + image_info["file_name"]
                         img = cv2.imread(img_path)
                         img_3d = img.copy()
@@ -313,6 +316,7 @@ def main():
                                 3,
                                 lineType=cv2.LINE_AA,
                             )
+
                             box_3d = compute_box_3d(
                                 ann["dim"], ann["location"], ann["rotation_y"]
                             )

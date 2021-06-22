@@ -503,7 +503,8 @@ class opts(object):
             opt.heads.update({"tracking": 2})
 
         if "ddd" in opt.task:
-            opt.heads.update({"dep": 1, "rot": 8, "dim": 3, "amodel_offset": 2})
+            opt.heads.update({"dep": 1, "rot": 8, "dim": 3, "amodel_offset": 2}) # original
+            # opt.heads.update({"dep": 1, "rot": 8, "dim": 3, "loc3d": 3, "amodel_offset": 2})
 
         if "multi_pose" in opt.task:
             opt.heads.update(
