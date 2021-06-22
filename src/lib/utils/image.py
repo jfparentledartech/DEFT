@@ -526,10 +526,7 @@ def plot_tracking_ddd(
         box_3d = compute_box_3d(dim, loc, rot)
         box_2d = project_to_image(box_3d, calib)
         im = draw_box_3d(im, box_2d, c=color, same_color=True)
-
-        # location = [5.37244987487793, 3.853471517562866, 0.11839054524898529]
-
-        # vertices = linalg.bbox_to_8coordinates(location, dim, [0, 0, rot])
+        print()
         # vertices = linalg.bbox_to_8coordinates(loc, dim, [0, 0, rot])
         # vertices_transformed = image_sample.transform_pts(T , vertices)
         #
@@ -541,8 +538,9 @@ def plot_tracking_ddd(
         # annotation_centers = np.asarray([loc, loc, loc, loc, loc])
         # annotation_centers_transformed = annotation_sample.transform_pts(T , annotation_centers)
         # projected_center = image_sample.project_pts(annotation_centers_transformed, mask_fov=False)[0]
-        #
+
         # test_ddd(image, p, projected_center, tlwh)
+
 
         cv2.putText(
             im,

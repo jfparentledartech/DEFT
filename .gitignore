@@ -8,3 +8,4 @@ models/
 nuscenes_results/
 nuscenes_videos/
 old_nuscenes_videos/
+*.avi

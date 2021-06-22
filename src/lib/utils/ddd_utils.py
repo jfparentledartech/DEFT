@@ -147,7 +147,6 @@ def unproject_2d_to_3d(pt_2d, depth, P):
     # P: 3 x 4
     # return: 3
     z = depth - P[2, 3]
-
     x = (pt_2d[0] * depth - P[0, 3] - P[0, 2] * z) / P[0, 0]
     y = (pt_2d[1] * depth - P[1, 3] - P[1, 2] * z) / P[1, 1]
     pt_3d = np.array([x, y, z], dtype=np.float32).reshape(3)
