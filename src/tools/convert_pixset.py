@@ -18,7 +18,7 @@ from scipy.spatial.transform import Rotation
 from pyquaternion import Quaternion
 from lib.utils.ddd_utils import compute_box_3d, project_to_image, draw_box_3d, unproject_2d_to_3d, ddd2locrot
 
-DEBUG = True
+DEBUG = False
 UNDISTORT = False
 
 def rot_x_axis(theta):
@@ -152,34 +152,27 @@ def p3d_box(box, image_sample, image, annotation_sample, amodel_center, projecte
     return p_pred
 
 
-def box3d_from_loc_dim_rot(image_sample, annotation_sample, loc, dim, rot):
-    annotation_to_camera_transformation = annotation_sample.compute_transform(referential_or_ds=image_sample.label,
-                                                                              ignore_orientation=True)
+def box3d_from_loc_dim_rot(annotation_to_camera_transformation, loc, dim, rot, camera_matrix):
     camera_to_annotation_transformation = np.linalg.inv(annotation_to_camera_transformation)
-
-
-    dim.reverse()
+    dim_copy = copy.deepcopy(dim)
+    dim_copy.reverse()
     loc = (camera_to_annotation_transformation @ np.asarray([loc[0], loc[1], loc[2], 1]))[:3]
-    loc[2] += dim[2] / 2
+    loc[2] += dim_copy[2] / 2
 
     R = -Rotation.from_matrix(camera_to_annotation_transformation[:3, :3] @ rot_y_axis(rot)).as_euler('xyz')[1]
-    vertices_pred = linalg.bbox_to_8coordinates(loc, dim, [0, 0, R])
-    vertices_transformed_pred = image_sample.transform_pts(annotation_to_camera_transformation, vertices_pred)
+    vertices_pred = linalg.bbox_to_8coordinates(loc, dim_copy, [0, 0, R])
+    vertices_transformed_pred = transform_pts(annotation_to_camera_transformation, vertices_pred)
 
-    if UNDISTORT:
-        p_pred = image_sample.project_pts(vertices_transformed_pred, undistorted=True)
-    else:
-        p_pred = image_sample.project_pts(vertices_transformed_pred, undistorted=False)
+    box3d = project_pts(vertices_transformed_pred, camera_matrix)
 
+    box3d[[1, 6]] = box3d[[6, 1]]
+    box3d[[3, 4]] = box3d[[4, 3]]
+    box3d[[1, 0]] = box3d[[0, 1]]
+    box3d[[1, 3]] = box3d[[3, 1]]
+    box3d[[4, 7]] = box3d[[7, 4]]
+    box3d[[2, 3]] = box3d[[3, 2]]
 
-    p_pred[[1, 6]] = p_pred[[6, 1]]
-    p_pred[[3, 4]] = p_pred[[4, 3]]
-    p_pred[[1, 0]] = p_pred[[0, 1]]
-    p_pred[[1, 3]] = p_pred[[3, 1]]
-    p_pred[[4, 7]] = p_pred[[7, 4]]
-    p_pred[[2, 3]] = p_pred[[3, 2]]
-
-    return p_pred
+    return box3d
 
 
 
@@ -459,7 +452,7 @@ if __name__ == '__main__':
                         # # im = draw_box_3d(im, box_2d, same_color=True)
                         # box_3d = p3d_box(detection, image_sample, image, annotation_sample, amodel_center, projected_centers[i_detection],
                         #         loc, ann["dim"], rot)
-                        box3d2 = box3d_from_loc_dim_rot(image_sample, annotation_sample, loc, ann["dim"], rot)
+                        box3d2 = box3d_from_loc_dim_rot(annotation_to_camera_transformation, loc, ann["dim"], rot, calib)
 
                         im = draw_box_3d(im, box3d2, same_color=True)
                         plt.imshow(im)
