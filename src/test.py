@@ -62,6 +62,7 @@ class PrefetchDataset(torch.utils.data.Dataset):
         self.opt = opt
 
     def __getitem__(self, index):
+        self.images.sort() # TODO remove
         img_id = self.images[index]
         img_info = self.load_image_func(ids=[img_id])[0]
         img_path = os.path.join(self.img_dir, img_info["file_name"])
@@ -158,7 +159,7 @@ def prefetch_test(opt):
             sample_token = None
             sensor_id = None
 
-        if opt.tracking and ind == 0:#("is_first_frame" in pre_processed_images):
+        if opt.tracking and ("is_first_frame" in pre_processed_images):
             if "{}".format(int(img_id.numpy().astype(np.int32)[0])) in load_results:
                 pre_processed_images["meta"]["pre_dets"] = load_results[
                     "{}".format(int(img_id.numpy().astype(np.int32)[0]))
@@ -181,9 +182,10 @@ def prefetch_test(opt):
                 save_video_name = os.path.join(
                     opt.dataset + "_videos/",
                     "MOT"
-                    # + str(int(pre_processed_images["video_id"]))
+                    + str(int(pre_processed_images["video_id"]))
                     + "_"
                     # + str(int(img_info["sensor_id"]))
+                    + str(int(img_info["video_id"]))
                     + ".avi",
                 )
             elif opt.dataset == "kitti_tracking":
@@ -204,18 +206,18 @@ def prefetch_test(opt):
             for video in dataset.coco.dataset["videos"]:
                 video_id = video["id"]
                 file_name = video["file_name"]
-                # if (
-                #     pre_processed_images["video_id"] == video_id
-                #     and not opt.dataset in ["nuscenes", "pixset"]
-                # ):
-                #     out_path = os.path.join(results_dir, "{}.txt".format(file_name))
-                #     break
+                if (
+                    pre_processed_images["video_id"] == video_id
+                    and not opt.dataset in ["nuscenes", "pixset"]
+                ):
+                    out_path = os.path.join(results_dir, "{}.txt".format(file_name))
+                    break
 
             detector.reset_tracking(opt)
             vw = cv2.VideoWriter(
                 save_video_name, cv2.VideoWriter_fourcc("M", "J", "P", "G"), 10, (w, h)
             )
-            # print("Start tracking video", int(pre_processed_images["video_id"]))
+            print("Start tracking video", int(pre_processed_images["video_id"]))
         if opt.public_det:
             if "{}".format(int(img_id.numpy().astype(np.int32)[0])) in load_results:
                 pre_processed_images["meta"]["cur_dets"] = load_results[
@@ -297,7 +299,6 @@ def prefetch_test(opt):
                     online_ddd_boxes,
                     online_ids,
                     frame_id=pre_processed_images["frame_id"],
-                    # calib=calib,
                     calib=img_info["calib"],
                 )
             else:

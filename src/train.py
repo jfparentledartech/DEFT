@@ -153,7 +153,7 @@ def main(opt):
 if __name__ == "__main__":
     opt = opts().parse()
 
-    # filename = 'train_opt_pixset.txt'
+    filename = 'train_opt_pixset.txt'
     # with open(filename, 'wb') as f:
     #     pickle.dump(opt, f)
     #     print(f'saved {filename}')

@@ -16,13 +16,13 @@ from nuscenes.eval.detection.utils import category_to_detection_name
 from pyquaternion import Quaternion
 import os
 import _init_paths
-from lib.utils.ddd_utils import compute_box_3d, project_to_image, alpha2rot_y
+from lib.utils.ddd_utils import compute_box_3d, project_to_image, alpha2rot_y, ddd2locrot
 from lib.utils.ddd_utils import draw_box_3d, unproject_2d_to_3d
 
 DATA_PATH = "../../data/nuscenes/"
 OUT_PATH = DATA_PATH + "annotations/"
 SPLITS = {"val": "v1.0-trainval", "train": "v1.0-trainval", "test": "v1.0-test"}
-DEBUG = False
+DEBUG = True
 CATS = [
     "car",
     "truck",
@@ -158,13 +158,11 @@ def main():
                         inverse=False,
                     )
 
-                    # TODO inspect trans matrix
                     trans_matrix = np.dot(global_from_car, car_from_sensor)
                     _, boxes, camera_intrinsic = nusc.get_sample_data(
                         image_token, box_vis_level=BoxVisibility.ANY
                     )
 
-                    # TODO inspect calib
                     calib = np.eye(4, dtype=np.float32)
                     calib[:3, :3] = camera_intrinsic
                     calib = calib[:3]
@@ -299,8 +297,7 @@ def main():
 
                     for ann in visable_anns:
                         ret["annotations"].append(ann)
-                    # if DEBUG:
-                    if True:
+                    if DEBUG:
                         # img_path = data_path + image_info["file_name"]
                         data_path = '/home/jfparent/Documents/Stage/DEFT/data/nuscenes/v1.0-trainval/'
                         img_path = data_path + image_info["file_name"]
@@ -336,11 +333,24 @@ def main():
                             pt_3d = unproject_2d_to_3d(pt_2d, ann["depth"], calib)
                             pt_3d[1] += ann["dim"][0] / 2
                             print("loc      ", pt_3d)
+
+                            ##
+                            # loc, rot = ddd2locrot(ann["amodel_center"], ann["alpha"], ann["dim"], ann["depth"], calib)
+                            # print('location', ann["location"])
+                            # print('unproject location', loc)
+                            # print('yaw', ann["rotation_y"])
+                            # print('unproject alpha2rot_y', rot)
+                            # box_3d = compute_box_3d(np.asarray(ann["dim"]), loc, rot)
+                            # box_2d = project_to_image(box_3d, calib)
+                            # im = np.ascontiguousarray(np.copy(img))
+                            # im = draw_box_3d(im, box_2d, same_color=True)
+                            # plt.imshow(im)
+                            ###
                         cv2.imshow("img", img)
                         cv2.imshow("img_3d", img_3d)
                         cv2.waitKey()
-                        nusc.render_sample_data(image_token)
-                        plt.show()
+                        # nusc.render_sample_data(image_token)
+                        # plt.show()
         print("reordering images")
         images = ret["images"]
         video_sensor_to_images = {}
@@ -360,7 +370,7 @@ def main():
             )
         )
         print("out_path", out_path)
-        # json.dump(ret, open(out_path, "w")) # TODO uncomment
+        json.dump(ret, open(out_path, "w"))
 
 
 # Official train/ val split from

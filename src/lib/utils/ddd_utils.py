@@ -91,8 +91,8 @@ def draw_box_3d(image, corners, c=(255, 0, 255), same_color=False):
                     thickness,
                     lineType=cv2.LINE_AA,
                 )
-            except:
-                pass
+            except Exception as e:
+                print(e)
         if ind_f == 0:
             try:
                 cv2.line(
@@ -111,8 +111,8 @@ def draw_box_3d(image, corners, c=(255, 0, 255), same_color=False):
                     1,
                     lineType=cv2.LINE_AA,
                 )
-            except:
-                pass
+            except Exception as e:
+                print(e)
         # top_idx = [0, 1, 2, 3]
     return image
 
@@ -188,10 +188,13 @@ def rot_y2alpha(rot_y, x, cx, fx):
     return alpha
 
 
-def ddd2locrot(center, alpha, dim, depth, calib):
+def ddd2locrot(center, alpha, dim, depth, calib, dist_coeff=None):
     # single image
-    locations = unproject_2d_to_3d(center, depth, calib)
-    # locations2 = unproject(center, depth, calib[:,:3], np.zeros(4))[0]
+    if dist_coeff is None:
+        locations = unproject_2d_to_3d(center, depth, calib)
+    if dist_coeff is not None:
+        locations = unproject(center, [depth], calib[:,:3], np.zeros(4))[0]
+        # locations = unproject(center, [depth], calib[:,:3], dist_coeff)[0]
     locations[1] += dim[0] / 2
     rotation_y = alpha2rot_y(alpha, center[0], calib[0, 2], calib[0, 0])
     return locations, rotation_y

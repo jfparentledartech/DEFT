@@ -338,7 +338,7 @@ class Detector(object):
 
         if self.dataset == "pixset":
             # trans_matrix = np.array(image_info["trans_matrix"], np.float32) #TODO trans_matrix convert pixset
-            trans_matrix = np.zeros((4,4))
+            trans_matrix = np.eye(4)
             results_by_class = {}
             ddd_boxes_by_class = {}
             depths_by_class = {}
@@ -395,7 +395,7 @@ class Detector(object):
 
                 box = Box(loc, size, rot_cam, name="2", token="1")
                 box.translate(np.array([0, -box.wlh[2] / 2, 0]))
-                # box.rotate(Quaternion(image_info["cs_record_rot"])) # TODO add?
+                # box.rotate(Quaternion(image_info["cs_record_rot"]))
                 # box.translate(np.array(image_info["cs_record_trans"]))
                 # box.rotate(Quaternion(image_info["pose_record_rot"]))
                 # box.translate(np.array(image_info["pose_record_trans"]))
@@ -428,7 +428,8 @@ class Detector(object):
                         box.center[0],
                         box.center[1],
                         box.center[2],
-                        angle,
+                        # angle, # TODO use det["rot_y"] ?
+                        det["rot_y"]
                     ].copy()
                 )
 

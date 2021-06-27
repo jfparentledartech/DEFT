@@ -202,7 +202,7 @@ class opts(object):
         self.parser.add_argument(
             "--val_intervals",
             type=int,
-            default=10000,
+            default=10,
             help="number of epochs to run validation.",
         )
         self.parser.add_argument(
