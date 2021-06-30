@@ -70,9 +70,6 @@ def generic_post_process(
             if "dim" in dets and len(dets["dim"][i]) > j:
                 item["dim"] = dets["dim"][i][j]
 
-            # if "loc3d" in dets and len(dets["loc3d"][i]) > j: # TODO maybe
-            #     item["loc3d"] = dets["loc3d"][i][j]
-
             if "rot" in dets and len(dets["rot"][i]) > j:
                 item["alpha"] = get_alpha(dets["rot"][i][j : j + 1])[0]
 

@@ -11,6 +11,7 @@ from __future__ import division
 from __future__ import print_function
 from lib.utils.ddd_utils import compute_box_3d, project_to_image, alpha2rot_y
 from lib.utils.ddd_utils import draw_box_3d, unproject_2d_to_3d
+from tools.convert_pixset import box3d_from_loc_dim_rot
 import numpy as np
 import cv2
 import random
@@ -480,6 +481,9 @@ def plot_tracking_ddd(
     fps=0.0,
     ids2=None,
     calib=None,
+    trans_matrix=None,
+    camera_matrix=None,
+    distortion_coeffs=None
 ):
     im = np.ascontiguousarray(np.copy(image))
     im_h, im_w = im.shape[:2]
@@ -516,9 +520,19 @@ def plot_tracking_ddd(
         loc = box3d[3:-1]
         rot = box3d[-1]
 
-        box_3d = compute_box_3d(dim, loc, rot)
-        box_2d = project_to_image(box_3d, calib)
-        im = draw_box_3d(im, box_2d, c=color, same_color=True)
+        # box_3d = compute_box_3d(dim, loc, rot)
+        # box_2d = project_to_image(box_3d, calib)
+
+        dist_coeffs = np.asarray(distortion_coeffs)
+        box3d_projected = box3d_from_loc_dim_rot(np.asarray(trans_matrix), loc, dim.tolist(), rot, camera_matrix, dist_coeffs)
+
+        # TODO why some box are messed up
+        # image_height = image.shape[0]
+        # image_width = image.shape[1]
+        # if box3d_projected[:, 0].max() < image_width and box3d_projected[:, 1].max() < image_height and \
+        #         box3d_projected[:, 0].min() > 0 and box3d_projected[:, 1].max() > 0:
+
+        im = draw_box_3d(im, box3d_projected, c=color, same_color=True)
 
         cv2.putText(
             im,
@@ -529,6 +543,7 @@ def plot_tracking_ddd(
             (0, 0, 255),
             thickness=text_thickness,
         )
+
 
     return im
 

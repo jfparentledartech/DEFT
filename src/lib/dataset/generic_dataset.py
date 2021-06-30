@@ -465,8 +465,8 @@ class GenericDataset(data.Dataset):
         else:
             sf = self.opt.scale
             cf = self.opt.shift
-            if type(s) == float:
-                s = [s, s]
+            # if type(s) == float:
+            #     s = [s, s]
             c[0] += s * np.clip(np.random.randn() * cf, -2 * cf, 2 * cf)
             c[1] += s * np.clip(np.random.randn() * cf, -2 * cf, 2 * cf)
             aug_s = np.clip(np.random.randn() * sf + 1, 1 - sf, 1 + sf)

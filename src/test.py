@@ -12,11 +12,14 @@ from progress.bar import Bar
 import torch
 import copy
 import pickle
+import motmetrics as mm
 
 from lib.opts import opts
 from lib.logger import Logger
 from lib.utils.utils import AverageMeter
 from lib.dataset.dataset_factory import dataset_factory
+
+from pixset_evaluation import get_centers
 
 # opt = opts().parse()
 
@@ -56,6 +59,8 @@ class PrefetchDataset(torch.utils.data.Dataset):
     def __init__(self, opt, dataset, pre_process_func):
         self.images = dataset.images
         self.load_image_func = dataset.coco.loadImgs
+        self.get_ann_ids = dataset.coco.getAnnIds
+        self.load_annotations = dataset.coco.loadAnns
         self.img_dir = dataset.img_dir
         self.pre_process_func = pre_process_func
         self.get_default_calib = dataset.get_default_calib
@@ -67,6 +72,9 @@ class PrefetchDataset(torch.utils.data.Dataset):
         img_info = self.load_image_func(ids=[img_id])[0]
         img_path = os.path.join(self.img_dir, img_info["file_name"])
         image = cv2.imread(img_path)
+
+        annotation_ids = self.get_ann_ids(imgIds=[img_id])
+        annotations = self.load_annotations(ids=annotation_ids)
 
         images, meta = {}, {}
         for scale in opt.test_scales:
@@ -83,6 +91,7 @@ class PrefetchDataset(torch.utils.data.Dataset):
             "image": image,
             "meta": meta,
             "frame_id": img_info["frame_id"],
+            "annotations": annotations
         }
         if "frame_id" in img_info and img_info["frame_id"] == 1:
             ret["is_first_frame"] = 1
@@ -147,6 +156,9 @@ def prefetch_test(opt):
             "results": {},
         }
 
+    acc = mm.MOTAccumulator(auto_id=True)
+    acc_iou = mm.MOTAccumulator(auto_id=True)
+
     for ind, (img_id, pre_processed_images, img_info) in enumerate(data_loader):
         if ind >= num_iters:
             break
@@ -156,8 +168,8 @@ def prefetch_test(opt):
             sensor_id = img_info["sensor_id"].numpy().tolist()[0]
 
         if opt.dataset == "pixset":
-            sample_token = None
-            sensor_id = None
+            sample_token = img_info["sample_token"][0]
+            sensor_id = img_info["sensor_id"].numpy().tolist()[0]
 
         if opt.tracking and ("is_first_frame" in pre_processed_images):
             if "{}".format(int(img_id.numpy().astype(np.int32)[0])) in load_results:
@@ -184,7 +196,7 @@ def prefetch_test(opt):
                     "MOT"
                     + str(int(pre_processed_images["video_id"]))
                     + "_"
-                    # + str(int(img_info["sensor_id"]))
+                    + str(int(img_info["sensor_id"]))
                     + str(int(img_info["video_id"]))
                     + ".avi",
                 )
@@ -232,6 +244,15 @@ def prefetch_test(opt):
         online_ids = []
         online_ddd_boxes = []
         sample_results = []
+
+        image = pre_processed_images["image"][0].numpy()
+        gt_list, hyp_list, distances = get_centers(pre_processed_images['annotations'], online_targets, image, eval_type='distance')
+        acc.update(gt_list, hyp_list, distances)
+        print(acc.mot_events.loc[ind])
+        mh = mm.metrics.create()
+        summary = mh.compute(acc, metrics=['num_frames', 'mota', 'precision', 'recall'], name='acc')
+        print(summary)
+        print('-----------------------------------------')
 
         for t in online_targets:
             tlwh = t.tlwh
@@ -300,6 +321,9 @@ def prefetch_test(opt):
                     online_ids,
                     frame_id=pre_processed_images["frame_id"],
                     calib=img_info["calib"],
+                    trans_matrix=img_info["trans_matrix"],
+                    camera_matrix=img_info["camera_matrix"],
+                    distortion_coeffs=img_info["distortion_coefficients"]
                 )
             else:
                 online_im = plot_tracking(
@@ -325,6 +349,10 @@ def prefetch_test(opt):
                 ret["results"][sample_token][ind]
                 for _, ind in confs[: min(500, len(confs))]
             ]
+
+        mh = mm.metrics.create()
+        summary = mh.compute(acc, metrics=['num_frames', 'mota', 'motp', 'precision', 'recall'], name='acc')
+        print(summary)
 
         json.dump(ret, open(results_dir + "/results.json", "w"))
 
