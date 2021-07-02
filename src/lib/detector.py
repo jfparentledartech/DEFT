@@ -88,6 +88,7 @@ class Detector(object):
         self.flip_idx = self.trained_dataset.flip_idx
         self.cnt = 0
         self.pre_images = None
+        self.pre_traces = None
         self.pre_image_ori = None
         self.dataset = opt.dataset
         if self.dataset == "nuscenes":
@@ -123,6 +124,8 @@ class Detector(object):
             pre_processed_images = image_or_path_or_tensor
             pre_processed = True
 
+        if self.opt.use_pixell:
+            trace = np.load(image_info["trace_file_name"][0]+'.npy')
         loaded_time = time.time()
         load_time += loaded_time - start_time
 
@@ -145,6 +148,9 @@ class Detector(object):
                     meta["cur_detections"] = pre_processed_images["meta"]["cur_detections"]
 
             images = images.to(self.opt.device, non_blocking=self.opt.non_block_test)
+            traces = None
+            if self.opt.use_pixell:
+                traces = torch.Tensor(trace.transpose(2,0,1)).reshape((1,768,8,36)).to(self.opt.device, non_blocking=self.opt.non_block_test)
 
             # initializing tracker
             pre_hms, pre_inds = None, None
@@ -156,7 +162,7 @@ class Detector(object):
             # output: the output feature maps, only used for visualizing
             # detections: output tensors after extracting peaks
             output, detections_peaks, forward_time, FeatureMaps = self.process(
-                images, self.pre_images, pre_hms, pre_inds, return_time=True
+                images, traces, self.pre_images, self.pre_traces, pre_hms, pre_inds, return_time=True
             )
             net_time += forward_time - pre_process_time
             decode_time = time.time()
@@ -669,11 +675,11 @@ class Detector(object):
         return output
 
     def process(
-        self, images, pre_images=None, pre_hms=None, pre_inds=None, return_time=False
+        self, images, traces, pre_images=None, pre_traces=None, pre_hms=None, pre_inds=None, return_time=False
     ):
         with torch.no_grad():
             torch.cuda.synchronize()
-            output, FeatureMaps = self.model(images, pre_images, pre_hms)
+            output, FeatureMaps = self.model(images, traces, pre_images, pre_traces, pre_hms)
             output = output[-1]
             output = self._sigmoid_output(output)
             output.update({"pre_inds": pre_inds})

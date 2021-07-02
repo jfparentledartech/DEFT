@@ -20,7 +20,7 @@ class AFE_module(nn.Module):
     def __init__(self, opt):
         super(AFE_module, self).__init__()
 
-        if opt.dataset == "nuscenes":
+        if opt.dataset in ["nuscenes", "pixset"]:
             SELECTOR_OUTPUT_CHANNEL = [
                 48,
                 48,

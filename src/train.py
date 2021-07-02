@@ -157,7 +157,8 @@ if __name__ == "__main__":
     # with open(filename, 'wb') as f:
     #     pickle.dump(opt, f)
     #     print(f'saved {filename}')
-    with open(filename, 'rb') as f:
+    with open('../'+filename, 'rb') as f:
         opt = pickle.load(f)
-    opt.test = True
+    # opt.resume = True
+    opt.use_pixell = True
     main(opt)

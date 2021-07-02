@@ -383,7 +383,7 @@ class DLA(nn.Module):
             inplanes = planes
         return nn.Sequential(*modules)
 
-    def forward(self, x, pre_img=None, pre_hm=None):
+    def forward(self, x, trace, pre_img=None, pre_hm=None):
         y = []
         x = self.base_layer(x)
         if pre_img is not None:

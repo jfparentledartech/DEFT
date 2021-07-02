@@ -102,18 +102,18 @@ class BaseModel(nn.Module):
                     fill_fc_weights(fc)
             self.__setattr__(head, fc)
 
-    def img2feats(self, x):
+    def img2feats(self, x, trace):
         raise NotImplementedError
 
-    def imgpre2feats(self, x, pre_img=None, pre_hm=None):
+    def imgpre2feats(self, x, trace, pre_img=None, pre_trace=None, pre_hm=None):
         raise NotImplementedError
 
-    def forward(self, x, pre_img=None, pre_hm=None):
+    def forward(self, x, trace, pre_img=None, pre_trace=None, pre_hm=None):
 
         if (pre_hm is not None) or (pre_img is not None):
-            feats, FeatureMaps = self.imgpre2feats(x, pre_img, pre_hm)
+            feats, FeatureMaps = self.imgpre2feats(x, trace, pre_img, pre_trace, pre_hm)
         else:
-            feats, FeatureMaps = self.img2feats(x)
+            feats, FeatureMaps = self.img2feats(x, trace)
         out = []
 
         if self.opt.model_output_list:

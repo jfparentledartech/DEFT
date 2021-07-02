@@ -19,6 +19,7 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 import torch.utils.model_zoo as model_zoo
+import torch.nn.functional as nnf
 
 from .base_model import BaseModel
 
@@ -304,6 +305,18 @@ class DLA(nn.Module):
             nn.BatchNorm2d(channels[0], momentum=BN_MOMENTUM),
             nn.ReLU(inplace=True),
         )
+        # TODO conv3d
+        self.trace_base_layer = nn.Sequential(
+            nn.Conv2d(768, channels[0], kernel_size=3, stride=1, padding=1, bias=False),
+            nn.BatchNorm2d(channels[0], momentum=BN_MOMENTUM),
+            nn.ReLU(inplace=True),
+        )
+        self.half_features = nn.Sequential(
+            nn.Conv2d(32, channels[0], kernel_size=1, stride=1, padding=0, bias=False),
+            nn.BatchNorm2d(channels[0], momentum=BN_MOMENTUM),
+            nn.ReLU(inplace=True),
+        )
+
         self.level0 = self._make_conv_level(channels[0], channels[0], levels[0])
         self.level1 = self._make_conv_level(
             channels[0], channels[1], levels[1], stride=2
@@ -398,9 +411,15 @@ class DLA(nn.Module):
             inplanes = planes
         return nn.Sequential(*modules)
 
-    def forward(self, x, pre_img=None, pre_hm=None):
+    def forward(self, x, trace, pre_img=None, pre_hm=None, pre_trace=None):
         y = []
         x = self.base_layer(x)
+        if trace is not None:
+            trace = self.trace_base_layer(trace) # TODO trace network
+            trace = nnf.interpolate(trace, size=(448, 800), mode='bicubic', align_corners=False)
+            x = torch.cat((x, trace), dim=1)
+            x = self.half_features(x)
+
         if pre_img is not None:
             x = x + self.pre_img_layer(pre_img)
         if pre_hm is not None:
@@ -787,9 +806,24 @@ class DLASeg(BaseModel):
             node_type=self.node_type,
         )
 
-    def img2feats(self, x):
+    # def img2feats(self, x):
+    #     FeatureMaps = []
+    #     x = self.base(x)
+    #     FeatureMaps = FeatureMaps + x
+    #     x = self.dla_up(x)
+    #     FeatureMaps = FeatureMaps + x
+    #
+    #     y = []
+    #     for i in range(self.last_level - self.first_level):
+    #         y.append(x[i].clone())
+    #     self.ida_up(y, 0, len(y))
+    #     FeatureMaps = FeatureMaps + y
+    #
+    #     return [y[-1]], FeatureMaps
+
+    def img2feats(self, x, trace):
         FeatureMaps = []
-        x = self.base(x)
+        x = self.base(x, trace)
         FeatureMaps = FeatureMaps + x
         x = self.dla_up(x)
         FeatureMaps = FeatureMaps + x
@@ -802,7 +836,7 @@ class DLASeg(BaseModel):
 
         return [y[-1]], FeatureMaps
 
-    def imgpre2feats(self, x, pre_img=None, pre_hm=None):
+    def imgpre2feats(self, x, trace, pre_img=None, pre_hm=None):
         FeatureMaps = []
         x = self.base(x, pre_img, pre_hm)
         FeatureMaps = FeatureMaps + x

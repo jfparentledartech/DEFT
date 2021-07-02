@@ -121,7 +121,7 @@ class GenericDataset(data.Dataset):
 
     def __getitem__(self, index):
         opt = self.opt
-        img, anns, img_info, img_path = self._load_data(index)
+        img, anns, img_info, img_path, trace = self._load_data(index)
         height, width = img.shape[0], img.shape[1]
         c = np.array([img.shape[1] / 2.0, img.shape[0] / 2.0], dtype=np.float32)
         s = (
@@ -136,14 +136,23 @@ class GenericDataset(data.Dataset):
             if np.random.random() < opt.flip:
                 flipped = 1
                 img = img[:, ::-1, :]
+                if opt.use_pixell:
+                    trace = trace[:, ::-1, :]
                 anns = self._flip_anns(anns, width)
 
         trans_input = get_affine_transform(c, s, rot, [opt.input_w, opt.input_h])
 
         trans_output = get_affine_transform(c, s, rot, [opt.output_w, opt.output_h])
         inp, inp_org = self._get_input(img, trans_input)
+
         ret = {"image": inp}
         ret["next_image_org"] = inp_org
+        if opt.use_pixell:
+            inp_trace_org = trace.copy()
+            inp_trace = inp_trace_org.transpose(2, 0, 1)
+            ret["trace"] = inp_trace
+            ret["next_trace_org"] = inp_trace_org
+
         gt_det = {"bboxes": [], "scores": [], "clses": [], "cts": []}
 
         pre_cts, track_ids = None, None
@@ -180,13 +189,15 @@ class GenericDataset(data.Dataset):
 
         ##### appearence part
         if opt.AFE:
-            pre_image_AFE, pre_anns_AFE, frame_dist_AFE = self._load_pre_data_AFE(
+            pre_image_AFE, pre_anns_AFE, frame_dist_AFE, pre_trace_AFE = self._load_pre_data_AFE(
                 img_info["video_id"],
                 img_info["frame_id"],
                 img_info["sensor_id"] if "sensor_id" in img_info else 1,
             )
             if flipped:
                 pre_image_AFE = pre_image_AFE[:, ::-1, :].copy()
+                if opt.use_pixell:
+                    pre_trace_AFE = pre_trace_AFE[:, ::-1, :].copy()
                 pre_anns_AFE = self._flip_anns(pre_anns_AFE, width)
             trans_input_pre_AFE = trans_input
             trans_output_pre_AFE = trans_output
@@ -200,9 +211,16 @@ class GenericDataset(data.Dataset):
             bboxes_next, track_ids_next = self._get_data_AFE(
                 anns, trans_input, trans_output
             )
+
             ret["pre_image"] = pre_image_AFE
             ret["next_image"] = inp
             ret["pre_image_org"] = pre_image_AFE_org
+
+            if opt.use_pixell:
+                ret["pre_trace"] = pre_trace_AFE.transpose(2, 0, 1)
+                ret["next_trace"] = inp_trace
+                ret["pre_trace_org"] = pre_trace_AFE
+
             if len(bboxes_pre) > 0:
                 bboxes_pre = np.array(bboxes_pre)
             else:
@@ -342,8 +360,8 @@ class GenericDataset(data.Dataset):
         img_id, pre_frame_id = img_ids[rand_id]
         frame_dist = abs(frame_id - pre_frame_id)
 
-        img, anns, _, _ = self._load_image_anns(img_id, self.coco, self.img_dir)
-        return img, anns, frame_dist
+        img, anns, _, _, trace = self._load_image_anns(img_id, self.coco, self.img_dir)
+        return img, anns, frame_dist, trace
 
     def get_default_calib(self, width, height):
         calib = np.array(
@@ -358,20 +376,29 @@ class GenericDataset(data.Dataset):
     def _load_image_anns(self, img_id, coco, img_dir):
         img_info = coco.loadImgs(ids=[img_id])[0]
         file_name = img_info["file_name"]
+        trace_file_name = img_info["trace_file_name"]
         img_path = os.path.join(img_dir, file_name)
+        trace_path = os.path.join(img_dir.replace('v1.0-trainval', 'pixset'), trace_file_name)
         # img_path = img_path.replace('/src/lib/../..', '') # TODO
         ann_ids = coco.getAnnIds(imgIds=[img_id])
         anns = copy.deepcopy(coco.loadAnns(ids=ann_ids))
         img = cv2.imread(img_path)
-        return img, anns, img_info, img_path
+        trace = None
+        if self.opt.use_pixell:
+            try:
+                trace = np.float32(np.load(trace_path))
+            except:
+                trace = np.float32(np.load(trace_path + ".npy"))
+
+        return img, anns, img_info, img_path, trace
 
     def _load_data(self, index):
         coco = self.coco
         img_dir = self.img_dir
         img_id = self.images[index]
-        img, anns, img_info, img_path = self._load_image_anns(img_id, coco, img_dir)
+        img, anns, img_info, img_path, trace = self._load_image_anns(img_id, coco, img_dir)
 
-        return img, anns, img_info, img_path
+        return img, anns, img_info, img_path, trace
 
     def _load_pre_data(self, video_id, frame_id, sensor_id=1):
         img_infos = self.video_to_images[video_id]
@@ -418,7 +445,7 @@ class GenericDataset(data.Dataset):
         img_id, pre_frame_id = img_ids[rand_id]
         frame_dist = abs(frame_id - pre_frame_id)
 
-        img, anns, _, _ = self._load_image_anns(img_id, self.coco, self.img_dir)
+        img, anns, _, _, trace = self._load_image_anns(img_id, self.coco, self.img_dir)
         return img, anns, frame_dist
 
     def _get_data_AFE(self, anns, trans_input, trans_output):

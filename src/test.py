@@ -29,6 +29,7 @@ filename = 'test_opt_pixset.txt'
 #     print(f'saved {filename}')
 with open(filename, 'rb') as f:
     opt = pickle.load(f)
+    opt.use_pixell = False
 
 from lib.detector import Detector
 from lib.utils.image import plot_tracking, plot_tracking_ddd
@@ -157,7 +158,6 @@ def prefetch_test(opt):
         }
 
     acc = mm.MOTAccumulator(auto_id=True)
-    acc_iou = mm.MOTAccumulator(auto_id=True)
 
     for ind, (img_id, pre_processed_images, img_info) in enumerate(data_loader):
         if ind >= num_iters:
@@ -246,7 +246,7 @@ def prefetch_test(opt):
         sample_results = []
 
         image = pre_processed_images["image"][0].numpy()
-        gt_list, hyp_list, distances = get_centers(pre_processed_images['annotations'], online_targets, image, eval_type='distance')
+        gt_list, hyp_list, distances = get_centers(pre_processed_images['annotations'], online_targets, eval_type='distance')
         acc.update(gt_list, hyp_list, distances)
         print(acc.mot_events.loc[ind])
         mh = mm.metrics.create()

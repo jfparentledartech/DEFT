@@ -343,6 +343,7 @@ class opts(object):
 
         # loss
         self.parser.add_argument("--tracking_weight", type=float, default=1)
+        self.parser.add_argument("--use_pixell", type=bool, default=False)
         self.parser.add_argument(
             "--reg_loss", default="l1", help="regression loss: sl1 | l1 | l2"
         )

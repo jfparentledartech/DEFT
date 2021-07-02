@@ -10,6 +10,7 @@ from progress.bar import Bar
 
 from matplotlib.patches import Polygon
 from pioneer.common import linalg
+from pioneer.common.trace_processing import TraceProcessingCollection
 
 from lib.utils.ddd_utils import draw_box_3d, ddd2locrot
 
@@ -169,6 +170,7 @@ if __name__ == '__main__':
 
     pixset_data_path = '/home/jfparent/Documents/Stage/DEFT/data/pixset/'
     pixset_images_path = pixset_data_path + 'v1.0-trainval/'
+    pixset_pixell_path = pixset_data_path + 'pixell/'
     pixset_annotations_path = pixset_data_path + 'annotations/'
 
     sync_labels = ['*ech*', '*_img*', '*_flimg*', '*_ftrr*', '*deepen*']
@@ -177,6 +179,7 @@ if __name__ == '__main__':
 
     img_ds = 'flir_bfc_img-cyl'
     annotations = 'pixell_bfc_box3d-deepen'
+    pixell = 'pixell_bfc_ftrr'
 
     categories = [
         'pedestrian',
@@ -245,8 +248,8 @@ if __name__ == '__main__':
     }
 
     dataset_paths = [
-        '/home/jfparent/Documents/PixSet/20200721_180421_part41_1800_2500',
-        # '/home/jfparent/Documents/PixSet/20200706_171559_part27_1170_1370',
+        # '/home/jfparent/Documents/PixSet/20200721_180421_part41_1800_2500',
+        '/home/jfparent/Documents/PixSet/20200706_171559_part27_1170_1370',
         # '/home/jfparent/Documents/PixSet/20200706_162218_part21_4368_7230',
         # '/home/jfparent/Documents/PixSet/20200706_144800_part25_1224_2100'
     ]
@@ -274,12 +277,34 @@ if __name__ == '__main__':
             print(f"{i_frame+1}/{len(sc)}")
             bar.next()
 
+            trace_sample = sc[frame][pixell]
+            trace_processing = TraceProcessingCollection([])
+            processed_trace = trace_sample.processed_array(trace_processing)
+            high_intensity_trace = processed_trace[0]
+            low_intensity_trace = processed_trace[1][:,:,:256]
+            full_trace = np.concatenate((low_intensity_trace, high_intensity_trace), axis=2)
+
+            full_traces = {
+                'flir_bfl_img': np.concatenate((np.zeros((8,6,768)), full_trace[:,:30,:]),axis=1),
+                'flir_bfc_img': full_trace[:,30:66,:],
+                'flir_bfr_img': np.concatenate((full_trace[:,:30,:], np.zeros((8,6,768))),axis=1)
+            }
+
             # for sensor_id, camera in enumerate(['flir_bfl_img', 'flir_bfr_img', 'flir_bfc_img']):
             for sensor_id, camera in enumerate(['flir_bfc_img']):
                 image_sample = sc[frame][camera]
                 image = Image.fromarray(image_sample.raw)
                 image_path = f'{pixset_images_path}{dataset}_{camera}{i_frame+1:06d}.jpg'
                 image.save(image_path)
+
+                # TODO upscale correctly, in neural network, not here
+                full_trace = full_traces[camera]
+                # upscaled_full_trace = np.kron(full_trace, np.ones((40,40,1)))
+                # top_pad = np.zeros((385, 1440, 768))
+                # bottom_pad = np.zeros((375, 1440, 768))
+                # padded_upscaled_full_trace = np.row_stack((top_pad, upscaled_full_trace, bottom_pad))
+                trace_path = f'{pixset_pixell_path}{dataset}_{camera}_pixell_ftrr_{i_frame+1:06d}.npy'
+                np.save(trace_path, full_trace)
 
                 annotation_sample = sc[frame][annotations]
                 annotation_to_camera_transformation = annotation_sample.compute_transform(referential_or_ds=image_sample.label, ignore_orientation=True)
@@ -299,6 +324,7 @@ if __name__ == '__main__':
                 coco_format['images'].append({
                     "id": num_image,
                     "file_name": image_path,
+                    "trace_file_name": trace_path,
                     "video_id": num_video + 1,
                     "frame_id": i_frame + 1,
                     "width": image_sample.raw.shape[1],

@@ -23,6 +23,7 @@ from lib.model.decode import generic_decode
 from lib.model.utils import _sigmoid, flip_tensor, flip_lr_off, flip_lr
 from lib.utils.debugger import Debugger
 from lib.utils.post_process import generic_post_process
+from lib.opts import opts
 import cv2
 
 import warnings
@@ -149,17 +150,27 @@ class GenericLoss(torch.nn.Module):
 
 
 class ModleWithLoss(torch.nn.Module):
-    def __init__(self, model, loss):
+    def __init__(self, model, loss, opt):
         super(ModleWithLoss, self).__init__()
         self.model = model
         self.loss = loss
+        self.opt = opt
 
     def forward(self, batch):
         pre_img = None
+        pre_trace = None
         pre_hm = None
-        outputs, FeatureMaps_next = self.model(batch["image"], pre_img, pre_hm)
+
+        if self.opt.use_pixell:
+            outputs, FeatureMaps_next = self.model(batch["image"], batch["trace"], pre_img=pre_img, pre_trace=pre_trace, pre_hm=pre_hm)
+        else:
+            outputs, FeatureMaps_next = self.model(batch["image"], None, pre_img=pre_img, pre_trace=pre_trace, pre_hm=pre_hm)
         _, loss_stats = self.loss(outputs, batch)
-        _, FeatureMaps_pre = self.model.img2feats(batch["pre_image"])
+        if self.opt.use_pixell:
+            _, FeatureMaps_pre = self.model.img2feats(batch["pre_image"], batch["pre_trace"])
+        else:
+            _, FeatureMaps_pre = self.model.img2feats(batch["pre_image"], None)
+
         x = self.model.AFE(
             FeatureMaps_pre, FeatureMaps_next, batch["bboxes_pre"], batch["bboxes_next"]
         )
@@ -177,7 +188,7 @@ class Trainer(object):
         self.opt = opt
         self.optimizer = optimizer
         self.loss_stats, self.loss = self._get_losses(opt)
-        self.model_with_loss = ModleWithLoss(model, self.loss)
+        self.model_with_loss = ModleWithLoss(model, self.loss, opt)
 
     def set_device(self, gpus, chunk_sizes, device):
         if len(gpus) > 1:
