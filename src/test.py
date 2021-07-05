@@ -19,7 +19,7 @@ from lib.logger import Logger
 from lib.utils.utils import AverageMeter
 from lib.dataset.dataset_factory import dataset_factory
 
-from pixset_evaluation import get_centers
+from pixset_evaluation import compute_metrics
 
 # opt = opts().parse()
 
@@ -246,7 +246,7 @@ def prefetch_test(opt):
         sample_results = []
 
         image = pre_processed_images["image"][0].numpy()
-        gt_list, hyp_list, distances = get_centers(pre_processed_images['annotations'], online_targets, eval_type='distance')
+        gt_list, hyp_list, distances = compute_metrics(pre_processed_images['annotations'], online_targets, eval_type='distance')
         acc.update(gt_list, hyp_list, distances)
         print(acc.mot_events.loc[ind])
         mh = mm.metrics.create()

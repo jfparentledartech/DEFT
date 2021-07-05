@@ -415,7 +415,7 @@ class DLA(nn.Module):
         y = []
         x = self.base_layer(x)
         if trace is not None:
-            trace = self.trace_base_layer(trace) # TODO trace network
+            trace = self.trace_base_layer(trace) # TODO trace network (conv3d blocks)
             trace = nnf.interpolate(trace, size=(448, 800), mode='bicubic', align_corners=False)
             x = torch.cat((x, trace), dim=1)
             x = self.half_features(x)

@@ -14,7 +14,7 @@ def category_max_range(config):
     return [config['class_range']['pedestrian'], config['class_range']['car']]
 
 
-def get_centers(ground_truths, hypothesis, eval_type='distance'):
+def compute_metrics(ground_truths, hypothesis, eval_type='distance'):
     config = load_evaluation_configuration()
 
     gt_to_keep = []

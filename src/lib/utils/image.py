@@ -526,13 +526,11 @@ def plot_tracking_ddd(
         dist_coeffs = np.asarray(distortion_coeffs)
         box3d_projected = box3d_from_loc_dim_rot(np.asarray(trans_matrix), loc, dim.tolist(), rot, camera_matrix, dist_coeffs)
 
-        # TODO why some box are messed up
-        # image_height = image.shape[0]
-        # image_width = image.shape[1]
-        # if box3d_projected[:, 0].max() < image_width and box3d_projected[:, 1].max() < image_height and \
-        #         box3d_projected[:, 0].min() > 0 and box3d_projected[:, 1].max() > 0:
-
+        top_pad = np.zeros((389, 1440, 3), dtype=float)
+        bottom_pad = np.zeros((378, 1440, 3), dtype=float)
+        im = np.concatenate((top_pad, (im / 255), bottom_pad))
         im = draw_box_3d(im, box3d_projected, c=color, same_color=True)
+        im = np.uint8(im[389:-378]*255)
 
         cv2.putText(
             im,
@@ -543,7 +541,6 @@ def plot_tracking_ddd(
             (0, 0, 255),
             thickness=text_thickness,
         )
-
 
     return im
 

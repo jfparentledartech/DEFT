@@ -16,7 +16,7 @@ from lib.utils.ddd_utils import draw_box_3d, ddd2locrot
 
 from uuid import uuid4
 
-DEBUG = False
+DEBUG = True
 
 def rot_x_axis(theta):
     return np.asarray([[1, 0, 0],
@@ -55,6 +55,14 @@ def _rot_y2alpha(rot_y, x, cx, fx):
     return alpha
 
 
+def project_pts(pts, und_camera_matrix):
+    pts = pts.T
+    R = T = np.zeros((3, 1))
+    image_pts, _ = cv2.projectPoints(pts, R, T, np.asarray(und_camera_matrix)[:,:3], np.zeros((5, 1)))
+    image_pts = np.squeeze(image_pts)
+    return image_pts
+
+
 def project_pts_dist_coeffs(pts, camera_matrix, dist_coeffs):
     pts = pts.T
     R = T = np.zeros((3, 1))
@@ -63,17 +71,12 @@ def project_pts_dist_coeffs(pts, camera_matrix, dist_coeffs):
     return image_pts
 
 
-def box3d_to_bbox(detection, image_sample, annotation_to_camera_transformation):
-    # T = annotation_sample.compute_transform(referential_or_ds=image_sample.label, ignore_orientation=True)
-    T = annotation_to_camera_transformation
-    box3d_in_annotation_reference = linalg.bbox_to_8coordinates(detection['c'], detection['d'], detection['r']) # 3dbox coords in annotation reference
-    box3d_in_camera_reference = transform_pts(T, box3d_in_annotation_reference)
-    box2d = image_sample.project_pts(box3d_in_camera_reference)
-
-    box2d[:, 0] -= crop_left
-    box2d[:, 1] -= crop_top
-
-    imcorners = [box2d[:, 0], box2d[:,1]]
+def box3d_to_bbox(box, image_sample, annotation_sample):
+    T = annotation_sample.compute_transform(referential_or_ds=image_sample.label, ignore_orientation=True)
+    vertices = linalg.bbox_to_8coordinates(box['c'], box['d'], box['r'])
+    vertices_transformed = image_sample.transform_pts(T, vertices)
+    p = image_sample.project_pts(vertices_transformed, mask_fov=False, undistorted=False)
+    imcorners = [p[:, 0], p[:,1]]
     return (
         np.min(imcorners[0]).item(),
         np.min(imcorners[1]).item(),
@@ -113,13 +116,7 @@ def p3d_box(box, image_sample, image, annotation_sample, amodel_center, projecte
     y_list = [ymin, ymax, ymin, ymax]
 
     fig, ax = plt.subplots()
-
-    im = copy.copy(image)
-    top_pad = np.zeros((crop_top, 1440, 3), dtype=int)
-    bottom_pad = np.zeros((crop_bottom, 1440, 3), dtype=int)
-    im = np.concatenate((top_pad, im, bottom_pad))
-    ax.imshow(im)
-
+    ax.imshow(image)
     faces = [[0, 1, 3, 2], [0, 1, 5, 4], [0, 2, 6, 4], [7, 3, 1, 5], [7, 5, 4, 6], [7, 6, 2, 3]]
     for face in faces:
         poly_label = np.vstack([p_label[face[0]], p_label[face[1]], p_label[face[2]], p_label[face[3]], p_label[face[0]]])
@@ -153,12 +150,11 @@ def box3d_from_loc_dim_rot(annotation_to_camera_transformation, loc, dim, rot, c
     R = annotation_to_camera_transformation[:3, :3] @ rot_z_axis(rot)
     v = np.dot(R, np.array([1, 0, 0]))
     yaw = -np.arctan2(v[2], v[0])
-    box3d_pred_in_annotation_reference = linalg.bbox_to_8coordinates(loc, dim_copy, [0, 0, yaw])
-    box3d_pred_in_camera_reference = transform_pts(annotation_to_camera_transformation, box3d_pred_in_annotation_reference)
+    vertices_pred = linalg.bbox_to_8coordinates(loc, dim_copy, [0, 0, yaw])
+    vertices_transformed_pred = transform_pts(annotation_to_camera_transformation, vertices_pred)
 
-    box3d = project_pts_dist_coeffs(box3d_pred_in_camera_reference, camera_matrix, dist_coeffs)
+    box3d = project_pts_dist_coeffs(vertices_transformed_pred, camera_matrix, dist_coeffs)
 
-    # TODO refactor
     box3d[[1, 6]] = box3d[[6, 1]]
     box3d[[3, 4]] = box3d[[4, 3]]
     box3d[[1, 0]] = box3d[[0, 1]]
@@ -167,6 +163,7 @@ def box3d_from_loc_dim_rot(annotation_to_camera_transformation, loc, dim, rot, c
     box3d[[2, 3]] = box3d[[3, 2]]
 
     return box3d
+
 
 
 if __name__ == '__main__':
@@ -293,38 +290,19 @@ if __name__ == '__main__':
                 'flir_bfr_img': np.concatenate((full_trace[:,:30,:], np.zeros((8,6,768))),axis=1)
             }
 
-            # camera_waveform_crops = [(389,378,281,0),(389,378,0,281),(389,378,0,0)] # top, bottom, left, right
-            camera_waveform_crops = [(389,378,0,0)] # bfc
-
             # for sensor_id, camera in enumerate(['flir_bfl_img', 'flir_bfr_img', 'flir_bfc_img']):
             for sensor_id, camera in enumerate(['flir_bfc_img']):
-                # TODO downscale image to match waveform FOV
-                crop_top, crop_bottom, crop_left, crop_right = camera_waveform_crops[sensor_id]
                 image_sample = sc[frame][camera]
-                image_array = image_sample.raw
-
-                # if camera == 'flir_bfr_img':
-                #     image_array[:crop_top] = 0
-                #     image_array[-crop_right:] = 0
-                #     image_array[-crop_bottom:] = 0
-                #     image = Image.fromarray(image_array)
-                # else:
-                #     image_array[:crop_top] = 0
-                #     image_array[:crop_left] = 0
-                #     image_array[-crop_bottom:] = 0
-                #     image = Image.fromarray(image_array)
-
-                # TODO when using all cameras
-                if camera == 'flir_bfr_img':
-                    image = Image.fromarray(image_sample.raw[crop_top:-crop_bottom, crop_left:-crop_right])
-                else:
-                    image = Image.fromarray(image_sample.raw[crop_top:-crop_bottom, crop_left:])
-
+                image = Image.fromarray(image_sample.raw)
                 image_path = f'{pixset_images_path}{dataset}_{camera}{i_frame+1:06d}.jpg'
                 image.save(image_path)
 
-                # TODO upscale in NN
+                # TODO upscale correctly, in neural network, not here
                 full_trace = full_traces[camera]
+                # upscaled_full_trace = np.kron(full_trace, np.ones((40,40,1)))
+                # top_pad = np.zeros((385, 1440, 768))
+                # bottom_pad = np.zeros((375, 1440, 768))
+                # padded_upscaled_full_trace = np.row_stack((top_pad, upscaled_full_trace, bottom_pad))
                 trace_path = f'{pixset_pixell_path}{dataset}_{camera}_pixell_ftrr_{i_frame+1:06d}.npy'
                 np.save(trace_path, full_trace)
 
@@ -335,12 +313,13 @@ if __name__ == '__main__':
                 annotation_centers_in_camera_reference = transform_pts(annotation_to_camera_transformation, annotation_centers)
 
                 _, annotation_mask = image_sample.project_pts(annotation_centers_in_camera_reference, mask_fov=True, output_mask=True)
+                # projected_centers = image_sample.project_pts(annotation_centers_in_camera_reference, undistorted=True)
 
                 num_image = (i_frame+1) + (sensor_id * datasets_length)
                 trans_matrix = annotation_to_camera_transformation.tolist()
 
-                camera_intrinsic = np.column_stack((image_sample.camera_matrix, np.zeros(3))).tolist()
-                projected_centers = image_sample.project_pts(annotation_centers_in_camera_reference)
+                camera_intrinsic = np.column_stack((image_sample.und_camera_matrix, np.zeros(3))).tolist()
+                projected_centers = image_sample.project_pts(annotation_centers_in_camera_reference, undistorted=True)
 
                 coco_format['images'].append({
                     "id": num_image,
@@ -353,8 +332,8 @@ if __name__ == '__main__':
                     "sensor_id": sensor_id,
                     "sample_token": str(uuid4()).replace('-',''),
                     "trans_matrix": trans_matrix,
-                    "calib": camera_intrinsic,
-                    "camera_matrix": camera_intrinsic,
+                    "calib": camera_intrinsic, # und_camera_matrix, refactor rename
+                    "camera_matrix": np.column_stack((image_sample.camera_matrix, np.zeros(3))).tolist(),
                     "distortion_coefficients": image_sample.distortion_coeffs.tolist()
                 })
 
@@ -363,17 +342,10 @@ if __name__ == '__main__':
                         continue
                     if not categories[int(detection['classes'])] in list(map_categories.keys()):
                         continue
+
                     attributes = annotation_sample.raw['attributes'][i_detection]
                     if attributes['occlusions'] == 2:
                         continue
-
-                    amodel_center = projected_centers[i_detection].tolist()
-                    if not (((amodel_center[0] - crop_left) < 1440) and ((amodel_center[0] - crop_left) > 0) and
-                            ((amodel_center[1] - crop_top) < 313) and ((amodel_center[1] - crop_top) > 0)):
-                        continue
-
-                    amodel_center[0] -= crop_left
-                    amodel_center[1] -= crop_top
 
                     center_coordinates = annotation_centers_in_camera_reference[i_detection]
                     box_dimensions = detection['d'].tolist()
@@ -386,6 +358,8 @@ if __name__ == '__main__':
 
                     category_id = filtered_categories.index(map_categories[categories[int(detection['classes'])]]) + 1
                     object_id = detection['id']
+
+                    amodel_center = image_sample.project_pts(center_coordinates, undistorted=True).tolist()
 
                     num_annotation += 1
                     # instance information in COCO format
@@ -404,10 +378,7 @@ if __name__ == '__main__':
                         "track_id": int(object_id),
                     })
 
-                    bbox = box3d_to_bbox(detection, image_sample, annotation_to_camera_transformation)
-                    xmin, ymin, xmax, ymax = bbox
-                    x_list = [xmin, xmin, xmax, xmax]
-                    y_list = [ymin, ymax, ymin, ymax]
+                    bbox = box3d_to_bbox(detection, image_sample, annotation_sample)
 
                     alpha = _rot_y2alpha(
                         yaw,
@@ -427,38 +398,27 @@ if __name__ == '__main__':
 
                     num_annotation += 1
                     if DEBUG:
-                    # if i_frame == 17:
+                        # if i_frame>52:
                         calib = np.asarray(camera_intrinsic)
                         ann = coco_format['annotations'][-1]
 
-                        # loc, rot = ddd2locrot(ann["amodel_center"], ann["alpha"], ann["dim"], ann["depth"], calib)
-                        dist_coeffs = np.asarray(coco_format['images'][-1]['distortion_coefficients'])
-                        am_center = copy.copy(ann["amodel_center"])
-                        am_center[0] += crop_left
-                        am_center[1] += crop_top
-                        loc, rot = ddd2locrot(am_center, ann["alpha"], ann["dim"], ann["depth"], calib, dist_coeffs)
-                        # loc, rot = ddd2locrot(ann["amodel_center"], ann["alpha"], ann["dim"], ann["depth"], calib, dist_coeffs)
+                        loc, rot = ddd2locrot(ann["amodel_center"], ann["alpha"], ann["dim"], ann["depth"], calib)
                         print('location', ann["location"])
                         print('unproject location', loc)
                         print('yaw', ann["rotation_y"])
                         print('unproject alpha2rot_y', rot)
 
-                        # box_3d = p3d_box(detection, image_sample, image, annotation_sample, am_center, projected_centers[i_detection],
+                        im = np.ascontiguousarray(np.copy(image))
+                        # box_3d = p3d_box(detection, image_sample, image, annotation_sample, amodel_center, projected_centers[i_detection],
                         #                  loc, ann["dim"], rot)
 
+                        dist_coeffs = np.asarray(coco_format['images'][-1]['distortion_coefficients'])
                         calib = coco_format['images'][-1]['camera_matrix']
-                        projected_box3d = box3d_from_loc_dim_rot(annotation_to_camera_transformation, loc, ann["dim"], rot, calib, dist_coeffs)
+                        box3d2 = box3d_from_loc_dim_rot(annotation_to_camera_transformation, loc, ann["dim"], rot, calib, dist_coeffs)
 
-                        im = np.ascontiguousarray(np.copy(image))
-                        top_pad = np.zeros((crop_top, 1440, 3), dtype=float)
-                        bottom_pad = np.zeros((crop_bottom, 1440, 3), dtype=float)
-                        im = np.concatenate((top_pad, (im / 255), bottom_pad))
-                        im = draw_box_3d(im, projected_box3d, same_color=True)
-                        im = im[crop_top:-crop_bottom, crop_left:]
-
+                        im = draw_box_3d(im, box3d2, same_color=True)
                         plt.imshow(im)
                         plt.show()
-                        print()
 
         for sensor_id, camera in enumerate(['flir_bfl_img', 'flir_bfr_img', 'flir_bfc_img']):
             coco_format["videos"].append({"id": num_video+1, "file_name": f'scene-{num_video+1:04d}'})

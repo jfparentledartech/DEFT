@@ -17,8 +17,8 @@ from ..trajectory_dataset import TrajectoryDataset
 
 # TODO
 class PixSet(GenericDataset):
-    # default_resolution = [500, 2000] # TODO cropped resolution instead? verify x,y order (y,x)
-    default_resolution = [448, 800] # TODO cropped resolution instead? verify x,y order (y,x)
+    # default_resolution = [448, 800] # TODO modify
+    default_resolution = [320, 1440] # TODO modify
     num_categories = 2
     categories = [
         'pedestrian',
@@ -326,8 +326,8 @@ class PixSet(GenericDataset):
 
 # TODO
 class PixSet_prediction(TrajectoryDataset):
-    # default_resolution = [500, 2000]
-    default_resolution = [448, 800]
+    # default_resolution = [448, 800]
+    default_resolution = [320, 1440] # TODO modify
     num_categories = 2
     class_name = [
         'pedestrian',

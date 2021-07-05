@@ -27,7 +27,7 @@ def get_alpha(rot):
 
 
 def generic_post_process(
-    opt, dets, c, s, h, w, num_classes, calibs=None, height=-1, width=-1
+    opt, dets, c, s, h, w, num_classes, calibs=None, height=-1, width=-1, distort_coeffs=None
 ):
     if not ("scores" in dets):
         return [{}], [{}]
@@ -94,8 +94,10 @@ def generic_post_process(
                     ct = [(bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2]
                 item["ct"] = ct
 
+                ct[1] += 389
+
                 item["loc"], item["rot_y"] = ddd2locrot(
-                    ct, item["alpha"], item["dim"], item["dep"], calibs[i]
+                    ct, item["alpha"], item["dim"], item["dep"], calibs[i], distort_coeffs[i]
                 )
 
             preds.append(item)

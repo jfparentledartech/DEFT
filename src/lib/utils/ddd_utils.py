@@ -193,8 +193,7 @@ def ddd2locrot(center, alpha, dim, depth, calib, dist_coeff=None):
     if dist_coeff is None:
         locations = unproject_2d_to_3d(center, depth, calib)
     if dist_coeff is not None:
-        locations = unproject(center, [depth], calib[:,:3], np.zeros(4))[0]
-        # locations = unproject(center, [depth], calib[:,:3], dist_coeff)[0]
+        locations = np.asarray(unproject(center, [depth], calib[:,:3], dist_coeff)[0]).squeeze()
     locations[1] += dim[0] / 2
     rotation_y = alpha2rot_y(alpha, center[0], calib[0, 2], calib[0, 0])
     return locations, rotation_y

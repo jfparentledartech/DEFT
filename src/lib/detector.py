@@ -170,6 +170,8 @@ class Detector(object):
 
             # convert the cropped and 4x downsampled output coordinate system
             # back to the input image coordinate system
+            meta['distortion_coefficients'] = np.asarray(image_info["distortion_coefficients"])
+
             result = self.post_process(detections_peaks, meta, scale)
             post_process_time = time.time()
             post_time += post_process_time - decode_time
@@ -709,6 +711,7 @@ class Detector(object):
             [meta["calib"]],
             meta["height"],
             meta["width"],
+            [meta["distortion_coefficients"]],
         )
         self.this_calib = meta["calib"]
 
