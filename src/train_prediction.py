@@ -33,7 +33,7 @@ class DecoderRNN(torch.nn.Module):
     def __init__(self, num_hidden, opt):
         super(DecoderRNN, self).__init__()
         self.num_hidden = num_hidden
-        if opt.dataset in ["nuscenes"]:
+        if opt.dataset in ["nuscenes", "pixset"]:
             self.lstm = torch.nn.LSTM(18, self.num_hidden)
             self.out1 = torch.nn.Linear(self.num_hidden, 64)
             self.out2 = torch.nn.Linear(64, 4 * 4)
@@ -62,7 +62,7 @@ def main(opt):
     device = opt.device
     logger = Logger(opt)
 
-    print("Creating model...")
+    # print("Creating model...")
 
     model = DecoderRNN(128, opt)
     optimizer = get_optimizer(opt, model)
@@ -161,16 +161,19 @@ def main(opt):
             lr = opt.lr * (0.1 ** (opt.lr_step.index(epoch) + 1))
             for param_group in optimizer.param_groups:
                 param_group["lr"] = lr
+        bar.next()
+
     logger.close()
 
 
 if __name__ == "__main__":
-    opt = opts().parse()
+    # opt = opts().parse()
 
     filename = 'train_prediction_opt_pixset.txt'
-    with open(filename, 'wb') as f:
-        pickle.dump(opt, f)
-        print(f'saved {filename}')
-    # with open(filename, 'rb') as f:
-    #     opt = pickle.load(f)
+    # with open(filename, 'wb') as f:
+    #     pickle.dump(opt, f)
+    #     print(f'saved {filename}')
+    with open(filename, 'rb') as f:
+        opt = pickle.load(f)
+    # opt.print_iter = 1
     main(opt)

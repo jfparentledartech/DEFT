@@ -514,10 +514,8 @@ class GenericDataset(data.Dataset):
         pre_hm = np.zeros((1, hm_h, hm_w), dtype=np.float32) if reutrn_hm else None
         pre_cts, track_ids = [], []
         for ann in anns:
-            try:
-                cls_id = int(self.cat_ids[ann["category_id"]])
-            except:
-                print()
+            cls_id = int(self.cat_ids[ann["category_id"]])
+
             if (
                 cls_id > self.opt.num_classes
                 or cls_id <= -99

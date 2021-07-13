@@ -15,6 +15,7 @@ import os
 from ..generic_dataset import GenericDataset
 from ..trajectory_dataset import TrajectoryDataset
 
+
 # TODO
 class PixSet(GenericDataset):
     # default_resolution = [448, 800] # TODO modify
@@ -295,33 +296,14 @@ class PixSet(GenericDataset):
         )
 
     # TODO
-    def run_eval(self, results, save_dir):
+    def run_eval(self, results, save_dir, epoch):
         task = "tracking" if self.opt.tracking else "det"
         self.save_results(results, save_dir, task)
-        if task == "det":
-            os.system(
-                "python "
-                + "tools/nuscenes-devkit/python-sdk/nuscenes/eval/detection/evaluate.py "
-                + "{}/results_nuscenes_{}.json ".format(save_dir, task)
-                + "--output_dir {}/nuscenes_eval_det_output/ ".format(save_dir)
-                + "--dataroot ../data/nuscenes/v1.0-trainval/"
-            )
-        else:
-            os.system(
-                "python "
-                + "tools/nuscenes-devkit/python-sdk/nuscenes/eval/tracking/evaluate.py "
-                + "{}/results_nuscenes_{}.json ".format(save_dir, task)
-                + "--output_dir {}/nuscenes_evaltracl__output/ ".format(save_dir)
-                + "--dataroot ../data/pixset/"
-                # + "--dataroot ../data/pixset/v1.0-trainval/"
-            )
-            # os.system(
-            #     "python "
-            #     + "tools/nuscenes-devkit/python-sdk-alpha02/nuscenes/eval/tracking/evaluate.py "
-            #     + "{}/results_nuscenes_{}.json ".format(save_dir, task)
-            #     + "--output_dir {}/nuscenes_evaltracl__output/ ".format(save_dir)
-            #     + "--dataroot ../data/nuscenes/v1.0-trainval/"
-            # )
+
+        os.system(
+            "python src/tools/eval_pixset.py "
+            + f" --epoch {epoch}"
+        )
 
 
 # TODO

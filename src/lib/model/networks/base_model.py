@@ -105,10 +105,10 @@ class BaseModel(nn.Module):
     def img2feats(self, x, trace):
         raise NotImplementedError
 
-    def imgpre2feats(self, x, trace, pre_img=None, pre_trace=None, pre_hm=None):
+    def imgpre2feats(self, x, trace=None, pre_img=None, pre_trace=None, pre_hm=None):
         raise NotImplementedError
 
-    def forward(self, x, trace, pre_img=None, pre_trace=None, pre_hm=None):
+    def forward(self, x, trace=None, pre_img=None, pre_trace=None, pre_hm=None):
 
         if (pre_hm is not None) or (pre_img is not None):
             feats, FeatureMaps = self.imgpre2feats(x, trace, pre_img, pre_trace, pre_hm)

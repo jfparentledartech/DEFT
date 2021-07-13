@@ -171,9 +171,14 @@ class ModleWithLoss(torch.nn.Module):
         else:
             _, FeatureMaps_pre = self.model.img2feats(batch["pre_image"], None)
 
-        x = self.model.AFE(
-            FeatureMaps_pre, FeatureMaps_next, batch["bboxes_pre"], batch["bboxes_next"]
-        )
+        try:
+            x = self.model.AFE(
+                FeatureMaps_pre, FeatureMaps_next, batch["bboxes_pre"], batch["bboxes_next"]
+            )
+        except:
+            x = self.model.AFE(
+                FeatureMaps_pre, FeatureMaps_next, batch["bboxes_pre"], batch["bboxes_next"]
+            )
         loss_pre, loss_next, loss_similarity, loss_matching, accuracy_pre, accuracy_next, accuracy, predict_indexes = self.model.AFE.loss(
             x, batch["labels"], batch["current_indexes"], batch["next_indexes"]
         )
@@ -231,7 +236,10 @@ class Trainer(object):
             for k in batch:
                 if k != "meta":
                     batch[k] = batch[k].to(device=opt.device, non_blocking=True)
-            output, loss, loss_stats = model_with_loss(batch)
+            try:
+                output, loss, loss_stats = model_with_loss(batch)
+            except:
+                output, loss, loss_stats = model_with_loss(batch)
             loss = loss.mean()
             if phase == "train":
                 self.optimizer.zero_grad()

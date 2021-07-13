@@ -68,7 +68,7 @@ class FeatureRecorder:
                 m_frame = 10
                 if self.dataset == "kitti_tracking":
                     m_frame = 5
-                elif self.dataset == "nuscenes":
+                elif self.dataset in ["nuscenes", "pixset"]:
                     m_frame = 3
                 if frame_index - pre_index < m_frame:
                     delta = pow(decay, (frame_index - pre_index) / 3.0)
@@ -126,13 +126,13 @@ class FeatureRecorder:
         return boxes
 
 
-# try:
-#     opt = opts().parse()
-# except:
-import pickle
-filename = 'test_opt_pixset.txt'
-with open(filename, 'rb') as f:
-    opt = pickle.load(f)
+try:
+    opt = opts().parse()
+except:
+    import pickle
+    filename = '../test_opt_pixset.txt'
+    with open(filename, 'rb') as f:
+        opt = pickle.load(f)
 
 
 class STrack(BaseTrack):
@@ -152,7 +152,7 @@ class STrack(BaseTrack):
         depth=None,
         org_ddd_box=None,
         classe=None,
-        ddd_submission=None,
+        ddd_submission=None
     ):
 
         # wait activate
@@ -226,7 +226,7 @@ class STrack(BaseTrack):
         if len(similarity) == 0:
             return None
         a = np.array(similarity)
-        if self.dataset == "nuscenes":
+        if self.dataset in ["nuscenes", "pixset"]:
             mm = 2
         else:
             mm = 4
@@ -258,7 +258,7 @@ class STrack(BaseTrack):
             )
 
     def prediction_at_frame(self, frame_id):
-        if self.dataset == "nuscenes":
+        if self.dataset in ["nuscenes", "pixset"]:
             max_fut = 5
         else:
             max_fut = 6
@@ -276,7 +276,7 @@ class STrack(BaseTrack):
         return ret
 
     def ddd_prediction_at_frame(self, frame_id):
-        if self.dataset == "nuscenes":
+        if self.dataset in ["nuscenes", "pixset"]:
             max_fut = 5
         else:
             max_fut = 6
@@ -313,9 +313,32 @@ class STrack(BaseTrack):
         self.start_frame = frame_id
 
         if self.use_lstm:
-
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
+            print('ALLO')
             self.kalman_filter = KalmanFilterLSTM(self.opt)
-            if self.dataset == "nuscenes":
+            if self.dataset in ["nuscenes", "pixset"]:
                 self.update_lstm_features_ddd(self.ddd_bbox)
                 self.observations_tlwh.append(self._tlwh.copy())
             else:
@@ -341,7 +364,7 @@ class STrack(BaseTrack):
         self.ddd_bbox = new_track.ddd_bbox
         self.ddd_submission = new_track.ddd_submission
         if self.use_lstm:
-            if self.dataset == "nuscenes":
+            if self.dataset in ["nuscenes", "pixset"]:
                 self.update_lstm_features_ddd(new_track.ddd_bbox)
                 self.observations_tlwh.append(new_track.tlwh.copy())
             else:
@@ -352,7 +375,7 @@ class STrack(BaseTrack):
             )
 
         if new_id:
-            x = x5
+            x = 5
             self.track_id = self.next_id()
 
     def update(self, new_track, frame_id, update_feature=True):
@@ -374,7 +397,7 @@ class STrack(BaseTrack):
         self.ddd_submission = new_track.ddd_submission
         if self.use_lstm:
 
-            if self.dataset == "nuscenes":
+            if self.dataset in ["nuscenes", "pixset"]:
                 self.update_lstm_features_ddd(new_track.ddd_bbox)
                 self.observations_tlwh.append(new_track.tlwh.copy())
             else:
@@ -664,22 +687,18 @@ class Tracker(object):
             s = t.get_similarity(frame_index, self.recorder)
 
             if s is None:
-
                 s = [0.0] * (num_detections + 1)
             else:
                 s = s.tolist()
             similarity += [s]
 
+        if len(similarity) > 0:
+            max_length = np.max([len(similarity[i]) for i in range(len(similarity))])
+            for i in range(len(similarity)):
+                if len(similarity[i]) < max_length:
+                    similarity[i] = [0.0] * max_length
+
         similarity = np.array(similarity)
-
-        track_num = similarity.shape[0]
-        if track_num > 0:
-            box_num = similarity.shape[1]
-        else:
-            box_num = 0
-
-        if track_num == 0:
-            return np.array(similarity)
 
         return np.array(similarity)
 
@@ -721,6 +740,7 @@ class Tracker(object):
         results,
         FeatureMaps,
         ddd_boxes=None,
+        ct_by_class=None,
         depths_by_class=None,
         ddd_org_boxes=None,
         submission=None,
@@ -843,7 +863,7 @@ class Tracker(object):
             STrack.multi_predict(strack_pool)
 
         lll = len(detections)
-        if self.dataset == "nuscenes" and classe != "pedestrian":
+        if self.dataset in ["nuscenes", "pixset"] and classe != "pedestrian":
 
             strack_pool_old = [
                 track
@@ -885,11 +905,14 @@ class Tracker(object):
             dists = self.get_similarity(self.frame_id, strack_pool, len(detections))
 
             dists = dists[:, :-1]
-            if self.dataset == "nuscenes" and classe != "pedestrian":
-                dists = dists[:, u_detection]
+            if self.dataset in ["nuscenes", "pixset"] and classe != "pedestrian":
+                try:
+                    dists = dists[:, u_detection]
+                except:
+                    print()
             dists = 1 - dists
 
-        if self.dataset == "nuscenes":
+        if self.dataset in ["nuscenes", "pixset"]:
             dists = matching.fuse_motion_ddd(
                 self.kalman_filter,
                 dists,
@@ -920,7 +943,7 @@ class Tracker(object):
                 track.re_activate(det, self.frame_id, new_id=False)
         r_tracked_stracks = [strack_pool[i] for i in u_track]
         detections = [detections[i] for i in u_detection2]
-        if self.dataset == "nuscenes" and len(detections) > 0:
+        if self.dataset in ["nuscenes", "pixset"] and len(detections) > 0:
 
             dists = self.get_similarity(self.frame_id, r_tracked_stracks, lll)
             if dists.size != 0:
@@ -969,9 +992,9 @@ class Tracker(object):
                 detections = [detections[i] for i in u_detection]
                 strack_pool = r_tracked_stracks
 
-        if self.dataset == "kitti_tracking" or self.dataset == "nuscenes":
+        if self.dataset == "kitti_tracking" or self.dataset in ["nuscenes", "pixset"]:
             mm = 6
-            if self.dataset == "nuscenes":
+            if self.dataset in ["nuscenes", "pixset"]:
                 mm = 3
             r_tracked_stracks = [
                 strack_pool[i]
@@ -986,7 +1009,7 @@ class Tracker(object):
                 if strack_pool[i].state == TrackState.Tracked
             ]
 
-        if self.dataset == "nuscenes":
+        if self.dataset in ["nuscenes", "pixset"]:
             dists = matching.iou_distance(
                 r_tracked_stracks, detections, self.frame_id, use_prediction=False
             )
@@ -1046,7 +1069,7 @@ class Tracker(object):
         self.lost_stracks = sub_stracks(self.lost_stracks, self.removed_stracks)
         self.removed_stracks.extend(removed_stracks)
         self.tracked_stracks, self.lost_stracks = remove_duplicate_stracks(
-            self.tracked_stracks, self.lost_stracks, self.dataset == "nuscenes"
+            self.tracked_stracks, self.lost_stracks, self.dataset in ["nuscenes", "pixset"]
         )
 
         return output_stracks

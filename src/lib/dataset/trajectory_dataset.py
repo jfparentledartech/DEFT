@@ -222,7 +222,7 @@ class TrajectoryDataset(data.Dataset):
             rand_id = np.random.choice(len(possible_track_ids))
             track_id = possible_track_ids[rand_id]
 
-        if self.dataset in "nuscenes":
+        if self.dataset in ["nuscenes", "pixset"]:
 
             t = -1
             last_t = -1

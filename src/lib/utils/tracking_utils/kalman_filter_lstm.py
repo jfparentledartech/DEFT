@@ -1,7 +1,7 @@
 # vim: expandtab:ts=4:sw=4
 import numpy as np
 import scipy.linalg
-from model.model import create_model, load_model, save_model
+from lib.model.model import create_model, load_model, save_model
 import torch
 import os
 
@@ -10,7 +10,7 @@ class DecoderRNN(torch.nn.Module):
     def __init__(self, num_hidden, dataset):
         super(DecoderRNN, self).__init__()
         self.num_hidden = num_hidden
-        if dataset in ["nuscenes"]:
+        if dataset in ["nuscenes", "pixset"]:
             self.lstm = torch.nn.LSTM(18, self.num_hidden)
             self.out1 = torch.nn.Linear(self.num_hidden, 64)
             self.out2 = torch.nn.Linear(64, 4 * 4)
@@ -57,7 +57,7 @@ class KalmanFilterLSTM(object):
             self.model = self.model.to(opt.device)
             self.model.eval()
         self.opt = opt
-        if opt.dataset == "nuscenes":
+        if opt.dataset in ["nuscenes", "pixset"]:
             self.MAX_dis_fut = 4
         else:
             self.MAX_dis_fut = 5

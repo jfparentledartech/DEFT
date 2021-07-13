@@ -44,7 +44,7 @@ def main(opt):
     opt.device = torch.device("cuda" if opt.gpus[0] >= 0 else "cpu")
     logger = Logger(opt)
 
-    print("Creating model...")
+    # print("Creating model...")
     model = create_model(opt.arch, opt.heads, opt.head_conv, opt=opt)
     optimizer = get_optimizer(opt, model)
     start_epoch = 0
@@ -59,13 +59,31 @@ def main(opt):
     trainer.set_device(opt.gpus, opt.chunk_sizes, opt.device)
 
     if opt.val_intervals < opt.num_epochs or opt.test:
+
+        # valset = Dataset(opt, "val")
+        #
+        # val_mask = list(range(0, int(len(valset) / 4), 1))
+        # val_subset = torch.utils.data.Subset(Dataset(opt, "val"), val_mask)
+        #
+        # print(len(val_subset))
+        #
+        # val_loader = torch.utils.data.DataLoader(
+        #     val_subset,
+        #     batch_size=4,
+        #     shuffle=False,
+        #     num_workers=0,
+        #     pin_memory=True,
+        #     drop_last=True
+        # )
+
         print("Setting up validation data...")
         val_loader = torch.utils.data.DataLoader(
             Dataset(opt, "val"),
-            batch_size=1,
+            batch_size=4,
             shuffle=False,
-            num_workers=1,
+            num_workers=0,
             pin_memory=True,
+            drop_last=True
         )
 
         if opt.test:
@@ -78,7 +96,7 @@ def main(opt):
     # TODO uncomment to use subset
     # trainset = Dataset(opt, "train")
     #
-    # train_mask = list(range(0, int(len(trainset)/100), 1))
+    # train_mask = list(range(0, int(len(trainset)/1000), 1))
     # train_subset = torch.utils.data.Subset(Dataset(opt, "train"), train_mask)
     #
     # print(len(train_subset))
@@ -126,7 +144,7 @@ def main(opt):
             with torch.no_grad():
                 log_dict_val, preds = trainer.val(epoch, val_loader)
                 if opt.eval_val:
-                    val_loader.dataset.run_eval(preds, opt.save_dir)
+                    val_loader.dataset.run_eval(preds, opt.save_dir, epoch)
             for k, v in log_dict_val.items():
                 logger.scalar_summary("val_{}".format(k), v, epoch)
                 logger.write("{} {:8f} | ".format(k, v))
@@ -159,7 +177,8 @@ if __name__ == "__main__":
     #     print(f'saved {filename}')
     # with open('../'+filename, 'rb') as f:
     #     opt = pickle.load(f)
-    # opt.resume = True
+    opt.resume = True
     # opt.use_pixell = True
+    opt.eval_val = True
     print(f'Using pixell -> ', opt.use_pixell)
     main(opt)

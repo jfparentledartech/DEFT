@@ -16,18 +16,18 @@ import time
 import torch
 import math
 import pandas as pd
-from model.model import create_model, load_model
-from model.decode import generic_decode
-from model.utils import flip_tensor, flip_lr_off, flip_lr
-from utils.image import get_affine_transform, affine_transform
-from utils.image import draw_umich_gaussian, gaussian_radius
-from utils.post_process import generic_post_process
-from utils.debugger import Debugger
-from utils.tracker import Tracker
-from dataset.dataset_factory import get_dataset
+from lib.model.model import create_model, load_model
+from lib.model.decode import generic_decode
+from lib.model.utils import flip_tensor, flip_lr_off, flip_lr
+from lib.utils.image import get_affine_transform, affine_transform
+from lib.utils.image import draw_umich_gaussian, gaussian_radius
+from lib.utils.post_process import generic_post_process
+from lib.utils.debugger import Debugger
+from lib.utils.tracker import Tracker
+from lib.dataset.dataset_factory import get_dataset
 from pyquaternion import Quaternion
 from nuscenes.utils.data_classes import Box
-from utils.ddd_utils import nms
+from lib.utils.ddd_utils import nms
 
 NUSCENES_TRACKING_NAMES = [
     "bicycle",
@@ -67,7 +67,7 @@ NMS = True
 class Detector(object):
     def __init__(self, opt):
         opt.device = torch.device("cuda") if opt.gpus[0] >= 0 else torch.device("cpu")
-        print("Creating model...")
+        # print("Creating model...")
         self.model = create_model(opt.arch, opt.heads, opt.head_conv, opt=opt)
         self.model = load_model(self.model, opt.load_model, opt)
         self.model = self.model.to(opt.device)
@@ -99,7 +99,6 @@ class Detector(object):
             self.tracker = {}
             for class_name in PIXSET_TRACKING_NAMES:
                 self.tracker[class_name] = Tracker(opt, self.model)
-                print(self.tracker[class_name])
         if self.dataset not in ["nuscenes", "pixset"]:
             self.tracker = Tracker(opt, self.model)
 
@@ -475,8 +474,7 @@ class Detector(object):
                         ddd_box_submission1[class_name]
                     )[keep]
 
-                # online_targets += self.tracker[class_name].update(
-                online_targets += self.tracker.update(
+                online_targets += self.tracker[class_name].update(
                     results_by_class[class_name],
                     FeatureMaps,
                     ddd_boxes=ddd_boxes_by_class[class_name],
@@ -828,6 +826,12 @@ class Detector(object):
         if self.dataset == "nuscenes":
             self.tracker = {}
             for class_name in NUSCENES_TRACKING_NAMES:
+                self.tracker[class_name] = Tracker(
+                    opt, self.model, h=self.img_height, w=self.img_width
+                )
+        if self.dataset == "pixset":
+            self.tracker = {}
+            for class_name in PIXSET_TRACKING_NAMES:
                 self.tracker[class_name] = Tracker(
                     opt, self.model, h=self.img_height, w=self.img_width
                 )

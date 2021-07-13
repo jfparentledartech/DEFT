@@ -2,6 +2,7 @@ import json
 import numpy as np
 import copy
 import cv2
+import sys
 
 from pioneer.das.api import platform
 from matplotlib import pyplot as plt
@@ -12,11 +13,12 @@ from matplotlib.patches import Polygon
 from pioneer.common import linalg
 from pioneer.common.trace_processing import TraceProcessingCollection
 
+import _init_paths
 from lib.utils.ddd_utils import draw_box_3d, ddd2locrot
 
 from uuid import uuid4
 
-DEBUG = False
+DEBUG = True
 
 def rot_x_axis(theta):
     return np.asarray([[1, 0, 0],
@@ -53,6 +55,17 @@ def _rot_y2alpha(rot_y, x, cx, fx):
     if alpha < -np.pi:
         alpha += 2 * np.pi
     return alpha
+
+
+def erroneous_projection(ann, calib, dist_coeffs):
+    am_center = copy.copy(ann["amodel_center"])
+    am_center[0] += crop_left
+    am_center[1] += crop_top
+    loc, rot = ddd2locrot(am_center, ann["alpha"], ann["dim"], ann["depth"], calib, dist_coeffs)
+    projected_box3d = box3d_from_loc_dim_rot(annotation_to_camera_transformation, loc, ann["dim"], rot, calib,
+                                             dist_coeffs)
+    return projected_box3d.std() > 1000
+
 
 
 def project_pts_dist_coeffs(pts, camera_matrix, dist_coeffs):
@@ -243,7 +256,15 @@ if __name__ == '__main__':
 
     categories_info = [{"name": list(filtered_categories)[i], "id": i + 1} for i in range(len(filtered_categories))]
 
-    coco_format = {
+    coco_format = {}
+    coco_format['train'] = {
+        'images': [],
+        'annotations': [],
+        'categories': categories_info,
+        'videos': []
+    }
+
+    coco_format['val'] = {
         'images': [],
         'annotations': [],
         'categories': categories_info,
@@ -252,22 +273,19 @@ if __name__ == '__main__':
 
     dataset_paths = [
         # '/home/jfparent/Documents/PixSet/20200721_180421_part41_1800_2500',
-        # '/home/jfparent/Documents/PixSet/20200706_171559_part27_1170_1370',
-        '/home/jfparent/Documents/PixSet/20200706_162218_part21_4368_7230',
-        # '/home/jfparent/Documents/PixSet/20200706_144800_part25_1224_2100'
+        '/home/jfparent/Documents/PixSet/20200706_171559_part27_1170_1370',
+        # '/home/jfparent/Documents/PixSet/20200706_162218_part21_4368_7230',
+        # '/home/jfparent/Documents/PixSet/20200706_144800_part25_1224_2100',
+        # '/home/jfparent/Documents/PixSet/20200803_151243_part45_4780_5005',
+        # '/home/jfparent/Documents/PixSet/20200730_003948_part44_5818_6095',
+        # '/home/jfparent/Documents/PixSet/20200721_181359_part42_1903_2302',
+        # '/home/jfparent/Documents/PixSet/20200706_170136_part28_2060_2270'
     ]
 
-    datasets_length = 0
-    for i_dataset, dataset_path in enumerate(dataset_paths):
-        pf = platform.Platform(dataset_path)
-        sc = pf.synchronized(sync_labels=sync_labels, interp_labels=interp_labels, tolerance_us=tolerance_us)
-        datasets_length += len(sc)
-
     num_image = 0
-    num_annotation = 0
-    num_video = 0
+    num_annotation = 1
 
-    for i_dataset, dataset_path in enumerate(dataset_paths):
+    for num_video, dataset_path in enumerate(dataset_paths):
 
         pf = platform.Platform(dataset_path)
         sc = pf.synchronized(sync_labels=sync_labels, interp_labels=interp_labels, tolerance_us=tolerance_us)
@@ -276,28 +294,35 @@ if __name__ == '__main__':
 
         bar = Bar(f'Exporting {dataset} frames', max=len(sc))
 
-        for i_frame, frame in enumerate(range(len(sc))):
-            print(f"{i_frame+1}/{len(sc)}")
-            bar.next()
+        # for sensor_id, camera in enumerate(['flir_bfl_img', 'flir_bfr_img', 'flir_bfc_img']):
+        for sensor_id, camera in enumerate(['flir_bfc_img']):
 
-            trace_sample = sc[frame][pixell]
-            trace_processing = TraceProcessingCollection([])
-            processed_trace = trace_sample.processed_array(trace_processing)
-            high_intensity_trace = processed_trace[0]
-            low_intensity_trace = processed_trace[1][:,:,:256]
-            full_trace = np.concatenate((low_intensity_trace, high_intensity_trace), axis=2)
+            for i_frame, frame in enumerate(range(len(sc))):
+                if i_frame+1 > int(len(sc) * 0.1):
+                    split = 'train'
+                else:
+                    split = 'val'
 
-            full_traces = {
-                'flir_bfl_img': np.concatenate((np.zeros((8,6,768)), full_trace[:,:30,:]),axis=1),
-                'flir_bfc_img': full_trace[:,30:66,:],
-                'flir_bfr_img': np.concatenate((full_trace[:,:30,:], np.zeros((8,6,768))),axis=1)
-            }
+                print(f"{i_frame+1}/{len(sc)}")
+                bar.next()
 
-            # camera_waveform_crops = [(389,378,281,0),(389,378,0,281),(389,378,0,0)] # top, bottom, left, right
-            camera_waveform_crops = [(389,378,0,0)] # bfc
+                # trace_sample = sc[frame][pixell]
+                # trace_processing = TraceProcessingCollection([])
+                # processed_trace = trace_sample.processed_array(trace_processing)
+                # high_intensity_trace = processed_trace[0]
+                # low_intensity_trace = processed_trace[1][:,:,:256]
+                # full_trace = np.concatenate((low_intensity_trace, high_intensity_trace), axis=2)
+                #
+                # full_traces = {
+                #     'flir_bfl_img': np.concatenate((np.zeros((8,6,768)), full_trace[:,:30,:]),axis=1),
+                #     'flir_bfc_img': full_trace[:,30:66,:],
+                #     'flir_bfr_img': np.concatenate((full_trace[:,:30,:], np.zeros((8,6,768))),axis=1)
+                # }
 
-            # for sensor_id, camera in enumerate(['flir_bfl_img', 'flir_bfr_img', 'flir_bfc_img']):
-            for sensor_id, camera in enumerate(['flir_bfc_img']):
+                # camera_waveform_crops = [(389,378,281,0),(389,378,0,281),(389,378,0,0)] # top, bottom, left, right
+                camera_waveform_crops = [(389,378,0,0)] # bfc
+
+
                 # TODO downscale image to match waveform FOV
                 crop_top, crop_bottom, crop_left, crop_right = camera_waveform_crops[sensor_id]
                 image_sample = sc[frame][camera]
@@ -320,13 +345,14 @@ if __name__ == '__main__':
                 else:
                     image = Image.fromarray(image_sample.raw[crop_top:-crop_bottom, crop_left:])
 
-                image_path = f'{pixset_images_path}{dataset}_{camera}{i_frame+1:06d}.jpg'
+                num_image +=1
+                image_path = f'{pixset_images_path}{dataset}_{camera}_{num_image:06d}.jpg'
+
                 image.save(image_path)
 
-                # TODO upscale in NN
-                full_trace = full_traces[camera]
-                trace_path = f'{pixset_pixell_path}{dataset}_{camera}_pixell_ftrr_{i_frame+1:06d}.npy'
-                np.save(trace_path, full_trace)
+                # full_trace = full_traces[camera]
+                trace_path = f'{pixset_pixell_path}{dataset}_{camera}_pixell_ftrr_{num_image:06d}.npy'
+                # np.save(trace_path, full_trace)
 
                 annotation_sample = sc[frame][annotations]
                 annotation_to_camera_transformation = annotation_sample.compute_transform(referential_or_ds=image_sample.label, ignore_orientation=True)
@@ -336,17 +362,16 @@ if __name__ == '__main__':
 
                 _, annotation_mask = image_sample.project_pts(annotation_centers_in_camera_reference, mask_fov=True, output_mask=True)
 
-                num_image = (i_frame+1) + (sensor_id * datasets_length)
                 trans_matrix = annotation_to_camera_transformation.tolist()
 
                 camera_intrinsic = np.column_stack((image_sample.camera_matrix, np.zeros(3))).tolist()
                 projected_centers = image_sample.project_pts(annotation_centers_in_camera_reference)
 
-                coco_format['images'].append({
+                coco_format[split]['images'].append({
                     "id": num_image,
                     "file_name": image_path,
                     "trace_file_name": trace_path,
-                    "video_id": num_video + 1,
+                    "video_id": num_video,
                     "frame_id": i_frame + 1,
                     "width": image_sample.raw.shape[1],
                     "height": image_sample.raw.shape[0],
@@ -387,9 +412,8 @@ if __name__ == '__main__':
                     category_id = filtered_categories.index(map_categories[categories[int(detection['classes'])]]) + 1
                     object_id = detection['id']
 
-                    num_annotation += 1
                     # instance information in COCO format
-                    coco_format['annotations'].append({
+                    coco_format[split]['annotations'].append({
                         "id": num_annotation,
                         "image_id": num_image,
                         "category_id": category_id,
@@ -416,56 +440,63 @@ if __name__ == '__main__':
                         np.asarray(camera_intrinsic)[0, 0],
                         )
 
-                    coco_format['annotations'][-1]["bbox"] = [
+                    coco_format[split]['annotations'][-1]["bbox"] = [
                         bbox[0],
                         bbox[1],
                         bbox[2] - bbox[0],
                         bbox[3] - bbox[1],
                         ]
-                    coco_format['annotations'][-1]["area"] = (bbox[2] - bbox[0]) * (bbox[3] - bbox[1])
-                    coco_format['annotations'][-1]["alpha"] = alpha.item()
+                    coco_format[split]['annotations'][-1]["area"] = (bbox[2] - bbox[0]) * (bbox[3] - bbox[1])
+                    coco_format[split]['annotations'][-1]["alpha"] = alpha.item()
 
-                    num_annotation += 1
-                    if DEBUG:
-                    # if i_frame == 17:
-                        calib = np.asarray(camera_intrinsic)
-                        ann = coco_format['annotations'][-1]
+                    dist_coeffs = np.asarray(coco_format[split]['images'][-1]['distortion_coefficients'])
+                    ann = coco_format[split]['annotations'][-1]
+                    calib = np.asarray(camera_intrinsic)
 
-                        # loc, rot = ddd2locrot(ann["amodel_center"], ann["alpha"], ann["dim"], ann["depth"], calib)
-                        dist_coeffs = np.asarray(coco_format['images'][-1]['distortion_coefficients'])
-                        am_center = copy.copy(ann["amodel_center"])
-                        am_center[0] += crop_left
-                        am_center[1] += crop_top
-                        loc, rot = ddd2locrot(am_center, ann["alpha"], ann["dim"], ann["depth"], calib, dist_coeffs)
-                        # loc, rot = ddd2locrot(ann["amodel_center"], ann["alpha"], ann["dim"], ann["depth"], calib, dist_coeffs)
-                        print('location', ann["location"])
-                        print('unproject location', loc)
-                        print('yaw', ann["rotation_y"])
-                        print('unproject alpha2rot_y', rot)
+                    if erroneous_projection(ann, calib, dist_coeffs):
+                        del coco_format[split]['annotations'][-1]
+                    else:
+                        num_annotation += 1
 
-                        # box_3d = p3d_box(detection, image_sample, image, annotation_sample, am_center, projected_centers[i_detection],
-                        #                  loc, ann["dim"], rot)
+                        if DEBUG:
+                        # if i_frame == 8:
+                            # loc, rot = ddd2locrot(ann["amodel_center"], ann["alpha"], ann["dim"], ann["depth"], calib)
+                            am_center = copy.copy(ann["amodel_center"])
+                            am_center[0] += crop_left
+                            am_center[1] += crop_top
+                            loc, rot = ddd2locrot(am_center, ann["alpha"], ann["dim"], ann["depth"], calib, dist_coeffs)
+                            # loc, rot = ddd2locrot(ann["amodel_center"], ann["alpha"], ann["dim"], ann["depth"], calib, dist_coeffs)
+                            print('location', ann["location"])
+                            print('unproject location', loc)
+                            print('yaw', ann["rotation_y"])
+                            print('unproject alpha2rot_y', rot)
 
-                        calib = coco_format['images'][-1]['camera_matrix']
-                        projected_box3d = box3d_from_loc_dim_rot(annotation_to_camera_transformation, loc, ann["dim"], rot, calib, dist_coeffs)
+                            # box_3d = p3d_box(detection, image_sample, image, annotation_sample, am_center, projected_centers[i_detection],
+                            #                  loc, ann["dim"], rot)
 
-                        im = np.ascontiguousarray(np.copy(image))
-                        top_pad = np.zeros((crop_top, 1440, 3), dtype=float)
-                        bottom_pad = np.zeros((crop_bottom, 1440, 3), dtype=float)
-                        im = np.concatenate((top_pad, (im / 255), bottom_pad))
-                        im = draw_box_3d(im, projected_box3d, same_color=True)
-                        im = im[crop_top:-crop_bottom, crop_left:]
+                            calib = coco_format[split]['images'][-1]['camera_matrix']
+                            projected_box3d = box3d_from_loc_dim_rot(annotation_to_camera_transformation, loc, ann["dim"], rot, calib, dist_coeffs)
 
-                        plt.imshow(im)
-                        plt.show()
-                        print()
+                            im = np.ascontiguousarray(np.copy(image))
+                            top_pad = np.zeros((crop_top, 1440, 3), dtype=float)
+                            bottom_pad = np.zeros((crop_bottom, 1440, 3), dtype=float)
+                            im = np.concatenate((top_pad, (im / 255), bottom_pad))
+                            im = draw_box_3d(im, projected_box3d, same_color=True)
+                            im = im[crop_top:-crop_bottom, crop_left:]
+
+                            plt.imshow(im)
+                            plt.show()
+                            print()
 
         for sensor_id, camera in enumerate(['flir_bfl_img', 'flir_bfr_img', 'flir_bfc_img']):
-            coco_format["videos"].append({"id": num_video+1, "file_name": f'scene-{num_video+1:04d}'})
-        num_video += 1
+            coco_format[split]["videos"].append({"id": num_video, "file_name": f'scene-{num_video:04d}'})
         bar.finish()
 
-    out_path = pixset_annotations_path + "train.json"
-    print("out_path", out_path)
-    json.dump(coco_format, open(out_path, "w"))
+    train_path = pixset_annotations_path + "train.json"
+    val_path = pixset_annotations_path + "val.json"
+    print('Saving train annotations...')
+    json.dump(coco_format['train'], open(train_path, "w"))
+    print('Saving val annotations...')
+    json.dump(coco_format['val'], open(val_path, "w"))
+    print('All done!')
 

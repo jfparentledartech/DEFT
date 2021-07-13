@@ -483,7 +483,8 @@ def plot_tracking_ddd(
     calib=None,
     trans_matrix=None,
     camera_matrix=None,
-    distortion_coeffs=None
+    distortion_coeffs=None,
+    ct=None
 ):
     im = np.ascontiguousarray(np.copy(image))
     im_h, im_w = im.shape[:2]
@@ -531,6 +532,11 @@ def plot_tracking_ddd(
         im = np.concatenate((top_pad, (im / 255), bottom_pad))
         im = draw_box_3d(im, box3d_projected, c=color, same_color=True)
         im = np.uint8(im[389:-378]*255)
+
+        # plt.imshow(im)
+        # plt.scatter(ct[i][0], ct[i][1] - 389)
+        # plt.scatter(x1 + w / 2, y1 + h / 2)
+        # plt.show()
 
         cv2.putText(
             im,

@@ -217,7 +217,10 @@ class AFE_module(nn.Module):
             )
             if torch.cuda.is_available():
                 self.false_objects_column = self.false_objects_column.cuda()
-        x = torch.cat([x, self.false_objects_column], 3)
+        try:
+            x = torch.cat([x, self.false_objects_column], 3)
+        except:
+            x = torch.cat([x, self.false_objects_column], 3)
 
         if self.false_objects_row is None:
             self.false_objects_row = (

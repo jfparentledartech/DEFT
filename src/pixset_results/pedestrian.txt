@@ -1,0 +1,2 @@
+                num_frames     mota      motp  precision   recall
+acc pedestrian         573  0.26789  0.775288   0.858435  0.58074

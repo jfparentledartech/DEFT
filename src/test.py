@@ -2,15 +2,11 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import _init_paths
 import os
-import json
 import cv2
 import numpy as np
-import time
 from progress.bar import Bar
 import torch
-import copy
 import pickle
 import motmetrics as mm
 
@@ -19,17 +15,19 @@ from lib.logger import Logger
 from lib.utils.utils import AverageMeter
 from lib.dataset.dataset_factory import dataset_factory
 
-from pixset_evaluation import compute_metrics
+from lib.utils.pixset_metrics import compute_metrics
 
-# opt = opts().parse()
+opt = opts().parse()
 
 filename = 'test_opt_pixset.txt'
-# with open(filename, 'wb') as f:
-#     pickle.dump(opt, f)
-#     print(f'saved {filename}')
-with open(filename, 'rb') as f:
-    opt = pickle.load(f)
-    opt.use_pixell = False
+with open(filename, 'wb') as f:
+    # print('dataset -> ', opt.dataset)
+    # print('lstm -> ', opt.lstm)
+    pickle.dump(opt, f)
+    # print(f'saved {filename}')
+# with open(filename, 'rb') as f:
+#     opt = pickle.load(f)
+    # opt.use_pixell = False
 
 from lib.detector import Detector
 from lib.utils.image import plot_tracking, plot_tracking_ddd
@@ -157,7 +155,8 @@ def prefetch_test(opt):
             "results": {},
         }
 
-    acc = mm.MOTAccumulator(auto_id=True)
+    vehicle_acc = mm.MOTAccumulator(auto_id=True)
+    pedestrian_acc = mm.MOTAccumulator(auto_id=True)
 
     for ind, (img_id, pre_processed_images, img_info) in enumerate(data_loader):
         if ind >= num_iters:
@@ -246,11 +245,13 @@ def prefetch_test(opt):
         sample_results = []
 
         image = pre_processed_images["image"][0].numpy()
-        gt_list, hyp_list, distances = compute_metrics(pre_processed_images['annotations'], online_targets, eval_type='distance')
-        acc.update(gt_list, hyp_list, distances)
-        print(acc.mot_events.loc[ind])
+        vehicle_gt_list, vehicle_hyp_list, vehicle_distances = compute_metrics(pre_processed_images['annotations'], online_targets, eval_type='distance', im=image, category='vehicle')
+        pedestrian_gt_list, pedestrian_hyp_list, pedestrian_distances = compute_metrics(pre_processed_images['annotations'], online_targets, eval_type='distance', im=image, category='pedestrian')
+        vehicle_acc.update(vehicle_gt_list, vehicle_hyp_list, vehicle_distances)
+        pedestrian_acc.update(pedestrian_gt_list, pedestrian_hyp_list, pedestrian_distances)
+        print(vehicle_acc.mot_events.loc[ind])
         mh = mm.metrics.create()
-        summary = mh.compute(acc, metrics=['num_frames', 'mota', 'precision', 'recall'], name='acc')
+        summary = mh.compute(vehicle_acc, metrics=['num_frames', 'mota', 'precision', 'recall'], name='acc vehicle')
         print(summary)
         print('-----------------------------------------')
 
@@ -323,7 +324,7 @@ def prefetch_test(opt):
                     calib=img_info["calib"],
                     trans_matrix=img_info["trans_matrix"],
                     camera_matrix=img_info["camera_matrix"],
-                    distortion_coeffs=img_info["distortion_coefficients"]
+                    distortion_coeffs=img_info["distortion_coefficients"],
                 )
             else:
                 online_im = plot_tracking(
@@ -351,10 +352,21 @@ def prefetch_test(opt):
             ]
 
         mh = mm.metrics.create()
-        summary = mh.compute(acc, metrics=['num_frames', 'mota', 'motp', 'precision', 'recall'], name='acc')
+        summary = mh.compute(vehicle_acc, metrics=['num_frames', 'mota', 'motp', 'precision', 'recall'], name='acc vehicle')
         print(summary)
+        save_summary(summary, 'vehicle')
+
+        mh = mm.metrics.create()
+        summary = mh.compute(pedestrian_acc, metrics=['num_frames', 'mota', 'motp', 'precision', 'recall'], name='acc pedestrian')
+        print(summary)
+        save_summary(summary, 'pedestrian')
 
         json.dump(ret, open(results_dir + "/results.json", "w"))
+
+
+def save_summary(summary, acc_name):
+    with open(f"./pixset_results/{acc_name}.txt", "w") as text_file:
+        text_file.write(summary.to_string())
 
 
 def _to_list(results):

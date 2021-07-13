@@ -1,0 +1,2 @@
+             num_frames      mota      motp  precision    recall
+acc vehicle         573  0.443743  0.600301   0.800816  0.676234
