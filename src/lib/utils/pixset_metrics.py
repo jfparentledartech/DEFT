@@ -8,10 +8,24 @@ DEBUG = False
 
 map_categories_to_id = {
     'pedestrian': 0,
-    'vehicle': 1
+    'bicycle': 1,
+    'car': 2,
+    'van': 3,
+    'bus': 4,
+    'truck': 5,
+    'motorcycle': 6,
+    'stop sign': 7,
+    'traffic light': 8,
+    'traffic sign': 9,
+    'traffic cone': 10,
+    'fire hydrant': 11,
+    'cyclist': 12,
+    'motorcyclist': 13,
+    'unclassified vehicle': 14,
+    'trailer': 15,
+    'construction vehicle': 16,
+    'barrier': 17
 }
-
-# TODO remove when bbox as a point outside? (to prevent impact of erroneous annotations)
 
 map_id_to_category = inv_map = {v: k for k, v in map_categories_to_id.items()}
 

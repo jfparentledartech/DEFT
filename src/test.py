@@ -17,6 +17,27 @@ from lib.dataset.dataset_factory import dataset_factory
 
 from lib.utils.pixset_metrics import compute_metrics
 
+pixset_categories = [
+    'pedestrian',
+    'bicycle',
+    'car',
+    'van',
+    'bus',
+    'truck',
+    'motorcycle',
+    'stop sign',
+    'traffic light',
+    'traffic sign',
+    'traffic cone',
+    'fire hydrant',
+    'cyclist',
+    'motorcyclist',
+    'unclassified vehicle',
+    'trailer',
+    'construction vehicle',
+    'barrier'
+]
+
 opt = opts().parse()
 
 filename = 'test_opt_pixset.txt'
@@ -36,7 +57,7 @@ import json
 
 min_box_area = 20
 
-_vehicles = ["car", "truck", "bus", "trailer", "construction_vehicle"]
+_vehicles = ["car", "truck", "bus", "trailer", "van", "construction_vehicle", "unclassified vehicle"]
 _cycles = ["motorcycle", "bicycle"]
 _pedestrians = ["pedestrian"]
 attribute_to_id = {
@@ -155,8 +176,7 @@ def prefetch_test(opt):
             "results": {},
         }
 
-    vehicle_acc = mm.MOTAccumulator(auto_id=True)
-    pedestrian_acc = mm.MOTAccumulator(auto_id=True)
+    accumulators = [mm.MOTAccumulator(auto_id=True) for _ in pixset_categories]
 
     for ind, (img_id, pre_processed_images, img_info) in enumerate(data_loader):
         if ind >= num_iters:
@@ -182,7 +202,7 @@ def prefetch_test(opt):
                     ". Use empty initialization.",
                 )
                 pre_processed_images["meta"]["pre_dets"] = []
-            if len(final_results) > 0 and not opt.dataset in ["nuscenes","pixset"]:
+            if final_results and opt.dataset not in ["nuscenes", "pixset"]:
                 write_results(out_path, final_results, opt.dataset)
                 final_results = []
             img0 = pre_processed_images["image"][0].numpy()
@@ -217,10 +237,9 @@ def prefetch_test(opt):
             for video in dataset.coco.dataset["videos"]:
                 video_id = video["id"]
                 file_name = video["file_name"]
-                if (
-                    pre_processed_images["video_id"] == video_id
-                    and not opt.dataset in ["nuscenes", "pixset"]
-                ):
+                if pre_processed_images[
+                    "video_id"
+                ] == video_id and opt.dataset not in ["nuscenes", "pixset"]:
                     out_path = os.path.join(results_dir, "{}.txt".format(file_name))
                     break
 
@@ -245,13 +264,16 @@ def prefetch_test(opt):
         sample_results = []
 
         image = pre_processed_images["image"][0].numpy()
-        vehicle_gt_list, vehicle_hyp_list, vehicle_distances = compute_metrics(pre_processed_images['annotations'], online_targets, eval_type='distance', im=image, category='vehicle')
-        pedestrian_gt_list, pedestrian_hyp_list, pedestrian_distances = compute_metrics(pre_processed_images['annotations'], online_targets, eval_type='distance', im=image, category='pedestrian')
-        vehicle_acc.update(vehicle_gt_list, vehicle_hyp_list, vehicle_distances)
-        pedestrian_acc.update(pedestrian_gt_list, pedestrian_hyp_list, pedestrian_distances)
-        print(vehicle_acc.mot_events.loc[ind])
+
+        for i, accumulator in enumerate(accumulators):
+            gt_list, hyp_list, distances = compute_metrics(pre_processed_images['annotations'],
+                                                           online_targets, eval_type='distance',
+                                                           im=image, category=pixset_categories[i])
+            accumulator.update(gt_list, hyp_list, distances)
+
+        print(accumulators[0].mot_events.loc[ind])
         mh = mm.metrics.create()
-        summary = mh.compute(vehicle_acc, metrics=['num_frames', 'mota', 'precision', 'recall'], name='acc vehicle')
+        summary = mh.compute(accumulators[2], metrics=['num_frames', 'mota', 'precision', 'recall'], name=f'acc {pixset_categories[2]}')
         print(summary)
         print('-----------------------------------------')
 
@@ -335,7 +357,7 @@ def prefetch_test(opt):
                 )
             vw.write(online_im)
 
-    if not opt.dataset in ["nuscenes", "pixset"] and len(final_results) > 0:
+    if opt.dataset not in ["nuscenes", "pixset"] and final_results:
         write_results(out_path, final_results, opt.dataset)
         final_results = []
     if opt.dataset in ["nuscenes", "pixset"]:
@@ -351,16 +373,14 @@ def prefetch_test(opt):
                 for _, ind in confs[: min(500, len(confs))]
             ]
 
-        mh = mm.metrics.create()
-        summary = mh.compute(vehicle_acc, metrics=['num_frames', 'mota', 'motp', 'precision', 'recall'], name='acc vehicle')
-        print(summary)
-        save_summary(summary, 'vehicle')
-
-        mh = mm.metrics.create()
-        summary = mh.compute(pedestrian_acc, metrics=['num_frames', 'mota', 'motp', 'precision', 'recall'], name='acc pedestrian')
-        print(summary)
-        save_summary(summary, 'pedestrian')
-
+        for i, accumulator in enumerate(accumulators):
+            mh = mm.metrics.create()
+            summary = mh.compute(accumulator,
+                                 metrics=['num_frames', 'mota', 'motp', 'precision', 'recall', 'mostly_tracked',
+                                          'partially_tracked', 'mostly_lost'],
+                                 name=f'{pixset_categories[i]}')
+            print(summary)
+            save_summary(summary, f'{pixset_categories[i]}')
         json.dump(ret, open(results_dir + "/results.json", "w"))
 
 

@@ -236,23 +236,65 @@ if __name__ == '__main__':
         'construction vehicle'
     ]
 
+    # old_filtered_categories = [
+    #     'pedestrian',
+    #     'vehicle'
+    # ]
+
     filtered_categories = [
         'pedestrian',
-        'vehicle'
+        'bicycle',
+        'car',
+        'van',
+        'bus',
+        'truck',
+        'motorcycle',
+        'stop sign',
+        'traffic light',
+        'traffic sign',
+        'traffic cone',
+        'fire hydrant',
+        'cyclist',
+        'motorcyclist',
+        'unclassified vehicle',
+        'trailer',
+        'construction vehicle'
+        'barrier'
     ]
 
     map_categories = {
         'pedestrian': filtered_categories[0],
         'deformed pedestrian': filtered_categories[0],
-        'car': filtered_categories[1],
-        'van': filtered_categories[1],
-        'bus': filtered_categories[1],
-        'truck': filtered_categories[1],
-        'motorcycle': filtered_categories[1],
-        'construction vehicle': filtered_categories[1],
-        'unclassified vehicle': filtered_categories[1]
-
+        'bicycle': filtered_categories[1],
+        'car': filtered_categories[2],
+        'van': filtered_categories[3],
+        'bus': filtered_categories[4],
+        'truck': filtered_categories[5],
+        'motorcycle': filtered_categories[6],
+        'stop sign': filtered_categories[7],
+        'traffic light': filtered_categories[8],
+        'traffic sign': filtered_categories[9],
+        'traffic cone': filtered_categories[10],
+        'fire hydrant': filtered_categories[11],
+        'cyclist': filtered_categories[12],
+        'motorcyclist': filtered_categories[13],
+        'unclassified vehicle': filtered_categories[14],
+        'trailer': filtered_categories[15],
+        'construction vehicle': filtered_categories[16],
+        'barrier': filtered_categories[17]
     }
+
+    # old_map_categories = {
+    #     'pedestrian': filtered_categories[0],
+    #     'deformed pedestrian': filtered_categories[0],
+    #     'car': filtered_categories[1],
+    #     'van': filtered_categories[1],
+    #     'bus': filtered_categories[1],
+    #     'truck': filtered_categories[1],
+    #     'motorcycle': filtered_categories[1],
+    #     'construction vehicle': filtered_categories[1],
+    #     'unclassified vehicle': filtered_categories[1]
+    # }
 
     categories_info = [{"name": list(filtered_categories)[i], "id": i + 1} for i in range(len(filtered_categories))]
 

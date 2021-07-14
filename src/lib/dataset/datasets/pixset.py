@@ -16,18 +16,12 @@ from ..generic_dataset import GenericDataset
 from ..trajectory_dataset import TrajectoryDataset
 
 
-# TODO
 class PixSet(GenericDataset):
     # default_resolution = [448, 800] # TODO modify
     default_resolution = [320, 1440] # TODO modify
-    num_categories = 2
+
     categories = [
         'pedestrian',
-        'vehicle'
-    ]
-    original_categories = [
-        'pedestrian',
-        'deformed pedestrian',
         'bicycle',
         'car',
         'van',
@@ -39,35 +33,21 @@ class PixSet(GenericDataset):
         'traffic sign',
         'traffic cone',
         'fire hydrant',
-        'guard rail',
-        'pole',
-        'pole group',
-        'road',
-        'sidewalk',
-        'wall',
-        'building',
-        'vegetation',
-        'terrain',
-        'ground',
-        'crosstalk',
-        'noise',
-        'others',
-        'animal',
-        'unpainted',
         'cyclist',
         'motorcyclist',
         'unclassified vehicle',
-        'obstacle',
         'trailer',
-        'barrier',
-        'bicycle rack',
-        'construction vehicle'
+        'construction vehicle',
+        'barrier'
     ]
+
+    num_categories = len(categories)
+
     cat_ids = {i + 1: i + 1 for i in range(num_categories)}
     focal_length = 1200
     max_objs = 128
-    _tracking_ignored_class = ["construction_vehicle", "traffic_cone", "barrier"]
-    _vehicles = ["car", "truck", "bus", "trailer", "construction_vehicle"]
+    _tracking_ignored_class = ["traffic_cone", "stop sign", "traffic light", "traffic sign", "fire hydrant", "barrier"]
+    _vehicles = ["car", "truck", "bus", "trailer", "van", "construction_vehicle", "unclassified vehicle"]
     _cycles = ["motorcycle", "bicycle"]
     _pedestrians = ["pedestrian"]
     attribute_to_id = {
@@ -288,14 +268,12 @@ class PixSet(GenericDataset):
 
         return ret
 
-     # TODO
     def save_results(self, results, save_dir, task):
         json.dump(
             self.convert_eval_format(results),
-            open("{}/results_nuscenes_{}.json".format(save_dir, task), "w"),
+            open("{}/results_pixset_{}.json".format(save_dir, task), "w"),
         )
 
-    # TODO
     def run_eval(self, results, save_dir, epoch):
         task = "tracking" if self.opt.tracking else "det"
         self.save_results(results, save_dir, task)
@@ -306,22 +284,38 @@ class PixSet(GenericDataset):
         )
 
 
-# TODO
 class PixSet_prediction(TrajectoryDataset):
     # default_resolution = [448, 800]
     default_resolution = [320, 1440] # TODO modify
-    num_categories = 2
-    class_name = [
+    categories = [
         'pedestrian',
-        'vehicle'
+        'bicycle',
+        'car',
+        'van',
+        'bus',
+        'truck',
+        'motorcycle',
+        'stop sign',
+        'traffic light',
+        'traffic sign',
+        'traffic cone',
+        'fire hydrant',
+        'cyclist',
+        'motorcyclist',
+        'unclassified vehicle',
+        'trailer',
+        'construction vehicle',
+        'barrier'
     ]
+
+    num_categories = len(categories)
 
     cat_ids = {i + 1: i + 1 for i in range(num_categories)}
     focal_length = 1200
     max_objs = 128
-    _tracking_ignored_class = ["construction_vehicle", "traffic_cone", "barrier"]
-    _vehicles = ["vehicle"]
-    _cycles = []
+    _tracking_ignored_class = ["traffic_cone", "stop sign", "traffic light", "traffic sign", "fire hydrant", "barrier"]
+    _vehicles = ["car", "truck", "bus", "trailer", "van", "construction_vehicle", "unclassified vehicle"]
+    _cycles = ["motorcycle", "bicycle"]
     _pedestrians = ["pedestrian"]
     attribute_to_id = {
         "": 0,

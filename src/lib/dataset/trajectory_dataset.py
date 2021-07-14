@@ -48,8 +48,16 @@ NUSCENES_TRACKING_NAMES = [
 ]
 
 PIXSET_TRACKING_NAMES = [
-    "pedestrian",
-    "vehicle"
+    "car",
+    "truck",
+    "bus",
+    "trailer",
+    "van",
+    "construction_vehicle",
+    "unclassified vehicle",
+    "motorcycle",
+    "bicycle",
+    "pedestrian"
 ]
 
 

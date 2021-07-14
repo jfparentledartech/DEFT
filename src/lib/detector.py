@@ -52,12 +52,37 @@ nuscenes_class_name = [
 ]
 
 PIXSET_TRACKING_NAMES = [
-    "pedestrian",
-    "vehicle"
+    "car",
+    "truck",
+    "bus",
+    "trailer",
+    "van",
+    "construction_vehicle",
+    "unclassified vehicle",
+    "motorcycle",
+    "bicycle",
+    "pedestrian"
 ]
+
 pixset_class_name = [
     "pedestrian",
-    "vehicle"
+    "bicycle",
+    "car",
+    "van",
+    "bus",
+    "truck",
+    "motorcycle",
+    "stop sign",
+    "traffic light",
+    "traffic sign",
+    "traffic cone",
+    "fire hydrant",
+    "cyclist",
+    "motorcyclist",
+    "unclassified vehicle",
+    "trailer",
+    "construction vehicle",
+    "barrier"
 ]
 
 

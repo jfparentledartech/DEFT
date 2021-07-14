@@ -28,6 +28,27 @@ import warnings
 
 warnings.filterwarnings("ignore", category=UserWarning)
 
+pixset_categories = [
+    'pedestrian',
+    'bicycle',
+    'car',
+    'van',
+    'bus',
+    'truck',
+    'motorcycle',
+    'stop sign',
+    'traffic light',
+    'traffic sign',
+    'traffic cone',
+    'fire hydrant',
+    'cyclist',
+    'motorcyclist',
+    'unclassified vehicle',
+    'trailer',
+    'construction vehicle',
+    'barrier'
+]
+
 min_box_area = 20
 
 
@@ -43,7 +64,7 @@ class PrefetchDataset(torch.utils.data.Dataset):
         self.opt = opt
 
     def __getitem__(self, index):
-        self.images.sort() # TODO remove
+        self.images.sort()
         img_id = self.images[index]
         img_info = self.load_image_func(ids=[img_id])[0]
         img_path = os.path.join(self.img_dir, img_info["file_name"])
@@ -109,8 +130,7 @@ def eval_pixset(opt, epoch):
 
     num_iters = len(data_loader) if opt.num_iters < 0 else opt.num_iters
 
-    vehicle_acc = mm.MOTAccumulator(auto_id=True)
-    pedestrian_acc = mm.MOTAccumulator(auto_id=True)
+    accumulators = [mm.MOTAccumulator(auto_id=True) for _ in pixset_categories]
 
     bar = Bar(f'Computing PixSet Tracking Metrics... {dataset} frames', max=len(data_loader))
 
@@ -139,20 +159,21 @@ def eval_pixset(opt, epoch):
 
         online_targets = detector.run(pre_processed_images, image_info=img_info)
 
-        vehicle_gt_list, vehicle_hyp_list, vehicle_distances = compute_metrics(pre_processed_images['annotations'], online_targets, category='vehicle')
-        pedestrian_gt_list, pedestrian_hyp_list, pedestrian_distances = compute_metrics(pre_processed_images['annotations'], online_targets, category='pedestrian')
-        vehicle_acc.update(vehicle_gt_list, vehicle_hyp_list, vehicle_distances)
-        pedestrian_acc.update(pedestrian_gt_list, pedestrian_hyp_list, pedestrian_distances)
 
-    mh = mm.metrics.create()
-    summary = mh.compute(vehicle_acc, metrics=['num_frames', 'mota', 'motp', 'precision', 'recall'], name=f'epoch {epoch} vehicle')
-    print(summary)
-    save_summary(summary, f'vehicle')
+        for i, accumulator in enumerate(accumulators):
+            gt_list, hyp_list, distances = compute_metrics(pre_processed_images['annotations'],
+                                                           online_targets, eval_type='distance',
+                                                           category=pixset_categories[i])
+            accumulator.update(gt_list, hyp_list, distances)
 
-    mh = mm.metrics.create()
-    summary = mh.compute(pedestrian_acc, metrics=['num_frames', 'mota', 'motp', 'precision', 'recall'],  name=f'epoch {epoch} pedestrian')
-    print(summary)
-    save_summary(summary, f'pedestrian')
+    for i, accumulator in enumerate(accumulators):
+        mh = mm.metrics.create()
+        summary = mh.compute(accumulator,
+                             metrics=['num_frames', 'mota', 'motp', 'precision', 'recall', 'mostly_tracked',
+                                      'partially_tracked', 'mostly_lost'],
+                             name=f'{pixset_categories[i]}')
+        print(summary)
+        save_summary(summary, f'{pixset_categories[i]}')
     bar.finish()
 
 
