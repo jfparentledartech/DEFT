@@ -1,0 +1,2 @@
+         num_frames  mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist         120   1.0  0.679921        1.0     1.0               2                  0            0

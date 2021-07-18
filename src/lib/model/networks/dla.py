@@ -305,17 +305,19 @@ class DLA(nn.Module):
             nn.BatchNorm2d(channels[0], momentum=BN_MOMENTUM),
             nn.ReLU(inplace=True),
         )
+
         # TODO conv3d
-        self.trace_base_layer = nn.Sequential(
-            nn.Conv2d(768, channels[0], kernel_size=3, stride=1, padding=1, bias=False),
-            nn.BatchNorm2d(channels[0], momentum=BN_MOMENTUM),
-            nn.ReLU(inplace=True),
-        )
-        self.half_features = nn.Sequential(
-            nn.Conv2d(32, channels[0], kernel_size=1, stride=1, padding=0, bias=False),
-            nn.BatchNorm2d(channels[0], momentum=BN_MOMENTUM),
-            nn.ReLU(inplace=True),
-        )
+        if opt.use_pixell:
+            self.trace_base_layer = nn.Sequential(
+                nn.Conv2d(768, channels[0], kernel_size=3, stride=1, padding=1, bias=False),
+                nn.BatchNorm2d(channels[0], momentum=BN_MOMENTUM),
+                nn.ReLU(inplace=True),
+            )
+            self.half_features = nn.Sequential(
+                nn.Conv2d(32, channels[0], kernel_size=1, stride=1, padding=0, bias=False),
+                nn.BatchNorm2d(channels[0], momentum=BN_MOMENTUM),
+                nn.ReLU(inplace=True),
+            )
 
         self.level0 = self._make_conv_level(channels[0], channels[0], levels[0])
         self.level1 = self._make_conv_level(

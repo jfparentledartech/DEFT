@@ -1,2 +1,0 @@
-     num_frames      mota      motp  precision    recall
-acc        2863  0.437121  0.490258   0.947604  0.872306

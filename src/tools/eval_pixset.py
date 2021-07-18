@@ -13,6 +13,7 @@ import copy
 import pickle
 import motmetrics as mm
 import argparse
+from distutils.util import strtobool
 
 import _init_paths
 from lib.opts import opts
@@ -29,24 +30,14 @@ import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 
 pixset_categories = [
-    'pedestrian',
-    'bicycle',
     'car',
-    'van',
-    'bus',
     'truck',
-    'motorcycle',
-    'stop sign',
-    'traffic light',
-    'traffic sign',
-    'traffic cone',
-    'fire hydrant',
-    'cyclist',
-    'motorcyclist',
-    'unclassified vehicle',
+    'bus',
     'trailer',
-    'construction vehicle',
-    'barrier'
+    'pedestrian',
+    'motorcyclist',
+    'cyclist',
+    'van'
 ]
 
 min_box_area = 20
@@ -130,9 +121,13 @@ def eval_pixset(opt, epoch):
 
     num_iters = len(data_loader) if opt.num_iters < 0 else opt.num_iters
 
-    accumulators = [mm.MOTAccumulator(auto_id=True) for _ in pixset_categories]
+    # accumulators = [mm.MOTAccumulator(auto_id=True) for _ in pixset_categories]
+    accumulators = []
+    for _ in pixset_categories:
+        accumulator = mm.MOTAccumulator(auto_id=True)
+        accumulators.append(accumulator)
 
-    bar = Bar(f'Computing PixSet Tracking Metrics... {dataset} frames', max=len(data_loader))
+    bar = Bar(f'Computing PixSet Tracking Metrics...', max=len(data_loader))
 
     for ind, (img_id, pre_processed_images, img_info) in enumerate(data_loader):
         bar.next()
@@ -159,21 +154,21 @@ def eval_pixset(opt, epoch):
 
         online_targets = detector.run(pre_processed_images, image_info=img_info)
 
-
-        for i, accumulator in enumerate(accumulators):
+        for acc_i in range(len(accumulators)):
             gt_list, hyp_list, distances = compute_metrics(pre_processed_images['annotations'],
-                                                           online_targets, eval_type='distance',
-                                                           category=pixset_categories[i])
-            accumulator.update(gt_list, hyp_list, distances)
+                                                           online_targets, img_info, eval_type='distance',
+                                                           category=pixset_categories[acc_i])
+            accumulators[acc_i].update(gt_list, hyp_list, distances)
 
-    for i, accumulator in enumerate(accumulators):
+
+    for acc_i in range(len(accumulators)):
         mh = mm.metrics.create()
-        summary = mh.compute(accumulator,
+        summary = mh.compute(accumulators[acc_i],
                              metrics=['num_frames', 'mota', 'motp', 'precision', 'recall', 'mostly_tracked',
                                       'partially_tracked', 'mostly_lost'],
-                             name=f'{pixset_categories[i]}')
+                             name=f'{pixset_categories[acc_i]} {epoch}')
         print(summary)
-        save_summary(summary, f'{pixset_categories[i]}')
+        save_summary(summary, f'{pixset_categories[acc_i]}')
     bar.finish()
 
 
@@ -188,11 +183,20 @@ if __name__ == "__main__":
     args = parser.parse_args()
     epoch = args.epoch
     print(epoch)
-    filename = 'train_opt_pixset.txt'
+
+    filename = '../options/train_opt_pixset.txt'
+    test_filename = '../options/test_opt_pixset.txt'
+    # filename = '/home/jfparent/Documents/Stage/DEFT/options/train_opt_pixset.txt'
+    # test_filename = '/home/jfparent/Documents/Stage/DEFT/options/test_opt_pixset.txt'
+
+    with open(test_filename, 'rb') as f:
+        test_opt = pickle.load(f)
 
     with open(filename, 'rb') as f:
         opt = pickle.load(f)
 
     print(f'Using pixell -> ', opt.use_pixell)
-
+    if isinstance(test_opt.lstm, str):
+        test_opt.lstm = bool(strtobool(test_opt.lstm))
+    opt.lstm = test_opt.lstm
     eval_pixset(opt, epoch)

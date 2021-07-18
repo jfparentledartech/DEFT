@@ -1,5 +1,9 @@
 import numpy as np
 import torch
+import pickle
+
+from distutils.util import strtobool
+
 from lib.utils import matching
 from lib.utils.tracking_utils.kalman_filter import KalmanFilter
 from lib.utils.tracking_utils.kalman_filter_lstm import KalmanFilterLSTM
@@ -129,10 +133,13 @@ class FeatureRecorder:
 try:
     opt = opts().parse()
 except:
-    import pickle
-    filename = '../test_opt_pixset.txt'
+    filename = '../options/test_opt_pixset.txt'
+    # filename = '/home/jfparent/Documents/Stage/DEFT/options/test_opt_pixset.txt'
     with open(filename, 'rb') as f:
         opt = pickle.load(f)
+        print(opt.lstm)
+        if isinstance(opt.lstm, str):
+            opt.lstm = bool(strtobool(opt.lstm))
 
 
 class STrack(BaseTrack):
@@ -313,30 +320,6 @@ class STrack(BaseTrack):
         self.start_frame = frame_id
 
         if self.use_lstm:
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
-            print('ALLO')
             self.kalman_filter = KalmanFilterLSTM(self.opt)
             if self.dataset in ["nuscenes", "pixset"]:
                 self.update_lstm_features_ddd(self.ddd_bbox)

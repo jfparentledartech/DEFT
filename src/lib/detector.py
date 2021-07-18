@@ -52,37 +52,25 @@ nuscenes_class_name = [
 ]
 
 PIXSET_TRACKING_NAMES = [
-    "car",
-    "truck",
-    "bus",
-    "trailer",
-    "van",
-    "construction_vehicle",
-    "unclassified vehicle",
-    "motorcycle",
-    "bicycle",
-    "pedestrian"
+    'car',
+    'truck',
+    'bus',
+    'trailer',
+    'pedestrian',
+    'motorcyclist',
+    'cyclist',
+    'van'
 ]
 
 pixset_class_name = [
-    "pedestrian",
-    "bicycle",
-    "car",
-    "van",
-    "bus",
-    "truck",
-    "motorcycle",
-    "stop sign",
-    "traffic light",
-    "traffic sign",
-    "traffic cone",
-    "fire hydrant",
-    "cyclist",
-    "motorcyclist",
-    "unclassified vehicle",
-    "trailer",
-    "construction vehicle",
-    "barrier"
+    'car',
+    'truck',
+    'bus',
+    'trailer',
+    'pedestrian',
+    'motorcyclist',
+    'cyclist',
+    'van'
 ]
 
 
@@ -149,7 +137,7 @@ class Detector(object):
             pre_processed = True
 
         if self.opt.use_pixell:
-            trace = np.load(image_info["trace_file_name"][0]+'.npy')
+            trace = np.load(image_info["waveform_file_name"][0]+'.npy')
         loaded_time = time.time()
         load_time += loaded_time - start_time
 

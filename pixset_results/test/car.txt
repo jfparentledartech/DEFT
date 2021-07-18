@@ -1,0 +1,2 @@
+     num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car         120  0.350554  0.819065   0.726619  0.745387               4                  2            0

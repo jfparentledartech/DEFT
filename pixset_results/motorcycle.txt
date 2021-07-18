@@ -1,0 +1,29 @@
+
+              num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+motorcycle 7        5708   0.0   NaN        NaN     0.0               0                  0            3
+              num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcycle 8        5708  0.090069  0.777259   0.636986  0.214781               0                  1            2
+              num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcycle 9        5708  0.055427  0.894073   0.785714  0.076212               0                  0            3
+               num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcycle 10        5708  0.117783  0.775435   0.762887  0.170901               0                  1            2
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+motorcycle 12         120   NaN   NaN        NaN     NaN               0                  0            0
+              num_frames      mota     motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcycle 7       17124  0.011696  0.73431   0.584906  0.045322               0                  0            3
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+motorcycle 11         120   NaN   NaN        NaN     NaN               0                  0            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+motorcycle 12         120   NaN   NaN        NaN     NaN               0                  0            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+motorcycle 13         120   NaN   NaN        NaN     NaN               0                  0            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+motorcycle 14         120   NaN   NaN        NaN     NaN               0                  0            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+motorcycle 15         120   NaN   NaN        NaN     NaN               0                  0            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+motorcycle 16         120   NaN   NaN        NaN     NaN               0                  0            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+motorcycle 17         120   NaN   NaN        NaN     NaN               0                  0            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+motorcycle 18         120   NaN   NaN        NaN     NaN               0                  0            0

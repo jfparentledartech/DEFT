@@ -1,0 +1,2 @@
+     num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van         120  0.861111  0.625953        1.0  0.861111               1                  0            0

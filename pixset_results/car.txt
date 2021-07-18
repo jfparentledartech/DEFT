@@ -1,0 +1,29 @@
+
+       num_frames     mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car 7        5708  0.30894  0.793208   0.771356  0.583631               0                 15            2
+       num_frames     mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car 8        5708  0.32463  0.752283   0.742737  0.670511               0                 16            1
+       num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car 9        5708  0.318717  0.727189   0.736201  0.672326               0                 13            4
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car 10        5708  0.363503  0.719458   0.766027  0.698847               0                 16            1
+        num_frames      mota     motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car 12         120  0.088561  0.63768   0.619565  0.420664               2                  3            1
+       num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car 7       17124  0.190532  0.805991   0.676684  0.549774               0                 15            1
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car 11         120  0.221402  0.688713   0.661922  0.686347               4                  2            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car 12         120  0.261993  0.716483   0.655172  0.701107               4                  2            0
+        num_frames      mota     motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car 13         120  0.298893  0.66632   0.664474  0.745387               4                  2            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car 14         120  0.247232  0.851558   0.687225  0.575646               3                  3            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car 15         120  0.180812  0.810186   0.625874  0.660517               3                  2            1
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car 16         120  0.188192  0.658656   0.609907  0.726937               4                  2            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car 17         120  0.206642  0.755428   0.629508  0.708487               4                  2            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+car 18         120  0.295203  0.668444   0.685535  0.804428               5                  1            0

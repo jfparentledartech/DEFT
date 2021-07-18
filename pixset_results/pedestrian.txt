@@ -1,2 +1,29 @@
-                num_frames     mota      motp  precision    recall
-acc pedestrian         573  0.21096  0.775347   0.860794  0.582336
+
+              num_frames      mota     motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+pedestrian 7        5708  0.221325  0.79448   0.788958  0.513354               0                 21            6
+              num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+pedestrian 8        5708  0.225067  0.804271   0.776922  0.545329               0                 21            6
+              num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+pedestrian 9        5708  0.272422  0.771036    0.82086  0.544463               0                 24            3
+               num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+pedestrian 10        5708  0.292583  0.763415   0.838387  0.547927               0                 22            5
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+pedestrian 12         120   NaN   NaN        NaN     NaN               0                  0            0
+              num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+pedestrian 7       17124  0.254136  0.771804   0.799109  0.516285               1                 29            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+pedestrian 11         120   NaN   NaN        NaN     NaN               0                  0            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+pedestrian 12         120   NaN   NaN        NaN     NaN               0                  0            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+pedestrian 13         120   NaN   NaN        NaN     NaN               0                  0            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+pedestrian 14         120   NaN   NaN        NaN     NaN               0                  0            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+pedestrian 15         120   NaN   NaN        NaN     NaN               0                  0            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+pedestrian 16         120   NaN   NaN        NaN     NaN               0                  0            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+pedestrian 17         120   NaN   NaN        NaN     NaN               0                  0            0
+               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+pedestrian 18         120   NaN   NaN        NaN     NaN               0                  0            0

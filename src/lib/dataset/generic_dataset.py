@@ -376,7 +376,7 @@ class GenericDataset(data.Dataset):
     def _load_image_anns(self, img_id, coco, img_dir):
         img_info = coco.loadImgs(ids=[img_id])[0]
         file_name = img_info["file_name"]
-        trace_file_name = img_info["trace_file_name"]
+        trace_file_name = img_info["waveform_file_name"]
         img_path = os.path.join(img_dir, file_name)
         trace_path = os.path.join(img_dir.replace('v1.0-trainval', 'pixset'), trace_file_name)
         # img_path = img_path.replace('/src/lib/../..', '') # TODO

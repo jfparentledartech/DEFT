@@ -18,33 +18,23 @@ from lib.dataset.dataset_factory import dataset_factory
 from lib.utils.pixset_metrics import compute_metrics
 
 pixset_categories = [
-    'pedestrian',
-    'bicycle',
     'car',
-    'van',
-    'bus',
     'truck',
-    'motorcycle',
-    'stop sign',
-    'traffic light',
-    'traffic sign',
-    'traffic cone',
-    'fire hydrant',
-    'cyclist',
-    'motorcyclist',
-    'unclassified vehicle',
+    'bus',
     'trailer',
-    'construction vehicle',
-    'barrier'
+    'pedestrian',
+    'motorcyclist',
+    'cyclist',
+    'van'
 ]
 
 opt = opts().parse()
 
-filename = 'test_opt_pixset.txt'
+filename = '../options/test_opt_pixset.txt'
 with open(filename, 'wb') as f:
-    # print('dataset -> ', opt.dataset)
-    # print('lstm -> ', opt.lstm)
     pickle.dump(opt, f)
+    # print('dataset -> ', opt.dataset)
+    print('lstm -> ', opt.lstm)
     # print(f'saved {filename}')
 # with open(filename, 'rb') as f:
 #     opt = pickle.load(f)
@@ -58,7 +48,7 @@ import json
 min_box_area = 20
 
 _vehicles = ["car", "truck", "bus", "trailer", "van", "construction_vehicle", "unclassified vehicle"]
-_cycles = ["motorcycle", "bicycle"]
+_cycles = ["motorcyclist", "cyclist"]
 _pedestrians = ["pedestrian"]
 attribute_to_id = {
     "": 0,
@@ -265,15 +255,16 @@ def prefetch_test(opt):
 
         image = pre_processed_images["image"][0].numpy()
 
-        for i, accumulator in enumerate(accumulators):
+        for acc_i in range(len(accumulators)):
             gt_list, hyp_list, distances = compute_metrics(pre_processed_images['annotations'],
-                                                           online_targets, eval_type='distance',
-                                                           im=image, category=pixset_categories[i])
-            accumulator.update(gt_list, hyp_list, distances)
+                                                           online_targets, img_info, eval_type='distance',
+                                                           im=image, category=pixset_categories[acc_i])
+            accumulators[acc_i].update(gt_list, hyp_list, distances)
 
-        print(accumulators[0].mot_events.loc[ind])
+        idx = 0
+        print(accumulators[idx].mot_events.loc[ind])
         mh = mm.metrics.create()
-        summary = mh.compute(accumulators[2], metrics=['num_frames', 'mota', 'precision', 'recall'], name=f'acc {pixset_categories[2]}')
+        summary = mh.compute(accumulators[idx], metrics=['num_frames', 'mota', 'precision', 'recall'], name=f'acc {pixset_categories[idx]}')
         print(summary)
         print('-----------------------------------------')
 
@@ -373,19 +364,18 @@ def prefetch_test(opt):
                 for _, ind in confs[: min(500, len(confs))]
             ]
 
-        for i, accumulator in enumerate(accumulators):
+        for acc_i in range(len(accumulators)):
             mh = mm.metrics.create()
-            summary = mh.compute(accumulator,
-                                 metrics=['num_frames', 'mota', 'motp', 'precision', 'recall', 'mostly_tracked',
-                                          'partially_tracked', 'mostly_lost'],
-                                 name=f'{pixset_categories[i]}')
+            summary = mh.compute(accumulators[acc_i],
+                                 metrics=['num_frames', 'mota', 'motp', 'precision', 'recall', 'mostly_tracked', 'partially_tracked', 'mostly_lost'],
+                                 name=f'{pixset_categories[acc_i]}')
             print(summary)
-            save_summary(summary, f'{pixset_categories[i]}')
+            save_summary(summary, f'{pixset_categories[acc_i]}')
         json.dump(ret, open(results_dir + "/results.json", "w"))
 
 
 def save_summary(summary, acc_name):
-    with open(f"./pixset_results/{acc_name}.txt", "w") as text_file:
+    with open(f"../pixset_results/test/{acc_name}.txt", "w") as text_file:
         text_file.write(summary.to_string())
 
 

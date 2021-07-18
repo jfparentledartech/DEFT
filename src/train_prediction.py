@@ -167,13 +167,13 @@ def main(opt):
 
 
 if __name__ == "__main__":
-    # opt = opts().parse()
+    opt = opts().parse()
 
-    filename = 'train_prediction_opt_pixset.txt'
-    # with open(filename, 'wb') as f:
-    #     pickle.dump(opt, f)
-    #     print(f'saved {filename}')
-    with open(filename, 'rb') as f:
-        opt = pickle.load(f)
+    filename = '../options/train_prediction_opt_pixset.txt'
+    with open(filename, 'wb') as f:
+        pickle.dump(opt, f)
+        print(f'saved {filename}')
+    # with open(filename, 'rb') as f:
+    #     opt = pickle.load(f)
     # opt.print_iter = 1
     main(opt)

@@ -1,0 +1,29 @@
+
+         num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+truck 7        5708 -0.341935  0.820585   0.313059  0.282258               0                  1            1
+         num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+truck 8        5708 -0.185484  0.878157   0.400353  0.366129               0                  2            0
+         num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+truck 9        5708 -0.179032  0.960293   0.408403  0.391935               0                  2            0
+          num_frames  mota      motp  precision   recall  mostly_tracked  partially_tracked  mostly_lost
+truck 10        5708 -0.05  0.923425   0.467706  0.33871               0                  1            1
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 12         120   NaN   NaN        NaN     NaN               0                  0            0
+         num_frames      mota      motp  precision   recall  mostly_tracked  partially_tracked  mostly_lost
+truck 7       17124 -0.174326  0.834885    0.37819  0.25832               0                  2            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 11         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 12         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 13         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 14         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 15         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 16         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 17         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 18         120   NaN   NaN        NaN     NaN               0                  0            0

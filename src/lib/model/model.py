@@ -39,8 +39,10 @@ def create_model(arch, head, head_conv, opt=None):
 
 def load_model(model, model_path, opt, optimizer=None):
     start_epoch = 0
+    if (type(model).__name__) == 'DecoderRNN':
+        model_path = '/home/jfparent/Documents/Stage/DEFT/models/model_pixset_lstm.pth'
     checkpoint = torch.load(model_path, map_location=lambda storage, loc: storage)
-    print("loaded {}, epoch {}".format(model_path, checkpoint["epoch"]))
+    # print("loaded {}, epoch {}".format(model_path, checkpoint["epoch"]))
     state_dict_ = checkpoint["state_dict"]
     state_dict = {}
 

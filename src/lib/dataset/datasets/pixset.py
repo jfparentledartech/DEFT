@@ -19,35 +19,24 @@ from ..trajectory_dataset import TrajectoryDataset
 class PixSet(GenericDataset):
     # default_resolution = [448, 800] # TODO modify
     default_resolution = [320, 1440] # TODO modify
-
-    categories = [
-        'pedestrian',
-        'bicycle',
+    class_name = [
         'car',
-        'van',
-        'bus',
         'truck',
-        'motorcycle',
-        'stop sign',
-        'traffic light',
-        'traffic sign',
-        'traffic cone',
-        'fire hydrant',
-        'cyclist',
-        'motorcyclist',
-        'unclassified vehicle',
+        'bus',
         'trailer',
-        'construction vehicle',
-        'barrier'
+        'pedestrian',
+        'motorcyclist',
+        'cyclist',
+        'van'
     ]
 
-    num_categories = len(categories)
+    num_categories = len(class_name)
 
     cat_ids = {i + 1: i + 1 for i in range(num_categories)}
     focal_length = 1200
     max_objs = 128
-    _tracking_ignored_class = ["traffic_cone", "stop sign", "traffic light", "traffic sign", "fire hydrant", "barrier"]
-    _vehicles = ["car", "truck", "bus", "trailer", "van", "construction_vehicle", "unclassified vehicle"]
+    _tracking_ignored_class = []
+    _vehicles = ["car", "truck", "bus", "trailer"]
     _cycles = ["motorcycle", "bicycle"]
     _pedestrians = ["pedestrian"]
     attribute_to_id = {
@@ -64,7 +53,17 @@ class PixSet(GenericDataset):
     id_to_attribute = {v: k for k, v in attribute_to_id.items()}
 
     def __init__(self, opt, split):
-        self.class_name = ["pedestrian", "vehicle"]
+        self.class_name = [
+            'car',
+            'truck',
+            'bus',
+            'trailer',
+            'pedestrian',
+            'motorcyclist',
+            'cyclist',
+            'van'
+        ]
+        # self.class_name = ["pedestrian", "vehicle"]
         split_names = {"train": "train", "val": "val"}
         data_dir = os.path.join(opt.data_dir, "pixset")
         if not split == "test":
@@ -279,43 +278,34 @@ class PixSet(GenericDataset):
         self.save_results(results, save_dir, task)
 
         os.system(
-            "python src/tools/eval_pixset.py "
+            "python tools/eval_pixset.py "
             + f" --epoch {epoch}"
         )
 
 
 class PixSet_prediction(TrajectoryDataset):
     # default_resolution = [448, 800]
-    default_resolution = [320, 1440] # TODO modify
-    categories = [
-        'pedestrian',
-        'bicycle',
+    default_resolution = [320, 1440]
+    class_name = [
         'car',
-        'van',
-        'bus',
         'truck',
-        'motorcycle',
-        'stop sign',
-        'traffic light',
-        'traffic sign',
-        'traffic cone',
-        'fire hydrant',
-        'cyclist',
-        'motorcyclist',
-        'unclassified vehicle',
+        'bus',
         'trailer',
-        'construction vehicle',
-        'barrier'
+        'pedestrian',
+        'motorcyclist',
+        'cyclist',
+        'van'
     ]
 
-    num_categories = len(categories)
+    num_categories = len(class_name)
 
     cat_ids = {i + 1: i + 1 for i in range(num_categories)}
     focal_length = 1200
     max_objs = 128
-    _tracking_ignored_class = ["traffic_cone", "stop sign", "traffic light", "traffic sign", "fire hydrant", "barrier"]
+    _tracking_ignored_class = []
+    # _tracking_ignored_class = ["traffic_cone", "stop sign", "traffic light", "traffic sign", "fire hydrant", "barrier"]
     _vehicles = ["car", "truck", "bus", "trailer", "van", "construction_vehicle", "unclassified vehicle"]
-    _cycles = ["motorcycle", "bicycle"]
+    _cycles = ["motorcyclist", "cyclist"]
     _pedestrians = ["pedestrian"]
     attribute_to_id = {
         "": 0,
