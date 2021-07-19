@@ -640,7 +640,7 @@ class Tracker(object):
             opt.device = torch.device("cuda")
         else:
             opt.device = torch.device("cpu")
-        print("Creating model...")
+        # print("Creating model...")
 
         self.tracked_stracks = []  # type: list[STrack]
         self.lost_stracks = []  # type: list[STrack]

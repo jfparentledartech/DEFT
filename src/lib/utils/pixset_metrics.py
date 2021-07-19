@@ -27,7 +27,7 @@ def category_max_range(config, category):
         return 40
 
 
-def compute_metrics(ground_truths, hypothesis, img_info, eval_type='distance', im=None, category=None):
+def compute_metrics(ground_truths, hypothesis, eval_type='distance', im=None, category=None):
     config = load_evaluation_configuration()
 
     gt_to_keep = []
@@ -42,7 +42,7 @@ def compute_metrics(ground_truths, hypothesis, img_info, eval_type='distance', i
     hyp_to_keep = []
     for hyp in hypothesis:
 
-        if outside_fov(img_info, hyp.tlwh, im):
+        if outside_fov(hyp.tlwh, im):
             continue
 
         if hyp.classe == category:
@@ -77,7 +77,7 @@ def compute_metrics(ground_truths, hypothesis, img_info, eval_type='distance', i
             # hyp_x, hyp_y = np.asarray([hypothesis[i].ct[0] for i in range(len(hypothesis))]), np.asarray([hypothesis[i].ct[1] for i in range(len(hypothesis))])
             hyp_x, hyp_y = np.asarray(hyp_centroids)[:,0], np.asarray(hyp_centroids)[:,1]
             # hyp_x, hyp_y = np.asarray([hypothesis[i].ddd_bbox[3:-1][0] for i in range(len(hypothesis))]), np.asarray([hypothesis[i].ddd_bbox[3:-1][1] for i in range(len(hypothesis))])
-            plt.scatter(gt_x, gt_y-389, c='r')
+            plt.scatter(gt_x+10, gt_y, c='r')
             plt.scatter(hyp_x, hyp_y, c='b')
             plt.imshow(im)
             plt.show()
@@ -121,27 +121,18 @@ def load_evaluation_configuration():
     # with open('/home/jfparent/Documents/Stage/DEFT/src/tools/nuscenes-devkit/python-sdk/nuscenes/eval/tracking/configs/tracking_nips_2019.json') as f:
         return json.load(f)
 
-def outside_fov(img_info, tlwh, im):
+def outside_fov(tlwh, im):
     x, y, w, h = tlwh
     hyp_centroid_ct = (x + w / 2, (y + h / 2))
     hyp_centroid_left = (x, (y + h / 2))
     hyp_centroid_right = (x + w, (y + h / 2))
 
-    crop_left = 0
-    crop_right = 0
-    cameras = ['flir_bfl_img', 'flir_bfr_img', 'flir_bfc_img']
-    # cameras = ['flir_bfc_img']
-    cam = cameras[img_info['sensor_id'].item()]
-    if cam == 'flir_bfl_img':
-        crop_left = 281
-    elif cam == 'flir_bfr_img':
-        crop_right = 281
     if DEBUG:
-        print(x < crop_left or (x + w) > 1440 - crop_right)
-        if (x < crop_left or (x + w) > 1440 - crop_right):
-            plt.scatter(hyp_centroid_ct[0], hyp_centroid_ct[1])
-            plt.scatter(hyp_centroid_left[0], hyp_centroid_left[1])
-            plt.scatter(hyp_centroid_right[0], hyp_centroid_right[1])
-            plt.imshow(im)
-            plt.show()
-    return x < crop_left or (x + w) > 1440 - crop_right
+        # print(x < crop_left or (x + w) > 1440 - crop_right)
+        # if (x < crop_left or (x + w) > 1440 - crop_right):
+        plt.scatter(hyp_centroid_ct[0], hyp_centroid_ct[1])
+        plt.scatter(hyp_centroid_left[0], hyp_centroid_left[1])
+        plt.scatter(hyp_centroid_right[0], hyp_centroid_right[1])
+        plt.imshow(im)
+        plt.show()
+    return x < 0 or (x + w) > 1440

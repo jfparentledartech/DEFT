@@ -353,15 +353,14 @@ def _rot_y2alpha(rot_y, x, cx, fx):
     return alpha
 
 
-def erroneous_projection(ann, calib, dist_coeffs, crop_left, crop_right):
+def erroneous_projection(ann, calib, dist_coeffs):
     am_center = copy.copy(ann["amodel_center"])
     am_center[0] += crop_left
     am_center[1] += crop_top
     loc, rot = ddd2locrot(am_center, ann["alpha"], ann["dim"], ann["depth"], calib, dist_coeffs)
     projected_box3d = box3d_from_loc_dim_rot(annotation_to_camera_transformation, loc, ann["dim"], rot, calib,
                                              dist_coeffs)
-    # return projected_box3d.std() > 1000
-    return np.min(projected_box3d[:,0]) < crop_left or np.max(projected_box3d[:,0]) > (1440 - crop_right)
+    return np.min(projected_box3d[:,0] - crop_left) < 0 or np.max(projected_box3d[:,0] - crop_left) > 1440
 
 
 
@@ -588,8 +587,8 @@ if __name__ == '__main__':
 
     train_dataset_paths = [
         # '/home/jfparent/Documents/PixSet/train_dataset/20200721_180421_part41_1800_2500',
-        # '/home/jfparent/Documents/PixSet/20200706_171559_part27_1170_1370',
-        '/home/jfparent/Documents/PixSet/train_dataset/20200706_162218_part21_4368_7230',
+        '/home/jfparent/Documents/PixSet/train_dataset/20200706_171559_part27_1170_1370',
+        # '/home/jfparent/Documents/PixSet/train_dataset/20200706_162218_part21_4368_7230',
         # '/home/jfparent/Documents/PixSet/20200706_144800_part25_1224_2100'
     ]
 
@@ -652,7 +651,7 @@ if __name__ == '__main__':
         bar = Bar(f'Exporting {dataset} ({num_video+1}/{len(train_dataset_paths+test_dataset_paths)})', max=len(sc)*3)
 
         for sensor_id, camera in enumerate(['flir_bfl_img', 'flir_bfr_img', 'flir_bfc_img']):
-        # for sensor_id, camera in enumerate(['flir_bfl_img']):
+        # for sensor_id, camera in enumerate(['flir_bfr_img']):
 
             for i_frame, frame in enumerate(range(len(sc))):
                 if dataset_path in test_dataset_paths:
@@ -719,6 +718,7 @@ if __name__ == '__main__':
 
                 coco_format[split]['images'].append({
                     "id": num_image,
+                    # "file_name": image_path.replace('Documents/Stage/', ''),
                     "file_name": image_path,
                     "waveform_file_name": waveform_path,
                     "video_id": num_video,
@@ -803,7 +803,7 @@ if __name__ == '__main__':
                     ann = coco_format[split]['annotations'][-1]
                     calib = np.asarray(camera_intrinsic)
 
-                    if erroneous_projection(ann, calib, dist_coeffs, crop_left, crop_right):
+                    if erroneous_projection(ann, calib, dist_coeffs):
                         del coco_format[split]['annotations'][-1]
                     else:
                         num_annotation += 1

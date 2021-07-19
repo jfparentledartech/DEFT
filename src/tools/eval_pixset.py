@@ -95,8 +95,6 @@ def eval_pixset(opt, epoch):
         os.environ["CUDA_VISIBLE_DEVICES"] = opt.gpus_str
     Dataset = dataset_factory[opt.test_dataset]
     opt = opts().update_dataset_info_and_set_heads(opt, Dataset)
-    print(opt)
-    Logger(opt)
 
     split = "val" if not opt.trainval else "test"
     dataset = Dataset(opt, split)
@@ -156,7 +154,7 @@ def eval_pixset(opt, epoch):
 
         for acc_i in range(len(accumulators)):
             gt_list, hyp_list, distances = compute_metrics(pre_processed_images['annotations'],
-                                                           online_targets, img_info, eval_type='distance',
+                                                           online_targets, eval_type='distance',
                                                            category=pixset_categories[acc_i])
             accumulators[acc_i].update(gt_list, hyp_list, distances)
 
@@ -199,4 +197,6 @@ if __name__ == "__main__":
     if isinstance(test_opt.lstm, str):
         test_opt.lstm = bool(strtobool(test_opt.lstm))
     opt.lstm = test_opt.lstm
+    print(f'Using lstm -> ', opt.lstm)
+
     eval_pixset(opt, epoch)

@@ -1,2 +1,0 @@
-               num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
-traffic light          20   NaN   NaN        NaN     NaN               0                  0            0

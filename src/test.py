@@ -257,7 +257,7 @@ def prefetch_test(opt):
 
         for acc_i in range(len(accumulators)):
             gt_list, hyp_list, distances = compute_metrics(pre_processed_images['annotations'],
-                                                           online_targets, img_info, eval_type='distance',
+                                                           online_targets, eval_type='distance',
                                                            im=image, category=pixset_categories[acc_i])
             accumulators[acc_i].update(gt_list, hyp_list, distances)
 
