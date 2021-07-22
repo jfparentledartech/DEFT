@@ -21,301 +21,6 @@ from uuid import uuid4
 
 DEBUG = False
 
-dataset_info = {
-    '20200706_171559_part27_1170_1370': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200721_180421_part41_1800_2500': {
-        'location': 'highway', 'time': 'day', 'weather': None
-    },
-    '20200706_162218_part21_4368_7230': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200706_144800_part25_1224_2100': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200803_151243_part45_4780_5005': {
-        'location': 'boulevard', 'time': 'day', 'weather': 'rain'
-    },
-    '20200721_181359_part42_1903_2302': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200730_003948_part44_5818_6095': {
-        'location': 'downtown', 'time': 'night', 'weather': None
-    },
-    '20200706_170136_part28_2060_2270': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200706_202209_part31_2980_3091': {
-        'location': 'suburban', 'time': 'day', 'weather': None
-    },
-    '20200618_184930_part16_3030_3200': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200618_175654_part15_1380_1905': {
-        'location': 'parking_lot', 'time': 'day', 'weather': None
-    },
-    '20200616_145121_part7_2575_2860': {
-        'location': 'suburban', 'time': 'day', 'weather': None
-    },
-    '20200706_162218_part21_790_960': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200706_202209_part31_2636_2746': {
-        'location': 'suburban', 'time': 'day', 'weather': None
-    },
-    '20200803_174859_part46_2761_2861': {
-        'location': 'boulevard', 'time': 'day', 'weather': 'rain'
-    },
-    '20200706_162218_part21_4070_4170': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200617_195023_part14_4707_4850': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200721_164103_part43_2361_2481': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200706_143808_part26_3042_3420': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200611_184008_part3_3130_3290': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200706_143808_part26_2370_2500': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200708_121622_part33_5088_5209': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200617_191627_part12_1614_1842': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200617_195023_part14_1872_2050': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200721_144638_part36_1956_2229': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200618_184930_part16_4191_4420': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200730_003948_part44_275_550': {
-        'location': 'boulevard', 'time': 'night', 'weather': None
-    },
-    '20200721_165008_part39_1_220': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200721_143404_part35_4400_4608': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200611_172353_part5_150_250': {
-        'location': 'parking_lot', 'time': 'day', 'weather': 'rain'
-    },
-    '20200721_155900_part38_549_953': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200706_151313_part23_2880_3120': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200721_143404_part35_3268_3389': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200721_154835_part37_696_813': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200708_121622_part33_5534_5833': {
-        'location': 'boulevard', 'time': 'day', 'weather': 'rain'
-    },
-    '20200803_151243_part45_1260_1524': {
-        'location': 'boulevard', 'time': 'day', 'weather': 'rain'
-    },
-    '20200706_143808_part26_3660_3860': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200617_191627_part12_1320_1537': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200706_144800_part25_3610_4360': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200706_211917_part32_1612_1800': {
-        'location': 'highway', 'time': 'day', 'weather': None
-    },
-    '20200706_151313_part23_2632_2808': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200706_151313_part23_4010_4744': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200706_143808_part26_500_635': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200706_195626_part29_1320_1490': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200616_151155_part9_750_900': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200706_195626_part29_1924_2245': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200618_191030_part17_630_890': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200611_171800_part2_1646_1802': {
-        'location': 'boulevard', 'time': 'day', 'weather': 'rain'
-    },
-    '20200706_161206_part22_2940_3222': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200706_191736_part30_2212_2515': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200721_165704_part40_1000_1197': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200616_151155_part9_4020_4306': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200617_191053_part11_18_218': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200610_185206_part1_9850_10050': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200721_143208_part34_202_467': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200617_190145_part10_930_1269': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200615_184724_part6_5900_6000': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200803_174859_part46_1108_1219': {
-        'location': 'highway', 'time': 'day', 'weather': 'rain'
-    },
-    '20200622_142617_part18_450_910': {
-        'location': 'parking_lot', 'time': 'day', 'weather': None
-    },
-    '20200615_171156_part4_7530_7660': {
-        'location': 'highway', 'time': 'day', 'weather': None
-    },
-    '20200706_161206_part22_3591_3898': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200706_191736_part30_1721_1857': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200805_002607_part48_2083_2282': {
-        'location': 'boulevard', 'time': 'night', 'weather': 'rain'
-    },
-    '20200617_191627_part12_1030_1150': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200721_181359_part42_2671_2829': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200706_161206_part22_670_950': {
-        'location': 'suburban', 'time': 'day', 'weather': None
-    },
-    '20200721_164103_part43_3412_4100': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200706_171559_part27_10588_11079': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200706_170136_part28_2688_2884': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200611_184008_part3_2549_2840': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200706_145605_part24_1484_2248': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200706_164938_part20_3225_3810': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200805_000536_part47_2225_2325': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200706_144800_part25_2160_2784': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200730_003948_part44_2995_3195': {
-        'location': 'downtown', 'time': 'night', 'weather': None
-    },
-    '20200805_000536_part47_5292_5622': {
-        'location': 'downtown', 'time': 'night', 'weather': 'rain'
-    },
-    '20200721_165008_part39_640_1040': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200616_150451_part8_430_650': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200803_151243_part45_2310_2560': {
-        'location': 'boulevard', 'time': 'day', 'weather': 'rain'
-    },
-    '20200617_190145_part10_2482_2724': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200706_191736_part30_1860_2209': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200617_195023_part14_1547_1672': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200706_191736_part30_1211_1322': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200611_171800_part2_942_1152': {
-        'location': 'boulevard', 'time': 'day', 'weather': 'rain'
-    },
-    '20200730_003948_part44_6875_7500': {
-        'location': 'downtown', 'time': 'night', 'weather': None
-    },
-    '20200803_151243_part45_1028_1128': {
-        'location': 'boulevard', 'time': 'day', 'weather': 'rain'
-    },
-    '20200618_191030_part17_1120_1509': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200617_192849_part13_2707_2872': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200706_191736_part30_2731_2869': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200610_185206_part1_5095_5195': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200706_145605_part24_2450_3046': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200615_184724_part6_5180_5280': {
-        'location': 'boulevard', 'time': 'day', 'weather': None
-    },
-    '20200706_143808_part26_1200_1360': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200706_202209_part31_962_1246': {
-        'location': 'suburban', 'time': 'day', 'weather': None
-    },
-    '20200611_184008_part3_1_380': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-    '20200622_142945_part19_480_700': {
-        'location': 'parking_lot', 'time': 'day', 'weather': None
-    },
-    '20200706_162218_part21_2830_3333': {
-        'location': 'downtown', 'time': 'day', 'weather': None
-    },
-
-}
-
 def rot_x_axis(theta):
     return np.asarray([[1, 0, 0],
                        [0, np.cos(theta), -np.sin(theta)],
@@ -536,7 +241,6 @@ if __name__ == '__main__':
         'car',
         'truck',
         'bus',
-        'trailer',
         'pedestrian',
         'motorcyclist',
         'cyclist',
@@ -544,15 +248,14 @@ if __name__ == '__main__':
     ]
 
     map_categories = {
-        'pedestrian': filtered_categories[4],
-        'deformed pedestrian': filtered_categories[4],
-        'cyclist': filtered_categories[6],
+        'pedestrian': filtered_categories[3],
+        'deformed pedestrian': filtered_categories[3],
+        'cyclist': filtered_categories[5],
         'car': filtered_categories[0],
-        'van': filtered_categories[7],
+        'van': filtered_categories[6],
         'bus': filtered_categories[2],
         'truck': filtered_categories[1],
-        'motorcyclist': filtered_categories[5],
-        'trailer': filtered_categories[3]
+        'motorcyclist': filtered_categories[4]
     }
 
     categories_info = [{"name": list(filtered_categories)[i], "id": i + 1} for i in range(len(filtered_categories))]
@@ -580,63 +283,31 @@ if __name__ == '__main__':
     }
 
     train_pixset_path = '/home/jfparent/Documents/PixSet/train_dataset/'
-    # train_dataset_paths = [train_pixset_path+d for d in os.listdir(train_pixset_path)]
+    train_dataset_paths = [train_pixset_path+d for d in os.listdir(train_pixset_path)]
 
     test_pixset_path = '/home/jfparent/Documents/PixSet/test_dataset/'
-    # test_dataset_paths = [test_pixset_path+d for d in os.listdir(test_pixset_path)]
+    test_dataset_paths = [test_pixset_path+d for d in os.listdir(test_pixset_path)]
 
-    train_dataset_paths = [
-        # '/home/jfparent/Documents/PixSet/train_dataset/20200721_180421_part41_1800_2500',
-        '/home/jfparent/Documents/PixSet/train_dataset/20200706_171559_part27_1170_1370',
-        # '/home/jfparent/Documents/PixSet/train_dataset/20200706_162218_part21_4368_7230',
-        # '/home/jfparent/Documents/PixSet/20200706_144800_part25_1224_2100'
-    ]
-
-    test_dataset_paths = [
-        # '/home/jfparent/Documents/PixSet/20200721_180421_part41_1800_2500',
-        # '/home/jfparent/Documents/PixSet/train_dataset/20200706_171559_part27_1170_1370',
-        # '/home/jfparent/Documents/PixSet/train_dataset/20200706_162218_part21_4368_7230',
-        # '/home/jfparent/Documents/PixSet/20200706_144800_part25_1224_2100'
-    ]
+    # train_dataset_paths = [
+    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200721_180421_part41_1800_2500',
+    #     '/home/jfparent/Documents/PixSet/train_dataset/20200706_171559_part27_1170_1370',
+    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200721_164103_part43_3412_4100',
+    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200706_162218_part21_4368_7230',
+    #     # '/home/jfparent/Documents/PixSet/20200706_144800_part25_1224_2100'
+    # ]
+    # #
+    # test_dataset_paths = [
+    #     # '/home/jfparent/Documents/PixSet/20200721_180421_part41_1800_2500',
+    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200706_171559_part27_1170_1370',
+    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200706_162218_part21_4368_7230',
+    #     # '/home/jfparent/Documents/PixSet/20200706_144800_part25_1224_2100'
+    # ]
 
     category_counters = {
         'train': {},
         'val': {},
         'test': {}
     }
-
-    dataset_info_counters = {
-        'train': {
-            'location_counter': {},
-            'time_counter': {},
-            'weather_counter': {}
-        },
-        'test': {
-            'location_counter': {},
-            'time_counter': {},
-            'weather_counter': {}
-        }
-    }
-    dataset_name_splits = ['train', 'test']
-    dataset_path_splits = [train_dataset_paths, test_dataset_paths]
-
-    for i_split, dataset_path in enumerate(dataset_path_splits):
-        for dataset in dataset_path:
-            dataset_name = dataset.split('/')[-1]
-            if dataset_info[dataset_name]['location'] in dataset_info_counters[dataset_name_splits[i_split]]['location_counter'].keys():
-                dataset_info_counters[dataset_name_splits[i_split]]['location_counter'][dataset_info[dataset_name]['location']] += 1
-            else:
-                dataset_info_counters[dataset_name_splits[i_split]]['location_counter'][dataset_info[dataset_name]['location']] = 1
-
-            if dataset_info[dataset_name]['time'] in dataset_info_counters[dataset_name_splits[i_split]]['time_counter'].keys():
-                dataset_info_counters[dataset_name_splits[i_split]]['time_counter'][dataset_info[dataset_name]['time']] += 1
-            else:
-                dataset_info_counters[dataset_name_splits[i_split]]['time_counter'][dataset_info[dataset_name]['time']] = 1
-
-            if dataset_info[dataset_name]['weather'] in dataset_info_counters[dataset_name_splits[i_split]]['weather_counter'].keys():
-                dataset_info_counters[dataset_name_splits[i_split]]['weather_counter'][dataset_info[dataset_name]['weather']] += 1
-            else:
-                dataset_info_counters[dataset_name_splits[i_split]]['weather_counter'][dataset_info[dataset_name]['weather']] = 1
 
     num_image = 0
     num_annotation = 1
@@ -651,7 +322,7 @@ if __name__ == '__main__':
         bar = Bar(f'Exporting {dataset} ({num_video+1}/{len(train_dataset_paths+test_dataset_paths)})', max=len(sc)*3)
 
         for sensor_id, camera in enumerate(['flir_bfl_img', 'flir_bfr_img', 'flir_bfc_img']):
-        # for sensor_id, camera in enumerate(['flir_bfr_img']):
+        # for sensor_id, camera in enumerate(['flir_bfc_img']):
 
             for i_frame, frame in enumerate(range(len(sc))):
                 if dataset_path in test_dataset_paths:
@@ -718,8 +389,8 @@ if __name__ == '__main__':
 
                 coco_format[split]['images'].append({
                     "id": num_image,
-                    # "file_name": image_path.replace('Documents/Stage/', ''),
-                    "file_name": image_path,
+                    "file_name": image_path.replace('Documents/Stage/', ''),
+                    # "file_name": image_path,
                     "waveform_file_name": waveform_path,
                     "video_id": num_video,
                     "frame_id": i_frame + 1,
@@ -860,27 +531,50 @@ if __name__ == '__main__':
     json.dump(coco_format['val'], open(val_path, "w"))
     print('Saving test annotations...')
     json.dump(coco_format['test'], open(test_path, "w"))
+    #
+    # category_counters['train'] = dict(sorted(category_counters['train'].items(), key=lambda item: item[0]))
+    # category_counters['val'] = dict(sorted(category_counters['val'].items(), key=lambda item: item[0]))
+    # category_counters['test'] = dict(sorted(category_counters['test'].items(), key=lambda item: item[0]))
+    #
+    # N = len(list(category_counters['train'].keys()))
+    # ind = np.arange(N)  # the x locations for the groups
+    # width = 0.3  # the width of the bars
+    #
+    # _, ax = plt.subplots()
+    # train_occurrence_ratios = np.asarray(list(category_counters['train'].values()))/np.sum(np.asarray(list(category_counters['train'].values())))
+    # val_occurrence_ratios = np.asarray(list(category_counters['val'].values()))/np.sum(np.asarray(list(category_counters['val'].values())))
+    # test_occurrence_ratios = np.asarray(list(category_counters['test'].values()))/np.sum(np.asarray(list(category_counters['test'].values())))
+    # train_bars = ax.bar(ind,train_occurrence_ratios, width, color='r')
+    # val_bars = ax.bar(ind + width, val_occurrence_ratios, width, color='b')
+    # test_bars = ax.bar(ind + 2*width, test_occurrence_ratios, width, color='g')
+    #
+    # # add some text for labels, title and axes ticks
+    # ax.set_ylabel('Occurrence ratios')
+    # ax.set_title('Category occurrence ratios')
+    # ax.set_xticks(ind + width / 3)
+    # ax.set_xticklabels(category_counters['train'].keys(), rotation=20)
+    #
+    # ax.legend((train_bars[0], val_bars[0], test_bars[0]), ('Train', 'Val', 'Test'))
+    # plt.savefig('category_occurrence_ratios.png')
+    # plt.show()
+    #
+    # _, ax = plt.subplots()
+    # val_occurrence_ratios = np.asarray(list(category_counters['val'].values()))/np.sum(np.asarray(list(category_counters['val'].values())))
+    # test_occurrence_ratios = np.asarray(list(category_counters['test'].values()))/np.sum(np.asarray(list(category_counters['test'].values())))
+    # train_bars = ax.bar(ind, category_counters['train'].values(), width, color='r')
+    # val_bars = ax.bar(ind + width, category_counters['val'].values(), width, color='b')
+    # test_bars = ax.bar(ind + 2*width, category_counters['test'].values(), width, color='g')
+    #
+    # # add some text for labels, title and axes ticks
+    # ax.set_ylabel('Occurrences')
+    # ax.set_title('Category occurrences')
+    # ax.set_xticks(ind + width / 3)
+    # ax.set_xticklabels(category_counters['train'].keys(), rotation=20)
+    #
+    # ax.legend((train_bars[0], val_bars[0], test_bars[0]), ('Train', 'Val', 'Test'))
+    # plt.savefig('category_occurrence.png')
+    # plt.show()
 
-    category_counters['train'] = dict(sorted(category_counters['train'].items(), key=lambda item: item[0]))
-    category_counters['val'] = dict(sorted(category_counters['val'].items(), key=lambda item: item[0]))
-    category_counters['test'] = dict(sorted(category_counters['test'].items(), key=lambda item: item[0]))
-
-    print('Generating occurrences figures...')
-    plt.bar(category_counters['train'].keys(), category_counters['train'].values(), label='train')
-    plt.bar(category_counters['val'].keys(), category_counters['val'].values(), label='val')
-    plt.title('Category occurrences')
-    plt.legend()
-    plt.xticks(range(len(category_counters['train'].keys())), rotation=20)
-    plt.savefig('category_occurrences.png')
-    plt.show()
-
-    print('Generating test occurrences figures...')
-    plt.bar(category_counters['test'].keys(), category_counters['test'].values(), label='test')
-    plt.title('Test category occurrences')
-    plt.legend()
-    plt.xticks(range(len(category_counters['test'].keys())), rotation=20)
-    plt.savefig('test_category_occurrences.png')
-    plt.show()
 
     print('Saving occurrences pickles...')
     with open('train_category_occurrences.pkl', 'wb') as f:

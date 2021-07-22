@@ -79,9 +79,9 @@ def main(opt):
         print("Setting up validation data...")
         val_loader = torch.utils.data.DataLoader(
             Dataset(opt, "val"),
-            batch_size=4,
+            batch_size=opt.batch_size,
             shuffle=False,
-            num_workers=0,
+            num_workers=opt.num_workers,
             pin_memory=True,
             drop_last=True
         )

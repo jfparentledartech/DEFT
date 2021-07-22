@@ -1,0 +1,103 @@
+
+                 num_frames  mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 13         120   0.0  1.665344        0.5  0.037037               0                  0            1
+                 num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 14         120   0.0   NaN        NaN     0.0               0                  0            1
+                 num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 15         120  0.111111  0.403195        1.0  0.111111               0                  0            1
+                 num_frames      mota     motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 16         120  0.074074  1.54779   0.666667  0.148148               0                  0            1
+                 num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 17         120  0.037037  0.671933        1.0  0.037037               0                  0            1
+                 num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 18         120  0.037037  0.852481        1.0  0.037037               0                  0            1
+                 num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 19         120  0.037037  0.889592   0.666667  0.074074               0                  0            1
+                 num_frames      mota     motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 20         120  0.481481  0.95566        1.0  0.481481               0                  1            0
+                 num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 21         120  0.111111  1.025279   0.615385  0.296296               0                  1            0
+                 num_frames      mota     motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 22         120  0.074074  0.64761        1.0  0.074074               0                  0            1
+                 num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 23         120  0.037037  0.340558        1.0  0.037037               0                  0            1
+                 num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 24         120  0.222222  0.711646        1.0  0.222222               0                  1            0
+                 num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 25         120  0.037037  0.667238        0.6  0.111111               0                  0            1
+                 num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 26         120  0.074074  0.368711        1.0  0.074074               0                  0            1
+                 num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 27         120  0.037037  0.211707   0.666667  0.074074               0                  0            1
+                 num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 28         120 -0.407407  0.927204   0.304348  0.259259               0                  1            0
+                 num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 29         120  0.111111  0.359393   0.777778  0.259259               0                  1            0
+                 num_frames      mota    motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 30         120  0.222222  0.6671        0.8  0.296296               0                  1            0
+                num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+motorcyclist 7          40   0.0   NaN        NaN     0.0               0                  0            1
+                num_frames  mota  motp  precision  recall
+motorcyclist 7        2547   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+motorcyclist 7          40   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+motorcyclist 8          40   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+motorcyclist 9          40   0.0   NaN        NaN     0.0
+                 num_frames  mota      motp  precision    recall
+motorcyclist 14          40   0.0  1.859727        0.5  0.074074
+                 num_frames  mota      motp  precision    recall
+motorcyclist 15          40   0.0  0.441906        0.5  0.074074
+                num_frames  mota  motp  precision  recall
+motorcyclist 7          40   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+motorcyclist 8          40   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+motorcyclist 9          40   0.0   NaN        NaN     0.0
+                 num_frames  mota  motp  precision  recall
+motorcyclist 10          40   0.0   NaN        NaN     0.0
+                 num_frames  mota  motp  precision  recall
+motorcyclist 13         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 14         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 15         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 16         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 17         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 18         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 19         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 20         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 21         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 22         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 23         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 24         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 25         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 26         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 27         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 28         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 29         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 30         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 31         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 32         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 33         572   NaN   NaN        NaN     NaN
+                 num_frames  mota  motp  precision  recall
+motorcyclist 34         572   NaN   NaN        NaN     NaN

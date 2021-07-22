@@ -484,7 +484,7 @@ def plot_tracking_ddd(
     trans_matrix=None,
     camera_matrix=None,
     distortion_coeffs=None,
-    ct=None
+    classes=None
 ):
     im = np.ascontiguousarray(np.copy(image))
     im_h, im_w = im.shape[:2]
@@ -515,6 +515,7 @@ def plot_tracking_ddd(
         id_text = "{}".format(int(obj_id))
         if ids2 is not None:
             id_text = id_text + ", {}".format(int(ids2[i]))
+        id_text = f'{classes[i]}:{id_text}'
         _line_thickness = 1 if obj_id <= 0 else line_thickness
         color = get_color(abs(obj_id))
         dim = box3d[:3]
@@ -544,7 +545,7 @@ def plot_tracking_ddd(
             (intbox[0], intbox[1] + 30),
             cv2.FONT_HERSHEY_PLAIN,
             text_scale,
-            (0, 0, 255),
+            (0, 255, 0),
             thickness=text_thickness,
         )
 

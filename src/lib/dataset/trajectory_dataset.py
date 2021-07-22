@@ -50,8 +50,6 @@ NUSCENES_TRACKING_NAMES = [
 PIXSET_TRACKING_NAMES = [
     'car',
     'truck',
-    'bus',
-    'trailer',
     'pedestrian',
     'motorcyclist',
     'cyclist',

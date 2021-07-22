@@ -33,7 +33,6 @@ pixset_categories = [
     'car',
     'truck',
     'bus',
-    'trailer',
     'pedestrian',
     'motorcyclist',
     'cyclist',
@@ -158,15 +157,22 @@ def eval_pixset(opt, epoch):
                                                            category=pixset_categories[acc_i])
             accumulators[acc_i].update(gt_list, hyp_list, distances)
 
+    metrics = ['num_frames', 'mota', 'motp', 'precision', 'recall']
 
     for acc_i in range(len(accumulators)):
         mh = mm.metrics.create()
         summary = mh.compute(accumulators[acc_i],
-                             metrics=['num_frames', 'mota', 'motp', 'precision', 'recall', 'mostly_tracked',
-                                      'partially_tracked', 'mostly_lost'],
+                             metrics=metrics,
                              name=f'{pixset_categories[acc_i]} {epoch}')
-        print(summary)
         save_summary(summary, f'{pixset_categories[acc_i]}')
+
+    summary = mh.compute_many(
+        accumulators, names=[f'{pc} {epoch}' for pc in pixset_categories], metrics=metrics, generate_overall=True
+    )
+    print('-------------------')
+    print(summary)
+    save_summary(summary, 'overall')
+    print('-------------------')
     bar.finish()
 
 

@@ -3,7 +3,10 @@ from __future__ import division
 from __future__ import print_function
 
 import os
+import time
+
 import cv2
+import matplotlib.pyplot as plt
 import numpy as np
 from progress.bar import Bar
 import torch
@@ -21,24 +24,23 @@ pixset_categories = [
     'car',
     'truck',
     'bus',
-    'trailer',
     'pedestrian',
     'motorcyclist',
     'cyclist',
     'van'
 ]
 
-opt = opts().parse()
+# opt = opts().parse()
 
 filename = '../options/test_opt_pixset.txt'
-with open(filename, 'wb') as f:
-    pickle.dump(opt, f)
-    # print('dataset -> ', opt.dataset)
-    print('lstm -> ', opt.lstm)
+# with open(filename, 'wb') as f:
+#     pickle.dump(opt, f)
+#     # print('dataset -> ', opt.dataset)
+#     print('lstm -> ', opt.lstm)
     # print(f'saved {filename}')
-# with open(filename, 'rb') as f:
-#     opt = pickle.load(f)
-    # opt.use_pixell = False
+with open(filename, 'rb') as f:
+    opt = pickle.load(f)
+    opt.use_pixell = False
 
 from lib.detector import Detector
 from lib.utils.image import plot_tracking, plot_tracking_ddd
@@ -47,7 +49,7 @@ import json
 
 min_box_area = 20
 
-_vehicles = ["car", "truck", "bus", "trailer", "van", "construction_vehicle", "unclassified vehicle"]
+_vehicles = ["car", "truck", "bus", "van"]
 _cycles = ["motorcyclist", "cyclist"]
 _pedestrians = ["pedestrian"]
 attribute_to_id = {
@@ -118,8 +120,6 @@ def prefetch_test(opt):
         os.environ["CUDA_VISIBLE_DEVICES"] = opt.gpus_str
     Dataset = dataset_factory[opt.test_dataset]
     opt = opts().update_dataset_info_and_set_heads(opt, Dataset)
-    print(opt)
-    Logger(opt)
 
     split = "val" if not opt.trainval else "test"
     dataset = Dataset(opt, split)
@@ -169,6 +169,7 @@ def prefetch_test(opt):
     accumulators = [mm.MOTAccumulator(auto_id=True) for _ in pixset_categories]
 
     for ind, (img_id, pre_processed_images, img_info) in enumerate(data_loader):
+        bar.next()
         if ind >= num_iters:
             break
 
@@ -252,6 +253,7 @@ def prefetch_test(opt):
         online_ids = []
         online_ddd_boxes = []
         sample_results = []
+        classes = []
 
         image = pre_processed_images["image"][0].numpy()
 
@@ -262,6 +264,7 @@ def prefetch_test(opt):
             accumulators[acc_i].update(gt_list, hyp_list, distances)
 
         idx = 0
+        print(ind)
         print(accumulators[idx].mot_events.loc[ind])
         mh = mm.metrics.create()
         summary = mh.compute(accumulators[idx], metrics=['num_frames', 'mota', 'precision', 'recall'], name=f'acc {pixset_categories[idx]}')
@@ -274,6 +277,7 @@ def prefetch_test(opt):
             if tlwh[2] * tlwh[3] > min_box_area:
                 online_tlwhs.append(tlwh)
                 online_ids.append(tid)
+                classes.append(t.classe)
 
                 if opt.dataset in ["nuscenes", "pixset"]:
                     online_ddd_boxes.append(t.org_ddd_box)
@@ -338,6 +342,7 @@ def prefetch_test(opt):
                     trans_matrix=img_info["trans_matrix"],
                     camera_matrix=img_info["camera_matrix"],
                     distortion_coeffs=img_info["distortion_coefficients"],
+                    classes=classes,
                 )
             else:
                 online_im = plot_tracking(
@@ -364,14 +369,14 @@ def prefetch_test(opt):
                 for _, ind in confs[: min(500, len(confs))]
             ]
 
-        for acc_i in range(len(accumulators)):
-            mh = mm.metrics.create()
-            summary = mh.compute(accumulators[acc_i],
-                                 metrics=['num_frames', 'mota', 'motp', 'precision', 'recall', 'mostly_tracked', 'partially_tracked', 'mostly_lost'],
-                                 name=f'{pixset_categories[acc_i]}')
-            print(summary)
-            save_summary(summary, f'{pixset_categories[acc_i]}')
-        json.dump(ret, open(results_dir + "/results.json", "w"))
+
+        mh = mm.metrics.create()
+        metrics = ['num_frames', 'mota', 'motp', 'precision', 'recall']
+        summary = mh.compute_many(
+            accumulators, names=pixset_categories, metrics=metrics, generate_overall=True
+        )
+        print(summary)
+        save_summary(summary, 'overall')
 
 
 def save_summary(summary, acc_name):

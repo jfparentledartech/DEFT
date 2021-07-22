@@ -1,0 +1,103 @@
+
+            num_frames  mota     motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 13         120   0.5  0.65709       0.75    0.75               1                  1            0
+            num_frames    mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 14         120  0.9125  0.726889   0.950617  0.9625               2                  0            0
+            num_frames    mota     motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 15         120  0.9875  0.44876   0.987654     1.0               2                  0            0
+            num_frames  mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 16         120  0.45  0.895947      0.725   0.725               1                  1            0
+            num_frames    mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 17         120  0.3625  0.805994   0.681818    0.75               1                  1            0
+            num_frames  mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 18         120  0.25  1.208971      0.625   0.625               1                  1            0
+            num_frames    mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 19         120  0.9125  0.741614   0.950617  0.9625               2                  0            0
+            num_frames  mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 20         120   0.5  0.897402   0.753086  0.7625               1                  1            0
+            num_frames  mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 21         120   0.7  0.846183       0.85    0.85               1                  1            0
+            num_frames   mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 22         120  0.625  0.794211   0.804878   0.825               1                  1            0
+            num_frames    mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 23         120  0.9875  0.754062   0.987654     1.0               2                  0            0
+            num_frames    mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 24         120  0.9875  0.619649   0.987654     1.0               2                  0            0
+            num_frames  mota     motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 25         120  0.55  0.49875   0.761905     0.8               1                  1            0
+            num_frames    mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 26         120  0.2625  0.732424   0.626506    0.65               1                  1            0
+            num_frames    mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 27         120  0.4375  0.596664   0.704545   0.775               1                  1            0
+            num_frames  mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 28         120   0.4  0.719253   0.695122  0.7125               1                  1            0
+            num_frames    mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 29         120  0.4625  0.571516    0.72619  0.7625               1                  1            0
+            num_frames   mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 30         120  0.775  0.784493   0.869048  0.9125               2                  0            0
+           num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+cyclist 7          40   0.0   NaN        NaN     0.0               0                  0            2
+           num_frames      mota     motp  precision    recall
+cyclist 7        2547  0.323944  0.84345    0.77451  0.556338
+           num_frames  mota      motp  precision  recall
+cyclist 7          40   0.1  0.882149   0.555556  0.5625
+           num_frames  mota      motp  precision  recall
+cyclist 8          40  0.35  0.699106   0.670732  0.6875
+           num_frames   mota      motp  precision  recall
+cyclist 9          40  0.275  0.867365   0.634146    0.65
+            num_frames    mota      motp  precision  recall
+cyclist 14          40  0.2375  1.012799   0.617284   0.625
+            num_frames    mota      motp  precision  recall
+cyclist 15          40  0.5125  0.664035   0.753086  0.7625
+           num_frames  mota      motp  precision  recall
+cyclist 7          40   0.4  0.760838   0.686047  0.7375
+           num_frames    mota      motp  precision  recall
+cyclist 8          40  0.2125  0.728185        0.6  0.6375
+           num_frames  mota      motp  precision  recall
+cyclist 9          40   0.2  0.640069        0.6  0.6375
+            num_frames    mota      motp  precision  recall
+cyclist 10          40  0.2875  0.667615   0.638554  0.6625
+            num_frames      mota      motp  precision    recall
+cyclist 13         572 -3.026316  1.502422   0.008547  0.026316
+            num_frames      mota      motp  precision    recall
+cyclist 14         572 -1.631579  0.878307   0.015625  0.026316
+            num_frames      mota      motp  precision    recall
+cyclist 15         572 -1.157895  1.776932       0.06  0.078947
+            num_frames      mota      motp  precision    recall
+cyclist 16         572 -1.368421  1.588245   0.018519  0.026316
+            num_frames      mota      motp  precision    recall
+cyclist 17         572 -1.578947  1.345444   0.046154  0.078947
+            num_frames      mota      motp  precision    recall
+cyclist 18         572 -0.947368  1.790769   0.108696  0.131579
+            num_frames      mota     motp  precision    recall
+cyclist 19         572 -1.394737  1.60002   0.065574  0.105263
+            num_frames      mota      motp  precision    recall
+cyclist 20         572 -1.657895  1.571572   0.069444  0.131579
+            num_frames      mota      motp  precision    recall
+cyclist 21         572 -1.473684  0.987422   0.033898  0.052632
+            num_frames      mota      motp  precision    recall
+cyclist 22         572 -1.289474  1.683743   0.037736  0.052632
+            num_frames      mota      motp  precision    recall
+cyclist 23         572 -1.421053  1.811292   0.034483  0.052632
+            num_frames      mota      motp  precision    recall
+cyclist 24         572 -1.473684  1.807133   0.033333  0.052632
+            num_frames      mota     motp  precision    recall
+cyclist 25         572 -1.157895  1.73816   0.021739  0.026316
+            num_frames      mota      motp  precision    recall
+cyclist 26         572 -1.815789  1.409172   0.052632  0.105263
+            num_frames      mota      motp  precision    recall
+cyclist 27         572 -0.947368  1.900322       0.05  0.052632
+            num_frames      mota      motp  precision    recall
+cyclist 28         572 -1.289474  1.786957   0.037736  0.052632
+            num_frames      mota      motp  precision    recall
+cyclist 29         572 -1.078947  1.714897   0.044444  0.052632
+            num_frames      mota     motp  precision    recall
+cyclist 30         572 -1.526316  1.71848   0.046875  0.078947
+            num_frames      mota      motp  precision    recall
+cyclist 31         572 -1.473684  1.673345   0.048387  0.078947
+            num_frames      mota      motp  precision    recall
+cyclist 32         572 -1.473684  1.856196   0.017241  0.026316
+            num_frames      mota      motp  precision    recall
+cyclist 33         572 -1.052632  1.675177   0.083333  0.105263
+            num_frames      mota      motp  precision    recall
+cyclist 34         572 -1.342105  1.846727   0.052632  0.078947

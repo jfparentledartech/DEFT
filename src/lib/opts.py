@@ -44,7 +44,8 @@ class opts(object):
 
         self.parser.add_argument(
             "--lstm",
-            default=True,
+            # default=False,
+            action="store_true",
             help="if True, use LSTM, otherwise use Kalman Filter",
         )
         self.parser.add_argument(

@@ -137,7 +137,7 @@ except:
     # filename = '/home/jfparent/Documents/Stage/DEFT/options/test_opt_pixset.txt'
     with open(filename, 'rb') as f:
         opt = pickle.load(f)
-        print(opt.lstm)
+        print('tracker opt.lstm', opt.lstm)
         if isinstance(opt.lstm, str):
             opt.lstm = bool(strtobool(opt.lstm))
 

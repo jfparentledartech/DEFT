@@ -1,0 +1,103 @@
+
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 13         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 14         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 15         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 16         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 17         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 18         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 19         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 20         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 21         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 22         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 23         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 24         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 25         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 26         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 27         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 28         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 29         120   NaN   NaN        NaN     NaN               0                  0            0
+          num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 30         120   NaN   NaN        NaN     NaN               0                  0            0
+         num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+truck 7          40   NaN   NaN        NaN     NaN               0                  0            0
+         num_frames      mota      motp  precision    recall
+truck 7        2547 -0.186813  0.959861   0.095238  0.021978
+         num_frames  mota  motp  precision  recall
+truck 7          40   NaN   NaN        NaN     NaN
+         num_frames  mota  motp  precision  recall
+truck 8          40   NaN   NaN        NaN     NaN
+         num_frames  mota  motp  precision  recall
+truck 9          40   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 14          40   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 15          40   NaN   NaN        NaN     NaN
+         num_frames  mota  motp  precision  recall
+truck 7          40   NaN   NaN        NaN     NaN
+         num_frames  mota  motp  precision  recall
+truck 8          40   NaN   NaN        NaN     NaN
+         num_frames  mota  motp  precision  recall
+truck 9          40   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 10          40   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 13         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 14         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 15         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 16         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 17         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 18         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 19         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 20         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 21         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 22         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 23         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 24         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 25         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 26         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 27         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 28         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 29         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 30         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 31         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 32         572   NaN   NaN        NaN     NaN
+          num_frames  mota  motp  precision  recall
+truck 33         572  -inf   NaN        0.0     NaN
+          num_frames  mota  motp  precision  recall
+truck 34         572   NaN   NaN        NaN     NaN

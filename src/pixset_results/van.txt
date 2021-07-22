@@ -1,0 +1,103 @@
+
+        num_frames      mota     motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 13         120 -0.055556  1.31247   0.458333  0.305556               0                  1            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 14         120  0.277778  1.199727   0.678571  0.527778               0                  1            0
+        num_frames      mota      motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+van 15         120 -0.555556  1.591633   0.321429     0.5               0                  1            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 16         120  0.222222  0.917563   0.605263  0.638889               0                  1            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 17         120 -0.111111  0.928048   0.462963  0.694444               0                  1            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 18         120  0.444444  0.728981        0.7  0.777778               0                  1            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 19         120 -0.027778  0.720897   0.489796  0.666667               0                  1            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 20         120 -0.055556  0.915757   0.483871  0.833333               1                  0            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 21         120  0.083333  0.483821    0.52459  0.888889               1                  0            0
+        num_frames  mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 22         120 -0.25  0.954885   0.432836  0.805556               1                  0            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 23         120  0.111111  0.795846   0.541667  0.722222               0                  1            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 24         120 -0.388889  0.919063   0.383333  0.638889               0                  1            0
+        num_frames      mota     motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 25         120  0.565789  0.84355   0.794521  0.763158               0                  1            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 26         120  0.815789  0.657737        1.0  0.815789               1                  0            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 27         120  0.552632  0.792309   0.977273  0.565789               0                  1            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 28         120  0.552632  0.687864        1.0  0.552632               0                  1            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 29         120  0.736842  0.707108   0.966667  0.763158               0                  1            0
+        num_frames      mota      motp  precision    recall  mostly_tracked  partially_tracked  mostly_lost
+van 30         120  0.697368  0.938583   0.884058  0.802632               1                  0            0
+       num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+van 7          40   0.0   NaN        NaN     0.0               0                  0            1
+       num_frames      mota  motp  precision  recall
+van 7        2547 -0.144737   NaN        0.0     0.0
+       num_frames  mota  motp  precision  recall
+van 7          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 8          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 9          40   0.0   NaN        NaN     0.0
+        num_frames      mota      motp  precision    recall
+van 14          40  0.583333  0.732849   0.769231  0.833333
+        num_frames  mota      motp  precision    recall
+van 15          40   0.5  1.251206   0.736842  0.777778
+       num_frames  mota  motp  precision  recall
+van 7          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 8          40   0.0   NaN        NaN     0.0
+       num_frames      mota      motp  precision    recall
+van 9          40  0.055556  0.974236        1.0  0.055556
+        num_frames      mota      motp  precision  recall
+van 10          40  0.972222  0.484576   0.972973     1.0
+        num_frames  mota  motp  precision  recall
+van 13         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 14         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 15         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 16         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 17         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 18         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 19         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 20         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 21         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 22         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 23         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 24         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 25         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 26         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 27         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 28         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 29         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 30         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 31         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 32         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 33         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 34         572   NaN   NaN        NaN     NaN

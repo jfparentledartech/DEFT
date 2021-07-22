@@ -10,11 +10,10 @@ map_categories_to_id = {
     'car': 0,
     'truck': 1,
     'bus': 2,
-    'trailer': 3,
-    'pedestrian': 4,
-    'motorcyclist': 5,
-    'cyclist': 6,
-    'van': 7
+    'pedestrian': 3,
+    'motorcyclist': 4,
+    'cyclist': 5,
+    'van': 6
 }
 
 map_id_to_category = inv_map = {v: k for k, v in map_categories_to_id.items()}
@@ -36,7 +35,7 @@ def compute_metrics(ground_truths, hypothesis, eval_type='distance', im=None, ca
         if gt_category == category:
             max_range = category_max_range(config, gt_category)
             if gt['depth'].item() <= max_range:
-                    gt_to_keep.append(gt)
+                gt_to_keep.append(gt)
     ground_truths = gt_to_keep
 
     hyp_to_keep = []
@@ -52,8 +51,10 @@ def compute_metrics(ground_truths, hypothesis, eval_type='distance', im=None, ca
                     hyp_to_keep.append(hyp)
     hypothesis = hyp_to_keep
 
-    gt_list = list(range(1,len(ground_truths)+1))
-    hyp_list = list(range(1,len(hypothesis)+1))
+    # gt_list = list(range(1,len(ground_truths)+1))
+    gt_list = [ground_truths[gt_i]['track_id'].item() for gt_i in range(len(ground_truths))]
+    # hyp_list = list(range(1,len(hypothesis)+1))
+    hyp_list = [hypothesis[hyp_i].track_id for hyp_i in range(len(hypothesis))]
 
     if eval_type == 'distance':
         distances = []
@@ -69,7 +70,7 @@ def compute_metrics(ground_truths, hypothesis, eval_type='distance', im=None, ca
                 x, y, w, h = hypothesis[hyp].tlwh
                 hyp_centroid_ct = (x + w / 2, (y + h / 2))
                 hyp_centroids.append(hyp_centroid_ct)
-                distances[gt].append(distance(gt_centroid, hyp_centroid, config['dist_th_tp']))
+                distances[gt].append(distance(gt_centroid, hyp_centroid, config['dist_th_tp'], category))
 
         if DEBUG:
             gt_x, gt_y = np.asarray([ground_truths[i]['amodel_center'][0] for i in range(len(ground_truths))]), np.asarray([ground_truths[i]['amodel_center'][1] for i in range(len(ground_truths))])
@@ -107,9 +108,13 @@ def compute_metrics(ground_truths, hypothesis, eval_type='distance', im=None, ca
     return gt_list, hyp_list, distances
 
 
-def distance(point1, point2, max_distance):
+def distance(point_gt, point_hyp, max_distance, category):
     # d = np.linalg.norm(np.array(point1[:2]) - np.array(point2[:2])) # TODO verify
-    d = np.linalg.norm(np.array(point1[1:]) - np.array(point2[1:]))
+    d = np.linalg.norm(np.array(point_gt[1:]) - np.array(point_hyp[1:]))
+    # if category == 'cyclist':
+        # print(point_gt)
+        # print(point_hyp)
+        # print('-----')
     if d < max_distance:
         return d
     else:
@@ -128,8 +133,6 @@ def outside_fov(tlwh, im):
     hyp_centroid_right = (x + w, (y + h / 2))
 
     if DEBUG:
-        # print(x < crop_left or (x + w) > 1440 - crop_right)
-        # if (x < crop_left or (x + w) > 1440 - crop_right):
         plt.scatter(hyp_centroid_ct[0], hyp_centroid_ct[1])
         plt.scatter(hyp_centroid_left[0], hyp_centroid_left[1])
         plt.scatter(hyp_centroid_right[0], hyp_centroid_right[1])

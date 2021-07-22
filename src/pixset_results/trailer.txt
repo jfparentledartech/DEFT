@@ -1,0 +1,39 @@
+
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 13         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 14         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 15         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 16         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 17         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 18         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 19         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 20         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 21         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 22         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 23         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 24         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 25         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 26         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 27         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 28         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 29         120   NaN   NaN        NaN     NaN               0                  0            0
+            num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 30         120   NaN   NaN        NaN     NaN               0                  0            0
+           num_frames  mota  motp  precision  recall  mostly_tracked  partially_tracked  mostly_lost
+trailer 7          40   NaN   NaN        NaN     NaN               0                  0            0

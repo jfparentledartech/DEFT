@@ -17,13 +17,11 @@ from ..trajectory_dataset import TrajectoryDataset
 
 
 class PixSet(GenericDataset):
-    # default_resolution = [448, 800] # TODO modify
-    default_resolution = [320, 1440] # TODO modify
+    default_resolution = [320, 1440]
     class_name = [
         'car',
         'truck',
         'bus',
-        'trailer',
         'pedestrian',
         'motorcyclist',
         'cyclist',
@@ -36,7 +34,7 @@ class PixSet(GenericDataset):
     focal_length = 1200
     max_objs = 128
     _tracking_ignored_class = []
-    _vehicles = ["car", "truck", "bus", "trailer"]
+    _vehicles = ["car", "truck", "bus", "van"]
     _cycles = ["motorcycle", "bicycle"]
     _pedestrians = ["pedestrian"]
     attribute_to_id = {
@@ -57,7 +55,6 @@ class PixSet(GenericDataset):
             'car',
             'truck',
             'bus',
-            'trailer',
             'pedestrian',
             'motorcyclist',
             'cyclist',
@@ -284,13 +281,11 @@ class PixSet(GenericDataset):
 
 
 class PixSet_prediction(TrajectoryDataset):
-    # default_resolution = [448, 800]
     default_resolution = [320, 1440]
     class_name = [
         'car',
         'truck',
         'bus',
-        'trailer',
         'pedestrian',
         'motorcyclist',
         'cyclist',
@@ -304,7 +299,7 @@ class PixSet_prediction(TrajectoryDataset):
     max_objs = 128
     _tracking_ignored_class = []
     # _tracking_ignored_class = ["traffic_cone", "stop sign", "traffic light", "traffic sign", "fire hydrant", "barrier"]
-    _vehicles = ["car", "truck", "bus", "trailer", "van", "construction_vehicle", "unclassified vehicle"]
+    _vehicles = ["car", "truck", "bus", "van"]
     _cycles = ["motorcyclist", "cyclist"]
     _pedestrians = ["pedestrian"]
     attribute_to_id = {
