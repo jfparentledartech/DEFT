@@ -101,3 +101,415 @@ van 32         572   NaN   NaN        NaN     NaN
 van 33         572   NaN   NaN        NaN     NaN
         num_frames  mota  motp  precision  recall
 van 34         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+van 47          40   0.0   NaN        NaN     0.0
+        num_frames      mota      motp  precision    recall
+van 48          40  0.333333  0.510916   0.733333  0.611111
+        num_frames      mota      motp  precision  recall
+van 49          40 -0.055556  1.131137   0.486486     0.5
+        num_frames      mota      motp  precision    recall
+van 50          40  0.111111  0.521034   0.571429  0.444444
+        num_frames  mota  motp  precision  recall
+van 51          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 52          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 53          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 2          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 3          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 4          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 5          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 6          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 7          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 8          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 9          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 10          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 11          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 12          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 13          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 14          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 15          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 16          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 17          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 18          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 19          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 20          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 21          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 22          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 23          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 24          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 25          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 26          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 27          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 28          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 29          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 30          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 31          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 32          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 33          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 34          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 35          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 36          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 37          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 38          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 39          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 40          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 41          40   0.0   NaN        NaN     0.0
+        num_frames      mota  motp  precision  recall
+van 42          40 -0.027778   NaN        0.0     0.0
+        num_frames  mota  motp  precision  recall
+van 43          40   0.0   NaN        NaN     0.0
+        num_frames      mota  motp  precision  recall
+van 44          40 -0.027778   NaN        0.0     0.0
+        num_frames  mota  motp  precision  recall
+van 45          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 46          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 47          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 48          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 49          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 50          40   0.0   NaN        NaN     0.0
+        num_frames      mota  motp  precision  recall
+van 51          40 -0.055556   NaN        0.0     0.0
+        num_frames  mota  motp  precision  recall
+van 52          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 53          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 54          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 55          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 56          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 57          40   0.0   NaN        NaN     0.0
+        num_frames      mota  motp  precision  recall
+van 58          40 -0.055556   NaN        0.0     0.0
+        num_frames  mota  motp  precision  recall
+van 59          40   0.0   NaN        NaN     0.0
+        num_frames      mota  motp  precision  recall
+van 60          40 -0.027778   NaN        0.0     0.0
+        num_frames  mota  motp  precision  recall
+van 61          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 62          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 63          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 64          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 65          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 66          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 67          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 68          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 69          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 70          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 71          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 72          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 73          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 74          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 75          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 2          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 3          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 4          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 5          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 6          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 7          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 8          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 9          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 10          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 11          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 12          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 13          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 14          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 15          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 16          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 17          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 18          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 19          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 20          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 21          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 22          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 23          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 24          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 25          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 26          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 27          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 28          40   0.0   NaN        NaN     0.0
+        num_frames      mota  motp  precision  recall
+van 29          40 -0.055556   NaN        0.0     0.0
+        num_frames  mota  motp  precision  recall
+van 30          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 31          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 32          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 33          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 34          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 35          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 36          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 37          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 38          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 39          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 40          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 41          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 42          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 43          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 44          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 45          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 46          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 47          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 48          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 49          40   0.0   NaN        NaN     0.0
+        num_frames      mota  motp  precision  recall
+van 50          40 -0.138889   NaN        0.0     0.0
+        num_frames  mota  motp  precision  recall
+van 51          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 52          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 53          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 54          40   0.0   NaN        NaN     0.0
+        num_frames      mota  motp  precision  recall
+van 55          40 -0.027778   NaN        0.0     0.0
+        num_frames  mota  motp  precision  recall
+van 56          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 57          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 58          40   0.0   NaN        NaN     0.0
+        num_frames      mota  motp  precision  recall
+van 59          40 -0.083333   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 60          40 -0.027778   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 61          40 -0.083333   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 62          40 -0.194444   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 63          40 -0.111111   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 64          40 -0.055556   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 65          40 -0.138889   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 66          40 -0.055556   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 67          40 -0.055556   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 68          40 -0.138889   NaN        0.0     0.0
+        num_frames  mota  motp  precision  recall
+van 69          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 70          40   0.0   NaN        NaN     0.0
+        num_frames      mota  motp  precision  recall
+van 71          40 -0.138889   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 72          40 -0.111111   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 73          40 -0.083333   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 74          40 -0.055556   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 75          40 -0.083333   NaN        0.0     0.0
+        num_frames  mota  motp  precision  recall
+van 76          40   0.0   NaN        NaN     0.0
+        num_frames      mota  motp  precision  recall
+van 77          40 -0.083333   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 78          40 -0.027778   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 79          40 -0.138889   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 80          40 -0.083333   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 81          40 -0.111111   NaN        0.0     0.0
+        num_frames  mota  motp  precision  recall
+van 82          40   0.0   NaN        NaN     0.0
+        num_frames      mota  motp  precision  recall
+van 83          40 -0.055556   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 84          40 -0.222222   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 85          40 -0.027778   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+van 86          40 -0.083333   NaN        0.0     0.0
+       num_frames  mota  motp  precision  recall
+van 3        1024   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 4        1024   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 5        1024   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 6        1024   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 7        1024   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 8        1024   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+van 9        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 10        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 11        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 12        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 13        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 14        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 15        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 16        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 17        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 18        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 19        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 20        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 21        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 22        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 23        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 24        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 25        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 26        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 27        1024   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+van 28        1024   0.0   NaN        NaN     0.0
+        num_frames     mota     motp  precision    recall
+van 11       15663 -0.05668  0.91425   0.319767  0.044534
+        num_frames      mota      motp  precision    recall
+van 12          40  0.444444  0.826942        0.8  0.666667
+        num_frames      mota  motp  precision  recall
+van 13          40 -0.027778   NaN        0.0     0.0
+        num_frames      mota      motp  precision    recall
+van 15          40  0.027778  0.973389       0.75  0.166667
+        num_frames      mota      motp  precision  recall
+van 16          40 -0.027778  0.830569     0.5625    0.25
+        num_frames  mota  motp  precision  recall
+van 17          40   0.0   NaN        NaN     0.0
+        num_frames      mota      motp  precision    recall
+van 18          40 -0.194444  0.376766     0.4375  0.194444
+        num_frames      mota      motp  precision  recall
+van 19          40  0.472222  1.034521   0.771429    0.75
+        num_frames      mota      motp  precision    recall
+van 20          40  0.055556  0.705304   0.636364  0.194444
+        num_frames      mota      motp  precision    recall
+van 21          40  0.055556  0.444861        0.8  0.111111
+        num_frames      mota      motp  precision    recall
+van 22          40  0.333333  0.703368   0.894737  0.472222
+        num_frames      mota     motp  precision  recall
+van 23          40  0.111111  1.09157       0.75    0.25
+        num_frames      mota     motp  precision    recall
+van 24          40  0.777778  0.98131   0.891892  0.916667
+        num_frames      mota      motp  precision    recall
+van 25          40  0.555556  0.669522   0.888889  0.666667

@@ -101,3 +101,415 @@ car 32         572  0.436162  0.674747   0.739344  0.715305
 car 33         572  0.504362  0.592238   0.773322  0.749405
         num_frames      mota      motp  precision    recall
 car 34         572  0.569389  0.577705   0.805578  0.778747
+        num_frames      mota      motp  precision    recall
+car 47          40  0.578035  0.700343      0.904  0.653179
+        num_frames      mota      motp  precision    recall
+car 48          40  0.647399  0.854363   0.938462  0.705202
+        num_frames      mota      motp  precision    recall
+car 49          40  0.491329  0.785063   0.853659  0.606936
+        num_frames      mota      motp  precision    recall
+car 50          40  0.630058  0.676293   0.936508  0.682081
+        num_frames  mota  motp  precision  recall
+car 51          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 52          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 53          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 2          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 3          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 4          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 5          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 6          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 7          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 8          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 9          40   0.0   NaN        NaN     0.0
+        num_frames      mota      motp  precision    recall
+car 10          40 -0.028902  1.595239   0.357143  0.028902
+        num_frames  mota  motp  precision  recall
+car 11          40   0.0   NaN        NaN     0.0
+        num_frames      mota      motp  precision    recall
+car 12          40 -0.057803  0.867951   0.344828  0.057803
+        num_frames  mota  motp  precision  recall
+car 13          40   0.0   NaN        NaN     0.0
+        num_frames      mota      motp  precision    recall
+car 14          40  0.069364  1.192714   0.894737  0.098266
+        num_frames      mota     motp  precision    recall
+car 15          40  0.011561  0.69253        1.0  0.011561
+        num_frames  mota  motp  precision  recall
+car 16          40   0.0   NaN        NaN     0.0
+        num_frames      mota      motp  precision    recall
+car 17          40 -0.115607  0.726009   0.172414  0.028902
+        num_frames     mota      motp  precision    recall
+car 18          40  0.00578  0.884772   0.534884  0.132948
+        num_frames      mota     motp  precision    recall
+car 19          40  0.052023  0.93041   0.764706  0.075145
+        num_frames      mota      motp  precision   recall
+car 20          40 -0.040462  1.211293   0.451613  0.16185
+        num_frames      mota      motp  precision    recall
+car 21          40 -0.063584  1.384061   0.133333  0.011561
+        num_frames  mota      motp  precision    recall
+car 22          40   0.0  0.755837        0.5  0.075145
+        num_frames      mota      motp  precision    recall
+car 23          40  0.086705  0.946803       0.75  0.156069
+        num_frames      mota     motp  precision    recall
+car 24          40  0.011561  0.83708   0.583333  0.040462
+        num_frames      mota      motp  precision    recall
+car 25          40  0.034682  1.103241   0.888889  0.046243
+        num_frames     mota      motp  precision    recall
+car 26          40  0.00578  1.100328        0.6  0.017341
+        num_frames      mota      motp  precision    recall
+car 27          40 -0.040462  1.068509   0.266667  0.023121
+        num_frames      mota      motp  precision    recall
+car 28          40 -0.017341  1.084243   0.451613  0.080925
+        num_frames      mota      motp  precision    recall
+car 29          40  0.069364  0.784062        0.8  0.092486
+        num_frames      mota      motp  precision    recall
+car 30          40  0.017341  1.008034        0.7  0.040462
+        num_frames      mota      motp  precision    recall
+car 31          40  0.069364  1.102343       0.65  0.150289
+        num_frames      mota      motp  precision    recall
+car 32          40  0.046243  0.901736   0.621622  0.132948
+        num_frames      mota     motp  precision    recall
+car 33          40 -0.156069  1.04975    0.40566  0.248555
+        num_frames  mota      motp  precision    recall
+car 34          40   0.0  0.810501   0.642857  0.052023
+        num_frames      mota  motp  precision  recall
+car 35          40 -0.023121   NaN        0.0     0.0
+        num_frames      mota      motp  precision    recall
+car 36          40  0.040462  1.133415   0.666667  0.138728
+        num_frames      mota      motp  precision    recall
+car 37          40  0.017341  0.787544   0.580645  0.104046
+        num_frames      mota      motp  precision    recall
+car 38          40 -0.011561  0.901769       0.52  0.075145
+        num_frames  mota      motp  precision    recall
+car 39          40   0.0  0.969494   0.525424  0.179191
+        num_frames      mota      motp  precision    recall
+car 40          40 -0.028902  0.929429       0.48  0.208092
+        num_frames      mota      motp  precision    recall
+car 41          40  0.057803  0.837434   0.591549  0.242775
+        num_frames      mota      motp  precision    recall
+car 42          40 -0.028902  1.253248   0.519685  0.381503
+        num_frames      mota      motp  precision    recall
+car 43          40 -0.075145  0.926953   0.434211  0.190751
+        num_frames      mota      motp  precision    recall
+car 44          40 -0.011561  0.707545   0.461538  0.069364
+        num_frames      mota      motp  precision   recall
+car 45          40  0.063584  0.965294   0.617021  0.16763
+        num_frames      mota  motp  precision  recall
+car 46          40 -0.017341   NaN        0.0     0.0
+        num_frames  mota      motp  precision    recall
+car 47          40   0.0  1.123101   0.585366  0.138728
+        num_frames      mota      motp  precision    recall
+car 48          40 -0.011561  1.118743      0.375  0.017341
+        num_frames      mota      motp  precision    recall
+car 49          40 -0.023121  0.903053      0.475  0.109827
+        num_frames      mota      motp  precision    recall
+car 50          40  0.017341  0.696271   0.542373  0.184971
+        num_frames      mota      motp  precision    recall
+car 51          40 -0.028902  0.885283   0.479167  0.132948
+        num_frames      mota      motp  precision    recall
+car 52          40  0.098266  1.299017   0.742857  0.150289
+        num_frames      mota      motp  precision    recall
+car 53          40 -0.034682  1.305172   0.285714  0.023121
+        num_frames      mota     motp  precision    recall
+car 54          40  0.028902  0.93425   0.596154  0.179191
+        num_frames      mota      motp  precision    recall
+car 55          40 -0.011561  0.985954    0.47619  0.115607
+        num_frames     mota      motp  precision    recall
+car 56          40  0.00578  1.004295   0.636364  0.040462
+        num_frames      mota      motp  precision    recall
+car 57          40 -0.017341  1.192178   0.489362  0.132948
+        num_frames      mota  motp  precision  recall
+car 58          40 -0.017341   NaN        0.0     0.0
+        num_frames     mota      motp  precision    recall
+car 59          40 -0.32948  0.988201    0.29661  0.202312
+        num_frames      mota      motp  precision    recall
+car 60          40  0.028902  0.959111   0.585366  0.138728
+        num_frames      mota      motp  precision    recall
+car 61          40 -0.011561  1.039681        0.5  0.150289
+        num_frames  mota      motp  precision    recall
+car 62          40   0.0  1.250079   0.515152  0.196532
+        num_frames      mota      motp  precision    recall
+car 63          40 -0.034682  1.161098   0.457627  0.156069
+        num_frames      mota      motp  precision   recall
+car 64          40 -0.034682  1.178357   0.483333  0.16763
+        num_frames      mota      motp  precision    recall
+car 65          40 -0.109827  0.905658   0.410256  0.184971
+        num_frames      mota      motp  precision    recall
+car 66          40 -0.034682  1.261043   0.457627  0.156069
+        num_frames      mota      motp  precision   recall
+car 67          40 -0.040462  1.176345   0.460317  0.16763
+        num_frames      mota      motp  precision    recall
+car 68          40 -0.080925  1.070156   0.388889  0.121387
+        num_frames      mota     motp  precision    recall
+car 69          40 -0.138728  0.77441   0.392405  0.179191
+        num_frames     mota      motp  precision    recall
+car 70          40  0.00578  1.204505   0.521739  0.138728
+        num_frames      mota     motp  precision    recall
+car 71          40  0.040462  0.93234   0.589744  0.132948
+        num_frames      mota      motp  precision   recall
+car 72          40 -0.057803  1.027675   0.447761  0.17341
+        num_frames      mota      motp  precision    recall
+car 73          40 -0.196532  0.884933   0.357895  0.196532
+        num_frames      mota      motp  precision    recall
+car 74          40 -0.109827  0.857937   0.350877  0.115607
+        num_frames      mota      motp  precision   recall
+car 75          40 -0.052023  1.167637   0.451613  0.16185
+       num_frames  mota  motp  precision  recall
+car 2          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 3          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 4          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 5          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 6          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 7          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 8          40   0.0   NaN        NaN     0.0
+       num_frames      mota      motp  precision    recall
+car 9          40  0.023121  1.204877   0.727273  0.046243
+        num_frames  mota  motp  precision  recall
+car 10          40   0.0   NaN        NaN     0.0
+        num_frames  mota      motp  precision    recall
+car 11          40   0.0  0.962431   0.526316  0.057803
+        num_frames      mota      motp  precision    recall
+car 12          40  0.034682  1.147344        1.0  0.034682
+        num_frames      mota  motp  precision  recall
+car 13          40 -0.017341   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+car 14          40 -0.023121   NaN        0.0     0.0
+        num_frames      mota      motp  precision    recall
+car 15          40  0.034682  0.940046     0.6875  0.063584
+        num_frames  mota  motp  precision  recall
+car 16          40   0.0   NaN        NaN     0.0
+        num_frames      mota     motp  precision    recall
+car 17          40  0.196532  0.92617   0.839286  0.271676
+        num_frames      mota      motp  precision    recall
+car 18          40  0.034682  0.966386   0.722222  0.075145
+        num_frames      mota      motp  precision    recall
+car 19          40 -0.121387  0.943675     0.3875  0.179191
+        num_frames      mota      motp  precision   recall
+car 20          40 -0.011561  0.558177       0.25  0.00578
+        num_frames     mota      motp  precision    recall
+car 21          40  0.00578  0.785973       0.55  0.127168
+        num_frames      mota    motp  precision    recall
+car 22          40 -0.046243  0.6487   0.214286  0.017341
+        num_frames      mota      motp  precision    recall
+car 23          40 -0.092486  1.287022   0.230769  0.034682
+        num_frames      mota      motp  precision    recall
+car 24          40  0.017341  0.846655   0.611111  0.127168
+        num_frames      mota      motp  precision    recall
+car 25          40  0.132948  0.869162   0.815789  0.179191
+        num_frames  mota      motp  precision    recall
+car 26          40   0.0  1.128324       0.52  0.075145
+        num_frames      mota      motp  precision    recall
+car 27          40  0.040462  1.109245    0.62963  0.098266
+        num_frames      mota      motp  precision    recall
+car 28          40 -0.023121  1.075895       0.45  0.104046
+        num_frames      mota      motp  precision   recall
+car 29          40  0.086705  0.948805        0.7  0.16185
+        num_frames      mota      motp  precision    recall
+car 30          40 -0.023121  1.449707   0.357143  0.028902
+        num_frames      mota      motp  precision    recall
+car 31          40  0.115607  1.072919   0.744681  0.202312
+        num_frames      mota      motp  precision    recall
+car 32          40 -0.231214  1.398047   0.157895  0.052023
+        num_frames      mota     motp  precision    recall
+car 33          40 -0.040462  1.16902   0.392857  0.063584
+        num_frames      mota      motp  precision    recall
+car 34          40  0.063584  0.878244   0.833333  0.086705
+        num_frames      mota      motp  precision    recall
+car 35          40  0.190751  1.078466       0.72  0.416185
+        num_frames      mota     motp  precision    recall
+car 36          40  0.104046  1.01227   0.704545  0.179191
+        num_frames      mota      motp  precision    recall
+car 37          40  0.132948  0.963534   0.777778  0.202312
+        num_frames      mota      motp  precision    recall
+car 38          40  0.057803  1.050635   0.612903  0.219653
+        num_frames      mota      motp  precision    recall
+car 39          40  0.028902  0.903022   0.574468  0.156069
+        num_frames      mota      motp  precision    recall
+car 40          40  0.075145  0.408712   0.675676  0.144509
+        num_frames      mota      motp  precision    recall
+car 41          40  0.063584  0.703271   0.675676  0.144509
+        num_frames      mota      motp  precision    recall
+car 42          40  0.046243  0.672408        0.9  0.052023
+        num_frames      mota      motp  precision    recall
+car 43          40  0.017341  0.803473       0.75  0.034682
+        num_frames  mota  motp  precision  recall
+car 44          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 45          40   0.0   NaN        NaN     0.0
+        num_frames      mota      motp  precision    recall
+car 46          40 -0.028902  1.202662   0.510638  0.138728
+        num_frames      mota  motp  precision  recall
+car 47          40 -0.011561   NaN        0.0     0.0
+        num_frames      mota  motp  precision  recall
+car 48          40 -0.028902   NaN        0.0     0.0
+        num_frames      mota      motp  precision    recall
+car 49          40  0.011561  0.518774   0.583333  0.040462
+        num_frames  mota  motp  precision  recall
+car 50          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 51          40   0.0   NaN        NaN     0.0
+        num_frames      mota     motp  precision    recall
+car 52          40  0.028902  0.97975      0.625  0.115607
+        num_frames      mota      motp  precision    recall
+car 53          40 -0.040462  0.578287   0.230769  0.017341
+        num_frames      mota      motp  precision    recall
+car 54          40  0.028902  1.076342   0.727273  0.046243
+        num_frames     mota      motp  precision    recall
+car 55          40  0.00578  1.094537    0.52381  0.063584
+        num_frames      mota      motp  precision    recall
+car 56          40  0.017341  1.546115        1.0  0.017341
+        num_frames  mota      motp  precision    recall
+car 57          40   0.0  0.910761        0.5  0.069364
+        num_frames      mota      motp  precision    recall
+car 58          40 -0.034682  1.140413   0.285714  0.023121
+        num_frames     mota      motp  precision    recall
+car 59          40 -0.00578  1.312384   0.428571  0.017341
+        num_frames      mota      motp  precision    recall
+car 60          40  0.017341  0.759248   0.588235  0.057803
+        num_frames      mota      motp  precision    recall
+car 61          40  0.017341  1.006073   0.542857  0.109827
+        num_frames      mota      motp  precision    recall
+car 62          40  0.034682  1.016859   0.612903  0.109827
+        num_frames      mota      motp  precision    recall
+car 63          40  0.034682  0.976483   0.607143  0.098266
+        num_frames     mota     motp  precision    recall
+car 64          40  0.00578  1.20196   0.521739  0.069364
+        num_frames     mota      motp  precision    recall
+car 65          40 -0.00578  1.149176        0.5  0.080925
+        num_frames      mota      motp  precision    recall
+car 66          40 -0.017341  1.149909   0.466667  0.080925
+        num_frames      mota      motp  precision    recall
+car 67          40  0.011561  0.966025   0.541667  0.075145
+        num_frames      mota      motp  precision    recall
+car 68          40  0.017341  1.068353   0.583333  0.080925
+        num_frames      mota     motp  precision    recall
+car 69          40  0.034682  1.19636    0.62069  0.104046
+        num_frames      mota      motp  precision    recall
+car 70          40  0.040462  0.998461   0.653846  0.098266
+        num_frames      mota      motp  precision    recall
+car 71          40  0.034682  0.966295   0.568182  0.144509
+        num_frames      mota      motp  precision    recall
+car 72          40  0.017341  1.066501     0.5625  0.104046
+        num_frames     mota      motp  precision    recall
+car 73          40 -0.00578  0.817692   0.484848  0.092486
+        num_frames      mota      motp  precision    recall
+car 74          40 -0.011561  1.177454   0.473684  0.104046
+        num_frames  mota      motp  precision    recall
+car 75          40   0.0  1.007592   0.535714  0.086705
+        num_frames     mota      motp  precision    recall
+car 76          40 -0.00578  1.164528   0.513514  0.109827
+        num_frames      mota      motp  precision    recall
+car 77          40 -0.023121  1.303015   0.452381  0.109827
+        num_frames      mota      motp  precision    recall
+car 78          40 -0.011561  0.828391    0.46875  0.086705
+        num_frames      mota      motp  precision    recall
+car 79          40  0.023121  0.888535   0.571429  0.092486
+        num_frames      mota      motp  precision    recall
+car 80          40  0.017341  1.244404       0.56  0.080925
+        num_frames      mota      motp  precision    recall
+car 81          40 -0.011561  0.869107   0.466667  0.080925
+        num_frames     mota      motp  precision    recall
+car 82          40  0.00578  1.109916    0.53125  0.098266
+        num_frames      mota      motp  precision    recall
+car 83          40  0.011561  1.269879   0.566667  0.098266
+        num_frames      mota     motp  precision    recall
+car 84          40 -0.040462  0.88036   0.428571  0.104046
+        num_frames      mota      motp  precision    recall
+car 85          40 -0.011561  1.150334   0.472222  0.098266
+        num_frames     mota      motp  precision    recall
+car 86          40 -0.00578  1.201698   0.487805  0.115607
+       num_frames  mota  motp  precision  recall
+car 3        1024   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 4        1024   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 5        1024   0.0   NaN        NaN     0.0
+       num_frames      mota      motp  precision    recall
+car 6        1024  0.155678  0.727892   0.913907  0.176095
+       num_frames      mota      motp  precision   recall
+car 7        1024  0.202467  0.719415   0.843441  0.25436
+       num_frames      mota      motp  precision  recall
+car 8        1024  0.002977  0.770447   0.550388  0.0604
+       num_frames      mota     motp  precision    recall
+car 9        1024  0.250532  0.50624   0.823974  0.324543
+        num_frames      mota      motp  precision    recall
+car 10        1024  0.214802  0.807393    0.74508  0.338154
+        num_frames      mota     motp  precision   recall
+car 11        1024  0.108039  0.94515   0.682667  0.21778
+        num_frames      mota      motp  precision    recall
+car 12        1024  0.131433  0.633548   0.721925  0.229689
+        num_frames      mota      motp  precision    recall
+car 13        1024  0.150149  0.581139    0.78871  0.207997
+        num_frames      mota      motp  precision    recall
+car 14        1024  0.099532  0.673003   0.665793  0.216078
+        num_frames      mota      motp  precision    recall
+car 15        1024  0.271799  0.660544   0.887039  0.317312
+        num_frames      mota      motp  precision    recall
+car 16        1024  0.256487  0.901604    0.86534  0.314334
+        num_frames      mota      motp  precision    recall
+car 17        1024  0.245002  0.656675   0.840961  0.312633
+        num_frames      mota      motp  precision    recall
+car 18        1024  0.219481  1.014832   0.796667  0.304977
+        num_frames      mota      motp  precision    recall
+car 19        1024  0.219056  0.738464   0.786481  0.311782
+        num_frames      mota      motp  precision    recall
+car 20        1024  0.128031  1.022152   0.683603  0.251808
+        num_frames      mota      motp  precision    recall
+car 21        1024  0.226712  0.645706   0.811512  0.305827
+        num_frames      mota      motp  precision    recall
+car 22        1024 -0.048915  1.097781   0.164634  0.011484
+        num_frames      mota      motp  precision    recall
+car 23        1024  0.253934  0.618989   0.826923  0.329222
+        num_frames      mota      motp  precision    recall
+car 24        1024  0.014462  1.439249   0.527551  0.219906
+        num_frames      mota      motp  precision    recall
+car 25        1024  0.276053  0.722414   0.806393  0.375585
+        num_frames      mota      motp  precision    recall
+car 26        1024  0.179923  0.917163   0.710351  0.318162
+        num_frames      mota      motp  precision    recall
+car 27        1024 -0.017014  1.007784    0.48939  0.156954
+        num_frames      mota      motp  precision    recall
+car 28        1024  0.103786  1.057204   0.642933  0.257337
+        num_frames      mota      motp  precision    recall
+car 11       15663  0.218468  0.789468   0.688833  0.490975
+        num_frames     mota      motp  precision    recall
+car 12          40  0.49711  0.672356   0.818841  0.653179
+        num_frames      mota      motp  precision    recall
+car 13          40  0.537572  0.581648   0.836879  0.682081
+        num_frames      mota      motp  precision    recall
+car 15          40  0.618497  0.741134   0.856209  0.757225
+        num_frames      mota      motp  precision    recall
+car 16          40  0.716763  0.584877   0.869822  0.849711
+        num_frames      mota      motp  precision    recall
+car 17          40  0.277457  0.715692   0.728972  0.450867
+        num_frames      mota     motp  precision    recall
+car 18          40  0.450867  1.00058    0.77931  0.653179
+        num_frames      mota      motp  precision    recall
+car 19          40  0.549133  0.530766     0.8125  0.751445
+        num_frames     mota      motp  precision    recall
+car 20          40  0.50289  0.646118   0.796053  0.699422
+        num_frames     mota     motp  precision    recall
+car 21          40  0.49711  0.60279   0.770186  0.716763
+        num_frames      mota    motp  precision    recall
+car 22          40  0.468208  0.6063    0.74269  0.734104
+        num_frames     mota      motp  precision    recall
+car 23          40  0.65896  0.596207   0.853659  0.809249
+        num_frames      mota     motp  precision    recall
+car 24          40  0.526012  0.60032   0.781818  0.745665
+        num_frames      mota      motp  precision   recall
+car 25          40  0.387283  0.690859   0.735484  0.65896

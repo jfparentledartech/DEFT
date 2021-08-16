@@ -109,12 +109,7 @@ def compute_metrics(ground_truths, hypothesis, eval_type='distance', im=None, ca
 
 
 def distance(point_gt, point_hyp, max_distance, category):
-    # d = np.linalg.norm(np.array(point1[:2]) - np.array(point2[:2])) # TODO verify
     d = np.linalg.norm(np.array(point_gt[1:]) - np.array(point_hyp[1:]))
-    # if category == 'cyclist':
-        # print(point_gt)
-        # print(point_hyp)
-        # print('-----')
     if d < max_distance:
         return d
     else:

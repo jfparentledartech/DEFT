@@ -12,7 +12,7 @@ from progress.bar import Bar
 
 from matplotlib.patches import Polygon
 from pioneer.common import linalg
-from pioneer.common.trace_processing import TraceProcessingCollection
+from pioneer.common.trace_processing import TraceProcessingCollection, Realign, ZeroBaseline, Smooth
 
 import _init_paths
 from lib.utils.ddd_utils import draw_box_3d, ddd2locrot
@@ -145,7 +145,7 @@ def p3d_box(box, image_sample, image, annotation_sample, amodel_center, projecte
     plt.scatter(amodel_center[0], amodel_center[1], c='r')
     plt.scatter(projected_center[0], projected_center[1], c='b')
     plt.scatter(x_list, y_list)
-    plt.show()
+    # plt.show()
 
     p_pred[[1, 6]] = p_pred[[6, 1]]
     p_pred[[3, 4]] = p_pred[[4, 3]]
@@ -283,25 +283,27 @@ if __name__ == '__main__':
     }
 
     train_pixset_path = '/home/jfparent/Documents/PixSet/train_dataset/'
-    train_dataset_paths = [train_pixset_path+d for d in os.listdir(train_pixset_path)]
+    # train_dataset_paths = [train_pixset_path+d for d in os.listdir(train_pixset_path)]
 
     test_pixset_path = '/home/jfparent/Documents/PixSet/test_dataset/'
-    test_dataset_paths = [test_pixset_path+d for d in os.listdir(test_pixset_path)]
+    # test_dataset_paths = [test_pixset_path+d for d in os.listdir(test_pixset_path)]
 
-    # train_dataset_paths = [
-    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200721_180421_part41_1800_2500',
-    #     '/home/jfparent/Documents/PixSet/train_dataset/20200706_171559_part27_1170_1370',
-    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200721_164103_part43_3412_4100',
-    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200706_162218_part21_4368_7230',
-    #     # '/home/jfparent/Documents/PixSet/20200706_144800_part25_1224_2100'
-    # ]
-    # #
-    # test_dataset_paths = [
-    #     # '/home/jfparent/Documents/PixSet/20200721_180421_part41_1800_2500',
-    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200706_171559_part27_1170_1370',
-    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200706_162218_part21_4368_7230',
-    #     # '/home/jfparent/Documents/PixSet/20200706_144800_part25_1224_2100'
-    # ]
+    train_dataset_paths = [
+        # '/home/jfparent/Documents/PixSet/train_dataset/20200721_180421_part41_1800_2500',
+        '/home/jfparent/Documents/PixSet/train_dataset/20200706_171559_part27_1170_1370',
+        # '/home/jfparent/Documents/PixSet/train_dataset/20200803_174859_part46_2761_2861', # rain
+        # '/home/jfparent/Documents/PixSet/train_dataset/20200805_002607_part48_2083_2282', # night
+        # '/home/jfparent/Documents/PixSet/train_dataset/20200721_164103_part43_3412_4100',
+        # '/home/jfparent/Documents/PixSet/train_dataset/20200706_162218_part21_4368_7230',
+        # '/home/jfparent/Documents/PixSet/train_dataset/20200706_144800_part25_1224_2100'
+    ]
+
+    test_dataset_paths = [
+        # '/home/jfparent/Documents/PixSet/20200721_180421_part41_1800_2500',
+        # '/home/jfparent/Documents/PixSet/train_dataset/20200706_171559_part27_1170_1370',
+        # '/home/jfparent/Documents/PixSet/train_dataset/20200706_162218_part21_4368_7230',
+        # '/home/jfparent/Documents/PixSet/20200706_144800_part25_1224_2100'
+    ]
 
     category_counters = {
         'train': {},
@@ -321,8 +323,8 @@ if __name__ == '__main__':
 
         bar = Bar(f'Exporting {dataset} ({num_video+1}/{len(train_dataset_paths+test_dataset_paths)})', max=len(sc)*3)
 
-        for sensor_id, camera in enumerate(['flir_bfl_img', 'flir_bfr_img', 'flir_bfc_img']):
-        # for sensor_id, camera in enumerate(['flir_bfc_img']):
+        # for sensor_id, camera in enumerate(['flir_bfl_img', 'flir_bfr_img', 'flir_bfc_img']):
+        for sensor_id, camera in enumerate(['flir_bfc_img']):
 
             for i_frame, frame in enumerate(range(len(sc))):
                 if dataset_path in test_dataset_paths:
@@ -336,18 +338,21 @@ if __name__ == '__main__':
                 # print(f"{i_frame+1}/{len(sc)}")
                 bar.next()
 
-                # waveform_sample = sc[frame][pixell]
-                # waveform_processing = TraceProcessingCollection([])
-                # processed_waveform = waveform_sample.processed_array(waveform_processing)
-                # high_intensity_waveform = processed_waveform[0]
-                # low_intensity_waveform = processed_waveform[1][:,:,:256]
-                # full_waveform = np.concatenate((low_intensity_waveform, high_intensity_waveform), axis=2)
-                #
-                # full_waveforms = {
-                #     'flir_bfl_img': np.concatenate((np.zeros((8,6,768)), full_waveform[:,:30,:]),axis=1),
-                #     'flir_bfc_img': full_waveform[:,30:66,:],
-                #     'flir_bfr_img': np.concatenate((full_waveform[:,:30,:], np.zeros((8,6,768))),axis=1)
-                # }
+                waveform_sample = sc[frame][pixell]
+                preprocess_list = [Realign(-10), ZeroBaseline()]
+                waveform_processing = TraceProcessingCollection(preprocess_list)
+                processed_waveform = waveform_sample.processed_array(waveform_processing)
+
+                high_intensity_waveform = processed_waveform[0]
+                low_intensity_waveform = processed_waveform[1][:,:,:256]
+                full_waveform = np.concatenate((low_intensity_waveform, high_intensity_waveform), axis=2)
+                # full_waveform = processed_waveform
+
+                full_waveforms = {
+                    'flir_bfl_img': np.concatenate((np.zeros((8,6,768)), full_waveform[:,:30,:]),axis=1),
+                    'flir_bfc_img': full_waveform[:,30:66,:],
+                    'flir_bfr_img': np.concatenate((full_waveform[:,:30,:], np.zeros((8,6,768))),axis=1)
+                }
 
                 camera_waveform_crops = (389,378,0,0)
 
@@ -370,9 +375,9 @@ if __name__ == '__main__':
 
                 image.save(image_path)
 
-                # full_waveform = full_waveforms[camera]
+                full_waveform = full_waveforms[camera]
                 waveform_path = f'{pixset_pixell_path}{dataset}_{camera}_pixell_ftrr_{num_image:06d}.npy'
-                # np.save(waveform_path, full_waveform)
+                np.save(waveform_path, full_waveform)
 
                 annotation_sample = sc[frame][annotations]
                 annotation_to_camera_transformation = annotation_sample.compute_transform(referential_or_ds=image_sample.label, ignore_orientation=True)
@@ -389,8 +394,8 @@ if __name__ == '__main__':
 
                 coco_format[split]['images'].append({
                     "id": num_image,
-                    "file_name": image_path.replace('Documents/Stage/', ''),
-                    # "file_name": image_path,
+                    # "file_name": image_path.replace('Documents/Stage/', ''),
+                    "file_name": image_path,
                     "waveform_file_name": waveform_path,
                     "video_id": num_video,
                     "frame_id": i_frame + 1,
@@ -498,8 +503,8 @@ if __name__ == '__main__':
                             print('yaw', ann["rotation_y"])
                             print('unproject alpha2rot_y', rot)
 
-                            # box_3d = p3d_box(detection, image_sample, image, annotation_sample, am_center, projected_centers[i_detection],
-                            #                  loc, ann["dim"], rot)
+                            box_3d = p3d_box(detection, image_sample, image, annotation_sample, am_center, projected_centers[i_detection],
+                                             loc, ann["dim"], rot)
 
                             calib = coco_format[split]['images'][-1]['camera_matrix']
                             projected_box3d = box3d_from_loc_dim_rot(annotation_to_camera_transformation, loc, ann["dim"], rot, calib, dist_coeffs)
@@ -513,8 +518,9 @@ if __name__ == '__main__':
                                 print()
                             im = draw_box_3d(im, projected_box3d, same_color=True)
                             im = im[crop_top:-crop_bottom]
-
                             plt.imshow(im)
+                            # plt.savefig(f'plt_{camera}_cropped_image.png')
+                            # Image.fromarray(np.array(im * 255, dtype='uint8')).save(f'{camera}_cropped_image.png')
                             plt.show()
                             print()
 

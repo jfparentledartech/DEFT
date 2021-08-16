@@ -2,6 +2,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import numpy as np
+
 import _init_paths
 import os
 
@@ -77,7 +79,7 @@ def main(opt):
         param.requires_grad = True
 
 
-    # Uncomment for subset
+    # # Uncomment for subset
     # trainset = Dataset(opt, "train")
     #
     # train_mask = list(range(0, int(len(trainset)/10), 1))
@@ -103,6 +105,15 @@ def main(opt):
         drop_last=True,
     )
 
+    val_loader = torch.utils.data.DataLoader(
+        Dataset(opt, "val"),
+        batch_size=1,
+        shuffle=False,
+        num_workers=0,
+        pin_memory=True,
+        drop_last=True,
+    )
+
     for state in optimizer.state.values():
         for k, v in state.items():
             if isinstance(v, torch.Tensor):
@@ -112,16 +123,21 @@ def main(opt):
 
     print("Starting training...")
     for epoch in range(start_epoch + 1, opt.num_epochs + 1):
+        losses = []
+        val_losses = []
         mark = epoch if opt.save_all else "last"
 
         num_iters = len(train_loader) if opt.num_iters < 0 else opt.num_iters
         bar = Bar("{}/{}".format(opt.task, opt.exp_id), max=num_iters)
 
+        model.train()
         for iter_id, (inputs, targets) in enumerate(train_loader):
             inputs = inputs.to(device=device).float()
             targets = targets.to(device=device).view(1, -1).float()
             outputs = model(inputs)
             loss = loss_function(outputs, targets)
+            losses.append(loss.item())
+
             if 100 * loss.item() < 20:
                 loss = 100 * loss
             else:
@@ -130,22 +146,26 @@ def main(opt):
             loss.backward()
             optimizer.step()
 
-            Bar.suffix = "{phase}: [{0}/{1}][{2}/{3}]|Tot: {total:} |ETA: {eta:} |Loss: {loss:} ".format(
-                epoch,
-                opt.num_epochs,
-                iter_id,
-                num_iters,
-                phase="train",
-                total=bar.elapsed_td,
-                eta=bar.eta_td,
-                loss=loss
-            )
+            if opt.print_iter > 0:  # If not using progress bar
+                if iter_id % opt.print_iter == 0:
+                    print("{}/{}| {}".format(opt.task, opt.exp_id, Bar.suffix))
+
+            del outputs, loss
+
+        model.eval()
+        for iter_id, (inputs, targets) in enumerate(val_loader):
+            inputs = inputs.to(device=device).float()
+            targets = targets.to(device=device).view(1, -1).float()
+            outputs = model(inputs)
+            loss = loss_function(outputs, targets)
+            val_losses.append(loss.item())
 
             if opt.print_iter > 0:  # If not using progress bar
                 if iter_id % opt.print_iter == 0:
                     print("{}/{}| {}".format(opt.task, opt.exp_id, Bar.suffix))
 
             del outputs, loss
+
 
         save_model(
             os.path.join(opt.save_dir, "model_last.pth"), epoch, model, optimizer
@@ -161,6 +181,20 @@ def main(opt):
             lr = opt.lr * (0.1 ** (opt.lr_step.index(epoch) + 1))
             for param_group in optimizer.param_groups:
                 param_group["lr"] = lr
+        Bar.suffix = "{phase}: [{0}/{1}]|Tot: {total:} |ETA: {eta:} |Loss: {loss:} ".format(
+            epoch,
+            opt.num_epochs,
+            phase="train",
+            total=bar.elapsed_td,
+            eta=bar.eta_td,
+            loss=np.mean(losses)
+        )
+
+        logger.write("epoch: {} |".format(epoch))
+        logger.scalar_summary("train_{}".format('loss'), np.mean(losses), epoch)
+        logger.scalar_summary("val_{}".format('loss'), np.mean(val_losses), epoch)
+        logger.write("{} {:8f} | ".format('loss', np.mean(losses)))
+        logger.write("{} {:8f} | ".format('val loss', np.mean(val_losses)))
         bar.next()
 
     logger.close()
@@ -172,7 +206,7 @@ if __name__ == "__main__":
     filename = '../options/train_prediction_opt_pixset.txt'
     with open(filename, 'wb') as f:
         pickle.dump(opt, f)
-        print(f'saved {filename}')
+        # print(f'saved {filename}')
     # with open(filename, 'rb') as f:
     #     opt = pickle.load(f)
     # opt.print_iter = 1

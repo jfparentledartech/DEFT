@@ -6,6 +6,7 @@ import os
 
 import torch
 import torch.utils.data
+from torch.utils import bottleneck
 from lib.opts import opts
 from lib.model.model import create_model, load_model, save_model
 from lib.model.data_parallel import DataParallel
@@ -174,13 +175,12 @@ if __name__ == "__main__":
     filename = '../options/train_opt_pixset.txt'
     with open(filename, 'wb') as f:
         pickle.dump(opt, f)
-        print(f'saved {filename}')
-    # with open('../'+filename, 'rb') as f:
+    #     print(f'saved {filename}')
+    # with open(filename, 'rb') as f:
     #     opt = pickle.load(f)
     # opt.resume = True
     # opt.use_pixell = True
     # opt.eval_val = True
     print(f'Using pixell -> ', opt.use_pixell)
-    print(f'Eval val -> ', opt.eval_val)
-    print(f'Backbone -> ', opt.backbone)
+    print(f'Using lstm -> ', opt.lstm)
     main(opt)

@@ -15,6 +15,7 @@ import logging
 import numpy as np
 from os.path import join
 from .AFE import AFE_module
+from .waveform_subnet import WaveformSubnet
 import torch
 from torch import nn
 import torch.nn.functional as F
@@ -306,13 +307,32 @@ class DLA(nn.Module):
             nn.ReLU(inplace=True),
         )
 
-        # TODO conv3d
         if opt.use_pixell:
-            self.trace_base_layer = nn.Sequential(
-                nn.Conv2d(768, channels[0], kernel_size=3, stride=1, padding=1, bias=False),
-                nn.BatchNorm2d(channels[0], momentum=BN_MOMENTUM),
-                nn.ReLU(inplace=True),
-            )
+            self.waveform_subnet = WaveformSubnet(channels)
+            # self.waveforms_block_1 = nn.Sequential(
+            #     nn.Conv3d(1, 32, kernel_size=3, stride=1, padding=1, bias=False),
+            #     nn.BatchNorm3d(32, momentum=BN_MOMENTUM),
+            #     nn.ReLU(inplace=True),
+            #     nn.AvgPool3d(kernel_size=(8,1,1), stride=(8,1,1)),
+            #     nn.ConvTranspose3d(in_channels=32, out_channels=32, kernel_size=(1,4,4),
+            #                                 stride=(1,4,4), padding=0)
+            # )
+            # self.waveforms_block_2 = nn.Sequential(
+            #     nn.Conv3d(32, 64, kernel_size=3, stride=1, padding=1, bias=False),
+            #     nn.BatchNorm3d(64, momentum=BN_MOMENTUM),
+            #     nn.ReLU(inplace=True),
+            #     nn.AvgPool3d(kernel_size=(8,1,1), stride=(8,1,1)),
+            #     nn.ConvTranspose3d(in_channels=64, out_channels=32, kernel_size=(1,5,5),
+            #                                 stride=(1,5,5), padding=0)
+            # )
+            # self.waveforms_block_3 = nn.Sequential(
+            #     nn.Conv3d(32, 16, kernel_size=3, stride=1, padding=1, bias=False),
+            #     nn.BatchNorm3d(16, momentum=BN_MOMENTUM),
+            #     nn.ReLU(inplace=True),
+            #     nn.AvgPool3d(kernel_size=(12,1,1), stride=(12,1,1)),
+            #     nn.ConvTranspose3d(in_channels=16, out_channels=16, kernel_size=(1,2,2),
+            #                                 stride=(1,2,2), padding=0)
+            # )
             self.half_features = nn.Sequential(
                 nn.Conv2d(32, channels[0], kernel_size=1, stride=1, padding=0, bias=False),
                 nn.BatchNorm2d(channels[0], momentum=BN_MOMENTUM),
@@ -375,6 +395,14 @@ class DLA(nn.Module):
                 nn.BatchNorm2d(channels[0], momentum=BN_MOMENTUM),
                 nn.ReLU(inplace=True),
             )
+        if opt.use_pixell:
+            self.pre_trace_layer = nn.Sequential(
+                nn.Conv2d(
+                    1, channels[0], kernel_size=7, stride=1, padding=3, bias=False
+                ),
+                nn.BatchNorm2d(channels[0], momentum=BN_MOMENTUM),
+                nn.ReLU(inplace=True),
+            )
 
     def _make_level(self, block, inplanes, planes, blocks, stride=1):
         downsample = None
@@ -416,16 +444,27 @@ class DLA(nn.Module):
     def forward(self, x, trace=None, pre_img=None, pre_hm=None, pre_trace=None):
         y = []
         x = self.base_layer(x)
+
+
+        if pre_trace is not None and trace is not None:
+            pass
+            # TODO
+            # trace = trace + self.pre_img_layer(pre_trace)
+
         if trace is not None:
-            trace = self.trace_base_layer(trace) # TODO trace network (conv3d blocks)
-            trace = nnf.interpolate(trace, size=(448, 800), mode='bicubic', align_corners=False)
-            x = torch.cat((x, trace), dim=1)
+            # TODO should be somewhere else
+            # trace = self.waveforms_block_1(trace.unsqueeze(1))
+            # trace = self.waveforms_block_2(trace)
+            # trace = self.waveforms_block_3(trace)
+            trace = self.waveform_subnet(trace.unsqueeze(1))
+            x = torch.cat((x, trace.squeeze(2)), dim=1)
             x = self.half_features(x)
 
         if pre_img is not None:
             x = x + self.pre_img_layer(pre_img)
         if pre_hm is not None:
             x = x + self.pre_hm_layer(pre_hm)
+
         for i in range(6):
             x = getattr(self, "level{}".format(i))(x)
             y.append(x)

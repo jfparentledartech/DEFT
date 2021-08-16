@@ -101,3 +101,415 @@ cyclist 32         572 -1.473684  1.856196   0.017241  0.026316
 cyclist 33         572 -1.052632  1.675177   0.083333  0.105263
             num_frames      mota      motp  precision    recall
 cyclist 34         572 -1.342105  1.846727   0.052632  0.078947
+            num_frames   mota      motp  precision  recall
+cyclist 47          40  0.775  0.770715   0.944444    0.85
+            num_frames    mota      motp  precision  recall
+cyclist 48          40  0.3375  0.799152   0.666667   0.675
+            num_frames   mota      motp  precision  recall
+cyclist 49          40  0.925  0.513783   0.986842  0.9375
+            num_frames  mota      motp  precision  recall
+cyclist 50          40  0.75  0.787536   0.930556  0.8375
+            num_frames  mota  motp  precision  recall
+cyclist 51          40   0.0   NaN        NaN     0.0
+            num_frames  mota  motp  precision  recall
+cyclist 52          40   0.0   NaN        NaN     0.0
+            num_frames  mota  motp  precision  recall
+cyclist 53          40   0.0   NaN        NaN     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 2          40   0.0   NaN        NaN     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 3          40   0.0   NaN        NaN     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 4          40   0.0   NaN        NaN     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 5          40   0.0   NaN        NaN     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 6          40   0.0   NaN        NaN     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 7          40   0.0   NaN        NaN     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 8          40   0.0   NaN        NaN     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 9          40   0.0   NaN        NaN     0.0
+            num_frames  mota  motp  precision  recall
+cyclist 10          40   0.0   NaN        NaN     0.0
+            num_frames    mota      motp  precision  recall
+cyclist 11          40  0.0125  1.148445        1.0  0.0125
+            num_frames  mota  motp  precision  recall
+cyclist 12          40   0.0   NaN        NaN     0.0
+            num_frames  mota  motp  precision  recall
+cyclist 13          40   0.0   NaN        NaN     0.0
+            num_frames  mota  motp  precision  recall
+cyclist 14          40   0.0   NaN        NaN     0.0
+            num_frames    mota      motp  precision  recall
+cyclist 15          40 -0.0625  1.166324   0.391304  0.1125
+            num_frames    mota      motp  precision  recall
+cyclist 16          40 -0.0375  1.719868   0.363636    0.05
+            num_frames    mota      motp  precision  recall
+cyclist 17          40  0.0875  0.709002        1.0  0.0875
+            num_frames  mota      motp  precision  recall
+cyclist 18          40   0.1  1.138009        1.0     0.1
+            num_frames  mota  motp  precision  recall
+cyclist 19          40   0.0   NaN        NaN     0.0
+            num_frames  mota      motp  precision  recall
+cyclist 20          40   0.1  0.735239        1.0     0.1
+            num_frames  mota      motp  precision  recall
+cyclist 21          40  -0.1  1.101501   0.277778  0.0625
+            num_frames    mota      motp  precision  recall
+cyclist 22          40  0.0125  1.448535        0.6  0.0375
+            num_frames    mota  motp  precision  recall
+cyclist 23          40 -0.1375   NaN        0.0     0.0
+            num_frames   mota      motp  precision  recall
+cyclist 24          40 -0.075  1.732802   0.285714    0.05
+            num_frames    mota  motp  precision  recall
+cyclist 25          40 -0.1375   NaN        0.0     0.0
+            num_frames  mota  motp  precision  recall
+cyclist 26          40   0.0   NaN        NaN     0.0
+            num_frames   mota      motp  precision  recall
+cyclist 27          40  0.075  0.530628        1.0   0.075
+            num_frames  mota      motp  precision  recall
+cyclist 28          40  -0.1  1.448001   0.214286  0.0375
+            num_frames  mota     motp  precision  recall
+cyclist 29          40 -0.05  1.38675   0.333333    0.05
+            num_frames  mota      motp  precision  recall
+cyclist 30          40  0.05  0.985313        0.6    0.15
+            num_frames    mota     motp  precision  recall
+cyclist 31          40 -0.2125  1.03257   0.257143  0.1125
+            num_frames    mota      motp  precision  recall
+cyclist 32          40 -0.0375  1.301046   0.384615  0.0625
+            num_frames  mota      motp  precision  recall
+cyclist 33          40   0.0  0.709752        0.5   0.175
+            num_frames    mota      motp  precision  recall
+cyclist 34          40 -0.1125  0.459928       0.32     0.1
+            num_frames   mota      motp  precision  recall
+cyclist 35          40  0.425  0.886263   0.869565     0.5
+            num_frames    mota      motp  precision  recall
+cyclist 36          40 -0.0125  0.877589   0.483871  0.1875
+            num_frames  mota      motp  precision  recall
+cyclist 37          40   0.1  1.320199        0.9  0.1125
+            num_frames   mota      motp  precision  recall
+cyclist 38          40 -0.075  1.154595       0.35  0.0875
+            num_frames    mota      motp  precision  recall
+cyclist 39          40 -0.0875  0.934542   0.442623  0.3375
+            num_frames    mota     motp  precision  recall
+cyclist 40          40 -0.3875  1.37344   0.237288   0.175
+            num_frames   mota      motp  precision  recall
+cyclist 41          40  0.175  0.713894        1.0   0.175
+            num_frames    mota      motp  precision  recall
+cyclist 42          40 -0.3375  1.296366   0.170732  0.0875
+            num_frames   mota     motp  precision  recall
+cyclist 43          40 -0.075  1.56959        0.4    0.15
+            num_frames    mota      motp  precision  recall
+cyclist 44          40  0.1875  1.273817        1.0     0.2
+            num_frames  mota     motp  precision  recall
+cyclist 45          40   0.2  0.70236   0.909091    0.25
+            num_frames    mota      motp  precision  recall
+cyclist 46          40  0.1125  0.748842   0.777778   0.175
+            num_frames    mota    motp  precision  recall
+cyclist 47          40  0.1125  0.5521   0.581818     0.4
+            num_frames    mota     motp  precision  recall
+cyclist 48          40  0.4375  1.03159   0.891304  0.5125
+            num_frames    mota      motp  precision  recall
+cyclist 49          40  0.4625  0.818262   0.952381     0.5
+            num_frames   mota      motp  precision  recall
+cyclist 50          40  0.375  0.870354       0.75  0.5625
+            num_frames    mota      motp  precision  recall
+cyclist 51          40  0.3375  0.746371   0.721311    0.55
+            num_frames   mota      motp  precision  recall
+cyclist 52          40  0.675  0.881379   0.935484   0.725
+            num_frames  mota      motp  precision  recall
+cyclist 53          40  0.45  1.063557   0.776119    0.65
+            num_frames    mota     motp  precision  recall
+cyclist 54          40  0.3375  1.02899   0.833333  0.4375
+            num_frames    mota      motp  precision  recall
+cyclist 55          40  0.2625  0.876765   0.677419   0.525
+            num_frames    mota      motp  precision  recall
+cyclist 56          40  0.3625  0.749313   0.763636   0.525
+            num_frames    mota      motp  precision  recall
+cyclist 57          40 -0.0625  0.844759   0.481481  0.4875
+            num_frames   mota     motp  precision  recall
+cyclist 58          40  0.075  0.64729     0.6875  0.1375
+            num_frames   mota      motp  precision  recall
+cyclist 59          40  0.175  0.614385        1.0     0.2
+            num_frames    mota      motp  precision  recall
+cyclist 60          40  0.2125  0.815036     0.6875  0.4125
+            num_frames    mota      motp  precision  recall
+cyclist 61          40  0.5875  0.794985        0.9   0.675
+            num_frames    mota     motp  precision  recall
+cyclist 62          40  0.6875  0.64996   0.923077    0.75
+            num_frames    mota    motp  precision  recall
+cyclist 63          40  0.7125  0.6793   0.938462  0.7625
+            num_frames    mota      motp  precision  recall
+cyclist 64          40  0.7625  0.599994   0.969697     0.8
+            num_frames    mota      motp  precision  recall
+cyclist 65          40  0.6625  0.667395   0.895522    0.75
+            num_frames   mota      motp  precision  recall
+cyclist 66          40  0.725  0.620204   0.953846   0.775
+            num_frames    mota      motp  precision  recall
+cyclist 67          40  0.7125  0.545888   0.967742    0.75
+            num_frames   mota     motp  precision  recall
+cyclist 68          40  0.675  0.54986   0.911765   0.775
+            num_frames  mota      motp  precision  recall
+cyclist 69          40  0.65  0.662456   0.893939  0.7375
+            num_frames    mota      motp  precision  recall
+cyclist 70          40  0.5875  0.684384   0.929825  0.6625
+            num_frames  mota      motp  precision  recall
+cyclist 71          40  0.65  0.610272   0.921875  0.7375
+            num_frames    mota      motp  precision  recall
+cyclist 72          40  0.5875  0.699839   0.885246   0.675
+            num_frames   mota      motp  precision  recall
+cyclist 73          40  0.575  0.651474   0.850746  0.7125
+            num_frames    mota      motp  precision  recall
+cyclist 74          40  0.5875  0.668834   0.863636  0.7125
+            num_frames    mota      motp  precision  recall
+cyclist 75          40  0.5875  0.579072   0.863636  0.7125
+           num_frames  mota  motp  precision  recall
+cyclist 2          40   0.0   NaN        NaN     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 3          40   0.0   NaN        NaN     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 4          40   0.0   NaN        NaN     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 5          40   0.0   NaN        NaN     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 6          40   0.0   NaN        NaN     0.0
+           num_frames   mota      motp  precision  recall
+cyclist 7          40 -0.075  0.980996      0.125  0.0125
+           num_frames    mota      motp  precision  recall
+cyclist 8          40  0.0125  1.671407   0.555556  0.0625
+           num_frames   mota      motp  precision  recall
+cyclist 9          40  0.125  0.889288   0.916667  0.1375
+            num_frames  mota  motp  precision  recall
+cyclist 10          40   0.0   NaN        NaN     0.0
+            num_frames  mota  motp  precision  recall
+cyclist 11          40   0.0   NaN        NaN     0.0
+            num_frames  mota  motp  precision  recall
+cyclist 12          40 -0.15   NaN        0.0     0.0
+            num_frames   mota      motp  precision  recall
+cyclist 13          40 -0.025  0.609443   0.444444    0.05
+            num_frames   mota      motp  precision  recall
+cyclist 14          40 -0.125  0.451137   0.307692     0.1
+            num_frames  mota  motp  precision  recall
+cyclist 15          40   0.0   NaN        NaN     0.0
+            num_frames   mota      motp  precision  recall
+cyclist 16          40  0.075  1.492874   0.666667   0.175
+            num_frames   mota      motp  precision  recall
+cyclist 17          40  0.125  0.812973   0.823529   0.175
+            num_frames    mota      motp  precision  recall
+cyclist 18          40  0.0875  0.854314    0.62963  0.2125
+            num_frames    mota      motp  precision  recall
+cyclist 19          40  0.1375  1.142192        1.0  0.1375
+            num_frames  mota      motp  precision  recall
+cyclist 20          40   0.2  0.814839   0.774194     0.3
+            num_frames  mota      motp  precision  recall
+cyclist 21          40  0.25  1.042075   0.717391  0.4125
+            num_frames    mota      motp  precision  recall
+cyclist 22          40  0.2125  0.860527        1.0  0.2125
+            num_frames   mota      motp  precision  recall
+cyclist 23          40  0.325  0.976667   0.965517    0.35
+            num_frames   mota      motp  precision  recall
+cyclist 24          40  0.475  0.706054   0.830508  0.6125
+            num_frames   mota      motp  precision  recall
+cyclist 25          40 -0.025  1.496475   0.491228    0.35
+            num_frames   mota      motp  precision  recall
+cyclist 26          40  0.425  0.442385        1.0  0.4375
+            num_frames  mota      motp  precision  recall
+cyclist 27          40   0.6  0.748239   0.901639  0.6875
+            num_frames  mota      motp  precision  recall
+cyclist 28          40  0.25  0.408973   0.956522   0.275
+            num_frames   mota      motp  precision  recall
+cyclist 29          40  0.625  0.867358   0.933333     0.7
+            num_frames   mota      motp  precision  recall
+cyclist 30          40 -0.025  0.855041   0.428571  0.0375
+            num_frames    mota      motp  precision  recall
+cyclist 31          40  0.4375  0.562834        1.0  0.4625
+            num_frames    mota      motp  precision  recall
+cyclist 32          40 -0.2125  1.183632        0.3    0.15
+            num_frames  mota      motp  precision  recall
+cyclist 33          40   0.2  1.033986    0.72093  0.3875
+            num_frames  mota      motp  precision  recall
+cyclist 34          40  -0.2  0.923735   0.403509  0.2875
+            num_frames  mota      motp  precision  recall
+cyclist 35          40  0.45  0.477705        1.0  0.4875
+            num_frames    mota      motp  precision  recall
+cyclist 36          40  0.4375  0.790761   0.843137  0.5375
+            num_frames  mota      motp  precision  recall
+cyclist 37          40  0.45  0.895056        0.8     0.6
+            num_frames    mota      motp  precision  recall
+cyclist 38          40  0.3375  0.747411   0.693333    0.65
+            num_frames   mota      motp  precision  recall
+cyclist 39          40 -0.375  1.487717   0.341176  0.3625
+            num_frames   mota      motp  precision  recall
+cyclist 40          40  0.225  0.693139   0.609756   0.625
+            num_frames    mota      motp  precision  recall
+cyclist 41          40 -0.1875  1.019674   0.390625  0.3125
+            num_frames    mota      motp  precision  recall
+cyclist 42          40 -0.2125  0.562882   0.351852  0.2375
+            num_frames   mota      motp  precision  recall
+cyclist 43          40 -0.275  0.953976      0.275  0.1375
+            num_frames    mota  motp  precision  recall
+cyclist 44          40 -0.0125   NaN        0.0     0.0
+            num_frames  mota  motp  precision  recall
+cyclist 45          40   0.0   NaN        NaN     0.0
+            num_frames  mota  motp  precision  recall
+cyclist 46          40 -0.05   NaN        0.0     0.0
+            num_frames    mota      motp  precision  recall
+cyclist 47          40  0.0375  1.435814        0.8    0.05
+            num_frames   mota      motp  precision  recall
+cyclist 48          40  0.225  0.585874       0.95  0.2375
+            num_frames  mota      motp  precision  recall
+cyclist 49          40  0.15  0.614774   0.882353  0.1875
+            num_frames  mota  motp  precision  recall
+cyclist 50          40   0.0   NaN        NaN     0.0
+            num_frames    mota      motp  precision  recall
+cyclist 51          40  0.1375  1.223498   0.789474  0.1875
+            num_frames  mota      motp  precision  recall
+cyclist 52          40   0.3  0.643345   0.804878  0.4125
+            num_frames   mota      motp  precision  recall
+cyclist 53          40  0.125  1.107886        0.6   0.375
+            num_frames  mota      motp  precision  recall
+cyclist 54          40  0.15  0.914281   0.588235     0.5
+            num_frames  mota      motp  precision  recall
+cyclist 55          40 -0.25  1.598411   0.282609  0.1625
+            num_frames   mota      motp  precision  recall
+cyclist 56          40 -0.425  1.175377       0.18  0.1125
+            num_frames  mota      motp  precision  recall
+cyclist 57          40 -0.25  0.742361   0.373333    0.35
+            num_frames   mota      motp  precision  recall
+cyclist 58          40  0.025  0.887202   0.521739    0.45
+            num_frames   mota      motp  precision  recall
+cyclist 59          40  0.525  0.804163   0.921569  0.5875
+            num_frames  mota      motp  precision  recall
+cyclist 60          40  0.35  0.822261   0.840909  0.4625
+            num_frames    mota      motp  precision  recall
+cyclist 61          40  0.5125  0.890126   0.864407  0.6375
+            num_frames   mota      motp  precision  recall
+cyclist 62          40  0.625  0.921531   0.933333     0.7
+            num_frames    mota    motp  precision  recall
+cyclist 63          40  0.6125  0.7665   0.963636  0.6625
+            num_frames   mota      motp  precision  recall
+cyclist 64          40  0.675  0.803616   0.967213  0.7375
+            num_frames   mota     motp  precision  recall
+cyclist 65          40  0.625  0.93831   0.904762  0.7125
+            num_frames   mota      motp  precision  recall
+cyclist 66          40  0.725  0.799743   0.953846   0.775
+            num_frames    mota      motp  precision  recall
+cyclist 67          40  0.7125  0.915927   0.939394   0.775
+            num_frames  mota      motp  precision  recall
+cyclist 68          40  0.55  0.909195   0.868852  0.6625
+            num_frames  mota      motp  precision  recall
+cyclist 69          40   0.2  0.788454   0.634921     0.5
+            num_frames    mota      motp  precision  recall
+cyclist 70          40  0.1375  0.723901   0.596774  0.4625
+            num_frames    mota      motp  precision  recall
+cyclist 71          40  0.0125  0.606121   0.515152   0.425
+            num_frames    mota      motp  precision  recall
+cyclist 72          40  0.3625  0.863691   0.734375  0.5875
+            num_frames    mota      motp  precision  recall
+cyclist 73          40  0.3125  0.961684   0.728814  0.5375
+            num_frames  mota      motp  precision  recall
+cyclist 74          40  0.25  0.781602   0.661538  0.5375
+            num_frames    mota      motp  precision  recall
+cyclist 75          40  0.1125  0.866424   0.596491   0.425
+            num_frames   mota      motp  precision  recall
+cyclist 76          40  0.175  0.859563   0.633333   0.475
+            num_frames    mota      motp  precision  recall
+cyclist 77          40  0.4125  0.861461   0.765625  0.6125
+            num_frames    mota      motp  precision  recall
+cyclist 78          40  0.0125  0.568133   0.515152   0.425
+            num_frames    mota      motp  precision  recall
+cyclist 79          40 -0.0375  0.580934   0.483333  0.3625
+            num_frames    mota      motp  precision  recall
+cyclist 80          40  0.3375  0.907367   0.733333    0.55
+            num_frames    mota      motp  precision  recall
+cyclist 81          40  0.3125  0.855959   0.703125  0.5625
+            num_frames  mota      motp  precision  recall
+cyclist 82          40  0.15  0.735997   0.606557  0.4625
+            num_frames    mota      motp  precision  recall
+cyclist 83          40  0.1375  0.815772   0.606557  0.4625
+            num_frames  mota      motp  precision  recall
+cyclist 84          40 -0.05  0.578192   0.474576    0.35
+            num_frames  mota      motp  precision  recall
+cyclist 85          40  0.15  0.694323   0.603175   0.475
+            num_frames  mota     motp  precision  recall
+cyclist 86          40   0.1  0.71811    0.57377  0.4375
+           num_frames  mota  motp  precision  recall
+cyclist 3        1024   0.0   NaN        NaN     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 4        1024   0.0   NaN        NaN     0.0
+           num_frames      mota  motp  precision  recall
+cyclist 5        1024 -0.008475   NaN        0.0     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 6        1024   0.0   NaN        NaN     0.0
+           num_frames  mota  motp  precision  recall
+cyclist 7        1024   0.0   NaN        NaN     0.0
+           num_frames      mota      motp  precision    recall
+cyclist 8        1024 -0.025424  0.540677   0.444444  0.101695
+           num_frames      mota      motp  precision    recall
+cyclist 9        1024  0.008475  1.053943        1.0  0.008475
+            num_frames      mota  motp  precision  recall
+cyclist 10        1024 -0.042373   NaN        0.0     0.0
+            num_frames      mota  motp  precision  recall
+cyclist 11        1024 -0.016949   NaN        0.0     0.0
+            num_frames  mota  motp  precision  recall
+cyclist 12        1024   0.0   NaN        NaN     0.0
+            num_frames  mota  motp  precision  recall
+cyclist 13        1024   0.0   NaN        NaN     0.0
+            num_frames  mota      motp  precision    recall
+cyclist 14        1024   0.0  1.704912   0.533333  0.067797
+            num_frames      mota  motp  precision  recall
+cyclist 15        1024 -0.016949   NaN        0.0     0.0
+            num_frames     mota      motp  precision    recall
+cyclist 16        1024 -0.29661  1.524496   0.073171  0.025424
+            num_frames      mota  motp  precision  recall
+cyclist 17        1024 -0.144068   NaN        0.0     0.0
+            num_frames      mota      motp  precision    recall
+cyclist 18        1024 -0.423729  0.612942    0.22093  0.161017
+            num_frames      mota      motp  precision    recall
+cyclist 19        1024  0.262712  1.096426   0.847826  0.330508
+            num_frames      mota     motp  precision    recall
+cyclist 20        1024 -0.338983  1.29094   0.203125  0.110169
+            num_frames      mota      motp  precision    recall
+cyclist 21        1024 -0.245763  0.680178   0.277778  0.127119
+            num_frames      mota  motp  precision  recall
+cyclist 22        1024 -0.254237   NaN        0.0     0.0
+            num_frames      mota      motp  precision    recall
+cyclist 23        1024 -0.101695  0.559274   0.421875  0.228814
+            num_frames      mota      motp  precision    recall
+cyclist 24        1024 -0.364407  0.919783    0.28125  0.228814
+            num_frames      mota      motp  precision    recall
+cyclist 25        1024  0.144068  0.495365   0.641791  0.364407
+            num_frames      mota      motp  precision    recall
+cyclist 26        1024  0.186441  1.191219   0.693548  0.364407
+            num_frames      mota     motp  precision    recall
+cyclist 27        1024  0.262712  0.66946   0.757576  0.423729
+            num_frames      mota      motp  precision    recall
+cyclist 28        1024  0.135593  0.271186   0.862069  0.211864
+            num_frames     mota      motp  precision    recall
+cyclist 11       15663  0.11572  0.659494   0.670027  0.299669
+            num_frames    mota      motp  precision  recall
+cyclist 12          40  0.8625  0.562987   0.879121     1.0
+            num_frames    mota      motp  precision  recall
+cyclist 13          40  0.8875  0.611334   0.908046  0.9875
+            num_frames    mota      motp  precision  recall
+cyclist 15          40  0.8875  0.697136   0.908046  0.9875
+            num_frames  mota      motp  precision  recall
+cyclist 16          40  0.95  0.639831   0.952381     1.0
+            num_frames  mota      motp  precision  recall
+cyclist 17          40  0.35  0.489046   0.679487  0.6625
+            num_frames  mota      motp  precision  recall
+cyclist 18          40  0.95  0.807902   0.952381     1.0
+            num_frames    mota      motp  precision  recall
+cyclist 19          40  0.9625  0.642165   0.963855     1.0
+            num_frames   mota      motp  precision  recall
+cyclist 20          40  0.875  0.672043   0.909091     1.0
+            num_frames   mota      motp  precision  recall
+cyclist 21          40  0.975  0.628886    0.97561     1.0
+            num_frames    mota      motp  precision  recall
+cyclist 22          40  0.6875  0.572944   0.851852  0.8625
+            num_frames   mota      motp  precision  recall
+cyclist 23          40  0.675  0.642037     0.8375  0.8375
+            num_frames  mota      motp  precision  recall
+cyclist 24          40  0.95  0.577182      0.975   0.975
+            num_frames    mota      motp  precision  recall
+cyclist 25          40  0.7875  0.547136   0.888889     0.9

@@ -73,7 +73,8 @@ class FeatureRecorder:
                 if self.dataset == "kitti_tracking":
                     m_frame = 5
                 elif self.dataset in ["nuscenes", "pixset"]:
-                    m_frame = 3
+                    # m_frame = 3  # default value
+                    m_frame = 30
                 if frame_index - pre_index < m_frame:
                     delta = pow(decay, (frame_index - pre_index) / 3.0)
                 else:
@@ -649,6 +650,7 @@ class Tracker(object):
         self.frame_id = 0
         self.buffer_size = int(frame_rate / 30.0 * opt.track_buffer)
         self.max_time_lost = self.buffer_size
+        # self.max_time_lost = 30
         self.max_per_image = opt.max_object
 
         self.kalman_filter = KalmanFilter()

@@ -30,17 +30,17 @@ pixset_categories = [
     'van'
 ]
 
-# opt = opts().parse()
+opt = opts().parse()
 
 filename = '../options/test_opt_pixset.txt'
-# with open(filename, 'wb') as f:
-#     pickle.dump(opt, f)
+with open(filename, 'wb') as f:
+    pickle.dump(opt, f)
 #     # print('dataset -> ', opt.dataset)
-#     print('lstm -> ', opt.lstm)
+    print('lstm -> ', opt.lstm)
     # print(f'saved {filename}')
-with open(filename, 'rb') as f:
-    opt = pickle.load(f)
-    opt.use_pixell = False
+# with open(filename, 'rb') as f:
+#     opt = pickle.load(f)
+#     print('use pixell ->', opt.use_pixell)
 
 from lib.detector import Detector
 from lib.utils.image import plot_tracking, plot_tracking_ddd
@@ -115,13 +115,17 @@ class PrefetchDataset(torch.utils.data.Dataset):
 
 
 def prefetch_test(opt):
+    start_time = time.time()
+
     show_image = True
     if not opt.not_set_cuda_env:
         os.environ["CUDA_VISIBLE_DEVICES"] = opt.gpus_str
     Dataset = dataset_factory[opt.test_dataset]
     opt = opts().update_dataset_info_and_set_heads(opt, Dataset)
 
-    split = "val" if not opt.trainval else "test"
+    # split = "val" if not opt.trainval else "test"
+    split = "test"
+    # split = "val"
     dataset = Dataset(opt, split)
     detector = Detector(opt)
 
@@ -377,6 +381,9 @@ def prefetch_test(opt):
         )
         print(summary)
         save_summary(summary, 'overall')
+
+    print('total test time', time.time() - start_time)
+
 
 
 def save_summary(summary, acc_name):

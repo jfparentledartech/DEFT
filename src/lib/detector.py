@@ -135,7 +135,7 @@ class Detector(object):
             pre_processed = True
 
         if self.opt.use_pixell:
-            trace = np.load(image_info["waveform_file_name"][0]+'.npy')
+            trace = np.load(image_info["waveform_file_name"][0])
         loaded_time = time.time()
         load_time += loaded_time - start_time
 
@@ -355,7 +355,6 @@ class Detector(object):
                 )
 
         if self.dataset == "pixset":
-            # trans_matrix = np.array(image_info["trans_matrix"], np.float32) #TODO trans_matrix convert pixset
             trans_matrix = np.eye(4)
             results_by_class = {}
             ddd_boxes_by_class = {}

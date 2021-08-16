@@ -287,3 +287,1857 @@ motorcyclist 34         572       NaN       NaN        NaN       NaN
 cyclist 34              572 -1.342105  1.846727   0.052632  0.078947
 van 34                  572       NaN       NaN        NaN       NaN
 OVERALL                4004  0.387846       NaN   0.802589  0.635029
+                 num_frames      mota      motp  precision    recall
+car 47                   40  0.578035  0.700343   0.904000  0.653179
+truck 47                 40       NaN       NaN        NaN       NaN
+bus 47                   40       NaN       NaN        NaN       NaN
+pedestrian 47            40       NaN       NaN        NaN       NaN
+motorcyclist 47          40 -1.000000  0.108952   0.034483  0.037037
+cyclist 47               40  0.775000  0.770715   0.944444  0.850000
+van 47                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.427215       NaN   0.805310  0.575949
+                 num_frames      mota      motp  precision    recall
+car 48                   40  0.647399  0.854363   0.938462  0.705202
+truck 48                 40       NaN       NaN        NaN       NaN
+bus 48                   40       NaN       NaN        NaN       NaN
+pedestrian 48            40       NaN       NaN        NaN       NaN
+motorcyclist 48          40 -0.481481  1.292523   0.066667  0.037037
+cyclist 48               40  0.337500  0.799152   0.666667  0.675000
+van 48                   40  0.333333  0.510916   0.733333  0.611111
+OVERALL                 280  0.436709       NaN   0.777344  0.629747
+                 num_frames      mota      motp  precision    recall
+car 49                   40  0.491329  0.785063   0.853659  0.606936
+truck 49                 40       NaN       NaN        NaN       NaN
+bus 49                   40       NaN       NaN        NaN       NaN
+pedestrian 49            40       NaN       NaN        NaN       NaN
+motorcyclist 49          40 -0.518519  0.257597   0.150000  0.111111
+cyclist 49               40  0.925000  0.513783   0.986842  0.937500
+van 49                   40 -0.055556  1.131137   0.486486  0.500000
+OVERALL                 280  0.452532       NaN   0.785156  0.636076
+                 num_frames      mota      motp  precision    recall
+car 50                   40  0.630058  0.676293   0.936508  0.682081
+truck 50                 40       NaN       NaN        NaN       NaN
+bus 50                   40       NaN       NaN        NaN       NaN
+pedestrian 50            40       NaN       NaN        NaN       NaN
+motorcyclist 50          40 -0.222222  0.443214   0.312500  0.185185
+cyclist 50               40  0.750000  0.787536   0.930556  0.837500
+van 50                   40  0.111111  0.521034   0.571429  0.444444
+OVERALL                 280  0.528481       NaN   0.851240  0.651899
+                 num_frames  mota  motp  precision  recall
+car 51                   40   0.0   NaN        NaN     0.0
+truck 51                 40   NaN   NaN        NaN     NaN
+bus 51                   40   NaN   NaN        NaN     NaN
+pedestrian 51            40   NaN   NaN        NaN     NaN
+motorcyclist 51          40   0.0   NaN        NaN     0.0
+cyclist 51               40   0.0   NaN        NaN     0.0
+van 51                   40   0.0   NaN        NaN     0.0
+OVERALL                 280   0.0   NaN        NaN     0.0
+                 num_frames  mota  motp  precision  recall
+car 52                   40   0.0   NaN        NaN     0.0
+truck 52                 40   NaN   NaN        NaN     NaN
+bus 52                   40   NaN   NaN        NaN     NaN
+pedestrian 52            40   NaN   NaN        NaN     NaN
+motorcyclist 52          40   0.0   NaN        NaN     0.0
+cyclist 52               40   0.0   NaN        NaN     0.0
+van 52                   40   0.0   NaN        NaN     0.0
+OVERALL                 280   0.0   NaN        NaN     0.0
+                 num_frames  mota  motp  precision  recall
+car 53                   40   0.0   NaN        NaN     0.0
+truck 53                 40   NaN   NaN        NaN     NaN
+bus 53                   40   NaN   NaN        NaN     NaN
+pedestrian 53            40   NaN   NaN        NaN     NaN
+motorcyclist 53          40   0.0   NaN        NaN     0.0
+cyclist 53               40   0.0   NaN        NaN     0.0
+van 53                   40   0.0   NaN        NaN     0.0
+OVERALL                 280   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+car 2                   40   0.0   NaN        NaN     0.0
+truck 2                 40   NaN   NaN        NaN     NaN
+bus 2                   40   NaN   NaN        NaN     NaN
+pedestrian 2            40   NaN   NaN        NaN     NaN
+motorcyclist 2          40   0.0   NaN        NaN     0.0
+cyclist 2               40   0.0   NaN        NaN     0.0
+van 2                   40   0.0   NaN        NaN     0.0
+OVERALL                280   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+car 3                   40   0.0   NaN        NaN     0.0
+truck 3                 40   NaN   NaN        NaN     NaN
+bus 3                   40   NaN   NaN        NaN     NaN
+pedestrian 3            40   NaN   NaN        NaN     NaN
+motorcyclist 3          40   0.0   NaN        NaN     0.0
+cyclist 3               40   0.0   NaN        NaN     0.0
+van 3                   40   0.0   NaN        NaN     0.0
+OVERALL                280   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+car 4                   40   0.0   NaN        NaN     0.0
+truck 4                 40   NaN   NaN        NaN     NaN
+bus 4                   40   NaN   NaN        NaN     NaN
+pedestrian 4            40   NaN   NaN        NaN     NaN
+motorcyclist 4          40   0.0   NaN        NaN     0.0
+cyclist 4               40   0.0   NaN        NaN     0.0
+van 4                   40   0.0   NaN        NaN     0.0
+OVERALL                280   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+car 5                   40   0.0   NaN        NaN     0.0
+truck 5                 40   NaN   NaN        NaN     NaN
+bus 5                   40   NaN   NaN        NaN     NaN
+pedestrian 5            40   NaN   NaN        NaN     NaN
+motorcyclist 5          40   0.0   NaN        NaN     0.0
+cyclist 5               40   0.0   NaN        NaN     0.0
+van 5                   40   0.0   NaN        NaN     0.0
+OVERALL                280   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+car 6                   40   0.0   NaN        NaN     0.0
+truck 6                 40   NaN   NaN        NaN     NaN
+bus 6                   40   NaN   NaN        NaN     NaN
+pedestrian 6            40   NaN   NaN        NaN     NaN
+motorcyclist 6          40   0.0   NaN        NaN     0.0
+cyclist 6               40   0.0   NaN        NaN     0.0
+van 6                   40   0.0   NaN        NaN     0.0
+OVERALL                280   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+car 7                   40   0.0   NaN        NaN     0.0
+truck 7                 40   NaN   NaN        NaN     NaN
+bus 7                   40   NaN   NaN        NaN     NaN
+pedestrian 7            40   NaN   NaN        NaN     NaN
+motorcyclist 7          40   0.0   NaN        NaN     0.0
+cyclist 7               40   0.0   NaN        NaN     0.0
+van 7                   40   0.0   NaN        NaN     0.0
+OVERALL                280   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+car 8                   40   0.0   NaN        NaN     0.0
+truck 8                 40   NaN   NaN        NaN     NaN
+bus 8                   40   NaN   NaN        NaN     NaN
+pedestrian 8            40   NaN   NaN        NaN     NaN
+motorcyclist 8          40   0.0   NaN        NaN     0.0
+cyclist 8               40   0.0   NaN        NaN     0.0
+van 8                   40   0.0   NaN        NaN     0.0
+OVERALL                280   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+car 9                   40   0.0   NaN        NaN     0.0
+truck 9                 40   NaN   NaN        NaN     NaN
+bus 9                   40   NaN   NaN        NaN     NaN
+pedestrian 9            40   NaN   NaN        NaN     NaN
+motorcyclist 9          40   0.0   NaN        NaN     0.0
+cyclist 9               40   0.0   NaN        NaN     0.0
+van 9                   40   0.0   NaN        NaN     0.0
+OVERALL                280   0.0   NaN        NaN     0.0
+                 num_frames      mota      motp  precision    recall
+car 10                   40 -0.028902  1.595239   0.357143  0.028902
+truck 10                 40       NaN       NaN        NaN       NaN
+bus 10                   40       NaN       NaN        NaN       NaN
+pedestrian 10            40       NaN       NaN        NaN       NaN
+motorcyclist 10          40  0.000000       NaN        NaN  0.000000
+cyclist 10               40  0.000000       NaN        NaN  0.000000
+van 10                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.015823       NaN   0.357143  0.015823
+                 num_frames      mota      motp  precision    recall
+car 11                   40  0.000000       NaN        NaN  0.000000
+truck 11                 40       NaN       NaN        NaN       NaN
+bus 11                   40       NaN       NaN        NaN       NaN
+pedestrian 11            40       NaN       NaN        NaN       NaN
+motorcyclist 11          40  0.000000       NaN        NaN  0.000000
+cyclist 11               40  0.012500  1.148445        1.0  0.012500
+van 11                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.003165       NaN        1.0  0.003165
+                 num_frames      mota      motp  precision    recall
+car 12                   40 -0.057803  0.867951   0.344828  0.057803
+truck 12                 40       NaN       NaN        NaN       NaN
+bus 12                   40       NaN       NaN        NaN       NaN
+pedestrian 12            40       NaN       NaN        NaN       NaN
+motorcyclist 12          40  0.000000       NaN        NaN  0.000000
+cyclist 12               40  0.000000       NaN        NaN  0.000000
+van 12                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.031646       NaN   0.344828  0.031646
+                 num_frames  mota  motp  precision  recall
+car 13                   40   0.0   NaN        NaN     0.0
+truck 13                 40   NaN   NaN        NaN     NaN
+bus 13                   40   NaN   NaN        NaN     NaN
+pedestrian 13            40   NaN   NaN        NaN     NaN
+motorcyclist 13          40   0.0   NaN        NaN     0.0
+cyclist 13               40   0.0   NaN        NaN     0.0
+van 13                   40   0.0   NaN        NaN     0.0
+OVERALL                 280   0.0   NaN        NaN     0.0
+                 num_frames      mota      motp  precision    recall
+car 14                   40  0.069364  1.192714   0.894737  0.098266
+truck 14                 40       NaN       NaN        NaN       NaN
+bus 14                   40       NaN       NaN        NaN       NaN
+pedestrian 14            40       NaN       NaN        NaN       NaN
+motorcyclist 14          40  0.000000       NaN        NaN  0.000000
+cyclist 14               40  0.000000       NaN        NaN  0.000000
+van 14                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.037975       NaN   0.894737  0.053797
+                 num_frames      mota      motp  precision    recall
+car 15                   40  0.011561  0.692530   1.000000  0.011561
+truck 15                 40       NaN       NaN        NaN       NaN
+bus 15                   40       NaN       NaN        NaN       NaN
+pedestrian 15            40       NaN       NaN        NaN       NaN
+motorcyclist 15          40  0.000000       NaN        NaN  0.000000
+cyclist 15               40 -0.062500  1.166324   0.391304  0.112500
+van 15                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.009494       NaN   0.440000  0.034810
+                 num_frames      mota      motp  precision    recall
+car 16                   40  0.000000       NaN        NaN  0.000000
+truck 16                 40       NaN       NaN        NaN       NaN
+bus 16                   40       NaN       NaN        NaN       NaN
+pedestrian 16            40       NaN       NaN        NaN       NaN
+motorcyclist 16          40  0.000000       NaN        NaN  0.000000
+cyclist 16               40 -0.037500  1.719868   0.363636  0.050000
+van 16                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.009494       NaN   0.363636  0.012658
+                 num_frames      mota      motp  precision    recall
+car 17                   40 -0.115607  0.726009   0.172414  0.028902
+truck 17                 40       NaN       NaN        NaN       NaN
+bus 17                   40       NaN       NaN        NaN       NaN
+pedestrian 17            40       NaN       NaN        NaN       NaN
+motorcyclist 17          40  0.000000       NaN        NaN  0.000000
+cyclist 17               40  0.087500  0.709002   1.000000  0.087500
+van 17                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.041139       NaN   0.333333  0.037975
+                 num_frames      mota      motp  precision    recall
+car 18                   40  0.005780  0.884772   0.534884  0.132948
+truck 18                 40       NaN       NaN        NaN       NaN
+bus 18                   40       NaN       NaN        NaN       NaN
+pedestrian 18            40       NaN       NaN        NaN       NaN
+motorcyclist 18          40  0.000000       NaN        NaN  0.000000
+cyclist 18               40  0.100000  1.138009   1.000000  0.100000
+van 18                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.028481       NaN   0.607843  0.098101
+                 num_frames      mota     motp  precision    recall
+car 19                   40  0.052023  0.93041   0.764706  0.075145
+truck 19                 40       NaN      NaN        NaN       NaN
+bus 19                   40       NaN      NaN        NaN       NaN
+pedestrian 19            40       NaN      NaN        NaN       NaN
+motorcyclist 19          40  0.000000      NaN        NaN  0.000000
+cyclist 19               40  0.000000      NaN        NaN  0.000000
+van 19                   40  0.000000      NaN        NaN  0.000000
+OVERALL                 280  0.028481      NaN   0.764706  0.041139
+                 num_frames      mota      motp  precision    recall
+car 20                   40 -0.040462  1.211293   0.451613  0.161850
+truck 20                 40       NaN       NaN        NaN       NaN
+bus 20                   40       NaN       NaN        NaN       NaN
+pedestrian 20            40       NaN       NaN        NaN       NaN
+motorcyclist 20          40  0.000000       NaN        NaN  0.000000
+cyclist 20               40  0.100000  0.735239   1.000000  0.100000
+van 20                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.003165       NaN   0.514286  0.113924
+                 num_frames      mota      motp  precision    recall
+car 21                   40 -0.063584  1.384061   0.133333  0.011561
+truck 21                 40       NaN       NaN        NaN       NaN
+bus 21                   40       NaN       NaN        NaN       NaN
+pedestrian 21            40       NaN       NaN        NaN       NaN
+motorcyclist 21          40  0.000000       NaN        NaN  0.000000
+cyclist 21               40 -0.100000  1.101501   0.277778  0.062500
+van 21                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.060127       NaN   0.212121  0.022152
+                 num_frames      mota      motp  precision    recall
+car 22                   40  0.000000  0.755837   0.500000  0.075145
+truck 22                 40       NaN       NaN        NaN       NaN
+bus 22                   40       NaN       NaN        NaN       NaN
+pedestrian 22            40       NaN       NaN        NaN       NaN
+motorcyclist 22          40  0.111111  1.041373   1.000000  0.111111
+cyclist 22               40  0.012500  1.448535   0.600000  0.037500
+van 22                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.012658       NaN   0.558824  0.060127
+                 num_frames      mota      motp  precision    recall
+car 23                   40  0.086705  0.946803   0.750000  0.156069
+truck 23                 40       NaN       NaN        NaN       NaN
+bus 23                   40       NaN       NaN        NaN       NaN
+pedestrian 23            40       NaN       NaN        NaN       NaN
+motorcyclist 23          40  0.000000       NaN        NaN  0.000000
+cyclist 23               40 -0.137500       NaN   0.000000  0.000000
+van 23                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.012658       NaN   0.574468  0.085443
+                 num_frames      mota      motp  precision    recall
+car 24                   40  0.011561  0.837080   0.583333  0.040462
+truck 24                 40       NaN       NaN        NaN       NaN
+bus 24                   40       NaN       NaN        NaN       NaN
+pedestrian 24            40       NaN       NaN        NaN       NaN
+motorcyclist 24          40  0.000000       NaN        NaN  0.000000
+cyclist 24               40 -0.075000  1.732802   0.285714  0.050000
+van 24                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.012658       NaN   0.423077  0.034810
+                 num_frames      mota      motp  precision    recall
+car 25                   40  0.034682  1.103241   0.888889  0.046243
+truck 25                 40       NaN       NaN        NaN       NaN
+bus 25                   40       NaN       NaN        NaN       NaN
+pedestrian 25            40       NaN       NaN        NaN       NaN
+motorcyclist 25          40 -0.037037       NaN   0.000000  0.000000
+cyclist 25               40 -0.137500       NaN   0.000000  0.000000
+van 25                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.018987       NaN   0.380952  0.025316
+                 num_frames      mota      motp  precision    recall
+car 26                   40  0.005780  1.100328   0.600000  0.017341
+truck 26                 40       NaN       NaN        NaN       NaN
+bus 26                   40       NaN       NaN        NaN       NaN
+pedestrian 26            40       NaN       NaN        NaN       NaN
+motorcyclist 26          40 -0.814815  1.097180   0.080000  0.074074
+cyclist 26               40  0.000000       NaN        NaN  0.000000
+van 26                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.066456       NaN   0.166667  0.015823
+                 num_frames      mota      motp  precision    recall
+car 27                   40 -0.040462  1.068509   0.266667  0.023121
+truck 27                 40       NaN       NaN        NaN       NaN
+bus 27                   40       NaN       NaN        NaN       NaN
+pedestrian 27            40       NaN       NaN        NaN       NaN
+motorcyclist 27          40  0.000000       NaN        NaN  0.000000
+cyclist 27               40  0.075000  0.530628   1.000000  0.075000
+van 27                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.003165       NaN   0.476190  0.031646
+                 num_frames      mota      motp  precision    recall
+car 28                   40 -0.017341  1.084243   0.451613  0.080925
+truck 28                 40       NaN       NaN        NaN       NaN
+bus 28                   40       NaN       NaN        NaN       NaN
+pedestrian 28            40       NaN       NaN        NaN       NaN
+motorcyclist 28          40 -0.222222  1.088490   0.200000  0.074074
+cyclist 28               40 -0.100000  1.448001   0.214286  0.037500
+van 28                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.053797       NaN   0.345455  0.060127
+                 num_frames      mota      motp  precision    recall
+car 29                   40  0.069364  0.784062   0.800000  0.092486
+truck 29                 40       NaN       NaN        NaN       NaN
+bus 29                   40       NaN       NaN        NaN       NaN
+pedestrian 29            40       NaN       NaN        NaN       NaN
+motorcyclist 29          40 -0.592593  0.706046   0.166667  0.148148
+cyclist 29               40 -0.050000  1.386750   0.333333  0.050000
+van 29                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.025316       NaN   0.428571  0.075949
+                 num_frames      mota      motp  precision    recall
+car 30                   40  0.017341  1.008034   0.700000  0.040462
+truck 30                 40       NaN       NaN        NaN       NaN
+bus 30                   40       NaN       NaN        NaN       NaN
+pedestrian 30            40       NaN       NaN        NaN       NaN
+motorcyclist 30          40 -0.148148       NaN   0.000000  0.000000
+cyclist 30               40  0.050000  0.985313   0.600000  0.150000
+van 30                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.009494       NaN   0.558824  0.060127
+                 num_frames      mota      motp  precision    recall
+car 31                   40  0.069364  1.102343   0.650000  0.150289
+truck 31                 40       NaN       NaN        NaN       NaN
+bus 31                   40       NaN       NaN        NaN       NaN
+pedestrian 31            40       NaN       NaN        NaN       NaN
+motorcyclist 31          40  0.148148  1.486833   0.750000  0.222222
+cyclist 31               40 -0.212500  1.032570   0.257143  0.112500
+van 31                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.003165       NaN   0.493976  0.129747
+                 num_frames      mota      motp  precision    recall
+car 32                   40  0.046243  0.901736   0.621622  0.132948
+truck 32                 40       NaN       NaN        NaN       NaN
+bus 32                   40       NaN       NaN        NaN       NaN
+pedestrian 32            40       NaN       NaN        NaN       NaN
+motorcyclist 32          40 -0.777778  1.642591   0.080000  0.074074
+cyclist 32               40 -0.037500  1.301046   0.384615  0.062500
+van 32                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.050633       NaN   0.400000  0.094937
+                 num_frames      mota      motp  precision    recall
+car 33                   40 -0.156069  1.049750   0.405660  0.248555
+truck 33                 40       NaN       NaN        NaN       NaN
+bus 33                   40       NaN       NaN        NaN       NaN
+pedestrian 33            40       NaN       NaN        NaN       NaN
+motorcyclist 33          40 -1.925926  0.913206   0.109375  0.259259
+cyclist 33               40  0.000000  0.709752   0.500000  0.175000
+van 33                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.250000       NaN   0.323232  0.202532
+                 num_frames      mota      motp  precision    recall
+car 34                   40  0.000000  0.810501   0.642857  0.052023
+truck 34                 40       NaN       NaN        NaN       NaN
+bus 34                   40       NaN       NaN        NaN       NaN
+pedestrian 34            40       NaN       NaN        NaN       NaN
+motorcyclist 34          40 -1.666667  1.537549   0.109091  0.222222
+cyclist 34               40 -0.112500  0.459928   0.320000  0.100000
+van 34                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.170886       NaN   0.244681  0.072785
+                 num_frames      mota      motp  precision    recall
+car 35                   40 -0.023121       NaN   0.000000  0.000000
+truck 35                 40       NaN       NaN        NaN       NaN
+bus 35                   40       NaN       NaN        NaN       NaN
+pedestrian 35            40       NaN       NaN        NaN       NaN
+motorcyclist 35          40 -0.777778  0.606697   0.161290  0.185185
+cyclist 35               40  0.425000  0.886263   0.869565  0.500000
+van 35                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.028481       NaN   0.555556  0.142405
+                 num_frames      mota      motp  precision    recall
+car 36                   40  0.040462  1.133415   0.666667  0.138728
+truck 36                 40       NaN       NaN        NaN       NaN
+bus 36                   40       NaN       NaN        NaN       NaN
+pedestrian 36            40       NaN       NaN        NaN       NaN
+motorcyclist 36          40 -1.111111  1.340193   0.083333  0.111111
+cyclist 36               40 -0.012500  0.877589   0.483871  0.187500
+van 36                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.075949       NaN   0.407767  0.132911
+                 num_frames      mota      motp  precision    recall
+car 37                   40  0.017341  0.787544   0.580645  0.104046
+truck 37                 40       NaN       NaN        NaN       NaN
+bus 37                   40       NaN       NaN        NaN       NaN
+pedestrian 37            40       NaN       NaN        NaN       NaN
+motorcyclist 37          40 -0.481481  1.518990   0.117647  0.074074
+cyclist 37               40  0.100000  1.320199   0.900000  0.112500
+van 37                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.006329       NaN   0.500000  0.091772
+                 num_frames      mota      motp  precision    recall
+car 38                   40 -0.011561  0.901769     0.5200  0.075145
+truck 38                 40       NaN       NaN        NaN       NaN
+bus 38                   40       NaN       NaN        NaN       NaN
+pedestrian 38            40       NaN       NaN        NaN       NaN
+motorcyclist 38          40 -0.703704       NaN     0.0000  0.000000
+cyclist 38               40 -0.075000  1.154595     0.3500  0.087500
+van 38                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.085443       NaN     0.3125  0.063291
+                 num_frames      mota      motp  precision    recall
+car 39                   40  0.000000  0.969494   0.525424  0.179191
+truck 39                 40       NaN       NaN        NaN       NaN
+bus 39                   40       NaN       NaN        NaN       NaN
+pedestrian 39            40       NaN       NaN        NaN       NaN
+motorcyclist 39          40 -2.148148  0.764312   0.061538  0.148148
+cyclist 39               40 -0.087500  0.934542   0.442623  0.337500
+van 39                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.205696       NaN   0.335135  0.196203
+                 num_frames      mota      motp  precision    recall
+car 40                   40 -0.028902  0.929429   0.480000  0.208092
+truck 40                 40       NaN       NaN        NaN       NaN
+bus 40                   40       NaN       NaN        NaN       NaN
+pedestrian 40            40       NaN       NaN        NaN       NaN
+motorcyclist 40          40 -0.592593  1.614100   0.142857  0.111111
+cyclist 40               40 -0.387500  1.373440   0.237288  0.175000
+van 40                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.164557       NaN   0.341935  0.167722
+                 num_frames      mota      motp  precision    recall
+car 41                   40  0.057803  0.837434   0.591549  0.242775
+truck 41                 40       NaN       NaN        NaN       NaN
+bus 41                   40       NaN       NaN        NaN       NaN
+pedestrian 41            40       NaN       NaN        NaN       NaN
+motorcyclist 41          40 -0.629630  0.848295   0.241379  0.259259
+cyclist 41               40  0.175000  0.713894   1.000000  0.175000
+van 41                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.022152       NaN   0.552632  0.199367
+                 num_frames      mota      motp  precision    recall
+car 42                   40 -0.028902  1.253248   0.519685  0.381503
+truck 42                 40       NaN       NaN        NaN       NaN
+bus 42                   40       NaN       NaN        NaN       NaN
+pedestrian 42            40       NaN       NaN        NaN       NaN
+motorcyclist 42          40 -1.481481  0.850210   0.045455  0.074074
+cyclist 42               40 -0.337500  1.296366   0.170732  0.087500
+van 42                   40 -0.027778       NaN   0.000000  0.000000
+OVERALL                 280 -0.231013       NaN   0.352113  0.237342
+                 num_frames      mota      motp  precision    recall
+car 43                   40 -0.075145  0.926953   0.434211  0.190751
+truck 43                 40       NaN       NaN        NaN       NaN
+bus 43                   40       NaN       NaN        NaN       NaN
+pedestrian 43            40       NaN       NaN        NaN       NaN
+motorcyclist 43          40 -2.222222       NaN   0.000000  0.000000
+cyclist 43               40 -0.075000  1.569590   0.400000  0.150000
+van 43                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.250000       NaN   0.271084  0.142405
+                 num_frames      mota      motp  precision    recall
+car 44                   40 -0.011561  0.707545   0.461538  0.069364
+truck 44                 40       NaN       NaN        NaN       NaN
+bus 44                   40       NaN       NaN        NaN       NaN
+pedestrian 44            40       NaN       NaN        NaN       NaN
+motorcyclist 44          40 -1.407407  0.531798   0.231884  0.592593
+cyclist 44               40  0.187500  1.273817   1.000000  0.200000
+van 44                   40 -0.027778       NaN   0.000000  0.000000
+OVERALL                 280 -0.082278       NaN   0.392857  0.139241
+                 num_frames      mota      motp  precision    recall
+car 45                   40  0.063584  0.965294   0.617021  0.167630
+truck 45                 40       NaN       NaN        NaN       NaN
+bus 45                   40       NaN       NaN        NaN       NaN
+pedestrian 45            40       NaN       NaN        NaN       NaN
+motorcyclist 45          40 -0.222222  0.616953   0.312500  0.185185
+cyclist 45               40  0.200000  0.702360   0.909091  0.250000
+van 45                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.066456       NaN   0.635294  0.170886
+                 num_frames      mota      motp  precision    recall
+car 46                   40 -0.017341       NaN   0.000000  0.000000
+truck 46                 40       NaN       NaN        NaN       NaN
+bus 46                   40       NaN       NaN        NaN       NaN
+pedestrian 46            40       NaN       NaN        NaN       NaN
+motorcyclist 46          40 -0.148148  0.652645   0.375000  0.222222
+cyclist 46               40  0.112500  0.748842   0.777778  0.175000
+van 46                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.006329       NaN   0.540541  0.063291
+                 num_frames      mota      motp  precision    recall
+car 47                   40  0.000000  1.123101   0.585366  0.138728
+truck 47                 40       NaN       NaN        NaN       NaN
+bus 47                   40       NaN       NaN        NaN       NaN
+pedestrian 47            40       NaN       NaN        NaN       NaN
+motorcyclist 47          40 -0.629630  0.888322   0.214286  0.222222
+cyclist 47               40  0.112500  0.552100   0.581818  0.400000
+van 47                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.025316       NaN   0.500000  0.196203
+                 num_frames      mota      motp  precision    recall
+car 48                   40 -0.011561  1.118743   0.375000  0.017341
+truck 48                 40       NaN       NaN        NaN       NaN
+bus 48                   40       NaN       NaN        NaN       NaN
+pedestrian 48            40       NaN       NaN        NaN       NaN
+motorcyclist 48          40 -1.148148  1.397849   0.102564  0.148148
+cyclist 48               40  0.437500  1.031590   0.891304  0.512500
+van 48                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.006329       NaN   0.516129  0.151899
+                 num_frames      mota      motp  precision    recall
+car 49                   40 -0.023121  0.903053   0.475000  0.109827
+truck 49                 40       NaN       NaN        NaN       NaN
+bus 49                   40       NaN       NaN        NaN       NaN
+pedestrian 49            40       NaN       NaN        NaN       NaN
+motorcyclist 49          40 -1.000000  1.687053   0.034483  0.037037
+cyclist 49               40  0.462500  0.818262   0.952381  0.500000
+van 49                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.018987       NaN   0.540541  0.189873
+                 num_frames      mota      motp  precision    recall
+car 50                   40  0.017341  0.696271   0.542373  0.184971
+truck 50                 40       NaN       NaN        NaN       NaN
+bus 50                   40       NaN       NaN        NaN       NaN
+pedestrian 50            40       NaN       NaN        NaN       NaN
+motorcyclist 50          40  0.000000       NaN        NaN  0.000000
+cyclist 50               40  0.375000  0.870354   0.750000  0.562500
+van 50                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.104430       NaN   0.647059  0.243671
+                 num_frames      mota      motp  precision    recall
+car 51                   40 -0.028902  0.885283   0.479167  0.132948
+truck 51                 40       NaN       NaN        NaN       NaN
+bus 51                   40       NaN       NaN        NaN       NaN
+pedestrian 51            40       NaN       NaN        NaN       NaN
+motorcyclist 51          40 -0.111111  1.049589   0.363636  0.148148
+cyclist 51               40  0.337500  0.746371   0.721311  0.550000
+van 51                   40 -0.055556       NaN   0.000000  0.000000
+OVERALL                 280  0.053797       NaN   0.581967  0.224684
+                 num_frames      mota      motp  precision    recall
+car 52                   40  0.098266  1.299017   0.742857  0.150289
+truck 52                 40       NaN       NaN        NaN       NaN
+bus 52                   40       NaN       NaN        NaN       NaN
+pedestrian 52            40       NaN       NaN        NaN       NaN
+motorcyclist 52          40 -0.185185  0.590647   0.333333  0.185185
+cyclist 52               40  0.675000  0.881379   0.935484  0.725000
+van 52                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.208861       NaN   0.794643  0.281646
+                 num_frames      mota      motp  precision    recall
+car 53                   40 -0.034682  1.305172   0.285714  0.023121
+truck 53                 40       NaN       NaN        NaN       NaN
+bus 53                   40       NaN       NaN        NaN       NaN
+pedestrian 53            40       NaN       NaN        NaN       NaN
+motorcyclist 53          40 -0.148148  0.943321   0.375000  0.222222
+cyclist 53               40  0.450000  1.063557   0.776119  0.650000
+van 53                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.082278       NaN   0.639175  0.196203
+                 num_frames      mota     motp  precision    recall
+car 54                   40  0.028902  0.93425   0.596154  0.179191
+truck 54                 40       NaN      NaN        NaN       NaN
+bus 54                   40       NaN      NaN        NaN       NaN
+pedestrian 54            40       NaN      NaN        NaN       NaN
+motorcyclist 54          40 -1.000000  1.29831   0.034483  0.037037
+cyclist 54               40  0.337500  1.02899   0.833333  0.437500
+van 54                   40  0.000000      NaN        NaN  0.000000
+OVERALL                 280  0.015823      NaN   0.544715  0.212025
+                 num_frames      mota      motp  precision    recall
+car 55                   40 -0.011561  0.985954   0.476190  0.115607
+truck 55                 40       NaN       NaN        NaN       NaN
+bus 55                   40       NaN       NaN        NaN       NaN
+pedestrian 55            40       NaN       NaN        NaN       NaN
+motorcyclist 55          40 -0.777778  1.353795   0.166667  0.185185
+cyclist 55               40  0.262500  0.876765   0.677419  0.525000
+van 55                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.006329       NaN   0.500000  0.212025
+                 num_frames      mota      motp  precision    recall
+car 56                   40  0.005780  1.004295   0.636364  0.040462
+truck 56                 40       NaN       NaN        NaN       NaN
+bus 56                   40       NaN       NaN        NaN       NaN
+pedestrian 56            40       NaN       NaN        NaN       NaN
+motorcyclist 56          40 -0.370370  1.314796   0.333333  0.296296
+cyclist 56               40  0.362500  0.749313   0.763636  0.525000
+van 56                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.063291       NaN   0.633333  0.180380
+                 num_frames      mota      motp  precision    recall
+car 57                   40 -0.017341  1.192178   0.489362  0.132948
+truck 57                 40       NaN       NaN        NaN       NaN
+bus 57                   40       NaN       NaN        NaN       NaN
+pedestrian 57            40       NaN       NaN        NaN       NaN
+motorcyclist 57          40 -0.407407  1.574030   0.238095  0.185185
+cyclist 57               40 -0.062500  0.844759   0.481481  0.487500
+van 57                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.060127       NaN   0.449664  0.212025
+                 num_frames      mota     motp  precision    recall
+car 58                   40 -0.017341      NaN   0.000000  0.000000
+truck 58                 40       NaN      NaN        NaN       NaN
+bus 58                   40       NaN      NaN        NaN       NaN
+pedestrian 58            40       NaN      NaN        NaN       NaN
+motorcyclist 58          40  0.111111  1.66481   0.714286  0.185185
+cyclist 58               40  0.075000  0.64729   0.687500  0.137500
+van 58                   40 -0.055556      NaN   0.000000  0.000000
+OVERALL                 280  0.012658      NaN   0.571429  0.050633
+                 num_frames      mota      motp  precision    recall
+car 59                   40 -0.329480  0.988201   0.296610  0.202312
+truck 59                 40       NaN       NaN        NaN       NaN
+bus 59                   40       NaN       NaN        NaN       NaN
+pedestrian 59            40       NaN       NaN        NaN       NaN
+motorcyclist 59          40  0.111111  1.213923   0.714286  0.185185
+cyclist 59               40  0.175000  0.614385   1.000000  0.200000
+van 59                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.126582       NaN   0.397163  0.177215
+                 num_frames      mota      motp  precision    recall
+car 60                   40  0.028902  0.959111   0.585366  0.138728
+truck 60                 40       NaN       NaN        NaN       NaN
+bus 60                   40       NaN       NaN        NaN       NaN
+pedestrian 60            40       NaN       NaN        NaN       NaN
+motorcyclist 60          40 -1.185185       NaN   0.000000  0.000000
+cyclist 60               40  0.212500  0.815036   0.687500  0.412500
+van 60                   40 -0.027778       NaN   0.000000  0.000000
+OVERALL                 280 -0.034810       NaN   0.467213  0.180380
+                 num_frames      mota      motp  precision    recall
+car 61                   40 -0.011561  1.039681   0.500000  0.150289
+truck 61                 40       NaN       NaN        NaN       NaN
+bus 61                   40       NaN       NaN        NaN       NaN
+pedestrian 61            40       NaN       NaN        NaN       NaN
+motorcyclist 61          40 -1.148148       NaN   0.000000  0.000000
+cyclist 61               40  0.587500  0.794985   0.900000  0.675000
+van 61                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.044304       NaN   0.559441  0.253165
+                 num_frames      mota      motp  precision    recall
+car 62                   40  0.000000  1.250079   0.515152  0.196532
+truck 62                 40       NaN       NaN        NaN       NaN
+bus 62                   40       NaN       NaN        NaN       NaN
+pedestrian 62            40       NaN       NaN        NaN       NaN
+motorcyclist 62          40 -0.962963  1.809996   0.117647  0.148148
+cyclist 62               40  0.687500  0.649960   0.923077  0.750000
+van 62                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.091772       NaN   0.593939  0.310127
+                 num_frames      mota      motp  precision    recall
+car 63                   40 -0.034682  1.161098   0.457627  0.156069
+truck 63                 40       NaN       NaN        NaN       NaN
+bus 63                   40       NaN       NaN        NaN       NaN
+pedestrian 63            40       NaN       NaN        NaN       NaN
+motorcyclist 63          40 -0.925926  1.597996   0.121212  0.148148
+cyclist 63               40  0.712500  0.679300   0.938462  0.762500
+van 63                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.082278       NaN   0.585987  0.291139
+                 num_frames      mota      motp  precision    recall
+car 64                   40 -0.034682  1.178357   0.483333  0.167630
+truck 64                 40       NaN       NaN        NaN       NaN
+bus 64                   40       NaN       NaN        NaN       NaN
+pedestrian 64            40       NaN       NaN        NaN       NaN
+motorcyclist 64          40 -0.962963  1.837840   0.066667  0.074074
+cyclist 64               40  0.762500  0.599994   0.969697  0.800000
+van 64                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.091772       NaN   0.608974  0.300633
+                 num_frames      mota      motp  precision    recall
+car 65                   40 -0.109827  0.905658   0.410256  0.184971
+truck 65                 40       NaN       NaN        NaN       NaN
+bus 65                   40       NaN       NaN        NaN       NaN
+pedestrian 65            40       NaN       NaN        NaN       NaN
+motorcyclist 65          40 -1.037037  1.849672   0.062500  0.074074
+cyclist 65               40  0.662500  0.667395   0.895522  0.750000
+van 65                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.018987       NaN   0.531073  0.297468
+                 num_frames      mota      motp  precision    recall
+car 66                   40 -0.034682  1.261043   0.457627  0.156069
+truck 66                 40       NaN       NaN        NaN       NaN
+bus 66                   40       NaN       NaN        NaN       NaN
+pedestrian 66            40       NaN       NaN        NaN       NaN
+motorcyclist 66          40 -0.851852  1.691729   0.129032  0.148148
+cyclist 66               40  0.725000  0.620204   0.953846  0.775000
+van 66                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.091772       NaN   0.600000  0.294304
+                 num_frames      mota      motp  precision    recall
+car 67                   40 -0.040462  1.176345   0.460317  0.167630
+truck 67                 40       NaN       NaN        NaN       NaN
+bus 67                   40       NaN       NaN        NaN       NaN
+pedestrian 67            40       NaN       NaN        NaN       NaN
+motorcyclist 67          40 -0.962963  1.456925   0.117647  0.148148
+cyclist 67               40  0.712500  0.545888   0.967742  0.750000
+van 67                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.075949       NaN   0.584906  0.294304
+                 num_frames      mota      motp  precision    recall
+car 68                   40 -0.080925  1.070156   0.388889  0.121387
+truck 68                 40       NaN       NaN        NaN       NaN
+bus 68                   40       NaN       NaN        NaN       NaN
+pedestrian 68            40       NaN       NaN        NaN       NaN
+motorcyclist 68          40 -0.629630  1.526028   0.160000  0.148148
+cyclist 68               40  0.675000  0.549860   0.911765  0.775000
+van 68                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.072785       NaN   0.591837  0.275316
+                 num_frames      mota      motp  precision    recall
+car 69                   40 -0.138728  0.774410   0.392405  0.179191
+truck 69                 40       NaN       NaN        NaN       NaN
+bus 69                   40       NaN       NaN        NaN       NaN
+pedestrian 69            40       NaN       NaN        NaN       NaN
+motorcyclist 69          40 -0.814815  1.810323   0.076923  0.074074
+cyclist 69               40  0.650000  0.662456   0.893939  0.737500
+van 69                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.018987       NaN   0.538012  0.291139
+                 num_frames      mota      motp  precision    recall
+car 70                   40  0.005780  1.204505   0.521739  0.138728
+truck 70                 40       NaN       NaN        NaN       NaN
+bus 70                   40       NaN       NaN        NaN       NaN
+pedestrian 70            40       NaN       NaN        NaN       NaN
+motorcyclist 70          40 -0.629630  1.817592   0.200000  0.185185
+cyclist 70               40  0.587500  0.684384   0.929825  0.662500
+van 70                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.098101       NaN   0.640625  0.259494
+                 num_frames      mota      motp  precision    recall
+car 71                   40  0.040462  0.932340   0.589744  0.132948
+truck 71                 40       NaN       NaN        NaN       NaN
+bus 71                   40       NaN       NaN        NaN       NaN
+pedestrian 71            40       NaN       NaN        NaN       NaN
+motorcyclist 71          40 -0.555556  1.357356   0.259259  0.259259
+cyclist 71               40  0.650000  0.610272   0.921875  0.737500
+van 71                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.139241       NaN   0.684615  0.281646
+                 num_frames      mota      motp  precision    recall
+car 72                   40 -0.057803  1.027675   0.447761  0.173410
+truck 72                 40       NaN       NaN        NaN       NaN
+bus 72                   40       NaN       NaN        NaN       NaN
+pedestrian 72            40       NaN       NaN        NaN       NaN
+motorcyclist 72          40 -0.888889  1.179579   0.103448  0.111111
+cyclist 72               40  0.587500  0.699839   0.885246  0.675000
+van 72                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.041139       NaN   0.554140  0.275316
+                 num_frames      mota      motp  precision    recall
+car 73                   40 -0.196532  0.884933   0.357895  0.196532
+truck 73                 40       NaN       NaN        NaN       NaN
+bus 73                   40       NaN       NaN        NaN       NaN
+pedestrian 73            40       NaN       NaN        NaN       NaN
+motorcyclist 73          40 -0.703704  1.564169   0.148148  0.148148
+cyclist 73               40  0.575000  0.651474   0.850746  0.712500
+van 73                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.022152       NaN   0.502646  0.300633
+                 num_frames      mota      motp  precision    recall
+car 74                   40 -0.109827  0.857937   0.350877  0.115607
+truck 74                 40       NaN       NaN        NaN       NaN
+bus 74                   40       NaN       NaN        NaN       NaN
+pedestrian 74            40       NaN       NaN        NaN       NaN
+motorcyclist 74          40 -0.814815  1.739302   0.076923  0.074074
+cyclist 74               40  0.587500  0.668834   0.863636  0.712500
+van 74                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.018987       NaN   0.530201  0.250000
+                 num_frames      mota      motp  precision    recall
+car 75                   40 -0.052023  1.167637   0.451613  0.161850
+truck 75                 40       NaN       NaN        NaN       NaN
+bus 75                   40       NaN       NaN        NaN       NaN
+pedestrian 75            40       NaN       NaN        NaN       NaN
+motorcyclist 75          40 -1.037037  1.486314   0.033333  0.037037
+cyclist 75               40  0.587500  0.579072   0.863636  0.712500
+van 75                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.031646       NaN   0.544304  0.272152
+                num_frames  mota  motp  precision  recall
+car 2                   40   0.0   NaN        NaN     0.0
+truck 2                 40   NaN   NaN        NaN     NaN
+bus 2                   40   NaN   NaN        NaN     NaN
+pedestrian 2            40   NaN   NaN        NaN     NaN
+motorcyclist 2          40   0.0   NaN        NaN     0.0
+cyclist 2               40   0.0   NaN        NaN     0.0
+van 2                   40   0.0   NaN        NaN     0.0
+OVERALL                280   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+car 3                   40   0.0   NaN        NaN     0.0
+truck 3                 40   NaN   NaN        NaN     NaN
+bus 3                   40   NaN   NaN        NaN     NaN
+pedestrian 3            40   NaN   NaN        NaN     NaN
+motorcyclist 3          40   0.0   NaN        NaN     0.0
+cyclist 3               40   0.0   NaN        NaN     0.0
+van 3                   40   0.0   NaN        NaN     0.0
+OVERALL                280   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+car 4                   40   0.0   NaN        NaN     0.0
+truck 4                 40   NaN   NaN        NaN     NaN
+bus 4                   40   NaN   NaN        NaN     NaN
+pedestrian 4            40   NaN   NaN        NaN     NaN
+motorcyclist 4          40   0.0   NaN        NaN     0.0
+cyclist 4               40   0.0   NaN        NaN     0.0
+van 4                   40   0.0   NaN        NaN     0.0
+OVERALL                280   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+car 5                   40   0.0   NaN        NaN     0.0
+truck 5                 40   NaN   NaN        NaN     NaN
+bus 5                   40   NaN   NaN        NaN     NaN
+pedestrian 5            40   NaN   NaN        NaN     NaN
+motorcyclist 5          40   0.0   NaN        NaN     0.0
+cyclist 5               40   0.0   NaN        NaN     0.0
+van 5                   40   0.0   NaN        NaN     0.0
+OVERALL                280   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+car 6                   40   0.0   NaN        NaN     0.0
+truck 6                 40   NaN   NaN        NaN     NaN
+bus 6                   40   NaN   NaN        NaN     NaN
+pedestrian 6            40   NaN   NaN        NaN     NaN
+motorcyclist 6          40   0.0   NaN        NaN     0.0
+cyclist 6               40   0.0   NaN        NaN     0.0
+van 6                   40   0.0   NaN        NaN     0.0
+OVERALL                280   0.0   NaN        NaN     0.0
+                num_frames      mota      motp  precision    recall
+car 7                   40  0.000000       NaN        NaN  0.000000
+truck 7                 40       NaN       NaN        NaN       NaN
+bus 7                   40       NaN       NaN        NaN       NaN
+pedestrian 7            40       NaN       NaN        NaN       NaN
+motorcyclist 7          40  0.000000       NaN        NaN  0.000000
+cyclist 7               40 -0.075000  0.980996      0.125  0.012500
+van 7                   40  0.000000       NaN        NaN  0.000000
+OVERALL                280 -0.018987       NaN      0.125  0.003165
+                num_frames      mota      motp  precision    recall
+car 8                   40  0.000000       NaN        NaN  0.000000
+truck 8                 40       NaN       NaN        NaN       NaN
+bus 8                   40       NaN       NaN        NaN       NaN
+pedestrian 8            40       NaN       NaN        NaN       NaN
+motorcyclist 8          40  0.000000       NaN        NaN  0.000000
+cyclist 8               40  0.012500  1.671407   0.555556  0.062500
+van 8                   40  0.000000       NaN        NaN  0.000000
+OVERALL                280  0.003165       NaN   0.555556  0.015823
+                num_frames      mota      motp  precision    recall
+car 9                   40  0.023121  1.204877   0.727273  0.046243
+truck 9                 40       NaN       NaN        NaN       NaN
+bus 9                   40       NaN       NaN        NaN       NaN
+pedestrian 9            40       NaN       NaN        NaN       NaN
+motorcyclist 9          40  0.000000       NaN        NaN  0.000000
+cyclist 9               40  0.125000  0.889288   0.916667  0.137500
+van 9                   40  0.000000       NaN        NaN  0.000000
+OVERALL                280  0.044304       NaN   0.826087  0.060127
+                 num_frames  mota  motp  precision  recall
+car 10                   40   0.0   NaN        NaN     0.0
+truck 10                 40   NaN   NaN        NaN     NaN
+bus 10                   40   NaN   NaN        NaN     NaN
+pedestrian 10            40   NaN   NaN        NaN     NaN
+motorcyclist 10          40   0.0   NaN        NaN     0.0
+cyclist 10               40   0.0   NaN        NaN     0.0
+van 10                   40   0.0   NaN        NaN     0.0
+OVERALL                 280   0.0   NaN        NaN     0.0
+                 num_frames  mota      motp  precision    recall
+car 11                   40   0.0  0.962431   0.526316  0.057803
+truck 11                 40   NaN       NaN        NaN       NaN
+bus 11                   40   NaN       NaN        NaN       NaN
+pedestrian 11            40   NaN       NaN        NaN       NaN
+motorcyclist 11          40   0.0       NaN        NaN  0.000000
+cyclist 11               40   0.0       NaN        NaN  0.000000
+van 11                   40   0.0       NaN        NaN  0.000000
+OVERALL                 280   0.0       NaN   0.526316  0.031646
+                 num_frames      mota      motp  precision    recall
+car 12                   40  0.034682  1.147344   1.000000  0.034682
+truck 12                 40       NaN       NaN        NaN       NaN
+bus 12                   40       NaN       NaN        NaN       NaN
+pedestrian 12            40       NaN       NaN        NaN       NaN
+motorcyclist 12          40  0.000000       NaN        NaN  0.000000
+cyclist 12               40 -0.150000       NaN   0.000000  0.000000
+van 12                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.018987       NaN   0.333333  0.018987
+                 num_frames      mota      motp  precision    recall
+car 13                   40 -0.017341       NaN   0.000000  0.000000
+truck 13                 40       NaN       NaN        NaN       NaN
+bus 13                   40       NaN       NaN        NaN       NaN
+pedestrian 13            40       NaN       NaN        NaN       NaN
+motorcyclist 13          40  0.000000       NaN        NaN  0.000000
+cyclist 13               40 -0.025000  0.609443   0.444444  0.050000
+van 13                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.015823       NaN   0.333333  0.012658
+                 num_frames      mota      motp  precision    recall
+car 14                   40 -0.023121       NaN   0.000000  0.000000
+truck 14                 40       NaN       NaN        NaN       NaN
+bus 14                   40       NaN       NaN        NaN       NaN
+pedestrian 14            40       NaN       NaN        NaN       NaN
+motorcyclist 14          40  0.000000       NaN        NaN  0.000000
+cyclist 14               40 -0.125000  0.451137   0.307692  0.100000
+van 14                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.044304       NaN   0.266667  0.025316
+                 num_frames      mota      motp  precision    recall
+car 15                   40  0.034682  0.940046     0.6875  0.063584
+truck 15                 40       NaN       NaN        NaN       NaN
+bus 15                   40       NaN       NaN        NaN       NaN
+pedestrian 15            40       NaN       NaN        NaN       NaN
+motorcyclist 15          40  0.000000       NaN        NaN  0.000000
+cyclist 15               40  0.000000       NaN        NaN  0.000000
+van 15                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.018987       NaN     0.6875  0.034810
+                 num_frames      mota      motp  precision    recall
+car 16                   40  0.000000       NaN        NaN  0.000000
+truck 16                 40       NaN       NaN        NaN       NaN
+bus 16                   40       NaN       NaN        NaN       NaN
+pedestrian 16            40       NaN       NaN        NaN       NaN
+motorcyclist 16          40  0.000000       NaN        NaN  0.000000
+cyclist 16               40  0.075000  1.492874   0.666667  0.175000
+van 16                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.018987       NaN   0.666667  0.044304
+                 num_frames      mota      motp  precision    recall
+car 17                   40  0.196532  0.926170   0.839286  0.271676
+truck 17                 40       NaN       NaN        NaN       NaN
+bus 17                   40       NaN       NaN        NaN       NaN
+pedestrian 17            40       NaN       NaN        NaN       NaN
+motorcyclist 17          40  0.000000       NaN        NaN  0.000000
+cyclist 17               40  0.125000  0.812973   0.823529  0.175000
+van 17                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.139241       NaN   0.835616  0.193038
+                 num_frames      mota      motp  precision    recall
+car 18                   40  0.034682  0.966386   0.722222  0.075145
+truck 18                 40       NaN       NaN        NaN       NaN
+bus 18                   40       NaN       NaN        NaN       NaN
+pedestrian 18            40       NaN       NaN        NaN       NaN
+motorcyclist 18          40  0.000000       NaN        NaN  0.000000
+cyclist 18               40  0.087500  0.854314   0.629630  0.212500
+van 18                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.041139       NaN   0.666667  0.094937
+                 num_frames      mota      motp  precision    recall
+car 19                   40 -0.121387  0.943675   0.387500  0.179191
+truck 19                 40       NaN       NaN        NaN       NaN
+bus 19                   40       NaN       NaN        NaN       NaN
+pedestrian 19            40       NaN       NaN        NaN       NaN
+motorcyclist 19          40  0.000000       NaN        NaN  0.000000
+cyclist 19               40  0.137500  1.142192   1.000000  0.137500
+van 19                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.031646       NaN   0.461538  0.132911
+                 num_frames      mota      motp  precision    recall
+car 20                   40 -0.011561  0.558177   0.250000  0.005780
+truck 20                 40       NaN       NaN        NaN       NaN
+bus 20                   40       NaN       NaN        NaN       NaN
+pedestrian 20            40       NaN       NaN        NaN       NaN
+motorcyclist 20          40  0.000000       NaN        NaN  0.000000
+cyclist 20               40  0.200000  0.814839   0.774194  0.300000
+van 20                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.044304       NaN   0.714286  0.079114
+                 num_frames      mota      motp  precision    recall
+car 21                   40  0.005780  0.785973   0.550000  0.127168
+truck 21                 40       NaN       NaN        NaN       NaN
+bus 21                   40       NaN       NaN        NaN       NaN
+pedestrian 21            40       NaN       NaN        NaN       NaN
+motorcyclist 21          40 -0.074074       NaN   0.000000  0.000000
+cyclist 21               40  0.250000  1.042075   0.717391  0.412500
+van 21                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.060127       NaN   0.625000  0.174051
+                 num_frames      mota      motp  precision    recall
+car 22                   40 -0.046243  0.648700   0.214286  0.017341
+truck 22                 40       NaN       NaN        NaN       NaN
+bus 22                   40       NaN       NaN        NaN       NaN
+pedestrian 22            40       NaN       NaN        NaN       NaN
+motorcyclist 22          40  0.000000       NaN        NaN  0.000000
+cyclist 22               40  0.212500  0.860527   1.000000  0.212500
+van 22                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.028481       NaN   0.645161  0.063291
+                 num_frames      mota      motp  precision    recall
+car 23                   40 -0.092486  1.287022   0.230769  0.034682
+truck 23                 40       NaN       NaN        NaN       NaN
+bus 23                   40       NaN       NaN        NaN       NaN
+pedestrian 23            40       NaN       NaN        NaN       NaN
+motorcyclist 23          40  0.000000  1.421038   0.500000  0.037037
+cyclist 23               40  0.325000  0.976667   0.965517  0.350000
+van 23                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.031646       NaN   0.614035  0.110759
+                 num_frames      mota      motp  precision    recall
+car 24                   40  0.017341  0.846655   0.611111  0.127168
+truck 24                 40       NaN       NaN        NaN       NaN
+bus 24                   40       NaN       NaN        NaN       NaN
+pedestrian 24            40       NaN       NaN        NaN       NaN
+motorcyclist 24          40  0.037037  0.391901   0.600000  0.111111
+cyclist 24               40  0.475000  0.706054   0.830508  0.612500
+van 24                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.132911       NaN   0.740000  0.234177
+                 num_frames      mota      motp  precision    recall
+car 25                   40  0.132948  0.869162   0.815789  0.179191
+truck 25                 40       NaN       NaN        NaN       NaN
+bus 25                   40       NaN       NaN        NaN       NaN
+pedestrian 25            40       NaN       NaN        NaN       NaN
+motorcyclist 25          40 -0.555556  0.599865   0.173913  0.148148
+cyclist 25               40 -0.025000  1.496475   0.491228  0.350000
+van 25                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.018987       NaN   0.533898  0.199367
+                 num_frames      mota      motp  precision    recall
+car 26                   40  0.000000  1.128324   0.520000  0.075145
+truck 26                 40       NaN       NaN        NaN       NaN
+bus 26                   40       NaN       NaN        NaN       NaN
+pedestrian 26            40       NaN       NaN        NaN       NaN
+motorcyclist 26          40 -0.370370  1.132714   0.263158  0.185185
+cyclist 26               40  0.425000  0.442385   1.000000  0.437500
+van 26                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.075949       NaN   0.670886  0.167722
+                 num_frames      mota      motp  precision    recall
+car 27                   40  0.040462  1.109245   0.629630  0.098266
+truck 27                 40       NaN       NaN        NaN       NaN
+bus 27                   40       NaN       NaN        NaN       NaN
+pedestrian 27            40       NaN       NaN        NaN       NaN
+motorcyclist 27          40 -0.148148  0.387092   0.166667  0.037037
+cyclist 27               40  0.600000  0.748239   0.901639  0.687500
+van 27                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.161392       NaN   0.776596  0.231013
+                 num_frames      mota      motp  precision    recall
+car 28                   40 -0.023121  1.075895   0.450000  0.104046
+truck 28                 40       NaN       NaN        NaN       NaN
+bus 28                   40       NaN       NaN        NaN       NaN
+pedestrian 28            40       NaN       NaN        NaN       NaN
+motorcyclist 28          40 -0.444444  0.546663   0.071429  0.037037
+cyclist 28               40  0.250000  0.408973   0.956522  0.275000
+van 28                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.012658       NaN   0.532468  0.129747
+                 num_frames      mota      motp  precision    recall
+car 29                   40  0.086705  0.948805   0.700000  0.161850
+truck 29                 40       NaN       NaN        NaN       NaN
+bus 29                   40       NaN       NaN        NaN       NaN
+pedestrian 29            40       NaN       NaN        NaN       NaN
+motorcyclist 29          40 -1.111111  0.798860   0.083333  0.111111
+cyclist 29               40  0.625000  0.867358   0.933333  0.700000
+van 29                   40 -0.055556       NaN   0.000000  0.000000
+OVERALL                 280  0.104430       NaN   0.630435  0.275316
+                 num_frames      mota      motp  precision    recall
+car 30                   40 -0.023121  1.449707   0.357143  0.028902
+truck 30                 40       NaN       NaN        NaN       NaN
+bus 30                   40       NaN       NaN        NaN       NaN
+pedestrian 30            40       NaN       NaN        NaN       NaN
+motorcyclist 30          40 -0.074074       NaN   0.000000  0.000000
+cyclist 30               40 -0.025000  0.855041   0.428571  0.037500
+van 30                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.025316       NaN   0.347826  0.025316
+                 num_frames      mota      motp  precision    recall
+car 31                   40  0.115607  1.072919   0.744681  0.202312
+truck 31                 40       NaN       NaN        NaN       NaN
+bus 31                   40       NaN       NaN        NaN       NaN
+pedestrian 31            40       NaN       NaN        NaN       NaN
+motorcyclist 31          40  0.074074  0.536644   1.000000  0.074074
+cyclist 31               40  0.437500  0.562834   1.000000  0.462500
+van 31                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.180380       NaN   0.860465  0.234177
+                 num_frames      mota      motp  precision    recall
+car 32                   40 -0.231214  1.398047   0.157895  0.052023
+truck 32                 40       NaN       NaN        NaN       NaN
+bus 32                   40       NaN       NaN        NaN       NaN
+pedestrian 32            40       NaN       NaN        NaN       NaN
+motorcyclist 32          40  0.000000       NaN        NaN  0.000000
+cyclist 32               40 -0.212500  1.183632   0.300000  0.150000
+van 32                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.180380       NaN   0.216495  0.066456
+                 num_frames      mota      motp  precision    recall
+car 33                   40 -0.040462  1.169020   0.392857  0.063584
+truck 33                 40       NaN       NaN        NaN       NaN
+bus 33                   40       NaN       NaN        NaN       NaN
+pedestrian 33            40       NaN       NaN        NaN       NaN
+motorcyclist 33          40 -1.037037  0.971242   0.088235  0.111111
+cyclist 33               40  0.200000  1.033986   0.720930  0.387500
+van 33                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.060127       NaN   0.428571  0.142405
+                 num_frames      mota      motp  precision    recall
+car 34                   40  0.063584  0.878244   0.833333  0.086705
+truck 34                 40       NaN       NaN        NaN       NaN
+bus 34                   40       NaN       NaN        NaN       NaN
+pedestrian 34            40       NaN       NaN        NaN       NaN
+motorcyclist 34          40  0.037037  1.284976   1.000000  0.037037
+cyclist 34               40 -0.200000  0.923735   0.403509  0.287500
+van 34                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.012658       NaN   0.513158  0.123418
+                 num_frames      mota      motp  precision    recall
+car 35                   40  0.190751  1.078466   0.720000  0.416185
+truck 35                 40       NaN       NaN        NaN       NaN
+bus 35                   40       NaN       NaN        NaN       NaN
+pedestrian 35            40       NaN       NaN        NaN       NaN
+motorcyclist 35          40 -0.629630  0.137776   0.130435  0.111111
+cyclist 35               40  0.450000  0.477705   1.000000  0.487500
+van 35                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.164557       NaN   0.703704  0.360759
+                 num_frames      mota      motp  precision    recall
+car 36                   40  0.104046  1.012270   0.704545  0.179191
+truck 36                 40       NaN       NaN        NaN       NaN
+bus 36                   40       NaN       NaN        NaN       NaN
+pedestrian 36            40       NaN       NaN        NaN       NaN
+motorcyclist 36          40  0.037037  0.748412   0.600000  0.111111
+cyclist 36               40  0.437500  0.790761   0.843137  0.537500
+van 36                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.170886       NaN   0.770000  0.243671
+                 num_frames      mota      motp  precision    recall
+car 37                   40  0.132948  0.963534   0.777778  0.202312
+truck 37                 40       NaN       NaN        NaN       NaN
+bus 37                   40       NaN       NaN        NaN       NaN
+pedestrian 37            40       NaN       NaN        NaN       NaN
+motorcyclist 37          40 -0.259259  0.905603   0.230769  0.111111
+cyclist 37               40  0.450000  0.895056   0.800000  0.600000
+van 37                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.164557       NaN   0.728814  0.272152
+                 num_frames      mota      motp  precision    recall
+car 38                   40  0.057803  1.050635   0.612903  0.219653
+truck 38                 40       NaN       NaN        NaN       NaN
+bus 38                   40       NaN       NaN        NaN       NaN
+pedestrian 38            40       NaN       NaN        NaN       NaN
+motorcyclist 38          40 -0.222222  0.882795   0.125000  0.037037
+cyclist 38               40  0.337500  0.747411   0.693333  0.650000
+van 38                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.098101       NaN   0.627586  0.287975
+                 num_frames      mota      motp  precision    recall
+car 39                   40  0.028902  0.903022   0.574468  0.156069
+truck 39                 40       NaN       NaN        NaN       NaN
+bus 39                   40       NaN       NaN        NaN       NaN
+pedestrian 39            40       NaN       NaN        NaN       NaN
+motorcyclist 39          40  0.000000  1.713009   0.500000  0.074074
+cyclist 39               40 -0.375000  1.487717   0.341176  0.362500
+van 39                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.079114       NaN   0.426471  0.183544
+                 num_frames      mota      motp  precision    recall
+car 40                   40  0.075145  0.408712   0.675676  0.144509
+truck 40                 40       NaN       NaN        NaN       NaN
+bus 40                   40       NaN       NaN        NaN       NaN
+pedestrian 40            40       NaN       NaN        NaN       NaN
+motorcyclist 40          40  0.074074  0.694126   1.000000  0.074074
+cyclist 40               40  0.225000  0.693139   0.609756  0.625000
+van 40                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.104430       NaN   0.636364  0.243671
+                 num_frames      mota      motp  precision    recall
+car 41                   40  0.063584  0.703271   0.675676  0.144509
+truck 41                 40       NaN       NaN        NaN       NaN
+bus 41                   40       NaN       NaN        NaN       NaN
+pedestrian 41            40       NaN       NaN        NaN       NaN
+motorcyclist 41          40 -0.185185  0.928547   0.142857  0.037037
+cyclist 41               40 -0.187500  1.019674   0.390625  0.312500
+van 41                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.028481       NaN   0.472222  0.161392
+                 num_frames      mota      motp  precision    recall
+car 42                   40  0.046243  0.672408   0.900000  0.052023
+truck 42                 40       NaN       NaN        NaN       NaN
+bus 42                   40       NaN       NaN        NaN       NaN
+pedestrian 42            40       NaN       NaN        NaN       NaN
+motorcyclist 42          40 -0.111111       NaN   0.000000  0.000000
+cyclist 42               40 -0.212500  0.562882   0.351852  0.237500
+van 42                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.037975       NaN   0.417910  0.088608
+                 num_frames      mota      motp  precision    recall
+car 43                   40  0.017341  0.803473   0.750000  0.034682
+truck 43                 40       NaN       NaN        NaN       NaN
+bus 43                   40       NaN       NaN        NaN       NaN
+pedestrian 43            40       NaN       NaN        NaN       NaN
+motorcyclist 43          40  0.000000       NaN        NaN  0.000000
+cyclist 43               40 -0.275000  0.953976   0.275000  0.137500
+van 43                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.060127       NaN   0.354167  0.053797
+                 num_frames      mota  motp  precision  recall
+car 44                   40  0.000000   NaN        NaN     0.0
+truck 44                 40       NaN   NaN        NaN     NaN
+bus 44                   40       NaN   NaN        NaN     NaN
+pedestrian 44            40       NaN   NaN        NaN     NaN
+motorcyclist 44          40  0.000000   NaN        NaN     0.0
+cyclist 44               40 -0.012500   NaN        0.0     0.0
+van 44                   40  0.000000   NaN        NaN     0.0
+OVERALL                 280 -0.003165   NaN        0.0     0.0
+                 num_frames  mota  motp  precision  recall
+car 45                   40   0.0   NaN        NaN     0.0
+truck 45                 40   NaN   NaN        NaN     NaN
+bus 45                   40   NaN   NaN        NaN     NaN
+pedestrian 45            40   NaN   NaN        NaN     NaN
+motorcyclist 45          40   0.0   NaN        NaN     0.0
+cyclist 45               40   0.0   NaN        NaN     0.0
+van 45                   40   0.0   NaN        NaN     0.0
+OVERALL                 280   0.0   NaN        NaN     0.0
+                 num_frames      mota      motp  precision    recall
+car 46                   40 -0.028902  1.202662   0.510638  0.138728
+truck 46                 40       NaN       NaN        NaN       NaN
+bus 46                   40       NaN       NaN        NaN       NaN
+pedestrian 46            40       NaN       NaN        NaN       NaN
+motorcyclist 46          40  0.000000       NaN        NaN  0.000000
+cyclist 46               40 -0.050000       NaN   0.000000  0.000000
+van 46                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.028481       NaN   0.470588  0.075949
+                 num_frames      mota      motp  precision    recall
+car 47                   40 -0.011561       NaN   0.000000  0.000000
+truck 47                 40       NaN       NaN        NaN       NaN
+bus 47                   40       NaN       NaN        NaN       NaN
+pedestrian 47            40       NaN       NaN        NaN       NaN
+motorcyclist 47          40  0.000000       NaN        NaN  0.000000
+cyclist 47               40  0.037500  1.435814   0.800000  0.050000
+van 47                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.003165       NaN   0.571429  0.012658
+                 num_frames      mota      motp  precision    recall
+car 48                   40 -0.028902       NaN       0.00  0.000000
+truck 48                 40       NaN       NaN        NaN       NaN
+bus 48                   40       NaN       NaN        NaN       NaN
+pedestrian 48            40       NaN       NaN        NaN       NaN
+motorcyclist 48          40  0.000000       NaN        NaN  0.000000
+cyclist 48               40  0.225000  0.585874       0.95  0.237500
+van 48                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.041139       NaN       0.76  0.060127
+                 num_frames      mota      motp  precision    recall
+car 49                   40  0.011561  0.518774   0.583333  0.040462
+truck 49                 40       NaN       NaN        NaN       NaN
+bus 49                   40       NaN       NaN        NaN       NaN
+pedestrian 49            40       NaN       NaN        NaN       NaN
+motorcyclist 49          40  0.000000       NaN        NaN  0.000000
+cyclist 49               40  0.150000  0.614774   0.882353  0.187500
+van 49                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.044304       NaN   0.758621  0.069620
+                 num_frames      mota  motp  precision  recall
+car 50                   40  0.000000   NaN        NaN     0.0
+truck 50                 40       NaN   NaN        NaN     NaN
+bus 50                   40       NaN   NaN        NaN     NaN
+pedestrian 50            40       NaN   NaN        NaN     NaN
+motorcyclist 50          40  0.000000   NaN        NaN     0.0
+cyclist 50               40  0.000000   NaN        NaN     0.0
+van 50                   40 -0.138889   NaN        0.0     0.0
+OVERALL                 280 -0.015823   NaN        0.0     0.0
+                 num_frames     mota      motp  precision    recall
+car 51                   40  0.00000       NaN        NaN  0.000000
+truck 51                 40      NaN       NaN        NaN       NaN
+bus 51                   40      NaN       NaN        NaN       NaN
+pedestrian 51            40      NaN       NaN        NaN       NaN
+motorcyclist 51          40  0.00000       NaN        NaN  0.000000
+cyclist 51               40  0.13750  1.223498   0.789474  0.187500
+van 51                   40  0.00000       NaN        NaN  0.000000
+OVERALL                 280  0.03481       NaN   0.789474  0.047468
+                 num_frames      mota      motp  precision    recall
+car 52                   40  0.028902  0.979750   0.625000  0.115607
+truck 52                 40       NaN       NaN        NaN       NaN
+bus 52                   40       NaN       NaN        NaN       NaN
+pedestrian 52            40       NaN       NaN        NaN       NaN
+motorcyclist 52          40  0.000000       NaN        NaN  0.000000
+cyclist 52               40  0.300000  0.643345   0.804878  0.412500
+van 52                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.091772       NaN   0.726027  0.167722
+                 num_frames      mota      motp  precision    recall
+car 53                   40 -0.040462  0.578287   0.230769  0.017341
+truck 53                 40       NaN       NaN        NaN       NaN
+bus 53                   40       NaN       NaN        NaN       NaN
+pedestrian 53            40       NaN       NaN        NaN       NaN
+motorcyclist 53          40  0.000000       NaN        NaN  0.000000
+cyclist 53               40  0.125000  1.107886   0.600000  0.375000
+van 53                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.009494       NaN   0.523810  0.104430
+                 num_frames      mota      motp  precision    recall
+car 54                   40  0.028902  1.076342   0.727273  0.046243
+truck 54                 40       NaN       NaN        NaN       NaN
+bus 54                   40       NaN       NaN        NaN       NaN
+pedestrian 54            40       NaN       NaN        NaN       NaN
+motorcyclist 54          40 -0.185185       NaN   0.000000  0.000000
+cyclist 54               40  0.150000  0.914281   0.588235  0.500000
+van 54                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.037975       NaN   0.571429  0.151899
+                 num_frames      mota      motp  precision    recall
+car 55                   40  0.005780  1.094537   0.523810  0.063584
+truck 55                 40       NaN       NaN        NaN       NaN
+bus 55                   40       NaN       NaN        NaN       NaN
+pedestrian 55            40       NaN       NaN        NaN       NaN
+motorcyclist 55          40 -0.666667       NaN   0.000000  0.000000
+cyclist 55               40 -0.250000  1.598411   0.282609  0.162500
+van 55                   40 -0.027778       NaN   0.000000  0.000000
+OVERALL                 280 -0.120253       NaN   0.279070  0.075949
+                 num_frames      mota      motp  precision    recall
+car 56                   40  0.017341  1.546115   1.000000  0.017341
+truck 56                 40       NaN       NaN        NaN       NaN
+bus 56                   40       NaN       NaN        NaN       NaN
+pedestrian 56            40       NaN       NaN        NaN       NaN
+motorcyclist 56          40 -0.703704       NaN   0.000000  0.000000
+cyclist 56               40 -0.425000  1.175377   0.180000  0.112500
+van 56                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.158228       NaN   0.166667  0.037975
+                 num_frames      mota      motp  precision    recall
+car 57                   40  0.000000  0.910761   0.500000  0.069364
+truck 57                 40       NaN       NaN        NaN       NaN
+bus 57                   40       NaN       NaN        NaN       NaN
+pedestrian 57            40       NaN       NaN        NaN       NaN
+motorcyclist 57          40 -0.111111       NaN   0.000000  0.000000
+cyclist 57               40 -0.250000  0.742361   0.373333  0.350000
+van 57                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.072785       NaN   0.392157  0.126582
+                 num_frames      mota      motp  precision    recall
+car 58                   40 -0.034682  1.140413   0.285714  0.023121
+truck 58                 40       NaN       NaN        NaN       NaN
+bus 58                   40       NaN       NaN        NaN       NaN
+pedestrian 58            40       NaN       NaN        NaN       NaN
+motorcyclist 58          40 -0.111111  0.853884   0.285714  0.074074
+cyclist 58               40  0.025000  0.887202   0.521739  0.450000
+van 58                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280 -0.022152       NaN   0.466667  0.132911
+                 num_frames      mota      motp  precision    recall
+car 59                   40 -0.005780  1.312384   0.428571  0.017341
+truck 59                 40       NaN       NaN        NaN       NaN
+bus 59                   40       NaN       NaN        NaN       NaN
+pedestrian 59            40       NaN       NaN        NaN       NaN
+motorcyclist 59          40 -0.444444  0.681624   0.125000  0.074074
+cyclist 59               40  0.525000  0.804163   0.921569  0.587500
+van 59                   40 -0.083333       NaN   0.000000  0.000000
+OVERALL                 280  0.082278       NaN   0.675325  0.164557
+                 num_frames      mota      motp  precision    recall
+car 60                   40  0.017341  0.759248   0.588235  0.057803
+truck 60                 40       NaN       NaN        NaN       NaN
+bus 60                   40       NaN       NaN        NaN       NaN
+pedestrian 60            40       NaN       NaN        NaN       NaN
+motorcyclist 60          40 -0.666667       NaN   0.000000  0.000000
+cyclist 60               40  0.350000  0.822261   0.840909  0.462500
+van 60                   40 -0.027778       NaN   0.000000  0.000000
+OVERALL                 280  0.037975       NaN   0.587500  0.148734
+                 num_frames      mota      motp  precision    recall
+car 61                   40  0.017341  1.006073   0.542857  0.109827
+truck 61                 40       NaN       NaN        NaN       NaN
+bus 61                   40       NaN       NaN        NaN       NaN
+pedestrian 61            40       NaN       NaN        NaN       NaN
+motorcyclist 61          40  0.000000       NaN        NaN  0.000000
+cyclist 61               40  0.512500  0.890126   0.864407  0.637500
+van 61                   40 -0.083333       NaN   0.000000  0.000000
+OVERALL                 280  0.129747       NaN   0.721649  0.221519
+                 num_frames      mota      motp  precision    recall
+car 62                   40  0.034682  1.016859   0.612903  0.109827
+truck 62                 40       NaN       NaN        NaN       NaN
+bus 62                   40       NaN       NaN        NaN       NaN
+pedestrian 62            40       NaN       NaN        NaN       NaN
+motorcyclist 62          40  0.000000       NaN        NaN  0.000000
+cyclist 62               40  0.625000  0.921531   0.933333  0.700000
+van 62                   40 -0.194444       NaN   0.000000  0.000000
+OVERALL                 280  0.155063       NaN   0.765306  0.237342
+                 num_frames      mota      motp  precision    recall
+car 63                   40  0.034682  0.976483   0.607143  0.098266
+truck 63                 40       NaN       NaN        NaN       NaN
+bus 63                   40       NaN       NaN        NaN       NaN
+pedestrian 63            40       NaN       NaN        NaN       NaN
+motorcyclist 63          40  0.000000       NaN        NaN  0.000000
+cyclist 63               40  0.612500  0.766500   0.963636  0.662500
+van 63                   40 -0.111111       NaN   0.000000  0.000000
+OVERALL                 280  0.161392       NaN   0.804598  0.221519
+                 num_frames      mota      motp  precision    recall
+car 64                   40  0.005780  1.201960   0.521739  0.069364
+truck 64                 40       NaN       NaN        NaN       NaN
+bus 64                   40       NaN       NaN        NaN       NaN
+pedestrian 64            40       NaN       NaN        NaN       NaN
+motorcyclist 64          40  0.000000       NaN        NaN  0.000000
+cyclist 64               40  0.675000  0.803616   0.967213  0.737500
+van 64                   40 -0.055556       NaN   0.000000  0.000000
+OVERALL                 280  0.167722       NaN   0.825581  0.224684
+                 num_frames      mota      motp  precision    recall
+car 65                   40 -0.005780  1.149176   0.500000  0.080925
+truck 65                 40       NaN       NaN        NaN       NaN
+bus 65                   40       NaN       NaN        NaN       NaN
+pedestrian 65            40       NaN       NaN        NaN       NaN
+motorcyclist 65          40  0.000000       NaN        NaN  0.000000
+cyclist 65               40  0.625000  0.938310   0.904762  0.712500
+van 65                   40 -0.138889       NaN   0.000000  0.000000
+OVERALL                 280  0.139241       NaN   0.739583  0.224684
+                 num_frames      mota      motp  precision    recall
+car 66                   40 -0.017341  1.149909   0.466667  0.080925
+truck 66                 40       NaN       NaN        NaN       NaN
+bus 66                   40       NaN       NaN        NaN       NaN
+pedestrian 66            40       NaN       NaN        NaN       NaN
+motorcyclist 66          40  0.000000       NaN        NaN  0.000000
+cyclist 66               40  0.725000  0.799743   0.953846  0.775000
+van 66                   40 -0.055556       NaN   0.000000  0.000000
+OVERALL                 280  0.167722       NaN   0.783505  0.240506
+                 num_frames      mota      motp  precision    recall
+car 67                   40  0.011561  0.966025   0.541667  0.075145
+truck 67                 40       NaN       NaN        NaN       NaN
+bus 67                   40       NaN       NaN        NaN       NaN
+pedestrian 67            40       NaN       NaN        NaN       NaN
+motorcyclist 67          40  0.000000       NaN        NaN  0.000000
+cyclist 67               40  0.712500  0.915927   0.939394  0.775000
+van 67                   40 -0.055556       NaN   0.000000  0.000000
+OVERALL                 280  0.180380       NaN   0.815217  0.237342
+                 num_frames      mota      motp  precision    recall
+car 68                   40  0.017341  1.068353   0.583333  0.080925
+truck 68                 40       NaN       NaN        NaN       NaN
+bus 68                   40       NaN       NaN        NaN       NaN
+pedestrian 68            40       NaN       NaN        NaN       NaN
+motorcyclist 68          40  0.000000       NaN        NaN  0.000000
+cyclist 68               40  0.550000  0.909195   0.868852  0.662500
+van 68                   40 -0.138889       NaN   0.000000  0.000000
+OVERALL                 280  0.132911       NaN   0.744444  0.212025
+                 num_frames      mota      motp  precision    recall
+car 69                   40  0.034682  1.196360   0.620690  0.104046
+truck 69                 40       NaN       NaN        NaN       NaN
+bus 69                   40       NaN       NaN        NaN       NaN
+pedestrian 69            40       NaN       NaN        NaN       NaN
+motorcyclist 69          40  0.000000       NaN        NaN  0.000000
+cyclist 69               40  0.200000  0.788454   0.634921  0.500000
+van 69                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.069620       NaN   0.630435  0.183544
+                 num_frames      mota      motp  precision    recall
+car 70                   40  0.040462  0.998461   0.653846  0.098266
+truck 70                 40       NaN       NaN        NaN       NaN
+bus 70                   40       NaN       NaN        NaN       NaN
+pedestrian 70            40       NaN       NaN        NaN       NaN
+motorcyclist 70          40  0.000000       NaN        NaN  0.000000
+cyclist 70               40  0.137500  0.723901   0.596774  0.462500
+van 70                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.056962       NaN   0.613636  0.170886
+                 num_frames      mota      motp  precision    recall
+car 71                   40  0.034682  0.966295   0.568182  0.144509
+truck 71                 40       NaN       NaN        NaN       NaN
+bus 71                   40       NaN       NaN        NaN       NaN
+pedestrian 71            40       NaN       NaN        NaN       NaN
+motorcyclist 71          40  0.000000       NaN        NaN  0.000000
+cyclist 71               40  0.012500  0.606121   0.515152  0.425000
+van 71                   40 -0.138889       NaN   0.000000  0.000000
+OVERALL                 280  0.006329       NaN   0.513043  0.186709
+                 num_frames      mota      motp  precision    recall
+car 72                   40  0.017341  1.066501   0.562500  0.104046
+truck 72                 40       NaN       NaN        NaN       NaN
+bus 72                   40       NaN       NaN        NaN       NaN
+pedestrian 72            40       NaN       NaN        NaN       NaN
+motorcyclist 72          40  0.000000       NaN        NaN  0.000000
+cyclist 72               40  0.362500  0.863691   0.734375  0.587500
+van 72                   40 -0.111111       NaN   0.000000  0.000000
+OVERALL                 280  0.088608       NaN   0.650000  0.205696
+                 num_frames      mota      motp  precision    recall
+car 73                   40 -0.005780  0.817692   0.484848  0.092486
+truck 73                 40       NaN       NaN        NaN       NaN
+bus 73                   40       NaN       NaN        NaN       NaN
+pedestrian 73            40       NaN       NaN        NaN       NaN
+motorcyclist 73          40  0.000000       NaN        NaN  0.000000
+cyclist 73               40  0.312500  0.961684   0.728814  0.537500
+van 73                   40 -0.083333       NaN   0.000000  0.000000
+OVERALL                 280  0.066456       NaN   0.621053  0.186709
+                 num_frames      mota      motp  precision    recall
+car 74                   40 -0.011561  1.177454   0.473684  0.104046
+truck 74                 40       NaN       NaN        NaN       NaN
+bus 74                   40       NaN       NaN        NaN       NaN
+pedestrian 74            40       NaN       NaN        NaN       NaN
+motorcyclist 74          40  0.000000       NaN        NaN  0.000000
+cyclist 74               40  0.250000  0.781602   0.661538  0.537500
+van 74                   40 -0.055556       NaN   0.000000  0.000000
+OVERALL                 280  0.050633       NaN   0.580952  0.193038
+                 num_frames      mota      motp  precision    recall
+car 75                   40  0.000000  1.007592   0.535714  0.086705
+truck 75                 40       NaN       NaN        NaN       NaN
+bus 75                   40       NaN       NaN        NaN       NaN
+pedestrian 75            40       NaN       NaN        NaN       NaN
+motorcyclist 75          40  0.000000       NaN        NaN  0.000000
+cyclist 75               40  0.112500  0.866424   0.596491  0.425000
+van 75                   40 -0.083333       NaN   0.000000  0.000000
+OVERALL                 280  0.018987       NaN   0.556818  0.155063
+                 num_frames      mota      motp  precision    recall
+car 76                   40 -0.005780  1.164528   0.513514  0.109827
+truck 76                 40       NaN       NaN        NaN       NaN
+bus 76                   40       NaN       NaN        NaN       NaN
+pedestrian 76            40       NaN       NaN        NaN       NaN
+motorcyclist 76          40  0.000000       NaN        NaN  0.000000
+cyclist 76               40  0.175000  0.859563   0.633333  0.475000
+van 76                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.041139       NaN   0.587629  0.180380
+                 num_frames      mota      motp  precision    recall
+car 77                   40 -0.023121  1.303015   0.452381  0.109827
+truck 77                 40       NaN       NaN        NaN       NaN
+bus 77                   40       NaN       NaN        NaN       NaN
+pedestrian 77            40       NaN       NaN        NaN       NaN
+motorcyclist 77          40  0.000000       NaN        NaN  0.000000
+cyclist 77               40  0.412500  0.861461   0.765625  0.612500
+van 77                   40 -0.083333       NaN   0.000000  0.000000
+OVERALL                 280  0.082278       NaN   0.623853  0.215190
+                 num_frames      mota      motp  precision    recall
+car 78                   40 -0.011561  0.828391   0.468750  0.086705
+truck 78                 40       NaN       NaN        NaN       NaN
+bus 78                   40       NaN       NaN        NaN       NaN
+pedestrian 78            40       NaN       NaN        NaN       NaN
+motorcyclist 78          40  0.000000       NaN        NaN  0.000000
+cyclist 78               40  0.012500  0.568133   0.515152  0.425000
+van 78                   40 -0.027778       NaN   0.000000  0.000000
+OVERALL                 280 -0.006329       NaN   0.494949  0.155063
+                 num_frames      mota      motp  precision    recall
+car 79                   40  0.023121  0.888535   0.571429  0.092486
+truck 79                 40       NaN       NaN        NaN       NaN
+bus 79                   40       NaN       NaN        NaN       NaN
+pedestrian 79            40       NaN       NaN        NaN       NaN
+motorcyclist 79          40  0.000000       NaN        NaN  0.000000
+cyclist 79               40 -0.037500  0.580934   0.483333  0.362500
+van 79                   40 -0.138889       NaN   0.000000  0.000000
+OVERALL                 280 -0.012658       NaN   0.483871  0.142405
+                 num_frames      mota      motp  precision    recall
+car 80                   40  0.017341  1.244404   0.560000  0.080925
+truck 80                 40       NaN       NaN        NaN       NaN
+bus 80                   40       NaN       NaN        NaN       NaN
+pedestrian 80            40       NaN       NaN        NaN       NaN
+motorcyclist 80          40  0.000000       NaN        NaN  0.000000
+cyclist 80               40  0.337500  0.907367   0.733333  0.550000
+van 80                   40 -0.083333       NaN   0.000000  0.000000
+OVERALL                 280  0.085443       NaN   0.659091  0.183544
+                 num_frames      mota      motp  precision    recall
+car 81                   40 -0.011561  0.869107   0.466667  0.080925
+truck 81                 40       NaN       NaN        NaN       NaN
+bus 81                   40       NaN       NaN        NaN       NaN
+pedestrian 81            40       NaN       NaN        NaN       NaN
+motorcyclist 81          40  0.000000       NaN        NaN  0.000000
+cyclist 81               40  0.312500  0.855959   0.703125  0.562500
+van 81                   40 -0.111111       NaN   0.000000  0.000000
+OVERALL                 280  0.060127       NaN   0.602041  0.186709
+                 num_frames      mota      motp  precision    recall
+car 82                   40  0.005780  1.109916   0.531250  0.098266
+truck 82                 40       NaN       NaN        NaN       NaN
+bus 82                   40       NaN       NaN        NaN       NaN
+pedestrian 82            40       NaN       NaN        NaN       NaN
+motorcyclist 82          40  0.000000       NaN        NaN  0.000000
+cyclist 82               40  0.150000  0.735997   0.606557  0.462500
+van 82                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.041139       NaN   0.580645  0.170886
+                 num_frames      mota      motp  precision    recall
+car 83                   40  0.011561  1.269879   0.566667  0.098266
+truck 83                 40       NaN       NaN        NaN       NaN
+bus 83                   40       NaN       NaN        NaN       NaN
+pedestrian 83            40       NaN       NaN        NaN       NaN
+motorcyclist 83          40  0.000000       NaN        NaN  0.000000
+cyclist 83               40  0.137500  0.815772   0.606557  0.462500
+van 83                   40 -0.055556       NaN   0.000000  0.000000
+OVERALL                 280  0.034810       NaN   0.580645  0.170886
+                 num_frames      mota      motp  precision    recall
+car 84                   40 -0.040462  0.880360   0.428571  0.104046
+truck 84                 40       NaN       NaN        NaN       NaN
+bus 84                   40       NaN       NaN        NaN       NaN
+pedestrian 84            40       NaN       NaN        NaN       NaN
+motorcyclist 84          40  0.000000       NaN        NaN  0.000000
+cyclist 84               40 -0.050000  0.578192   0.474576  0.350000
+van 84                   40 -0.222222       NaN   0.000000  0.000000
+OVERALL                 280 -0.060127       NaN   0.422018  0.145570
+                 num_frames      mota      motp  precision    recall
+car 85                   40 -0.011561  1.150334   0.472222  0.098266
+truck 85                 40       NaN       NaN        NaN       NaN
+bus 85                   40       NaN       NaN        NaN       NaN
+pedestrian 85            40       NaN       NaN        NaN       NaN
+motorcyclist 85          40  0.000000       NaN        NaN  0.000000
+cyclist 85               40  0.150000  0.694323   0.603175  0.475000
+van 85                   40 -0.027778       NaN   0.000000  0.000000
+OVERALL                 280  0.028481       NaN   0.550000  0.174051
+                 num_frames      mota      motp  precision    recall
+car 86                   40 -0.005780  1.201698   0.487805  0.115607
+truck 86                 40       NaN       NaN        NaN       NaN
+bus 86                   40       NaN       NaN        NaN       NaN
+pedestrian 86            40       NaN       NaN        NaN       NaN
+motorcyclist 86          40  0.000000       NaN        NaN  0.000000
+cyclist 86               40  0.100000  0.718110   0.573770  0.437500
+van 86                   40 -0.083333       NaN   0.000000  0.000000
+OVERALL                 280  0.012658       NaN   0.523810  0.174051
+                num_frames  mota  motp  precision  recall
+car 3                 1024   0.0   NaN        NaN     0.0
+truck 3               1024   0.0   NaN        NaN     0.0
+bus 3                 1024   NaN   NaN        NaN     NaN
+pedestrian 3          1024   0.0   NaN        NaN     0.0
+motorcyclist 3        1024   0.0   NaN        NaN     0.0
+cyclist 3             1024   0.0   NaN        NaN     0.0
+van 3                 1024   0.0   NaN        NaN     0.0
+OVERALL               7168   0.0   NaN        NaN     0.0
+                num_frames  mota  motp  precision  recall
+car 4                 1024   0.0   NaN        NaN     0.0
+truck 4               1024   0.0   NaN        NaN     0.0
+bus 4                 1024   NaN   NaN        NaN     NaN
+pedestrian 4          1024   0.0   NaN        NaN     0.0
+motorcyclist 4        1024   0.0   NaN        NaN     0.0
+cyclist 4             1024   0.0   NaN        NaN     0.0
+van 4                 1024   0.0   NaN        NaN     0.0
+OVERALL               7168   0.0   NaN        NaN     0.0
+                num_frames      mota  motp  precision  recall
+car 5                 1024  0.000000   NaN        NaN     0.0
+truck 5               1024  0.000000   NaN        NaN     0.0
+bus 5                 1024       NaN   NaN        NaN     NaN
+pedestrian 5          1024  0.000000   NaN        NaN     0.0
+motorcyclist 5        1024  0.000000   NaN        NaN     0.0
+cyclist 5             1024 -0.008475   NaN        0.0     0.0
+van 5                 1024  0.000000   NaN        NaN     0.0
+OVERALL               7168 -0.000117   NaN        0.0     0.0
+                num_frames      mota      motp  precision    recall
+car 6                 1024  0.155678  0.727892   0.913907  0.176095
+truck 6               1024  0.000000       NaN        NaN  0.000000
+bus 6                 1024       NaN       NaN        NaN       NaN
+pedestrian 6          1024  0.000000       NaN        NaN  0.000000
+motorcyclist 6        1024  0.000000       NaN        NaN  0.000000
+cyclist 6             1024  0.000000       NaN        NaN  0.000000
+van 6                 1024  0.000000       NaN        NaN  0.000000
+OVERALL               7168  0.042787       NaN   0.913907  0.048398
+                num_frames      mota      motp  precision    recall
+car 7                 1024  0.202467  0.719415   0.843441  0.254360
+truck 7               1024  0.000000       NaN        NaN  0.000000
+bus 7                 1024       NaN       NaN        NaN       NaN
+pedestrian 7          1024  0.000000       NaN        NaN  0.000000
+motorcyclist 7        1024  0.000000       NaN        NaN  0.000000
+cyclist 7             1024  0.000000       NaN        NaN  0.000000
+van 7                 1024  0.000000       NaN        NaN  0.000000
+OVERALL               7168  0.055646       NaN   0.843441  0.069909
+                num_frames      mota      motp  precision    recall
+car 8                 1024  0.002977  0.770447   0.550388  0.060400
+truck 8               1024  0.000000       NaN        NaN  0.000000
+bus 8                 1024       NaN       NaN        NaN       NaN
+pedestrian 8          1024  0.000000       NaN        NaN  0.000000
+motorcyclist 8        1024  0.000000       NaN        NaN  0.000000
+cyclist 8             1024 -0.025424  0.540677   0.444444  0.101695
+van 8                 1024  0.000000       NaN        NaN  0.000000
+OVERALL               7168  0.000468       NaN   0.540351  0.018003
+                num_frames      mota      motp  precision    recall
+car 9                 1024  0.250532  0.506240   0.823974  0.324543
+truck 9               1024  0.000000       NaN        NaN  0.000000
+bus 9                 1024       NaN       NaN        NaN       NaN
+pedestrian 9          1024  0.000000       NaN        NaN  0.000000
+motorcyclist 9        1024  0.000000       NaN        NaN  0.000000
+cyclist 9             1024  0.008475  1.053943   1.000000  0.008475
+van 9                 1024  0.000000       NaN        NaN  0.000000
+OVERALL               7168  0.068974       NaN   0.824164  0.089315
+                 num_frames      mota      motp  precision    recall
+car 10                 1024  0.214802  0.807393   0.745080  0.338154
+truck 10               1024  0.000000       NaN        NaN  0.000000
+bus 10                 1024       NaN       NaN        NaN       NaN
+pedestrian 10          1024  0.012527  0.745917   0.793970  0.026391
+motorcyclist 10        1024  0.000000       NaN        NaN  0.000000
+cyclist 10             1024 -0.042373       NaN   0.000000  0.000000
+van 10                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.067220       NaN   0.749803  0.111410
+                 num_frames      mota     motp  precision    recall
+car 11                 1024  0.108039  0.94515   0.682667  0.217780
+truck 11               1024  0.000000      NaN        NaN  0.000000
+bus 11                 1024       NaN      NaN        NaN       NaN
+pedestrian 11          1024  0.000000      NaN        NaN  0.000000
+motorcyclist 11        1024  0.000000      NaN        NaN  0.000000
+cyclist 11             1024 -0.016949      NaN   0.000000  0.000000
+van 11                 1024  0.000000      NaN        NaN  0.000000
+OVERALL                7168  0.029460      NaN   0.680851  0.059855
+                 num_frames      mota      motp  precision    recall
+car 12                 1024  0.131433  0.633548   0.721925  0.229689
+truck 12               1024  0.000000       NaN        NaN  0.000000
+bus 12                 1024       NaN       NaN        NaN       NaN
+pedestrian 12          1024 -0.000334       NaN   0.000000  0.000000
+motorcyclist 12        1024  0.000000       NaN        NaN  0.000000
+cyclist 12             1024  0.000000       NaN        NaN  0.000000
+van 12                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.035890       NaN   0.720000  0.063128
+                 num_frames      mota      motp  precision    recall
+car 13                 1024  0.150149  0.581139    0.78871  0.207997
+truck 13               1024  0.000000       NaN        NaN  0.000000
+bus 13                 1024       NaN       NaN        NaN       NaN
+pedestrian 13          1024  0.000000       NaN        NaN  0.000000
+motorcyclist 13        1024  0.000000       NaN        NaN  0.000000
+cyclist 13             1024  0.000000       NaN        NaN  0.000000
+van 13                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.041267       NaN    0.78871  0.057166
+                 num_frames      mota      motp  precision    recall
+car 14                 1024  0.099532  0.673003   0.665793  0.216078
+truck 14               1024  0.000000       NaN        NaN  0.000000
+bus 14                 1024       NaN       NaN        NaN       NaN
+pedestrian 14          1024  0.000000       NaN        NaN  0.000000
+motorcyclist 14        1024  0.000000       NaN        NaN  0.000000
+cyclist 14             1024  0.000000  1.704912   0.533333  0.067797
+van 14                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.027356       NaN   0.663239  0.060323
+                 num_frames      mota      motp  precision    recall
+car 15                 1024  0.271799  0.660544   0.887039  0.317312
+truck 15               1024  0.000000       NaN        NaN  0.000000
+bus 15                 1024       NaN       NaN        NaN       NaN
+pedestrian 15          1024  0.000668  0.484806   1.000000  0.000835
+motorcyclist 15        1024  0.000000       NaN        NaN  0.000000
+cyclist 15             1024 -0.016949       NaN   0.000000  0.000000
+van 15                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.074936       NaN   0.885613  0.087795
+                 num_frames      mota      motp  precision    recall
+car 16                 1024  0.256487  0.901604   0.865340  0.314334
+truck 16               1024  0.000000       NaN        NaN  0.000000
+bus 16                 1024       NaN       NaN        NaN       NaN
+pedestrian 16          1024  0.006013  0.850710   0.778761  0.014699
+motorcyclist 16        1024  0.000000       NaN        NaN  0.000000
+cyclist 16             1024 -0.296610  1.524496   0.073171  0.025424
+van 16                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.070610       NaN   0.823413  0.097031
+                 num_frames      mota      motp  precision    recall
+car 17                 1024  0.245002  0.656675   0.840961  0.312633
+truck 17               1024  0.000000       NaN        NaN  0.000000
+bus 17                 1024       NaN       NaN        NaN       NaN
+pedestrian 17          1024  0.006681  0.907415   0.813559  0.016035
+motorcyclist 17        1024  0.000000       NaN        NaN  0.000000
+cyclist 17             1024 -0.144068       NaN   0.000000  0.000000
+van 17                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.070026       NaN   0.823588  0.097148
+                 num_frames      mota      motp  precision    recall
+car 18                 1024  0.219481  1.014832   0.796667  0.304977
+truck 18               1024  0.000000       NaN        NaN  0.000000
+bus 18                 1024       NaN       NaN        NaN       NaN
+pedestrian 18          1024  0.000501  0.818054   1.000000  0.000668
+motorcyclist 18        1024  0.000000       NaN        NaN  0.000000
+cyclist 18             1024 -0.423729  0.612942   0.220930  0.161017
+van 18                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.054828       NaN   0.747475  0.086509
+                 num_frames      mota      motp  precision    recall
+car 19                 1024  0.219056  0.738464   0.786481  0.311782
+truck 19               1024  0.000000       NaN        NaN  0.000000
+bus 19                 1024       NaN       NaN        NaN       NaN
+pedestrian 19          1024  0.008017  0.833539   0.800000  0.016035
+motorcyclist 19        1024  0.000000       NaN        NaN  0.000000
+cyclist 19             1024  0.262712  1.096426   0.847826  0.330508
+van 19                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.069441       NaN   0.790528  0.101473
+                 num_frames      mota      motp  precision    recall
+car 20                 1024  0.128031  1.022152   0.683603  0.251808
+truck 20               1024  0.000000       NaN        NaN  0.000000
+bus 20                 1024       NaN       NaN        NaN       NaN
+pedestrian 20          1024  0.006013  0.921943   0.864407  0.008518
+motorcyclist 20        1024  0.000000       NaN        NaN  0.000000
+cyclist 20             1024 -0.338983  1.290940   0.203125  0.110169
+van 20                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.034721       NaN   0.663296  0.076689
+                 num_frames      mota      motp  precision    recall
+car 21                 1024  0.226712  0.645706   0.811512  0.305827
+truck 21               1024  0.000000       NaN        NaN  0.000000
+bus 21                 1024      -inf       NaN   0.000000       NaN
+pedestrian 21          1024  0.018707  0.900396   0.818930  0.033239
+motorcyclist 21        1024  0.000000       NaN        NaN  0.000000
+cyclist 21             1024 -0.245763  0.680178   0.277778  0.127119
+van 21                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.071545       NaN   0.786015  0.109072
+                 num_frames      mota      motp  precision    recall
+car 22                 1024 -0.048915  1.097781   0.164634  0.011484
+truck 22               1024  0.000000       NaN        NaN  0.000000
+bus 22                 1024      -inf       NaN   0.000000       NaN
+pedestrian 22          1024  0.002672  0.855863   0.681818  0.010022
+motorcyclist 22        1024  0.000000       NaN        NaN  0.000000
+cyclist 22             1024 -0.254237       NaN   0.000000  0.000000
+van 22                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168 -0.015431       NaN   0.305263  0.010171
+                 num_frames      mota      motp  precision    recall
+car 23                 1024  0.253934  0.618989   0.826923  0.329222
+truck 23               1024  0.000000       NaN        NaN  0.000000
+bus 23                 1024       NaN       NaN        NaN       NaN
+pedestrian 23          1024  0.011859  0.843070   0.765000  0.025555
+motorcyclist 23        1024  0.000000       NaN        NaN  0.000000
+cyclist 23             1024 -0.101695  0.559274   0.421875  0.228814
+van 23                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.076689       NaN   0.795000  0.111527
+                 num_frames      mota      motp  precision    recall
+car 24                 1024  0.014462  1.439249   0.527551  0.219906
+truck 24               1024  0.000000       NaN        NaN  0.000000
+bus 24                 1024       NaN       NaN        NaN       NaN
+pedestrian 24          1024  0.017705  0.929886   0.818584  0.030900
+motorcyclist 24        1024 -1.148148       NaN   0.000000  0.000000
+cyclist 24             1024 -0.364407  0.919783   0.281250  0.228814
+van 24                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.007716       NaN   0.546887  0.085223
+                 num_frames      mota      motp  precision    recall
+car 25                 1024  0.276053  0.722414   0.806393  0.375585
+truck 25               1024 -5.000000       NaN   0.000000  0.000000
+bus 25                 1024      -inf       NaN   0.000000       NaN
+pedestrian 25          1024  0.017204  0.892371   0.879121  0.026725
+motorcyclist 25        1024  0.000000       NaN        NaN  0.000000
+cyclist 25             1024  0.144068  0.495365   0.641791  0.364407
+van 25                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.088029       NaN   0.798529  0.126958
+                 num_frames      mota      motp  precision    recall
+car 26                 1024  0.179923  0.917163   0.710351  0.318162
+truck 26               1024 -0.666667       NaN   0.000000  0.000000
+bus 26                 1024      -inf       NaN   0.000000       NaN
+pedestrian 26          1024  0.005679  0.857421   0.795181  0.011024
+motorcyclist 26        1024  0.000000       NaN        NaN  0.000000
+cyclist 26             1024  0.186441  1.191219   0.693548  0.364407
+van 26                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.055646       NaN   0.713572  0.100187
+                 num_frames      mota      motp  precision    recall
+car 27                 1024 -0.017014  1.007784   0.489390  0.156954
+truck 27               1024  0.000000       NaN        NaN  0.000000
+bus 27                 1024       NaN       NaN        NaN       NaN
+pedestrian 27          1024  0.018874  0.916066   0.775510  0.038083
+motorcyclist 27        1024  0.000000       NaN        NaN  0.000000
+cyclist 27             1024  0.262712  0.669460   0.757576  0.423729
+van 27                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.012158       NaN   0.580790  0.075637
+                 num_frames      mota      motp  precision    recall
+car 28                 1024  0.103786  1.057204   0.642933  0.257337
+truck 28               1024 -0.666667       NaN   0.000000  0.000000
+bus 28                 1024      -inf       NaN   0.000000       NaN
+pedestrian 28          1024  0.022716  0.850931   0.844444  0.038083
+motorcyclist 28        1024 -0.074074       NaN   0.000000  0.000000
+cyclist 28             1024  0.135593  0.271186   0.862069  0.211864
+van 28                 1024  0.000000       NaN        NaN  0.000000
+OVERALL                7168  0.043956       NaN   0.680952  0.100304
+                 num_frames      mota      motp  precision    recall
+car 11                15663  0.218468  0.789468   0.688833  0.490975
+truck 11              15663 -0.146648  1.040437   0.326960  0.119413
+bus 11                15663 -0.061296       NaN   0.000000  0.000000
+pedestrian 11         15663  0.180005  0.744107   0.889803  0.264867
+motorcyclist 11       15663 -0.003247  0.932966   0.592593  0.025974
+cyclist 11            15663  0.115720  0.659494   0.670027  0.299669
+van 11                15663 -0.056680  0.914250   0.319767  0.044534
+OVERALL              109641  0.178350       NaN   0.772309  0.323111
+                 num_frames      mota      motp  precision    recall
+car 12                   40  0.497110  0.672356   0.818841  0.653179
+truck 12                 40       NaN       NaN        NaN       NaN
+bus 12                   40       NaN       NaN        NaN       NaN
+pedestrian 12            40       NaN       NaN        NaN       NaN
+motorcyclist 12          40  0.037037  1.118899   0.666667  0.074074
+cyclist 12               40  0.862500  0.562987   0.879121  1.000000
+van 12                   40  0.444444  0.826942   0.800000  0.666667
+OVERALL                 280  0.544304       NaN   0.835878  0.693038
+                 num_frames      mota      motp  precision    recall
+car 13                   40  0.537572  0.581648   0.836879  0.682081
+truck 13                 40       NaN       NaN        NaN       NaN
+bus 13                   40       NaN       NaN        NaN       NaN
+pedestrian 13            40       NaN       NaN        NaN       NaN
+motorcyclist 13          40  0.074074  1.109759   1.000000  0.074074
+cyclist 13               40  0.887500  0.611334   0.908046  0.987500
+van 13                   40 -0.027778       NaN   0.000000  0.000000
+OVERALL                 280  0.522152       NaN   0.861472  0.629747
+                 num_frames      mota      motp  precision    recall
+car 15                   40  0.618497  0.741134   0.856209  0.757225
+truck 15                 40       NaN       NaN        NaN       NaN
+bus 15                   40       NaN       NaN        NaN       NaN
+pedestrian 15            40       NaN       NaN        NaN       NaN
+motorcyclist 15          40  0.111111  0.412890   1.000000  0.185185
+cyclist 15               40  0.887500  0.697136   0.908046  0.987500
+van 15                   40  0.027778  0.973389   0.750000  0.166667
+OVERALL                 280  0.575949       NaN   0.873518  0.699367
+                 num_frames      mota      motp  precision    recall
+car 16                   40  0.716763  0.584877   0.869822  0.849711
+truck 16                 40       NaN       NaN        NaN       NaN
+bus 16                   40       NaN       NaN        NaN       NaN
+pedestrian 16            40       NaN       NaN        NaN       NaN
+motorcyclist 16          40  0.074074  0.295370   1.000000  0.074074
+cyclist 16               40  0.950000  0.639831   0.952381  1.000000
+van 16                   40 -0.027778  0.830569   0.562500  0.250000
+OVERALL                 280  0.636076       NaN   0.878229  0.753165
+                 num_frames      mota      motp  precision    recall
+car 17                   40  0.277457  0.715692   0.728972  0.450867
+truck 17                 40       NaN       NaN        NaN       NaN
+bus 17                   40       NaN       NaN        NaN       NaN
+pedestrian 17            40       NaN       NaN        NaN       NaN
+motorcyclist 17          40  0.000000       NaN        NaN  0.000000
+cyclist 17               40  0.350000  0.489046   0.679487  0.662500
+van 17                   40  0.000000       NaN        NaN  0.000000
+OVERALL                 280  0.240506       NaN   0.708108  0.414557
+                 num_frames      mota      motp  precision    recall
+car 18                   40  0.450867  1.000580   0.779310  0.653179
+truck 18                 40       NaN       NaN        NaN       NaN
+bus 18                   40       NaN       NaN        NaN       NaN
+pedestrian 18            40       NaN       NaN        NaN       NaN
+motorcyclist 18          40  0.148148  0.665771   1.000000  0.222222
+cyclist 18               40  0.950000  0.807902   0.952381  1.000000
+van 18                   40 -0.194444  0.376766   0.437500  0.194444
+OVERALL                 280  0.477848       NaN   0.820717  0.651899
+                 num_frames      mota      motp  precision    recall
+car 19                   40  0.549133  0.530766   0.812500  0.751445
+truck 19                 40       NaN       NaN        NaN       NaN
+bus 19                   40       NaN       NaN        NaN       NaN
+pedestrian 19            40       NaN       NaN        NaN       NaN
+motorcyclist 19          40  0.037037  0.716750   0.750000  0.111111
+cyclist 19               40  0.962500  0.642165   0.963855  1.000000
+van 19                   40  0.472222  1.034521   0.771429  0.750000
+OVERALL                 280  0.601266       NaN   0.851064  0.759494
+                 num_frames      mota      motp  precision    recall
+car 20                   40  0.502890  0.646118   0.796053  0.699422
+truck 20                 40       NaN       NaN        NaN       NaN
+bus 20                   40       NaN       NaN        NaN       NaN
+pedestrian 20            40       NaN       NaN        NaN       NaN
+motorcyclist 20          40  0.111111  0.818584   1.000000  0.185185
+cyclist 20               40  0.875000  0.672043   0.909091  1.000000
+van 20                   40  0.055556  0.705304   0.636364  0.194444
+OVERALL                 280  0.512658       NaN   0.832031  0.674051
+                 num_frames      mota      motp  precision    recall
+car 21                   40  0.497110  0.602790   0.770186  0.716763
+truck 21                 40       NaN       NaN        NaN       NaN
+bus 21                   40       NaN       NaN        NaN       NaN
+pedestrian 21            40       NaN       NaN        NaN       NaN
+motorcyclist 21          40  0.407407  0.793867   1.000000  0.444444
+cyclist 21               40  0.975000  0.628886   0.975610  1.000000
+van 21                   40  0.055556  0.444861   0.800000  0.111111
+OVERALL                 280  0.560127       NaN   0.846154  0.696203
+                 num_frames      mota      motp  precision    recall
+car 22                   40  0.468208  0.606300   0.742690  0.734104
+truck 22                 40       NaN       NaN        NaN       NaN
+bus 22                   40       NaN       NaN        NaN       NaN
+pedestrian 22            40       NaN       NaN        NaN       NaN
+motorcyclist 22          40  0.037037  0.729261   0.571429  0.296296
+cyclist 22               40  0.687500  0.572944   0.851852  0.862500
+van 22                   40  0.333333  0.703368   0.894737  0.472222
+OVERALL                 280  0.471519       NaN   0.775439  0.699367
+                 num_frames      mota      motp  precision    recall
+car 23                   40  0.658960  0.596207   0.853659  0.809249
+truck 23                 40       NaN       NaN        NaN       NaN
+bus 23                   40       NaN       NaN        NaN       NaN
+pedestrian 23            40       NaN       NaN        NaN       NaN
+motorcyclist 23          40  0.148148  1.051018   0.857143  0.222222
+cyclist 23               40  0.675000  0.642037   0.837500  0.837500
+van 23                   40  0.111111  1.091570   0.750000  0.250000
+OVERALL                 280  0.556962       NaN   0.844106  0.702532
+                 num_frames      mota      motp  precision    recall
+car 24                   40  0.526012  0.600320   0.781818  0.745665
+truck 24                 40       NaN       NaN        NaN       NaN
+bus 24                   40       NaN       NaN        NaN       NaN
+pedestrian 24            40       NaN       NaN        NaN       NaN
+motorcyclist 24          40  0.185185  0.489247   1.000000  0.222222
+cyclist 24               40  0.950000  0.577182   0.975000  0.975000
+van 24                   40  0.777778  0.981310   0.891892  0.916667
+OVERALL                 280  0.632911       NaN   0.854167  0.778481
+                 num_frames      mota      motp  precision    recall
+car 25                   40  0.387283  0.690859   0.735484  0.658960
+truck 25                 40       NaN       NaN        NaN       NaN
+bus 25                   40       NaN       NaN        NaN       NaN
+pedestrian 25            40       NaN       NaN        NaN       NaN
+motorcyclist 25          40  0.185185  0.376231   1.000000  0.185185
+cyclist 25               40  0.787500  0.547136   0.888889  0.900000
+van 25                   40  0.555556  0.669522   0.888889  0.666667
+OVERALL                 280  0.490506       NaN   0.802239  0.680380
