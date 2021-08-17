@@ -513,3 +513,153 @@ bus 23          40   NaN   NaN        NaN     NaN
 bus 24          40   NaN   NaN        NaN     NaN
         num_frames  mota  motp  precision  recall
 bus 25          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 17          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 18          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 19          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 20          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 21          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 22          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 12         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 13         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 14         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 15         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 16         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 17         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 18         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 19         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 20         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 21         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 22         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 23         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 24         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 25         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 26         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 27         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 28         572   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 29          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 30          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 31          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 32          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 33          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 34          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 35          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 36          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 37          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 38          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 39          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 40          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 41          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 42          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 43          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 44          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 45          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 46          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 47          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 48          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 49          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 50          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 51          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 52          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 53          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 54          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 55          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 56          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 57          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 58          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 59          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 60          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 61          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 62          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 63          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 64          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 65          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 66          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 67          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 68          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 69          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 70          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 71          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 72          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 73          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 74          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 75          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 76          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 77          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 78          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 79          40   NaN   NaN        NaN     NaN
+        num_frames  mota  motp  precision  recall
+bus 80          40   NaN   NaN        NaN     NaN

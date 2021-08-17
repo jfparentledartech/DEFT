@@ -36,7 +36,7 @@ filename = '../options/test_opt_pixset.txt'
 with open(filename, 'wb') as f:
     pickle.dump(opt, f)
 #     # print('dataset -> ', opt.dataset)
-    print('lstm -> ', opt.lstm)
+#     print('lstm -> ', opt.lstm)
     # print(f'saved {filename}')
 # with open(filename, 'rb') as f:
 #     opt = pickle.load(f)
@@ -124,8 +124,8 @@ def prefetch_test(opt):
     opt = opts().update_dataset_info_and_set_heads(opt, Dataset)
 
     # split = "val" if not opt.trainval else "test"
-    split = "test"
-    # split = "val"
+    # split = "test"
+    split = "val"
     dataset = Dataset(opt, split)
     detector = Detector(opt)
 

@@ -294,7 +294,7 @@ if __name__ == '__main__':
         # '/home/jfparent/Documents/PixSet/train_dataset/20200803_174859_part46_2761_2861', # rain
         # '/home/jfparent/Documents/PixSet/train_dataset/20200805_002607_part48_2083_2282', # night
         # '/home/jfparent/Documents/PixSet/train_dataset/20200721_164103_part43_3412_4100',
-        # '/home/jfparent/Documents/PixSet/train_dataset/20200706_162218_part21_4368_7230',
+        # '/home/jfparent/Documents/PixSet/train_dataset/20200706_162218_part21_4368_7230', # big
         # '/home/jfparent/Documents/PixSet/train_dataset/20200706_144800_part25_1224_2100'
     ]
 
@@ -346,13 +346,18 @@ if __name__ == '__main__':
                 high_intensity_waveform = processed_waveform[0]
                 low_intensity_waveform = processed_waveform[1][:,:,:256]
                 full_waveform = np.concatenate((low_intensity_waveform, high_intensity_waveform), axis=2)
-                # full_waveform = processed_waveform
-
                 full_waveforms = {
                     'flir_bfl_img': np.concatenate((np.zeros((8,6,768)), full_waveform[:,:30,:]),axis=1),
                     'flir_bfc_img': full_waveform[:,30:66,:],
                     'flir_bfr_img': np.concatenate((full_waveform[:,:30,:], np.zeros((8,6,768))),axis=1)
                 }
+
+                # full_waveform = processed_waveform
+                # full_waveforms = {
+                #     'flir_bfl_img': np.concatenate((np.zeros((2,8,6,512)), full_waveform[:,:,:30,:]),axis=2),
+                #     'flir_bfc_img': full_waveform[:,:,30:66,:],
+                #     'flir_bfr_img': np.concatenate((full_waveform[:,:,:30,:], np.zeros((2,8,6,512))),axis=2)
+                # }
 
                 camera_waveform_crops = (389,378,0,0)
 

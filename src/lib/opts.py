@@ -42,6 +42,7 @@ class opts(object):
             "--load_model_traj", default="", help="path to pretrained model"
         )
         self.parser.add_argument("--use_pixell",  action="store_true")
+        self.parser.add_argument("--fuse_layer",  type=int, default=0, help="dla level layer where waveform features are fused with image features")
         self.parser.add_argument(
             "--lstm",
             # default=False,

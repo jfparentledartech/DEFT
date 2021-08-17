@@ -117,7 +117,6 @@ class BaseModel(nn.Module):
         out = []
 
         if self.opt.model_output_list:
-
             for s in range(self.num_stacks):
                 z = []
                 for head in sorted(self.heads):

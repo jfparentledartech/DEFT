@@ -513,3 +513,153 @@ pedestrian 23          40   NaN   NaN        NaN     NaN
 pedestrian 24          40   NaN   NaN        NaN     NaN
                num_frames  mota  motp  precision  recall
 pedestrian 25          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 17          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 18          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 19          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 20          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 21          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 22          40   NaN   NaN        NaN     NaN
+               num_frames     mota      motp  precision   recall
+pedestrian 12         572  0.01667  0.951478   0.685897  0.04694
+               num_frames  mota  motp  precision  recall
+pedestrian 13         572   0.0   NaN        NaN     0.0
+               num_frames      mota      motp  precision    recall
+pedestrian 14         572  0.012722  0.928304   0.691304  0.034876
+               num_frames     mota      motp  precision    recall
+pedestrian 15         572  0.02018  0.926882   0.688787  0.066023
+               num_frames      mota      motp  precision    recall
+pedestrian 16         572  0.010967  0.851904   0.729323  0.021277
+               num_frames      mota     motp  precision    recall
+pedestrian 17         572  0.032683  0.94017   0.715835  0.072384
+               num_frames      mota      motp  precision    recall
+pedestrian 18         572  0.011406  0.852788   0.641873  0.051108
+               num_frames      mota      motp  precision    recall
+pedestrian 19         572  0.041676  0.938951   0.712308  0.101557
+               num_frames      mota      motp  precision   recall
+pedestrian 20         572  0.037508  0.857932   0.737452  0.08379
+               num_frames      mota      motp  precision    recall
+pedestrian 21         572  0.037728  0.896389   0.843206  0.053082
+               num_frames      mota      motp  precision    recall
+pedestrian 22         572  0.004606  1.060296        0.6  0.032244
+               num_frames      mota      motp  precision    recall
+pedestrian 23         572  0.074139  0.979421   0.739042  0.159026
+               num_frames      mota      motp  precision   recall
+pedestrian 24         572  0.051108  0.940416   0.814596  0.09059
+               num_frames      mota     motp  precision    recall
+pedestrian 25         572  0.042553  0.87676   0.848564  0.071288
+               num_frames      mota      motp  precision    recall
+pedestrian 26         572  0.069094  0.907664   0.751357  0.151788
+               num_frames      mota      motp  precision    recall
+pedestrian 27         572  0.090371  0.911808    0.75829  0.190612
+               num_frames      mota      motp  precision    recall
+pedestrian 28         572  0.082694  0.892161   0.756311  0.170871
+               num_frames  mota  motp  precision  recall
+pedestrian 29          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 30          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 31          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 32          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 33          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 34          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 35          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 36          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 37          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 38          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 39          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 40          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 41          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 42          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 43          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 44          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 45          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 46          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 47          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 48          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 49          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 50          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 51          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 52          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 53          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 54          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 55          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 56          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 57          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 58          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 59          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 60          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 61          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 62          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 63          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 64          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 65          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 66          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 67          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 68          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 69          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 70          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 71          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 72          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 73          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 74          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 75          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 76          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 77          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 78          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 79          40   NaN   NaN        NaN     NaN
+               num_frames  mota  motp  precision  recall
+pedestrian 80          40   NaN   NaN        NaN     NaN
