@@ -79,7 +79,7 @@ class WaveformDenseSubnet(nn.Module):
 
         # self.dense_block_2 = layers.DenseBlock(in_channels=self.compressor_1.out_channels, growth=20, n_layers=4, kernel=(3,3,5))
         self.dense_block_2 = layers.DenseBlock(in_channels=self.compressor_1.out_channels, growth=4, n_layers=2, kernel=(3,3,5))
-        self.compressor_2 = layers.Compressor(in_channels=self.dense_block_2.out_channels, out_channels=80, kernel=(1,1,3), shrink=(1,1,8))
+        self.compressor_2 = layers.Compressor(in_channels=self.dense_block_2.out_channels, out_channels=80, kernel=(1,1,3), shrink=(1,1,4))
 
         self.decapitation_3 = layers.Decapitation(in_channels=self.compressor_2.out_channels, out_channels=48, kernel=(3,3,3))
         self.upscale_decap_3 = layers.Upscale(in_channels=self.decapitation_3.out_channels, out_channels=48, kernel=(2,2), up_factor=(2,2))
@@ -141,5 +141,7 @@ class WaveformDenseSubnet(nn.Module):
         x = self.upscale_3(x)
 
         x = self.dense_block_out(x)
+        # from matplotlib import pyplot as plt
+        # plt.imshow(x.detach().cpu()[0,0])
         x = torch.nn.functional.interpolate(x, (160,720))
         return x
