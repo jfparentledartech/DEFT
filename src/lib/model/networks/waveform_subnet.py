@@ -141,5 +141,5 @@ class WaveformDenseSubnet(nn.Module):
         x = self.upscale_3(x)
 
         x = self.dense_block_out(x)
-
+        x = torch.nn.functional.interpolate(x, (160,720))
         return x

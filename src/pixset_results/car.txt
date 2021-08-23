@@ -663,3 +663,71 @@ car 78          40 -0.017341  1.133963        0.5  0.196532
 car 79          40  0.057803  1.158104   0.603448  0.202312
         num_frames      mota      motp  precision    recall
 car 80          40 -0.034682  1.219972       0.25  0.017341
+        num_frames      mota      motp  precision    recall
+car 81         120 -0.089457  0.929555   0.338028  0.076677
+        num_frames      mota      motp  precision    recall
+car 82         120 -0.092652  0.963173    0.37234  0.111821
+        num_frames      mota      motp  precision    recall
+car 83         120 -0.105431  1.095945   0.307692  0.076677
+        num_frames      mota      motp  precision    recall
+car 84         120 -0.057508  1.386567   0.318182  0.044728
+       num_frames  mota  motp  precision  recall
+car 7         120   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 8         120   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 9         120   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 10         120   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 11         120   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 7          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 8          40   0.0   NaN        NaN     0.0
+       num_frames  mota  motp  precision  recall
+car 9          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 10          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 11          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 12          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 13          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 14          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 15          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 16          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 17          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 18          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 19          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 20          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 21          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 22          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 23          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 24          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 25          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 26          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 27          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 28          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 29          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 30          40   0.0   NaN        NaN     0.0
+        num_frames  mota  motp  precision  recall
+car 31          40   0.0   NaN        NaN     0.0

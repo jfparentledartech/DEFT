@@ -317,6 +317,8 @@ class DLA(nn.Module):
             self.waveform_subnet = WaveformDenseSubnet()
             self.fuse = nn.Sequential(
                 nn.Conv2d(48, 32, kernel_size=1, stride=1, padding=0, bias=False),
+                # nn.Conv2d(48, 48, kernel_size=1, stride=1, padding=0, bias=False),
+                # nn.BatchNorm2d(48, momentum=BN_MOMENTUM),
                 nn.BatchNorm2d(32, momentum=BN_MOMENTUM),
                 nn.ReLU(inplace=True),
             )
@@ -328,7 +330,9 @@ class DLA(nn.Module):
         self.level2 = Tree(
             levels[2],
             block,
-            channels[1],
+            32,
+            # 48,
+            # channels[1],
             channels[2],
             2,
             level_root=False,

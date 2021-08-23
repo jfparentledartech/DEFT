@@ -170,17 +170,18 @@ def main(opt):
 
 
 if __name__ == "__main__":
-    opt = opts().parse()
+    # opt = opts().parse()
 
     filename = '../options/train_opt_pixset.txt'
-    with open(filename, 'wb') as f:
-        pickle.dump(opt, f)
+    # with open(filename, 'wb') as f:
+    #     pickle.dump(opt, f)
     #     print(f'saved {filename}')
-    # with open(filename, 'rb') as f:
-    #     opt = pickle.load(f)
+    with open(filename, 'rb') as f:
+        opt = pickle.load(f)
     # opt.resume = True
     # opt.use_pixell = True
     # opt.eval_val = True
     print(f'Using pixell -> ', opt.use_pixell)
     print(f'Using lstm -> ', opt.lstm)
+    print(f'Sensor dropout lstm -> ', opt.sensor_dropout)
     main(opt)

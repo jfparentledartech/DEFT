@@ -12,7 +12,7 @@ from progress.bar import Bar
 
 from matplotlib.patches import Polygon
 from pioneer.common import linalg
-from pioneer.common.trace_processing import TraceProcessingCollection, Realign, ZeroBaseline, Smooth
+from pioneer.common.trace_processing import TraceProcessingCollection, Realign, ZeroBaseline, Smooth, Binning, Clip
 
 import _init_paths
 from lib.utils.ddd_utils import draw_box_3d, ddd2locrot
@@ -20,6 +20,12 @@ from lib.utils.ddd_utils import draw_box_3d, ddd2locrot
 from uuid import uuid4
 
 DEBUG = False
+
+waveform_high_max_amplitude = 65520
+waveform_low_max_amplitude = 45720
+#
+# waveform_high_max_amplitude = 0
+# waveform_low_max_amplitude = 0
 
 def rot_x_axis(theta):
     return np.asarray([[1, 0, 0],
@@ -182,6 +188,18 @@ def box3d_from_loc_dim_rot(annotation_to_camera_transformation, loc, dim, rot, c
 
     return box3d
 
+def map_neirest_traces():
+    pass
+    # TODO generate virtual echoes at 20 meters
+    # TODO map each pixel of a camera image to the neirest echoe to find the corresponding pixell channel
+    # processed_traces = trace_sample.processed(self.trace_processing)
+    # echoes, additionnal_fields = get_echoes(processed_traces)
+    #
+    # raw = clouds.to_echo_package(
+    #     indices = np.array(echoes['indices'], 'u4'),
+    #     distances = np.array(echoes['distances'], 'f4')
+    # )
+
 
 if __name__ == '__main__':
 
@@ -283,21 +301,21 @@ if __name__ == '__main__':
     }
 
     train_pixset_path = '/home/jfparent/Documents/PixSet/train_dataset/'
-    # train_dataset_paths = [train_pixset_path+d for d in os.listdir(train_pixset_path)]
+    train_dataset_paths = [train_pixset_path+d for d in os.listdir(train_pixset_path)]
 
     test_pixset_path = '/home/jfparent/Documents/PixSet/test_dataset/'
     # test_dataset_paths = [test_pixset_path+d for d in os.listdir(test_pixset_path)]
 
-    train_dataset_paths = [
-        # '/home/jfparent/Documents/PixSet/train_dataset/20200721_180421_part41_1800_2500',
-        '/home/jfparent/Documents/PixSet/train_dataset/20200706_171559_part27_1170_1370',
-        # '/home/jfparent/Documents/PixSet/train_dataset/20200803_174859_part46_2761_2861', # rain
-        # '/home/jfparent/Documents/PixSet/train_dataset/20200805_002607_part48_2083_2282', # night
-        # '/home/jfparent/Documents/PixSet/train_dataset/20200721_164103_part43_3412_4100',
-        # '/home/jfparent/Documents/PixSet/train_dataset/20200706_162218_part21_4368_7230', # big
-        # '/home/jfparent/Documents/PixSet/train_dataset/20200706_144800_part25_1224_2100'
-    ]
-
+    # train_dataset_paths = [
+    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200721_180421_part41_1800_2500',
+    #     '/home/jfparent/Documents/PixSet/train_dataset/20200706_171559_part27_1170_1370',
+    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200803_174859_part46_2761_2861', # rain
+    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200805_002607_part48_2083_2282', # night
+    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200721_164103_part43_3412_4100',
+    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200706_162218_part21_4368_7230', # big
+    #     # '/home/jfparent/Documents/PixSet/train_dataset/20200706_144800_part25_1224_2100'
+    # ]
+    #
     test_dataset_paths = [
         # '/home/jfparent/Documents/PixSet/20200721_180421_part41_1800_2500',
         # '/home/jfparent/Documents/PixSet/train_dataset/20200706_171559_part27_1170_1370',
@@ -323,8 +341,8 @@ if __name__ == '__main__':
 
         bar = Bar(f'Exporting {dataset} ({num_video+1}/{len(train_dataset_paths+test_dataset_paths)})', max=len(sc)*3)
 
-        # for sensor_id, camera in enumerate(['flir_bfl_img', 'flir_bfr_img', 'flir_bfc_img']):
-        for sensor_id, camera in enumerate(['flir_bfc_img']):
+        for sensor_id, camera in enumerate(['flir_bfl_img', 'flir_bfr_img', 'flir_bfc_img']):
+        # for sensor_id, camera in enumerate(['flir_bfl_img']):
 
             for i_frame, frame in enumerate(range(len(sc))):
                 if dataset_path in test_dataset_paths:
@@ -339,25 +357,51 @@ if __name__ == '__main__':
                 bar.next()
 
                 waveform_sample = sc[frame][pixell]
-                preprocess_list = [Realign(-10), ZeroBaseline()]
+                # preprocess_list = [Realign(-10), ZeroBaseline(), Binning(4)]
+                preprocess_list = [Realign(-10), ZeroBaseline(), Clip()]
                 waveform_processing = TraceProcessingCollection(preprocess_list)
                 processed_waveform = waveform_sample.processed_array(waveform_processing)
+                # processed_waveform = (255*(processed_waveform - np.min(processed_waveform))/np.ptp(processed_waveform))
 
-                high_intensity_waveform = processed_waveform[0]
-                low_intensity_waveform = processed_waveform[1][:,:,:256]
+                # high_intensity_waveform = processed_waveform[0]
+                high_intensity_waveform = 255*(processed_waveform[0]/waveform_high_max_amplitude)
+                # if high_intensity_waveform.max() > waveform_high_max_amplitude:
+                #     waveform_high_max_amplitude = high_intensity_waveform.max()
+                # low_intensity_waveform = processed_waveform[1][:,:,:256]
+                low_intensity_waveform = 255*(processed_waveform[1][:,:,:256]/waveform_low_max_amplitude)
+                # if low_intensity_waveform.max() > waveform_low_max_amplitude:
+                #     waveform_low_max_amplitude = low_intensity_waveform.max()
                 full_waveform = np.concatenate((low_intensity_waveform, high_intensity_waveform), axis=2)
-                full_waveforms = {
-                    'flir_bfl_img': np.concatenate((np.zeros((8,6,768)), full_waveform[:,:30,:]),axis=1),
-                    'flir_bfc_img': full_waveform[:,30:66,:],
-                    'flir_bfr_img': np.concatenate((full_waveform[:,:30,:], np.zeros((8,6,768))),axis=1)
-                }
-
-                # full_waveform = processed_waveform
                 # full_waveforms = {
-                #     'flir_bfl_img': np.concatenate((np.zeros((2,8,6,512)), full_waveform[:,:,:30,:]),axis=2),
-                #     'flir_bfc_img': full_waveform[:,:,30:66,:],
-                #     'flir_bfr_img': np.concatenate((full_waveform[:,:,:30,:], np.zeros((2,8,6,512))),axis=2)
+                #     'flir_bfl_img': np.concatenate((np.zeros((8,6,768)), full_waveform[:,:30,:]),axis=1),
+                #     'flir_bfc_img': full_waveform[:,30:66,:],
+                #     'flir_bfr_img': np.concatenate((full_waveform[:,66:,:], np.zeros((8,6,768))),axis=1)
                 # }
+                full_waveforms = {
+                    'flir_bfl_img': full_waveform[:,:41,:],
+                    'flir_bfc_img': full_waveform[:,23:73,:],
+                    'flir_bfr_img': full_waveform[:,55:,:]
+                }
+                bfl_concat = np.concatenate((full_waveforms['flir_bfl_img'][:,:30],
+                                            np.expand_dims((full_waveforms['flir_bfl_img'][:,30]+full_waveforms['flir_bfl_img'][:,31])/2, axis=1),
+                                            np.expand_dims((full_waveforms['flir_bfl_img'][:,32]+full_waveforms['flir_bfl_img'][:,33])/2, axis=1),
+                                            full_waveforms['flir_bfl_img'][:,34:]), axis=1)
+                bfc_concat = np.concatenate((full_waveforms['flir_bfc_img'][:,:7],
+                                            np.expand_dims((full_waveforms['flir_bfc_img'][:,7]+full_waveforms['flir_bfc_img'][:,8])/2, axis=1),
+                                            np.expand_dims((full_waveforms['flir_bfc_img'][:,9]+full_waveforms['flir_bfc_img'][:,10])/2, axis=1),
+                                            full_waveforms['flir_bfc_img'][:,11:39],
+                                            np.expand_dims((full_waveforms['flir_bfc_img'][:,39]+full_waveforms['flir_bfc_img'][:,40])/2, axis=1),
+                                            np.expand_dims((full_waveforms['flir_bfc_img'][:,41]+full_waveforms['flir_bfc_img'][:,42])/2, axis=1),
+                                            full_waveforms['flir_bfc_img'][:,43:]), axis=1)
+                bfr_concat = np.concatenate((full_waveforms['flir_bfr_img'][:,:7],
+                                            np.expand_dims((full_waveforms['flir_bfr_img'][:,7]+full_waveforms['flir_bfr_img'][:,8])/2, axis=1),
+                                            np.expand_dims((full_waveforms['flir_bfr_img'][:,9]+full_waveforms['flir_bfr_img'][:,10])/2, axis=1),
+                                            full_waveforms['flir_bfr_img'][:,11:]), axis=1)
+                full_waveforms = {
+                    'flir_bfl_img': np.concatenate((np.zeros((8,7,768)), bfl_concat),axis=1),
+                    'flir_bfc_img': bfc_concat,
+                    'flir_bfr_img': np.concatenate((bfr_concat, np.zeros((8,7,768))),axis=1)
+                }
 
                 camera_waveform_crops = (389,378,0,0)
 
@@ -374,6 +418,33 @@ if __name__ == '__main__':
                     crop_right = side_crop
 
                 image = Image.fromarray(image_sample.raw[crop_top:-crop_bottom])
+
+                if False and i_frame == 42:
+                    fig, axs = plt.subplots(2)
+                    axs[0].imshow((np.amax(high_intensity_waveform, axis=2)))
+                    axs[1].imshow(sc[frame]['flir_bfc_img-cyl'].raw[180:-175])
+                    plt.show()
+
+                    distances = (np.argmax(waveform_sample.raw['high']['data'], axis=1) * waveform_sample.raw['high']['distance_scaling']).reshape((8, 96))
+                    fig, axs = plt.subplots(2,3)
+                    trace1 = full_waveforms['flir_bfl_img']
+                    trace2 = full_waveforms['flir_bfc_img']
+                    trace3 = full_waveforms['flir_bfr_img']
+                    axs[0,0].imshow(np.amax(trace1[:, :, :512], axis=2))
+                    axs[0,1].imshow(np.amax(trace2[:, :, :512], axis=2))
+                    axs[0,2].imshow(np.amax(trace3[:, :, :512], axis=2))
+
+                    # trace1 = distances[:,:30] + waveform_sample.raw['high']['time_base_delays'].reshape((8,96))[:,:30]
+                    # trace2 = distances[:,30:66] + waveform_sample.raw['high']['time_base_delays'].reshape((8,96))[:,30:66]
+                    # trace3 = distances[:,66:] + waveform_sample.raw['high']['time_base_delays'].reshape((8,96))[:,66:]
+                    # axs[0,0].imshow(trace1)
+                    # axs[0,1].imshow(trace2)
+                    # axs[0,2].imshow(trace3)
+
+                    axs[1,0].imshow(sc[frame]['flir_bfl_img'].raw[crop_top:-crop_bottom])
+                    axs[1,1].imshow(sc[frame]['flir_bfc_img'].raw[crop_top:-crop_bottom])
+                    axs[1,2].imshow(sc[frame]['flir_bfr_img'].raw[crop_top:-crop_bottom])
+                    plt.show()
 
                 num_image +=1
                 image_path = f'{pixset_images_path}{dataset}_{camera}_{num_image:06d}.jpg'
@@ -399,9 +470,10 @@ if __name__ == '__main__':
 
                 coco_format[split]['images'].append({
                     "id": num_image,
-                    # "file_name": image_path.replace('Documents/Stage/', ''),
-                    "file_name": image_path,
-                    "waveform_file_name": waveform_path,
+                    "file_name": image_path.replace('Documents/Stage/', ''),
+                    # "file_name": image_path,
+                    "waveform_file_name": waveform_path.replace('Documents/Stage/', ''),
+                    # "waveform_file_name": waveform_path,
                     "video_id": num_video,
                     "frame_id": i_frame + 1,
                     "width": image_sample.raw.shape[1],
@@ -595,4 +667,6 @@ if __name__ == '__main__':
     with open('test_category_occurrences.pkl', 'wb') as f:
         pickle.dump(category_counters['test'], f)
 
+    print(f'max high intensity amplitude: {waveform_high_max_amplitude}')
+    print(f'max low intensity amplitude: {waveform_low_max_amplitude}')
     print('All done!')

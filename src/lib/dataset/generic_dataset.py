@@ -31,6 +31,8 @@ from lib.utils.image import get_affine_transform, affine_transform
 from lib.utils.image import gaussian_radius, draw_umich_gaussian
 import copy
 
+from matplotlib import pyplot as plt
+
 import warnings
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -389,6 +391,12 @@ class GenericDataset(data.Dataset):
                 trace = np.float32(np.load(trace_path))
             except:
                 trace = np.float32(np.load(trace_path + ".npy"))
+
+            if np.random.rand() < self.opt.sensor_dropout and self.split == 'train':
+                if np.random.rand() < 0.5:
+                    img = img*0
+                else:
+                    trace = trace*0
 
         return img, anns, img_info, img_path, trace
 

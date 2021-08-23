@@ -13,6 +13,7 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 SELECTOR_INPUT_CHANNEL = [16, 32, 64, 128, 256, 512, 64, 128, 256, 512, 64, 64, 64]
+# SELECTOR_INPUT_CHANNEL = [16, 48, 64, 128, 256, 512, 64, 128, 256, 512, 64, 64, 64]
 
 
 class AFE_module(nn.Module):
