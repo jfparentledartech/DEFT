@@ -160,7 +160,7 @@ class Detector(object):
             images = images.to(self.opt.device, non_blocking=self.opt.non_block_test)
             traces = None
             if self.opt.use_pixell:
-                traces = torch.Tensor(trace.transpose(2,0,1)).reshape((1,768,8,36)).to(self.opt.device, non_blocking=self.opt.non_block_test)
+                traces = torch.Tensor(trace.transpose(2,0,1)).reshape((1,256,8,46)).to(self.opt.device, non_blocking=self.opt.non_block_test)
 
             # initializing tracker
             pre_hms, pre_inds = None, None

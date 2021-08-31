@@ -21,7 +21,7 @@ from torch import nn
 import torch.nn.functional as F
 import torch.utils.model_zoo as model_zoo
 import torch.nn.functional as nnf
-
+from matplotlib import pyplot as plt
 from .base_model import BaseModel
 
 try:
@@ -316,7 +316,7 @@ class DLA(nn.Module):
             # self.waveform_subnet = WaveformSubnet()
             self.waveform_subnet = WaveformDenseSubnet()
             self.fuse = nn.Sequential(
-                nn.Conv2d(48, 32, kernel_size=1, stride=1, padding=0, bias=False),
+                nn.Conv2d(64, 32, kernel_size=1, stride=1, padding=0, bias=False),
                 # nn.Conv2d(48, 48, kernel_size=1, stride=1, padding=0, bias=False),
                 # nn.BatchNorm2d(48, momentum=BN_MOMENTUM),
                 nn.BatchNorm2d(32, momentum=BN_MOMENTUM),

@@ -124,6 +124,12 @@ class GenericDataset(data.Dataset):
     def __getitem__(self, index):
         opt = self.opt
         img, anns, img_info, img_path, trace = self._load_data(index)
+
+        # fig, axs = plt.subplots(2)
+        # axs[0].imshow((np.amax(trace, axis=2)))
+        # axs[1].imshow(img)
+        # plt.show()
+
         height, width = img.shape[0], img.shape[1]
         c = np.array([img.shape[1] / 2.0, img.shape[0] / 2.0], dtype=np.float32)
         s = (
@@ -140,6 +146,10 @@ class GenericDataset(data.Dataset):
                 img = img[:, ::-1, :]
                 if opt.use_pixell:
                     trace = trace[:, ::-1, :]
+                # fig, axs = plt.subplots(2)
+                # axs[0].imshow((np.amax(trace, axis=2)))
+                # axs[1].imshow(img)
+                # plt.show()
                 anns = self._flip_anns(anns, width)
 
         trans_input = get_affine_transform(c, s, rot, [opt.input_w, opt.input_h])
@@ -393,7 +403,9 @@ class GenericDataset(data.Dataset):
                 trace = np.float32(np.load(trace_path + ".npy"))
 
             if np.random.rand() < self.opt.sensor_dropout and self.split == 'train':
+            # if True and self.split == 'train':
                 if np.random.rand() < 0.5:
+                # if True:
                     img = img*0
                 else:
                     trace = trace*0

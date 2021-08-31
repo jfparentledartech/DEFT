@@ -61,64 +61,67 @@ def main(opt):
 
     if opt.val_intervals < opt.num_epochs or opt.test:
 
-        # valset = Dataset(opt, "val")
-        #
-        # val_mask = list(range(0, int(len(valset) / 4), 1))
-        # val_subset = torch.utils.data.Subset(Dataset(opt, "val"), val_mask)
-        #
-        # print(len(val_subset))
-        #
-        # val_loader = torch.utils.data.DataLoader(
-        #     val_subset,
-        #     batch_size=4,
-        #     shuffle=False,
-        #     num_workers=0,
-        #     pin_memory=True,
-        #     drop_last=True
-        # )
-
         print("Setting up validation data...")
-        val_loader = torch.utils.data.DataLoader(
-            Dataset(opt, "val"),
-            batch_size=opt.batch_size,
-            shuffle=False,
-            num_workers=opt.num_workers,
-            pin_memory=True,
-            drop_last=True
-        )
+        if opt.use_subset:
+            valset = Dataset(opt, "val")
+
+            val_mask = list(range(0, int(len(valset) / 10), 1))
+            val_subset = torch.utils.data.Subset(Dataset(opt, "val"), val_mask)
+
+            print(len(val_subset))
+
+            val_loader = torch.utils.data.DataLoader(
+                val_subset,
+                batch_size=4,
+                shuffle=False,
+                num_workers=0,
+                pin_memory=True,
+                drop_last=True
+            )
+
+        else:
+            val_loader = torch.utils.data.DataLoader(
+                Dataset(opt, "val"),
+                batch_size=opt.batch_size,
+                shuffle=False,
+                num_workers=opt.num_workers,
+                pin_memory=True,
+                drop_last=True
+            )
 
         if opt.test:
             _, preds = trainer.val(0, val_loader)
             val_loader.dataset.run_eval(preds, opt.save_dir)
             return
 
-    print("Setting up train data...")
+    if opt.use_subset:
+        print("Setting up train data...")
 
-    # TODO uncomment to use subset
-    # trainset = Dataset(opt, "train")
-    #
-    # train_mask = list(range(0, int(len(trainset)/1000), 1))
-    # train_subset = torch.utils.data.Subset(Dataset(opt, "train"), train_mask)
-    #
-    # print(len(train_subset))
-    #
-    # train_loader = torch.utils.data.DataLoader(
-    #     train_subset,
-    #     batch_size=opt.batch_size,
-    #     shuffle=True,
-    #     num_workers=opt.num_workers,
-    #     pin_memory=True,
-    #     drop_last=True,
-    # )
+        trainset = Dataset(opt, "train")
 
-    train_loader = torch.utils.data.DataLoader(
-        Dataset(opt, "train"),
-        batch_size=opt.batch_size,
-        shuffle=True,
-        num_workers=opt.num_workers,
-        pin_memory=True,
-        drop_last=True,
-    )
+        train_mask = list(range(0, int(len(trainset)/10), 1))
+        train_subset = torch.utils.data.Subset(Dataset(opt, "train"), train_mask)
+
+        print(len(train_subset))
+
+        train_loader = torch.utils.data.DataLoader(
+            train_subset,
+            batch_size=opt.batch_size,
+            shuffle=True,
+            num_workers=opt.num_workers,
+            pin_memory=True,
+            drop_last=True,
+        )
+
+    else:
+        train_loader = torch.utils.data.DataLoader(
+            Dataset(opt, "train"),
+            batch_size=opt.batch_size,
+            shuffle=True,
+            num_workers=opt.num_workers,
+            pin_memory=True,
+            drop_last=True,
+        )
 
 
     print("Starting training...")
@@ -183,5 +186,6 @@ if __name__ == "__main__":
     # opt.eval_val = True
     print(f'Using pixell -> ', opt.use_pixell)
     print(f'Using lstm -> ', opt.lstm)
-    print(f'Sensor dropout lstm -> ', opt.sensor_dropout)
+    print(f'Sensor dropout -> ', opt.sensor_dropout)
+    print(f'Using subset -> ', opt.use_subset)
     main(opt)

@@ -4,6 +4,19 @@ from lib.model import layers
 
 BN_MOMENTUM = 0.1
 
+
+class Interpolate(nn.Module):
+    def __init__(self, size, mode):
+        super(Interpolate, self).__init__()
+        self.interp = nn.functional.interpolate
+        self.size = size
+        self.mode = mode
+
+    def forward(self, x):
+        x = self.interp(x, size=self.size, mode=self.mode, align_corners=False)
+        return x
+
+
 class WaveformSubnet(nn.Module):
     def __init__(self):
         super().__init__()
@@ -70,41 +83,46 @@ class WaveformDenseSubnet(nn.Module):
         super().__init__()
 
         self.decapitation_1 = layers.Decapitation(in_channels=16, out_channels=16, kernel=(3,3,7))
-        self.dense_block_1 = layers.DenseBlock(in_channels=16, growth=2, n_layers=2, kernel=(3,3,7))
-        # self.dense_block_1 = layers.DenseBlock(in_channels=16, growth=16, n_layers=2, kernel=(3,3,7))
+        # self.dense_block_1 = layers.DenseBlock(in_channels=16, growth=4, n_layers=2, kernel=(3,3,7))
+        self.dense_block_1 = layers.DenseBlock(in_channels=16, growth=16, n_layers=2, kernel=(3,3,7))
         self.compressor_1 = layers.Compressor(in_channels=self.dense_block_1.out_channels, out_channels=24, kernel=(1,1,3), shrink=(1,1,8))
 
         self.decapitation_2 = layers.Decapitation(in_channels=self.compressor_1.out_channels, out_channels=32, kernel=(3,3,5))
         self.upscale_decap_2 = layers.Upscale(in_channels=self.decapitation_2.out_channels, out_channels=32, kernel=(4,4), up_factor=(4,4))
 
-        # self.dense_block_2 = layers.DenseBlock(in_channels=self.compressor_1.out_channels, growth=20, n_layers=4, kernel=(3,3,5))
-        self.dense_block_2 = layers.DenseBlock(in_channels=self.compressor_1.out_channels, growth=4, n_layers=2, kernel=(3,3,5))
+        self.dense_block_2 = layers.DenseBlock(in_channels=self.compressor_1.out_channels, growth=20, n_layers=4, kernel=(3,3,5))
+        # self.dense_block_2 = layers.DenseBlock(in_channels=self.compressor_1.out_channels, growth=8, n_layers=2, kernel=(3,3,5))
         self.compressor_2 = layers.Compressor(in_channels=self.dense_block_2.out_channels, out_channels=80, kernel=(1,1,3), shrink=(1,1,4))
 
         self.decapitation_3 = layers.Decapitation(in_channels=self.compressor_2.out_channels, out_channels=48, kernel=(3,3,3))
         self.upscale_decap_3 = layers.Upscale(in_channels=self.decapitation_3.out_channels, out_channels=48, kernel=(2,2), up_factor=(2,2))
 
-        # self.dense_block_3 = layers.DenseBlock(in_channels=self.compressor_2.out_channels, growth=20, n_layers=8, kernel=(3,3,3))
-        self.dense_block_3 = layers.DenseBlock(in_channels=self.compressor_2.out_channels, growth=2, n_layers=4, kernel=(3,3,3))
+        self.dense_block_3 = layers.DenseBlock(in_channels=self.compressor_2.out_channels, growth=20, n_layers=8, kernel=(3,3,3))
+        # self.dense_block_3 = layers.DenseBlock(in_channels=self.compressor_2.out_channels, growth=8, n_layers=4, kernel=(3,3,3))
         self.compressor_3 = layers.Compressor(in_channels=self.dense_block_3.out_channels, out_channels=200, kernel=(1,1,3), shrink=(1,1,8))
 
         nb_decapitated_channels = self.decapitation_1.out_channels + self.decapitation_2.out_channels + self.decapitation_3.out_channels
         self.compressor_4 = layers.Compressor(in_channels=self.compressor_3.out_channels + nb_decapitated_channels, out_channels=160, kernel=(1,1), shrink=(1,1))
 
-        # self.dense_block_4 = layers.DenseBlock(in_channels=self.compressor_4.out_channels, growth=10, n_layers=12, kernel=(3,3))
-        self.dense_block_4 = layers.DenseBlock(in_channels=self.compressor_4.out_channels, growth=2, n_layers=4, kernel=(3,3))
+        self.dense_block_4 = layers.DenseBlock(in_channels=self.compressor_4.out_channels, growth=10, n_layers=12, kernel=(3,3))
+        # self.dense_block_4 = layers.DenseBlock(in_channels=self.compressor_4.out_channels, growth=4, n_layers=4, kernel=(3,3))
         self.upscale_1 = layers.Upscale(in_channels=self.dense_block_4.out_channels, out_channels=120, kernel=(2,2), up_factor=(2,2))
 
-        self.dense_block_5 = layers.DenseBlock(in_channels=self.upscale_1.out_channels + self.upscale_decap_3.out_channels, growth=2, n_layers=2, kernel=(3,3))
-        # self.dense_block_5 = layers.DenseBlock(in_channels=self.upscale_1.out_channels + self.upscale_decap_3.out_channels, growth=12, n_layers=4, kernel=(3,3))
+        # self.dense_block_5 = layers.DenseBlock(in_channels=self.upscale_1.out_channels + self.upscale_decap_3.out_channels, growth=4, n_layers=2, kernel=(3,3))
+        self.dense_block_5 = layers.DenseBlock(in_channels=self.upscale_1.out_channels + self.upscale_decap_3.out_channels, growth=12, n_layers=4, kernel=(3,3))
         self.upscale_2 = layers.Upscale(in_channels=self.dense_block_5.out_channels, out_channels=80, kernel=(2,2), up_factor=(2,2))
 
-        # self.dense_block_6 = layers.DenseBlock(in_channels=self.upscale_2.out_channels + self.upscale_decap_2.out_channels, out_channels=16, growth=6, n_layers=1, kernel=(3,3))
-        self.dense_block_6 = layers.DenseBlock(in_channels=self.upscale_2.out_channels + self.upscale_decap_2.out_channels, out_channels=16, growth=2, n_layers=1, kernel=(3,3))
+        self.dense_block_6 = layers.DenseBlock(in_channels=self.upscale_2.out_channels + self.upscale_decap_2.out_channels, out_channels=16, growth=6, n_layers=1, kernel=(3,3))
+        # self.dense_block_6 = layers.DenseBlock(in_channels=self.upscale_2.out_channels + self.upscale_decap_2.out_channels, out_channels=16, growth=4, n_layers=1, kernel=(3,3))
         self.upscale_3 = layers.Upscale(in_channels=self.dense_block_6.out_channels, out_channels=80, kernel=(5,5), up_factor=(5,5))
 
-        # self.dense_block_out = layers.DenseBlock(in_channels=self.upscale_3.out_channels, out_channels=16, growth=6, n_layers=1, kernel=(3,3))
-        self.dense_block_out = layers.DenseBlock(in_channels=self.upscale_3.out_channels, out_channels=16, growth=2, n_layers=1, kernel=(3,3))
+        self.dense_block_out = layers.DenseBlock(in_channels=self.upscale_3.out_channels, out_channels=32, growth=6, n_layers=1, kernel=(3,3))
+        # self.dense_block_out = layers.DenseBlock(in_channels=self.upscale_3.out_channels, out_channels=32, growth=2, n_layers=1, kernel=(3,3))
+
+        self.resize_convolution = nn.Sequential (
+            Interpolate(size=(160,720), mode='bilinear'),
+            nn.Conv2d(32, 32, kernel_size=3, stride=1, padding=1)
+        )
 
 
     def forward(self, x):
@@ -143,5 +161,6 @@ class WaveformDenseSubnet(nn.Module):
         x = self.dense_block_out(x)
         # from matplotlib import pyplot as plt
         # plt.imshow(x.detach().cpu()[0,0])
-        x = torch.nn.functional.interpolate(x, (160,720))
+        # x = torch.nn.functional.interpolate(x, (160,720))
+        x = self.resize_convolution(x)
         return x

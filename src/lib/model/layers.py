@@ -177,6 +177,18 @@ class Compressor(nn.Module):
         return x
 
 
+class Interpolate(nn.Module):
+    def __init__(self, size, mode):
+        super(Interpolate, self).__init__()
+        self.interp = nn.functional.interpolate
+        self.size = size
+        self.mode = mode
+
+    def forward(self, x):
+        x = self.interp(x, size=self.size, mode=self.mode, align_corners=False)
+        return x
+
+
 class Upscale(nn.Module):
     """Decoding module.  
 
@@ -200,7 +212,7 @@ class Upscale(nn.Module):
         if len(kernel) == 2: #(2d)
             self.activation = activation
             self.bn = nn.BatchNorm2d(in_channels)
-            self.trans = nn.ConvTranspose2d(in_channels=in_channels, out_channels=out_channels, 
+            self.trans = nn.ConvTranspose2d(in_channels=in_channels, out_channels=out_channels,
                                             kernel_size=kernel, stride=up_factor, padding=padding)
         
         elif len(kernel) == 3: #(3d)

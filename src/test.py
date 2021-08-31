@@ -124,8 +124,8 @@ def prefetch_test(opt):
     opt = opts().update_dataset_info_and_set_heads(opt, Dataset)
 
     # split = "val" if not opt.trainval else "test"
-    # split = "test"
-    split = "val"
+    split = "test"
+    # split = "val"
     dataset = Dataset(opt, split)
     detector = Detector(opt)
 
