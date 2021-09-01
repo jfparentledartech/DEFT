@@ -38,6 +38,8 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
+DEBUG = False
+
 class GenericDataset(data.Dataset):
     is_fusion_dataset = False
     default_resolution = None
@@ -125,11 +127,6 @@ class GenericDataset(data.Dataset):
         opt = self.opt
         img, anns, img_info, img_path, trace = self._load_data(index)
 
-        # fig, axs = plt.subplots(2)
-        # axs[0].imshow((np.amax(trace, axis=2)))
-        # axs[1].imshow(img)
-        # plt.show()
-
         height, width = img.shape[0], img.shape[1]
         c = np.array([img.shape[1] / 2.0, img.shape[0] / 2.0], dtype=np.float32)
         s = (
@@ -146,10 +143,6 @@ class GenericDataset(data.Dataset):
                 img = img[:, ::-1, :]
                 if opt.use_pixell:
                     trace = trace[:, ::-1, :]
-                # fig, axs = plt.subplots(2)
-                # axs[0].imshow((np.amax(trace, axis=2)))
-                # axs[1].imshow(img)
-                # plt.show()
                 anns = self._flip_anns(anns, width)
 
         trans_input = get_affine_transform(c, s, rot, [opt.input_w, opt.input_h])
@@ -157,13 +150,27 @@ class GenericDataset(data.Dataset):
         trans_output = get_affine_transform(c, s, rot, [opt.output_w, opt.output_h])
         inp, inp_org = self._get_input(img, trans_input)
 
-        ret = {"image": inp}
-        ret["next_image_org"] = inp_org
         if opt.use_pixell:
             inp_trace_org = trace.copy()
             inp_trace = inp_trace_org.transpose(2, 0, 1)
+            # inp_trace = inp_trace.astype(np.float32) / 255.0 # TODO
+            # inp_trace = (inp_trace - inp_trace.mean()) / inp_trace.std() # TODO
+
+        if DEBUG:
+            print('get item')
+            fig, axs = plt.subplots(2,2)
+            axs[0,0].imshow((np.amax(inp_trace_org, axis=2)))
+            axs[0,1].imshow((np.amax(inp_trace.transpose(1,2,0), axis=2)))
+            axs[1,0].imshow(inp_org)
+            axs[1,1].imshow(inp.transpose(1,2,0))
+            plt.show()
+
+        ret = {"image": inp}
+        ret["next_image_org"] = inp_org
+        if opt.use_pixell:
             ret["trace"] = inp_trace
             ret["next_trace_org"] = inp_trace_org
+
 
         gt_det = {"bboxes": [], "scores": [], "clses": [], "cts": []}
 
@@ -206,6 +213,13 @@ class GenericDataset(data.Dataset):
                 img_info["frame_id"],
                 img_info["sensor_id"] if "sensor_id" in img_info else 1,
             )
+
+            if DEBUG:
+                print('appearence part')
+                fig, axs = plt.subplots(2)
+                axs[0].imshow((np.amax(pre_trace_AFE, axis=2)))
+                axs[1].imshow(pre_image_AFE)
+                plt.show()
             if flipped:
                 pre_image_AFE = pre_image_AFE[:, ::-1, :].copy()
                 if opt.use_pixell:
@@ -504,11 +518,12 @@ class GenericDataset(data.Dataset):
 
     def _get_aug_param(self, c, s, width, height, disturb=False):
         if (not self.opt.not_rand_crop) and not disturb:
-            aug_s = np.random.choice(np.arange(0.6, 1.4, 0.1))
+            # aug_s = np.random.choice(np.arange(0.6, 1.4, 0.1))
+            aug_s = 1.
             w_border = self._get_border(128, width)
             h_border = self._get_border(128, height)
-            c[0] = np.random.randint(low=w_border, high=width - w_border)
-            c[1] = np.random.randint(low=h_border, high=height - h_border)
+            # c[0] = np.random.randint(low=w_border, high=width - w_border)
+            # c[1] = np.random.randint(low=h_border, high=height - h_border)
         else:
             sf = self.opt.scale
             cf = self.opt.shift
