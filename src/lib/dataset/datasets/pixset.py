@@ -35,7 +35,8 @@ class PixSet(GenericDataset):
     max_objs = 128
     _tracking_ignored_class = []
     _vehicles = ["car", "truck", "bus", "van"]
-    _cycles = ["motorcycle", "bicycle"]
+    # _cycles = ["motorcycle", "bicycle"]
+    _cycles = ["motorcyclist", "cyclist"]
     _pedestrians = ["pedestrian"]
     attribute_to_id = {
         "": 0,

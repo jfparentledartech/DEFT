@@ -78,6 +78,7 @@ class GenericDataset(data.Dataset):
     std = np.array([0.28863828, 0.27408164, 0.27809835], dtype=np.float32).reshape(
         1, 1, 3
     )
+
     _eig_val = np.array([0.2141788, 0.01817699, 0.00341571], dtype=np.float32)
     _eig_vec = np.array(
         [
@@ -153,8 +154,15 @@ class GenericDataset(data.Dataset):
         if opt.use_pixell:
             inp_trace_org = trace.copy()
             inp_trace = inp_trace_org.transpose(2, 0, 1)
-            # inp_trace = inp_trace.astype(np.float32) / 255.0 # TODO
-            # inp_trace = (inp_trace - inp_trace.mean()) / inp_trace.std() # TODO
+
+            high_trace_mean = 0.19692711501135637
+            low_trace_mean = 0.10208980588390526
+            high_trace_std = 2.244204265801719
+            low_trace_std = 2.0298123498401903
+
+            inp_trace = inp_trace.astype(np.float32) / 255.0
+            inp_trace[:170] = (inp_trace[:170] - high_trace_mean) / high_trace_std
+            inp_trace[170:] = (inp_trace[170:] - low_trace_mean) / low_trace_std
 
         if DEBUG:
             print('get item')
